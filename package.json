@@ -1,0 +1,29 @@
+{
+  "name": "sdc-hackathon-2026",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently -n api,web -c yellow,cyan \"npm run dev --prefix backend\" \"npm run dev --prefix Frontend\"",
+    "install:all": "npm i && npm i --prefix backend && npm i --prefix Frontend"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsetsen-oyun/SDG-Hackaton-2026.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/tsetsen-oyun/SDG-Hackaton-2026/issues"
+  },
+  "homepage": "https://github.com/tsetsen-oyun/SDG-Hackaton-2026#readme",
+  "devDependencies": {
+    "concurrently": "^10.0.6"
+  }
+}
