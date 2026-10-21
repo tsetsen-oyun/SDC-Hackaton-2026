@@ -1,14 +1,20 @@
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useApp } from "../context/AppContext.jsx";
 import { api } from "../api.js";
-import { personTasks, toPayload, SCENARIO_LABEL } from "../utils.js";
+import { personTasks, toPayload, SCENARIO_LABEL, skillName } from "../utils.js";
 import Receipt from "../components/Receipt.jsx";
 
 const YEARS = Array.from({ length: 10 }, (_, i) => 2026 + i);
 const WEATHER = { rising: "☀️ Rising", steady: "⛅ Steady", declining: "🌧️ Declining" };
+const OUTLOOK_HINT = {
+  declining: "AI could do more of this job's tasks within 2 years.",
+  steady: "AI isn't expected to take over more of this job's tasks within 2 years.",
+};
+const SHOW_MISSING = 5;
 
 function RankShift({ job }) {
+  if (job.rank_market == null || job.rank_planet == null) return null;
   const d = job.rank_market - job.rank_planet; // positive = moves up when the planet counts
   if (d === 0) return <span className="shift same">–</span>;
   return (
@@ -19,7 +25,17 @@ function RankShift({ job }) {
 }
 
 function JobCard({ job, rank, mode, onChoose }) {
-  const pct = Math.round((job.skills_have / job.skills_total) * 100);
+  const [showAll, setShowAll] = useState(false);
+  const total = job.skills_total || 1; // avoids dividing by zero
+  const have = job.skills_have ?? 0;
+  const related = job.skills_related ?? 0;
+  const pctHave = Math.round((have / total) * 100);
+  const pctRelated = Math.min(100 - pctHave, Math.round((related / total) * 100));
+  const missing = job.missing ?? [];
+  const shown = showAll ? missing : missing.slice(0, SHOW_MISSING);
+  const hint = OUTLOOK_HINT[job.outlook_trend];
+  const b = job.breakdown ?? {};
+
   return (
     <article className="card job">
       <div className="job-top">
@@ -29,25 +45,39 @@ function JobCard({ job, rank, mode, onChoose }) {
         <div className="job-score">
           Match <b>{job.score}</b>
           <Receipt source={job.source}>
-            <span>Tasks you already do: {job.breakdown.tasks}</span>
-            <span>Skills you have: {job.breakdown.skills}</span>
-            <span>Job outlook: {job.breakdown.outlook}</span>
+            {b.tasks != null && <span>Fits what's left of your week: {b.tasks}</span>}
+            <span>Skills you have: {b.skills}</span>
+            <span>Job outlook: {b.outlook}</span>
           </Receipt>
         </div>
       </div>
 
       <div className="job-meta">
         <span className="outlook">{WEATHER[job.outlook_trend] ?? job.outlook_trend}</span>
-        <span>You have <b>{job.skills_have} of {job.skills_total}</b> skills</span>
+        {hint && <Receipt>{hint}</Receipt>}
+        <span>
+          You have <b>{have} of {job.skills_total}</b> skills
+          {related > 0 && ` · ${related} related`}
+        </span>
       </div>
-      <div className="meter"><span style={{ width: pct + "%" }} /></div>
+      <div className="meter">
+        <span className="have" style={{ width: pctHave + "%" }} />
+        <span className="related" style={{ width: pctRelated + "%" }} />
+      </div>
 
-      {job.missing.length > 0 && (
-        <p className="missing"><span className="muted">Missing:</span> {job.missing.join(", ")}</p>
+      {missing.length > 0 && (
+        <p className="missing">
+          <span className="muted">Missing:</span> {shown.map(skillName).join(", ")}{" "}
+          {missing.length > SHOW_MISSING && (
+            <button className="link-btn" onClick={() => setShowAll(!showAll)}>
+              {showAll ? "show less" : `+${missing.length - SHOW_MISSING} more`}
+            </button>
+          )}
+        </p>
       )}
 
       <ul className="sdg-list">
-        {job.sdg.map((s) => (
+        {(job.sdg ?? []).map((s) => (
           <li key={s.target + s.label} className={s.effect < 0 ? "debit" : "credit"}>
             <b>{s.effect < 0 ? "−" : "+"} {s.target}</b> {s.label}
             {s.reason && ` · ${s.reason}`}
@@ -85,7 +115,7 @@ export default function MapPage() {
   if (error) return <p>Couldn't load matches: {error}</p>;
   if (!person || !data) return <p>Loading…</p>;
 
-  const jobs = data.by_year[year].jobs;
+  const jobs = data.by_year[year]?.jobs ?? [];
 
   function choose(job) {
     setChosenJob(job);
@@ -121,9 +151,16 @@ export default function MapPage() {
       </p>
 
       <div className="jobs">
-        {jobs.map((job, i) => (
-          <JobCard key={job.job_id} job={job} rank={i + 1} mode={mode} onChoose={choose} />
-        ))}
+        {jobs.map((job, i) => {
+          const firstNoShare =
+            job.shares_skills === false && (i === 0 || jobs[i - 1].shares_skills !== false);
+          return (
+            <Fragment key={job.job_id}>
+              {firstNoShare && <h2 className="group-title">No shared skills yet</h2>}
+              <JobCard job={job} rank={i + 1} mode={mode} onChoose={choose} />
+            </Fragment>
+          );
+        })}
       </div>
     </>
   );

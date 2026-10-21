@@ -10,7 +10,10 @@ const FIRST = 2026, LAST = 2035;
 const YEARS = Array.from({ length: LAST - FIRST + 1 }, (_, i) => FIRST + i);
 const pos = (y) => Math.min(100, Math.max(0, ((y - FIRST) / (LAST - FIRST)) * 100));
 
+const KIND = { does: ["AI does it", "pill-solid"], helps: ["AI helps", "pill-outline"] };
+
 function TaskRow({ t, year, done, showHours }) {
+  const kind = KIND[t.kind]; // undefined when kind is null, so no pill
   const end = t.to ?? LAST;
   return (
     <div className={"trow " + (done ? "done" : "human")}>
@@ -20,22 +23,26 @@ function TaskRow({ t, year, done, showHours }) {
       </div>
       <div className="hours">{showHours ? t.hours : "–"}</div>
       <div className="range">
-        <div className="range-track" />
-        <div
-          className={"range-bar" + (done ? "" : " human")}
-          style={{ left: pos(t.from) + "%", width: Math.max(pos(end) - pos(t.from), 3) + "%" }}
-        />
-        <div className="range-tick" style={{ left: pos(year) + "%" }} />
-        <div className="range-label">
-          {rangeLabel(t.from, t.to)}
-          <Receipt source={t.source} />
-        </div>
+        {t.no_data ? (
+          <div className="range-label no-data">
+            No data <Receipt source={t.source} />
+          </div>
+        ) : (
+          <>
+            <div className="range-track" />
+            <div
+              className={"range-bar" + (done ? "" : " human")}
+              style={{ left: pos(t.from) + "%", width: Math.max(pos(end) - pos(t.from), 3) + "%" }}
+            />
+            <div className="range-tick" style={{ left: pos(year) + "%" }} />
+            <div className="range-label">
+              {rangeLabel(t.from, t.to)}
+              <Receipt source={t.source} />
+            </div>
+          </>
+        )}
       </div>
-      <div>
-        <span className={"pill " + (t.kind === "does" ? "pill-solid" : "pill-outline")}>
-          {t.kind === "does" ? "AI does it" : "AI helps"}
-        </span>
-      </div>
+      <div>{kind && <span className={"pill " + kind[1]}>{kind[0]}</span>}</div>
     </div>
   );
 }
@@ -59,11 +66,13 @@ export default function Forecast() {
   if (!person || !data) return <p>Loading…</p>;
 
   const yearData = data.by_year[year];
+  if (!yearData) return <p>No forecast for {year}.</p>;
+
   const doneIds = new Set(yearData.ai_task_ids);
   const hasHours = data.tasks.some((t) => t.hours > 0);
   const totalHours = data.tasks.reduce((s, t) => s + t.hours, 0);
   const byId = Object.fromEntries(data.tasks.map((t) => [t.task_id, t]));
-  const role = data.emerging_role;
+  const role = yearData.emerging_role;
 
   return (
     <>
@@ -145,7 +154,7 @@ export default function Forecast() {
         </section>
 
         <div className="stack">
-          {role && (
+          {role ? (
             <section className="card-dark role">
               <div className="role-top">
                 <span>What's left: a new role forming</span>
@@ -154,7 +163,7 @@ export default function Forecast() {
               <h2>{role.name}</h2>
               <div className="made">Made of</div>
               <div className="chips">
-                {role.made_of.map((id) =>
+                {(role.made_of ?? []).map((id) =>
                   byId[id] ? (
                     <span key={id} className="chip">
                       {byId[id].name}{hasHours && ` · ${byId[id].hours} h`}
@@ -162,27 +171,36 @@ export default function Forecast() {
                   ) : null
                 )}
               </div>
-              <div className="role-sep">
-                Closest real job <b>{role.closest_job}</b>
-                <Receipt source={role.source} />
-              </div>
+              {role.closest_job && (
+                <div className="role-sep">
+                  Closest real job <b>{role.closest_job}</b>
+                  <Receipt source={role.source} />
+                </div>
+              )}
               <Link to="/map" className="btn-orange">See matching roles on Map →</Link>
+            </section>
+          ) : (
+            <section className="card role-empty">
+              <b>No new role forming yet in {year}</b>
+              <p className="muted">Drag the year forward to see what's left of the week.</p>
             </section>
           )}
 
-          <section className="card skills">
-            <h2>{person.name}'s skills</h2>
-            {data.skills.map((s) => (
-              <div key={s.id} className={"skill " + s.label}>
-                <span className="skill-bar" />
-                <div className="skill-main">
-                  <div className="skill-name">{s.name}</div>
-                  <div className="skill-trend">{s.trend}</div>
+          {data.skills?.length > 0 && (
+            <section className="card skills">
+              <h2>{person.name}'s skills</h2>
+              {data.skills.map((s) => (
+                <div key={s.id} className={"skill " + (s.label ?? "")}>
+                  <span className="skill-bar" />
+                  <div className="skill-main">
+                    <div className="skill-name">{s.name}</div>
+                    <div className="skill-trend">{s.trend}</div>
+                  </div>
+                  {s.label && <span className="tag">{s.label}</span>}
                 </div>
-                <span className="tag">{s.label}</span>
-              </div>
-            ))}
-          </section>
+              ))}
+            </section>
+          )}
         </div>
       </div>
     </>

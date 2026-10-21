@@ -113,11 +113,22 @@ h2 { letter-spacing: -0.01em; }
 .job-top h3 { margin: 0; font-size: 26px; flex: 1; min-width: 240px; }
 .job-score { display: flex; align-items: center; gap: 6px; font-size: 18px; }
 .job-score b { font-size: 32px; margin-left: 4px; }
+.job-score .receipt-pop { left: auto; right: -8px; } /* score is at the card's right edge, so open the popup leftward */
 .job-meta { display: flex; gap: 24px; flex-wrap: wrap; align-items: center; color: var(--ink-soft); }
 .job-meta b { color: var(--ink); }
 .outlook { padding: 6px 14px; border-radius: 999px; background: var(--bg); font-weight: 600; color: var(--ink); }
-.meter { height: 8px; border-radius: 6px; background: #eceef1; overflow: hidden; }
-.meter span { display: block; height: 100%; background: var(--blue); }
+.meter { display: flex; height: 8px; border-radius: 6px; background: #eceef1; overflow: hidden; }
+.meter span { display: block; height: 100%; }
+.meter .have { background: var(--blue); }
+.meter .related { background: #aab4f1; }
+
+.range-label.no-data { top: 12px; color: var(--ink-soft); font-style: italic; }
+.role-empty { padding: 28px 32px; }
+.role-empty p { margin: 8px 0 0; }
+.group-title { margin: 20px 0 0; font-size: 22px; color: var(--ink-soft); }
+.link-btn { border: 0; background: none; padding: 0; color: var(--blue); font: inherit; font-weight: 600; cursor: pointer; }
+.no-course { padding: 16px 20px; border-radius: 14px; background: var(--bg); border: 1px dashed var(--grey); margin-bottom: 20px; }
+
 .missing { margin: 0; line-height: 1.6; }
 .sdg-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
 .sdg-list .credit b { color: var(--blue); }
