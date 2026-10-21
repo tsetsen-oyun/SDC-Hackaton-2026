@@ -11,9 +11,11 @@ const YEARS = Array.from({ length: LAST - FIRST + 1 }, (_, i) => FIRST + i);
 const pos = (y) => Math.min(100, Math.max(0, ((y - FIRST) / (LAST - FIRST)) * 100));
 
 const KIND = { does: ["AI does it", "pill-solid"], helps: ["AI helps", "pill-outline"] };
+// the engine sent no "mode" for this task, so we say so instead of leaving the cell empty
+const NO_KIND = ["Not specified", "pill-muted"];
 
 function TaskRow({ t, year, done, showHours }) {
-  const kind = KIND[t.kind]; // undefined when kind is null, so no pill
+  const kind = KIND[t.kind] ?? NO_KIND;
   const end = t.to ?? LAST;
   return (
     <div className={"trow " + (done ? "done" : "human")}>
@@ -31,7 +33,7 @@ function TaskRow({ t, year, done, showHours }) {
           <>
             <div className="range-track" />
             <div
-              className={"range-bar" + (done ? "" : " human")}
+              className={"range-bar" + (done ? "" : " human") + (t.to == null ? " open" : "")}
               style={{ left: pos(t.from) + "%", width: Math.max(pos(end) - pos(t.from), 3) + "%" }}
             />
             <div className="range-tick" style={{ left: pos(year) + "%" }} />
@@ -56,7 +58,7 @@ export default function Forecast() {
     if (!person) return;
     let ignore = false; // stops an old, slow response from overwriting a newer one
     setError(null);
-    api.forecast(toPayload(personTasks(person)), scenario)
+    api.forecast(toPayload(personTasks(person)), scenario, person.skill_ids ?? [])
       .then((d) => { if (!ignore) setData(d); })
       .catch((e) => { if (!ignore) setError(e.message); });
     return () => { ignore = true; };
@@ -83,17 +85,28 @@ export default function Forecast() {
             {hasHours && ` · ${totalHours} hours a week`}
           </p>
           <h1 className="hero">
-            {hasHours ? `${person.name}'s week in ${year}` : `${person.target_job ?? "This job"} in ${year}`}
+            {hasHours ? `${person.name}'s week in ` : `${person.target_job ?? "This job"} in `}
+            <span className="accent">{year}</span>
           </h1>
         </div>
-        <div className="year-slider">
+        <div
+          className="year-slider glass-widget"
+          style={{ "--fill": ((year - FIRST) / (LAST - FIRST)) * 100 + "%" }}
+        >
+          <div className="year-head">
+            <span className="mono">Year</span>
+            <b>{year}</b>
+          </div>
           <input
             type="range" min={FIRST} max={LAST} step="1" value={year}
+            aria-label="Year"
             onChange={(e) => setYear(Number(e.target.value))}
           />
           <div className="year-labels">
             {YEARS.map((y) => (
-              <span key={y} className={y === year ? "on" : ""}>{y}</span>
+              <span key={y} className={y === year ? "on" : ""}>
+                {y === FIRST || y === LAST ? y : String(y).slice(2)}
+              </span>
             ))}
           </div>
         </div>
@@ -115,6 +128,8 @@ export default function Forecast() {
             <p className="week-note">
               By {year}, AI could do about <b>{Math.round(yearData.share_ai * 100)}% of {person.name}'s weekly hours</b>{" "}
               under the {SCENARIO_LABEL[scenario]} scenario. <b>Estimate.</b>
+              {yearData.no_data_hours > 0 &&
+                ` ${yearData.no_data_hours} h have no published timing, so we count them as still human.`}
             </p>
           </div>
           <WeekBar tasks={data.tasks} doneIds={doneIds} />

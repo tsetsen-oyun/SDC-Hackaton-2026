@@ -115,6 +115,9 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: err.message });
 });
 
+// backend/server.js — add next to the other routes (uses engine.getSkills if the teammate adds it)
+app.get("/api/skills", needs("getSkills"), wrap(async (_req, res) => res.json(await engine.getSkills())));
+
 app.listen(PORT, () =>
   console.log(`Server running on http://localhost:${PORT}`)
 );

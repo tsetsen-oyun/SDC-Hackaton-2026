@@ -32,10 +32,12 @@ for (const scenario of ["moderate", "fast", "slowdown"]) {
 
   for (const mode of ["market", "marketPlanet"]) {
     const m = await call("/api/match", { tasks, skills, scenario, mode });
-    const jobs = m.json?.by_year?.[2029]?.jobs;
-    check(`match ${scenario}/${mode}: 200 + jobs`, m.status === 200 && Array.isArray(jobs) && jobs.length > 0,
+    // real engine uses "roles"; the old mock used "jobs"
+    const year = m.json?.by_year?.[2029];
+    const roles = year?.roles ?? year?.jobs;
+    check(`match ${scenario}/${mode}: 200 + roles`, m.status === 200 && Array.isArray(roles) && roles.length > 0,
       JSON.stringify(m.json)?.slice(0, 120));
-    jobId ??= jobs?.[0]?.job_id;
+    jobId ??= roles?.[0]?.role_id ?? roles?.[0]?.job_id;
   }
 }
 

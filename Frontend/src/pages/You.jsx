@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useApp } from "../context/AppContext.jsx";
 import { personTasks } from "../utils.js";
-import WeekBar from "../components/WeekBar.jsx";
+import WeekSplit from "../components/WeekSplit.jsx";
 import Receipt from "../components/Receipt.jsx";
 
 const STAT_SOURCE = { label: "ISIS Malaysia & World Bank", date: "2025", isEstimate: false };
@@ -12,7 +12,6 @@ export default function You() {
 
   const tasks = personTasks(person);
   const hasHours = tasks.some((t) => t.hours > 0);
-  const total = tasks.reduce((s, t) => s + t.hours, 0);
 
   function pick(p) {
     setPerson(p);
@@ -37,16 +36,23 @@ export default function You() {
       </div>
 
       <section className="card week">
-        <h2>{hasHours ? `${person.name}'s week (${total} hours)` : `Tasks in ${person.target_job ?? "the target job"}`}</h2>
-        {hasHours && <WeekBar tasks={tasks} />}
-        <div>
-          {tasks.map((t) => (
-            <div key={t.task_id} className="simple-row">
-              <span>{t.name}</span>
-              <span>{hasHours ? `${t.hours} h` : "–"}</span>
+        {hasHours ? (
+          // list on the left, pastel pie on the right
+          <WeekSplit person={person} />
+        ) : (
+          // no hours (a job the person hasn't started): just the task list
+          <>
+            <h2>Tasks in {person.target_job ?? "the target job"}</h2>
+            <div>
+              {tasks.map((t) => (
+                <div key={t.task_id} className="simple-row">
+                  <span>{t.name}</span>
+                  <span>–</span>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+          </>
+        )}
       </section>
 
       <Link to="/forecast" className="btn-blue">See my forecast →</Link>
