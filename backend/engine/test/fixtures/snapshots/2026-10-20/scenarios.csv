@@ -1,0 +1,4 @@
+scenario_id,name,doubling_days,assumption_note,source
+moderate,Moderate pace,365.25,TEST: doubles once a year,test_metr
+fast,Fast pace,182.625,TEST: doubles twice a year,test_metr
+slowdown,Slowdown,,TEST: uses slowdown_milestones.csv,test_slowdown

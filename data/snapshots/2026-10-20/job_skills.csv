@@ -1,0 +1,522 @@
+job_id,skill_id,relation,esco_occupation,source
+JOB_BOOKKEEPING_CLERK,SK_60f51172,essential,bookkeeper,esco
+JOB_BOOKKEEPING_CLERK,SK_dc417e19,essential,bookkeeper,esco
+JOB_BOOKKEEPING_CLERK,SK_a0d79341,essential,bookkeeper,esco
+JOB_BOOKKEEPING_CLERK,SK_8a326ee1,essential,bookkeeper,esco
+JOB_BOOKKEEPING_CLERK,SK_d63c2bad,essential,bookkeeper,esco
+JOB_BOOKKEEPING_CLERK,SK_eaa9727c,essential,bookkeeper,esco
+JOB_BOOKKEEPING_CLERK,SK_83e97138,essential,bookkeeper,esco
+JOB_BOOKKEEPING_CLERK,SK_d669af41,essential,bookkeeper,esco
+JOB_BOOKKEEPING_CLERK,SK_f75b740c,essential,bookkeeper,esco
+JOB_BOOKKEEPING_CLERK,SK_4a460161,essential,bookkeeper,esco
+JOB_BOOKKEEPING_CLERK,SK_585ed991,essential,bookkeeper,esco
+JOB_BOOKKEEPING_CLERK,SK_faf8943c,essential,bookkeeper,esco
+JOB_BOOKKEEPING_CLERK,SK_2ff405ec,essential,bookkeeper,esco
+JOB_BOOKKEEPING_CLERK,SK_880c54f9,essential,bookkeeper,esco
+JOB_BOOKKEEPING_CLERK,SK_e9030465,essential,bookkeeper,esco
+JOB_BOOKKEEPING_CLERK,SK_08371fe9,essential,bookkeeper,esco
+JOB_BOOKKEEPING_CLERK,SK_99b163e8,essential,bookkeeper,esco
+JOB_BOOKKEEPING_CLERK,SK_64be6a06,essential,bookkeeper,esco
+JOB_BOOKKEEPING_CLERK,SK_63321ecf,optional,bookkeeper,esco
+JOB_BOOKKEEPING_CLERK,SK_22a173f5,optional,bookkeeper,esco
+JOB_BOOKKEEPING_CLERK,SK_3982571a,optional,bookkeeper,esco
+JOB_BOOKKEEPING_CLERK,SK_6451e645,optional,bookkeeper,esco
+JOB_BOOKKEEPING_CLERK,SK_68b51538,optional,bookkeeper,esco
+JOB_BOOKKEEPING_CLERK,SK_5f1d1319,optional,bookkeeper,esco
+JOB_BOOKKEEPING_CLERK,SK_28a2ff4b,optional,bookkeeper,esco
+JOB_BOOKKEEPING_CLERK,SK_08fe5910,optional,bookkeeper,esco
+JOB_BOOKKEEPING_CLERK,SK_d6e78d9a,optional,bookkeeper,esco
+JOB_BOOKKEEPING_CLERK,SK_f7e7ccb6,optional,bookkeeper,esco
+JOB_BOOKKEEPING_CLERK,SK_147170ba,optional,bookkeeper,esco
+JOB_BOOKKEEPING_CLERK,SK_39e43f7c,optional,bookkeeper,esco
+JOB_BOOKKEEPING_CLERK,SK_3e04e39d,optional,bookkeeper,esco
+JOB_BOOKKEEPING_CLERK,SK_e2e15494,optional,bookkeeper,esco
+JOB_BOOKKEEPING_CLERK,SK_2ecf90f1,optional,bookkeeper,esco
+JOB_BOOKKEEPING_CLERK,SK_e3e42d54,optional,bookkeeper,esco
+JOB_BOOKKEEPING_CLERK,SK_7ee4c2ea,optional,bookkeeper,esco
+JOB_BOOKKEEPING_CLERK,SK_3ee090a1,optional,bookkeeper,esco
+JOB_CUSTOMER_SERVICE_REP,SK_adf6bcb1,essential,customer service representative,esco
+JOB_CUSTOMER_SERVICE_REP,SK_8b7409b0,essential,customer service representative,esco
+JOB_CUSTOMER_SERVICE_REP,SK_0da516ee,essential,customer service representative,esco
+JOB_CUSTOMER_SERVICE_REP,SK_50181a4b,essential,customer service representative,esco
+JOB_CUSTOMER_SERVICE_REP,SK_00e53a0a,essential,customer service representative,esco
+JOB_CUSTOMER_SERVICE_REP,SK_732cb4dd,essential,customer service representative,esco
+JOB_CUSTOMER_SERVICE_REP,SK_f2d57f41,essential,customer service representative,esco
+JOB_CUSTOMER_SERVICE_REP,SK_a0e23745,essential,customer service representative,esco
+JOB_CUSTOMER_SERVICE_REP,SK_6e16f998,essential,customer service representative,esco
+JOB_CUSTOMER_SERVICE_REP,SK_a6d697d1,essential,customer service representative,esco
+JOB_CUSTOMER_SERVICE_REP,SK_d15ce60f,essential,customer service representative,esco
+JOB_CUSTOMER_SERVICE_REP,SK_ec66b111,essential,customer service representative,esco
+JOB_CUSTOMER_SERVICE_REP,SK_13e93abd,essential,customer service representative,esco
+JOB_CUSTOMER_SERVICE_REP,SK_a17286c5,essential,customer service representative,esco
+JOB_CUSTOMER_SERVICE_REP,SK_1954f68c,essential,customer service representative,esco
+JOB_CUSTOMER_SERVICE_REP,SK_0b144726,essential,customer service representative,esco
+JOB_CUSTOMER_SERVICE_REP,SK_15a33d76,essential,customer service representative,esco
+JOB_CUSTOMER_SERVICE_REP,SK_e1f5c539,essential,customer service representative,esco
+JOB_CUSTOMER_SERVICE_REP,SK_0ee94af1,essential,customer service representative,esco
+JOB_CUSTOMER_SERVICE_REP,SK_946c1229,essential,customer service representative,esco
+JOB_CUSTOMER_SERVICE_REP,SK_e0607ffd,essential,customer service representative,esco
+JOB_CUSTOMER_SERVICE_REP,SK_debb8d81,essential,customer service representative,esco
+JOB_CUSTOMER_SERVICE_REP,SK_89ba58e8,optional,customer service representative,esco
+JOB_CUSTOMER_SERVICE_REP,SK_7ae62140,optional,customer service representative,esco
+JOB_CUSTOMER_SERVICE_REP,SK_5fe2e5e7,optional,customer service representative,esco
+JOB_CUSTOMER_SERVICE_REP,SK_2de4572a,optional,customer service representative,esco
+JOB_CUSTOMER_SERVICE_REP,SK_450de541,optional,customer service representative,esco
+JOB_CUSTOMER_SERVICE_REP,SK_ece25f2f,optional,customer service representative,esco
+JOB_CUSTOMER_SERVICE_REP,SK_306a1555,optional,customer service representative,esco
+JOB_CUSTOMER_SERVICE_REP,SK_c81c9ea3,optional,customer service representative,esco
+JOB_CUSTOMER_SERVICE_REP,SK_9effa3d7,optional,customer service representative,esco
+JOB_CUSTOMER_SERVICE_REP,SK_81513fdf,optional,customer service representative,esco
+JOB_CUSTOMER_SERVICE_REP,SK_2b92a5b2,optional,customer service representative,esco
+JOB_CUSTOMER_SERVICE_REP,SK_b1272de4,optional,customer service representative,esco
+JOB_CUSTOMER_SERVICE_REP,SK_9889b795,optional,customer service representative,esco
+JOB_MEDICAL_SECRETARY,SK_49ef9f4c,essential,medical administrative assistant,esco
+JOB_MEDICAL_SECRETARY,SK_38cd93b5,essential,medical administrative assistant,esco
+JOB_MEDICAL_SECRETARY,SK_7ff2c668,essential,medical administrative assistant,esco
+JOB_MEDICAL_SECRETARY,SK_d181042e,essential,medical administrative assistant,esco
+JOB_MEDICAL_SECRETARY,SK_7d08e3cd,essential,medical administrative assistant,esco
+JOB_MEDICAL_SECRETARY,SK_de2f0ce8,essential,medical administrative assistant,esco
+JOB_MEDICAL_SECRETARY,SK_21c5790c,essential,medical administrative assistant,esco
+JOB_MEDICAL_SECRETARY,SK_51ece34f,essential,medical administrative assistant,esco
+JOB_MEDICAL_SECRETARY,SK_d3eccb86,essential,medical administrative assistant,esco
+JOB_MEDICAL_SECRETARY,SK_b21e2984,essential,medical administrative assistant,esco
+JOB_MEDICAL_SECRETARY,SK_7ec3c77b,essential,medical administrative assistant,esco
+JOB_MEDICAL_SECRETARY,SK_b4c65789,essential,medical administrative assistant,esco
+JOB_MEDICAL_SECRETARY,SK_08591546,essential,medical administrative assistant,esco
+JOB_MEDICAL_SECRETARY,SK_a17286c5,optional,medical administrative assistant,esco
+JOB_MEDICAL_SECRETARY,SK_c6c0ceda,optional,medical administrative assistant,esco
+JOB_MEDICAL_SECRETARY,SK_db8a9ba7,optional,medical administrative assistant,esco
+JOB_MEDICAL_SECRETARY,SK_7361c086,optional,medical administrative assistant,esco
+JOB_MEDICAL_SECRETARY,SK_199f7919,optional,medical administrative assistant,esco
+JOB_MEDICAL_SECRETARY,SK_1be2bb07,optional,medical administrative assistant,esco
+JOB_MEDICAL_SECRETARY,SK_9a7cc3c2,optional,medical administrative assistant,esco
+JOB_MEDICAL_SECRETARY,SK_fce3268c,optional,medical administrative assistant,esco
+JOB_MEDICAL_SECRETARY,SK_15d6d4e9,optional,medical administrative assistant,esco
+JOB_MEDICAL_SECRETARY,SK_2111dff8,optional,medical administrative assistant,esco
+JOB_MEDICAL_SECRETARY,SK_28a2ff4b,optional,medical administrative assistant,esco
+JOB_MEDICAL_SECRETARY,SK_30b1f3e1,optional,medical administrative assistant,esco
+JOB_MEDICAL_SECRETARY,SK_2806260f,optional,medical administrative assistant,esco
+JOB_MEDICAL_SECRETARY,SK_b55f61a4,optional,medical administrative assistant,esco
+JOB_MEDICAL_SECRETARY,SK_c73ea1b8,optional,medical administrative assistant,esco
+JOB_MEDICAL_SECRETARY,SK_4d614c92,optional,medical administrative assistant,esco
+JOB_MEDICAL_SECRETARY,SK_e2e15494,optional,medical administrative assistant,esco
+JOB_MEDICAL_SECRETARY,SK_8d49f760,optional,medical administrative assistant,esco
+JOB_MEDICAL_SECRETARY,SK_906c9e66,optional,medical administrative assistant,esco
+JOB_MEDICAL_SECRETARY,SK_1007aa13,optional,medical administrative assistant,esco
+JOB_MEDICAL_SECRETARY,SK_eba85523,optional,medical administrative assistant,esco
+JOB_MEDICAL_SECRETARY,SK_73aeff8a,optional,medical administrative assistant,esco
+JOB_MEDICAL_SECRETARY,SK_f695332a,optional,medical administrative assistant,esco
+JOB_MEDICAL_SECRETARY,SK_7d0da710,optional,medical administrative assistant,esco
+JOB_MEDICAL_SECRETARY,SK_3adb8e1f,optional,medical administrative assistant,esco
+JOB_MEDICAL_SECRETARY,SK_3dde5918,optional,medical administrative assistant,esco
+JOB_MEDICAL_SECRETARY,SK_9fcf9918,optional,medical administrative assistant,esco
+JOB_MEDICAL_SECRETARY,SK_382ed835,optional,medical administrative assistant,esco
+JOB_MEDICAL_SECRETARY,SK_210827e3,optional,medical administrative assistant,esco
+JOB_TUTOR,SK_59eb177a,essential,tutor,esco
+JOB_TUTOR,SK_14dc991f,essential,tutor,esco
+JOB_TUTOR,SK_28ca596e,essential,tutor,esco
+JOB_TUTOR,SK_63b9a087,essential,tutor,esco
+JOB_TUTOR,SK_edff6d20,essential,tutor,esco
+JOB_TUTOR,SK_f5dc20ae,essential,tutor,esco
+JOB_TUTOR,SK_12efe5f2,essential,tutor,esco
+JOB_TUTOR,SK_f43ee9cc,essential,tutor,esco
+JOB_TUTOR,SK_ebfe7b18,essential,tutor,esco
+JOB_TUTOR,SK_573d3f91,essential,tutor,esco
+JOB_TUTOR,SK_11f536f5,essential,tutor,esco
+JOB_TUTOR,SK_b32e593b,essential,tutor,esco
+JOB_TUTOR,SK_b9bb1f03,essential,tutor,esco
+JOB_TUTOR,SK_6fe019dd,essential,tutor,esco
+JOB_TUTOR,SK_31b67516,essential,tutor,esco
+JOB_TUTOR,SK_efe801a5,essential,tutor,esco
+JOB_TUTOR,SK_d5e1e30e,essential,tutor,esco
+JOB_TUTOR,SK_e49f4158,essential,tutor,esco
+JOB_TUTOR,SK_731101d9,essential,tutor,esco
+JOB_TUTOR,SK_b1d75e36,optional,tutor,esco
+JOB_TUTOR,SK_9df34bc3,optional,tutor,esco
+JOB_TUTOR,SK_09f159aa,optional,tutor,esco
+JOB_TUTOR,SK_0f2cd213,optional,tutor,esco
+JOB_TUTOR,SK_3cd304db,optional,tutor,esco
+JOB_TUTOR,SK_7530bc44,optional,tutor,esco
+JOB_TUTOR,SK_e9160feb,optional,tutor,esco
+JOB_TUTOR,SK_60856bbb,optional,tutor,esco
+JOB_TUTOR,SK_20f57a7f,optional,tutor,esco
+JOB_TUTOR,SK_a13566a2,optional,tutor,esco
+JOB_TUTOR,SK_478e5c9d,optional,tutor,esco
+JOB_TUTOR,SK_9525dcdf,optional,tutor,esco
+JOB_TUTOR,SK_d04e4bde,optional,tutor,esco
+JOB_TUTOR,SK_ed57378a,optional,tutor,esco
+JOB_TUTOR,SK_b5af495b,optional,tutor,esco
+JOB_TUTOR,SK_3399cde5,optional,tutor,esco
+JOB_TUTOR,SK_31032902,optional,tutor,esco
+JOB_TUTOR,SK_4b15a965,optional,tutor,esco
+JOB_GRAPHIC_DESIGNER,SK_2d6d4784,essential,graphic designer,esco
+JOB_GRAPHIC_DESIGNER,SK_8c4c49d4,essential,graphic designer,esco
+JOB_GRAPHIC_DESIGNER,SK_7d092d81,essential,graphic designer,esco
+JOB_GRAPHIC_DESIGNER,SK_68698869,essential,graphic designer,esco
+JOB_GRAPHIC_DESIGNER,SK_25f4c955,essential,graphic designer,esco
+JOB_GRAPHIC_DESIGNER,SK_f058bf62,essential,graphic designer,esco
+JOB_GRAPHIC_DESIGNER,SK_7378b8c3,essential,graphic designer,esco
+JOB_GRAPHIC_DESIGNER,SK_7abf5b24,essential,graphic designer,esco
+JOB_GRAPHIC_DESIGNER,SK_bacbfc27,essential,graphic designer,esco
+JOB_GRAPHIC_DESIGNER,SK_e2103a1d,essential,graphic designer,esco
+JOB_GRAPHIC_DESIGNER,SK_07d3074b,essential,graphic designer,esco
+JOB_GRAPHIC_DESIGNER,SK_1bc718b6,essential,graphic designer,esco
+JOB_GRAPHIC_DESIGNER,SK_c46cf6f9,essential,graphic designer,esco
+JOB_GRAPHIC_DESIGNER,SK_fe39d4db,essential,graphic designer,esco
+JOB_GRAPHIC_DESIGNER,SK_7fb699d9,essential,graphic designer,esco
+JOB_GRAPHIC_DESIGNER,SK_14ced458,optional,graphic designer,esco
+JOB_GRAPHIC_DESIGNER,SK_8afe68ff,optional,graphic designer,esco
+JOB_GRAPHIC_DESIGNER,SK_b34e2ba1,optional,graphic designer,esco
+JOB_GRAPHIC_DESIGNER,SK_df11ab22,optional,graphic designer,esco
+JOB_GRAPHIC_DESIGNER,SK_3cc1ee94,optional,graphic designer,esco
+JOB_GRAPHIC_DESIGNER,SK_a71577b2,optional,graphic designer,esco
+JOB_GRAPHIC_DESIGNER,SK_f5b33464,optional,graphic designer,esco
+JOB_GRAPHIC_DESIGNER,SK_1b2889c2,optional,graphic designer,esco
+JOB_GRAPHIC_DESIGNER,SK_86f7126d,optional,graphic designer,esco
+JOB_GRAPHIC_DESIGNER,SK_1859883d,optional,graphic designer,esco
+JOB_GRAPHIC_DESIGNER,SK_b0ac313d,optional,graphic designer,esco
+JOB_GRAPHIC_DESIGNER,SK_6e53fd99,optional,graphic designer,esco
+JOB_GRAPHIC_DESIGNER,SK_44b768da,optional,graphic designer,esco
+JOB_GRAPHIC_DESIGNER,SK_8ff314a8,optional,graphic designer,esco
+JOB_GRAPHIC_DESIGNER,SK_6b21150f,optional,graphic designer,esco
+JOB_GRAPHIC_DESIGNER,SK_aa8b0abf,optional,graphic designer,esco
+JOB_GRAPHIC_DESIGNER,SK_c7b1e520,optional,graphic designer,esco
+JOB_GRAPHIC_DESIGNER,SK_97965983,optional,graphic designer,esco
+JOB_GRAPHIC_DESIGNER,SK_614c627b,optional,graphic designer,esco
+JOB_GRAPHIC_DESIGNER,SK_eee58e6d,optional,graphic designer,esco
+JOB_GRAPHIC_DESIGNER,SK_4b244020,optional,graphic designer,esco
+JOB_GRAPHIC_DESIGNER,SK_aba1f05b,optional,graphic designer,esco
+JOB_GRAPHIC_DESIGNER,SK_9ce52938,optional,graphic designer,esco
+JOB_GRAPHIC_DESIGNER,SK_0fba68dc,optional,graphic designer,esco
+JOB_GRAPHIC_DESIGNER,SK_0620ecd1,optional,graphic designer,esco
+JOB_GRAPHIC_DESIGNER,SK_85038d57,optional,graphic designer,esco
+JOB_GRAPHIC_DESIGNER,SK_fc4fcb4b,optional,graphic designer,esco
+JOB_GRAPHIC_DESIGNER,SK_6db3ac8e,optional,graphic designer,esco
+JOB_GRAPHIC_DESIGNER,SK_e8dd9cc1,optional,graphic designer,esco
+JOB_GRAPHIC_DESIGNER,SK_92721092,optional,graphic designer,esco
+JOB_GRAPHIC_DESIGNER,SK_38509fa4,optional,graphic designer,esco
+JOB_GRAPHIC_DESIGNER,SK_27b913f0,optional,graphic designer,esco
+JOB_GRAPHIC_DESIGNER,SK_4a466c62,optional,graphic designer,esco
+JOB_GRAPHIC_DESIGNER,SK_39f9b48c,optional,graphic designer,esco
+JOB_GRAPHIC_DESIGNER,SK_325ef602,optional,graphic designer,esco
+JOB_MARKETING_SPECIALIST,SK_68698869,essential,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_91816e1a,essential,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_fd843a67,essential,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_de03f4fd,essential,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_84605f91,essential,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_46cb7282,essential,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_fe39d4db,essential,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_1ba59ce0,essential,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_d3e585e9,essential,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_34d6ed30,essential,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_292549e6,essential,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_7ee4c2ea,essential,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_348b74cd,essential,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_750caee5,essential,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_e5635e02,essential,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_5f302d63,essential,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_bf40aa7c,essential,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_8770350e,essential,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_f60c9e52,essential,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_f414dc08,essential,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_ce5b1446,essential,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_d0f2f8a7,essential,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_5f00bf83,optional,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_daa52226,optional,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_1b7c716e,optional,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_47a49cd6,optional,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_bfe4f330,optional,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_8316979b,optional,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_2b92a5b2,optional,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_f597f772,optional,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_5da8018b,optional,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_fa465db3,optional,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_0d6714c6,optional,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_b7e57889,optional,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_af76c813,optional,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_4d38b095,optional,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_a56dec32,optional,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_633a3637,optional,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_c3e36d05,optional,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_e1f09038,optional,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_38d49d88,optional,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_cd5efa8c,optional,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_136e0cab,optional,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_b679ef35,optional,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_27ed854c,optional,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_2daec0e6,optional,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_f73ed9e8,optional,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_9ff9db9d,optional,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_cc7370dd,optional,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_324f0243,optional,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_a57a54b6,optional,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_7f70572d,optional,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_15a33d76,optional,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_9cf681c7,optional,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_6fe76a8b,optional,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_3f4dab51,optional,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_43ae58b9,optional,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_c32ad607,optional,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_05fc6f8d,optional,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_f39a5dcd,optional,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_99207709,optional,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_29fb0fb5,optional,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_c7d24594,optional,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_a0e23745,optional,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_896563fc,optional,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_f2a34d6b,optional,market research analyst,esco
+JOB_MARKETING_SPECIALIST,SK_382c11ed,optional,market research analyst,esco
+JOB_FRAUD_EXAMINER,SK_658a38bd,essential,financial fraud examiner,esco
+JOB_FRAUD_EXAMINER,SK_f5afbe94,essential,financial fraud examiner,esco
+JOB_FRAUD_EXAMINER,SK_29d80dad,essential,financial fraud examiner,esco
+JOB_FRAUD_EXAMINER,SK_541cdc23,essential,financial fraud examiner,esco
+JOB_FRAUD_EXAMINER,SK_3c209873,essential,financial fraud examiner,esco
+JOB_FRAUD_EXAMINER,SK_3e9b580d,essential,financial fraud examiner,esco
+JOB_FRAUD_EXAMINER,SK_5f1d1319,essential,financial fraud examiner,esco
+JOB_FRAUD_EXAMINER,SK_4a460161,essential,financial fraud examiner,esco
+JOB_FRAUD_EXAMINER,SK_f14ff4b7,essential,financial fraud examiner,esco
+JOB_FRAUD_EXAMINER,SK_89ff28d6,essential,financial fraud examiner,esco
+JOB_FRAUD_EXAMINER,SK_5b71cb01,essential,financial fraud examiner,esco
+JOB_FRAUD_EXAMINER,SK_8a326ee1,essential,financial fraud examiner,esco
+JOB_FRAUD_EXAMINER,SK_0295b2a4,essential,financial fraud examiner,esco
+JOB_FRAUD_EXAMINER,SK_93f1caa3,essential,financial fraud examiner,esco
+JOB_FRAUD_EXAMINER,SK_0bd4c62a,optional,financial fraud examiner,esco
+JOB_FRAUD_EXAMINER,SK_e2482d6f,optional,financial fraud examiner,esco
+JOB_FRAUD_EXAMINER,SK_6f273e8a,optional,financial fraud examiner,esco
+JOB_FRAUD_EXAMINER,SK_d0c425c6,optional,financial fraud examiner,esco
+JOB_FRAUD_EXAMINER,SK_f4cd7802,optional,financial fraud examiner,esco
+JOB_FRAUD_EXAMINER,SK_60f51172,optional,financial fraud examiner,esco
+JOB_FRAUD_EXAMINER,SK_d6e78d9a,optional,financial fraud examiner,esco
+JOB_FRAUD_EXAMINER,SK_a3aa300b,optional,financial fraud examiner,esco
+JOB_FRAUD_EXAMINER,SK_4a855abe,optional,financial fraud examiner,esco
+JOB_FRAUD_EXAMINER,SK_e4c205f6,optional,financial fraud examiner,esco
+JOB_FRAUD_EXAMINER,SK_8836a5a5,optional,financial fraud examiner,esco
+JOB_FRAUD_EXAMINER,SK_d669af41,optional,financial fraud examiner,esco
+JOB_SUSTAINABILITY_SPECIALIST,SK_3f82a026,essential,environmental programme coordinator,esco
+JOB_SUSTAINABILITY_SPECIALIST,SK_507e2b21,essential,environmental programme coordinator,esco
+JOB_SUSTAINABILITY_SPECIALIST,SK_089ee650,essential,environmental programme coordinator,esco
+JOB_SUSTAINABILITY_SPECIALIST,SK_f6d7ba88,essential,environmental programme coordinator,esco
+JOB_SUSTAINABILITY_SPECIALIST,SK_6f5850ea,essential,environmental programme coordinator,esco
+JOB_SUSTAINABILITY_SPECIALIST,SK_96835f47,essential,environmental programme coordinator,esco
+JOB_SUSTAINABILITY_SPECIALIST,SK_59004ee8,essential,environmental programme coordinator,esco
+JOB_SUSTAINABILITY_SPECIALIST,SK_f3cc52e3,essential,environmental programme coordinator,esco
+JOB_SUSTAINABILITY_SPECIALIST,SK_77f109c4,essential,environmental programme coordinator,esco
+JOB_SUSTAINABILITY_SPECIALIST,SK_60ab2bf7,essential,environmental programme coordinator,esco
+JOB_SUSTAINABILITY_SPECIALIST,SK_e541c69c,essential,environmental programme coordinator,esco
+JOB_SUSTAINABILITY_SPECIALIST,SK_8abdc43c,essential,environmental programme coordinator,esco
+JOB_SUSTAINABILITY_SPECIALIST,SK_081d7679,essential,environmental programme coordinator,esco
+JOB_SUSTAINABILITY_SPECIALIST,SK_5e9de344,optional,environmental programme coordinator,esco
+JOB_SUSTAINABILITY_SPECIALIST,SK_eb65ce8e,optional,environmental programme coordinator,esco
+JOB_SUSTAINABILITY_SPECIALIST,SK_8af15e52,optional,environmental programme coordinator,esco
+JOB_SUSTAINABILITY_SPECIALIST,SK_7111b95d,optional,environmental programme coordinator,esco
+JOB_SUSTAINABILITY_SPECIALIST,SK_404b3fcd,optional,environmental programme coordinator,esco
+JOB_SUSTAINABILITY_SPECIALIST,SK_cde9911c,optional,environmental programme coordinator,esco
+JOB_SUSTAINABILITY_SPECIALIST,SK_3a5b7435,optional,environmental programme coordinator,esco
+JOB_SUSTAINABILITY_SPECIALIST,SK_f78d5c04,optional,environmental programme coordinator,esco
+JOB_SUSTAINABILITY_SPECIALIST,SK_bf5d77ad,optional,environmental programme coordinator,esco
+JOB_SUSTAINABILITY_SPECIALIST,SK_91a6da8d,optional,environmental programme coordinator,esco
+JOB_SUSTAINABILITY_SPECIALIST,SK_cdd2b6cc,optional,environmental programme coordinator,esco
+JOB_SUSTAINABILITY_SPECIALIST,SK_fd446407,optional,environmental programme coordinator,esco
+JOB_SUSTAINABILITY_SPECIALIST,SK_9433da85,optional,environmental programme coordinator,esco
+JOB_SUSTAINABILITY_SPECIALIST,SK_2be699a7,optional,environmental programme coordinator,esco
+JOB_SUSTAINABILITY_SPECIALIST,SK_2cb27e30,optional,environmental programme coordinator,esco
+JOB_SUSTAINABILITY_SPECIALIST,SK_2839f191,optional,environmental programme coordinator,esco
+JOB_SUSTAINABILITY_SPECIALIST,SK_f12f094b,optional,environmental programme coordinator,esco
+JOB_SUSTAINABILITY_SPECIALIST,SK_8bdc520c,optional,environmental programme coordinator,esco
+JOB_SUSTAINABILITY_SPECIALIST,SK_a8429098,optional,environmental programme coordinator,esco
+JOB_SUSTAINABILITY_SPECIALIST,SK_692ace70,optional,environmental programme coordinator,esco
+JOB_SOLAR_PV_INSTALLER,SK_3892f2ff,essential,solar energy technician,esco
+JOB_SOLAR_PV_INSTALLER,SK_3d3ee5c3,essential,solar energy technician,esco
+JOB_SOLAR_PV_INSTALLER,SK_d15e92c4,essential,solar energy technician,esco
+JOB_SOLAR_PV_INSTALLER,SK_50f2d23c,essential,solar energy technician,esco
+JOB_SOLAR_PV_INSTALLER,SK_08a5f6dd,essential,solar energy technician,esco
+JOB_SOLAR_PV_INSTALLER,SK_efa141df,essential,solar energy technician,esco
+JOB_SOLAR_PV_INSTALLER,SK_156f8c5b,essential,solar energy technician,esco
+JOB_SOLAR_PV_INSTALLER,SK_c8ac1986,essential,solar energy technician,esco
+JOB_SOLAR_PV_INSTALLER,SK_86df7af2,essential,solar energy technician,esco
+JOB_SOLAR_PV_INSTALLER,SK_52797dce,essential,solar energy technician,esco
+JOB_SOLAR_PV_INSTALLER,SK_05e5e14f,essential,solar energy technician,esco
+JOB_SOLAR_PV_INSTALLER,SK_b92758d4,essential,solar energy technician,esco
+JOB_SOLAR_PV_INSTALLER,SK_76b9e515,essential,solar energy technician,esco
+JOB_SOLAR_PV_INSTALLER,SK_aafbb139,essential,solar energy technician,esco
+JOB_SOLAR_PV_INSTALLER,SK_2179e0fd,essential,solar energy technician,esco
+JOB_SOLAR_PV_INSTALLER,SK_0dc8813a,essential,solar energy technician,esco
+JOB_SOLAR_PV_INSTALLER,SK_4af56376,essential,solar energy technician,esco
+JOB_SOLAR_PV_INSTALLER,SK_dfce2aba,essential,solar energy technician,esco
+JOB_SOLAR_PV_INSTALLER,SK_fafbb75f,essential,solar energy technician,esco
+JOB_SOLAR_PV_INSTALLER,SK_13879c29,optional,solar energy technician,esco
+JOB_SOLAR_PV_INSTALLER,SK_5bf756dd,optional,solar energy technician,esco
+JOB_SOLAR_PV_INSTALLER,SK_9df34bc3,optional,solar energy technician,esco
+JOB_SOLAR_PV_INSTALLER,SK_2206af0c,optional,solar energy technician,esco
+JOB_SOLAR_PV_INSTALLER,SK_9f1bd2a4,optional,solar energy technician,esco
+JOB_SOLAR_PV_INSTALLER,SK_7832b684,optional,solar energy technician,esco
+JOB_SOLAR_PV_INSTALLER,SK_c643e59b,optional,solar energy technician,esco
+JOB_SOLAR_PV_INSTALLER,SK_de7b8c6c,optional,solar energy technician,esco
+JOB_SOLAR_PV_INSTALLER,SK_4fa2d6ba,optional,solar energy technician,esco
+JOB_SOLAR_PV_INSTALLER,SK_44f6a65f,optional,solar energy technician,esco
+JOB_SOLAR_PV_INSTALLER,SK_9cf2856d,optional,solar energy technician,esco
+JOB_SOLAR_PV_INSTALLER,SK_8248a071,optional,solar energy technician,esco
+JOB_SOLAR_PV_INSTALLER,SK_56c59e98,optional,solar energy technician,esco
+JOB_SOLAR_PV_INSTALLER,SK_615cfc39,optional,solar energy technician,esco
+JOB_SOLAR_PV_INSTALLER,SK_9f719da2,optional,solar energy technician,esco
+JOB_SOLAR_PV_INSTALLER,SK_43ea53b0,optional,solar energy technician,esco
+JOB_SOLAR_PV_INSTALLER,SK_5033c2fb,optional,solar energy technician,esco
+JOB_SOLAR_PV_INSTALLER,SK_46454506,optional,solar energy technician,esco
+JOB_SOLAR_PV_INSTALLER,SK_5d9dd44a,optional,solar energy technician,esco
+JOB_SOLAR_PV_INSTALLER,SK_5598739b,optional,solar energy technician,esco
+JOB_SOLAR_PV_INSTALLER,SK_a3e0224a,optional,solar energy technician,esco
+JOB_ENVIRONMENTAL_ENGINEER,SK_541561bc,essential,environmental engineer,esco
+JOB_ENVIRONMENTAL_ENGINEER,SK_c0ccbd15,essential,environmental engineer,esco
+JOB_ENVIRONMENTAL_ENGINEER,SK_1cebfd4f,essential,environmental engineer,esco
+JOB_ENVIRONMENTAL_ENGINEER,SK_081d7679,essential,environmental engineer,esco
+JOB_ENVIRONMENTAL_ENGINEER,SK_e4ff825c,essential,environmental engineer,esco
+JOB_ENVIRONMENTAL_ENGINEER,SK_4fabca9a,essential,environmental engineer,esco
+JOB_ENVIRONMENTAL_ENGINEER,SK_f54c10e4,essential,environmental engineer,esco
+JOB_ENVIRONMENTAL_ENGINEER,SK_209a5498,essential,environmental engineer,esco
+JOB_ENVIRONMENTAL_ENGINEER,SK_233be639,essential,environmental engineer,esco
+JOB_ENVIRONMENTAL_ENGINEER,SK_96835f47,essential,environmental engineer,esco
+JOB_ENVIRONMENTAL_ENGINEER,SK_42b23922,essential,environmental engineer,esco
+JOB_ENVIRONMENTAL_ENGINEER,SK_cde9911c,essential,environmental engineer,esco
+JOB_ENVIRONMENTAL_ENGINEER,SK_5641a2af,essential,environmental engineer,esco
+JOB_ENVIRONMENTAL_ENGINEER,SK_eb65ce8e,essential,environmental engineer,esco
+JOB_ENVIRONMENTAL_ENGINEER,SK_9570e84e,essential,environmental engineer,esco
+JOB_ENVIRONMENTAL_ENGINEER,SK_b422efe7,essential,environmental engineer,esco
+JOB_ENVIRONMENTAL_ENGINEER,SK_82887396,essential,environmental engineer,esco
+JOB_ENVIRONMENTAL_ENGINEER,SK_b1b118c4,essential,environmental engineer,esco
+JOB_ENVIRONMENTAL_ENGINEER,SK_0d6c9508,essential,environmental engineer,esco
+JOB_ENVIRONMENTAL_ENGINEER,SK_9433da85,essential,environmental engineer,esco
+JOB_ENVIRONMENTAL_ENGINEER,SK_77f109c4,essential,environmental engineer,esco
+JOB_ENVIRONMENTAL_ENGINEER,SK_ce4990a4,essential,environmental engineer,esco
+JOB_ENVIRONMENTAL_ENGINEER,SK_72a74f69,essential,environmental engineer,esco
+JOB_ENVIRONMENTAL_ENGINEER,SK_d1ec6846,essential,environmental engineer,esco
+JOB_ENVIRONMENTAL_ENGINEER,SK_75f312e1,essential,environmental engineer,esco
+JOB_ENVIRONMENTAL_ENGINEER,SK_59ea80e1,essential,environmental engineer,esco
+JOB_ENVIRONMENTAL_ENGINEER,SK_60ab2bf7,essential,environmental engineer,esco
+JOB_ENVIRONMENTAL_ENGINEER,SK_6f5850ea,essential,environmental engineer,esco
+JOB_ENVIRONMENTAL_ENGINEER,SK_94747ff4,optional,environmental engineer,esco
+JOB_ENVIRONMENTAL_ENGINEER,SK_e4698f9f,optional,environmental engineer,esco
+JOB_ENVIRONMENTAL_ENGINEER,SK_5aa79c4a,optional,environmental engineer,esco
+JOB_ENVIRONMENTAL_ENGINEER,SK_5944cee9,optional,environmental engineer,esco
+JOB_ENVIRONMENTAL_ENGINEER,SK_7111b95d,optional,environmental engineer,esco
+JOB_ENVIRONMENTAL_ENGINEER,SK_3220a66f,optional,environmental engineer,esco
+JOB_ENVIRONMENTAL_ENGINEER,SK_0b917c3e,optional,environmental engineer,esco
+JOB_ENVIRONMENTAL_ENGINEER,SK_4e87c852,optional,environmental engineer,esco
+JOB_ENVIRONMENTAL_ENGINEER,SK_c9bb544b,optional,environmental engineer,esco
+JOB_ENVIRONMENTAL_ENGINEER,SK_f82b05a7,optional,environmental engineer,esco
+JOB_ENVIRONMENTAL_ENGINEER,SK_df08a4ae,optional,environmental engineer,esco
+JOB_ENVIRONMENTAL_ENGINEER,SK_7ae62140,optional,environmental engineer,esco
+JOB_ENVIRONMENTAL_ENGINEER,SK_4d032f82,optional,environmental engineer,esco
+JOB_ENVIRONMENTAL_ENGINEER,SK_4ca91852,optional,environmental engineer,esco
+JOB_ENVIRONMENTAL_ENGINEER,SK_9f763ac3,optional,environmental engineer,esco
+JOB_ENVIRONMENTAL_ENGINEER,SK_0e0b8991,optional,environmental engineer,esco
+JOB_ENVIRONMENTAL_ENGINEER,SK_519e5731,optional,environmental engineer,esco
+JOB_ENVIRONMENTAL_ENGINEER,SK_4bbb309f,optional,environmental engineer,esco
+JOB_ENVIRONMENTAL_ENGINEER,SK_340a75f4,optional,environmental engineer,esco
+JOB_ENVIRONMENTAL_ENGINEER,SK_bed97655,optional,environmental engineer,esco
+JOB_ENVIRONMENTAL_ENGINEER,SK_ed8dbdd1,optional,environmental engineer,esco
+JOB_ENVIRONMENTAL_ENGINEER,SK_bc54eee1,optional,environmental engineer,esco
+JOB_ENVIRONMENTAL_ENGINEER,SK_41a3240f,optional,environmental engineer,esco
+JOB_ENVIRONMENTAL_ENGINEER,SK_cd5efa8c,optional,environmental engineer,esco
+JOB_ENVIRONMENTAL_ENGINEER,SK_81d274bc,optional,environmental engineer,esco
+JOB_BI_ANALYST,SK_143769cb,essential,data analyst,esco
+JOB_BI_ANALYST,SK_348b74cd,essential,data analyst,esco
+JOB_BI_ANALYST,SK_46ec0033,essential,data analyst,esco
+JOB_BI_ANALYST,SK_07889c08,essential,data analyst,esco
+JOB_BI_ANALYST,SK_9ff9db9d,essential,data analyst,esco
+JOB_BI_ANALYST,SK_31c69100,essential,data analyst,esco
+JOB_BI_ANALYST,SK_327d15c8,essential,data analyst,esco
+JOB_BI_ANALYST,SK_696e3b5b,essential,data analyst,esco
+JOB_BI_ANALYST,SK_47a49cd6,essential,data analyst,esco
+JOB_BI_ANALYST,SK_382c11ed,essential,data analyst,esco
+JOB_BI_ANALYST,SK_7ee4c2ea,essential,data analyst,esco
+JOB_BI_ANALYST,SK_79e29b8b,essential,data analyst,esco
+JOB_BI_ANALYST,SK_a56dec32,essential,data analyst,esco
+JOB_BI_ANALYST,SK_99207709,essential,data analyst,esco
+JOB_BI_ANALYST,SK_c5e8abde,essential,data analyst,esco
+JOB_BI_ANALYST,SK_9cf681c7,essential,data analyst,esco
+JOB_BI_ANALYST,SK_4a193795,essential,data analyst,esco
+JOB_BI_ANALYST,SK_2daec0e6,essential,data analyst,esco
+JOB_BI_ANALYST,SK_54c9c155,essential,data analyst,esco
+JOB_BI_ANALYST,SK_25f0ea33,essential,data analyst,esco
+JOB_BI_ANALYST,SK_1e77e42a,essential,data analyst,esco
+JOB_BI_ANALYST,SK_93aaf65c,essential,data analyst,esco
+JOB_BI_ANALYST,SK_03ff0d53,essential,data analyst,esco
+JOB_BI_ANALYST,SK_713fb616,essential,data analyst,esco
+JOB_BI_ANALYST,SK_fecf8a0d,essential,data analyst,esco
+JOB_BI_ANALYST,SK_4216e465,essential,data analyst,esco
+JOB_BI_ANALYST,SK_cc7370dd,essential,data analyst,esco
+JOB_BI_ANALYST,SK_50b100ea,essential,data analyst,esco
+JOB_BI_ANALYST,SK_f597f772,optional,data analyst,esco
+JOB_BI_ANALYST,SK_c7d24594,optional,data analyst,esco
+JOB_BI_ANALYST,SK_a80fb090,optional,data analyst,esco
+JOB_BI_ANALYST,SK_1605025e,optional,data analyst,esco
+JOB_BI_ANALYST,SK_a7f0fbe0,optional,data analyst,esco
+JOB_BI_ANALYST,SK_bd14968e,optional,data analyst,esco
+JOB_BI_ANALYST,SK_fbafa41f,optional,data analyst,esco
+JOB_BI_ANALYST,SK_c544a9f3,optional,data analyst,esco
+JOB_BI_ANALYST,SK_a57a54b6,optional,data analyst,esco
+JOB_BI_ANALYST,SK_1bba98a7,optional,data analyst,esco
+JOB_BI_ANALYST,SK_5da8018b,optional,data analyst,esco
+JOB_BI_ANALYST,SK_1b7c716e,optional,data analyst,esco
+JOB_BI_ANALYST,SK_3f4dab51,optional,data analyst,esco
+JOB_BI_ANALYST,SK_c3e36d05,optional,data analyst,esco
+JOB_BI_ANALYST,SK_b0a3bb25,optional,data analyst,esco
+JOB_BI_ANALYST,SK_0c766ca3,optional,data analyst,esco
+JOB_BI_ANALYST,SK_43ae58b9,optional,data analyst,esco
+JOB_HEALTH_INFORMATION_TECH,SK_16636767,essential,medical records manager,esco
+JOB_HEALTH_INFORMATION_TECH,SK_1709f408,essential,medical records manager,esco
+JOB_HEALTH_INFORMATION_TECH,SK_b55f61a4,essential,medical records manager,esco
+JOB_HEALTH_INFORMATION_TECH,SK_a7f0fbe0,essential,medical records manager,esco
+JOB_HEALTH_INFORMATION_TECH,SK_add39442,essential,medical records manager,esco
+JOB_HEALTH_INFORMATION_TECH,SK_9fcf9918,essential,medical records manager,esco
+JOB_HEALTH_INFORMATION_TECH,SK_b22828a8,essential,medical records manager,esco
+JOB_HEALTH_INFORMATION_TECH,SK_6c3e28d6,essential,medical records manager,esco
+JOB_HEALTH_INFORMATION_TECH,SK_53141450,essential,medical records manager,esco
+JOB_HEALTH_INFORMATION_TECH,SK_9601b2a8,essential,medical records manager,esco
+JOB_HEALTH_INFORMATION_TECH,SK_eba85523,essential,medical records manager,esco
+JOB_HEALTH_INFORMATION_TECH,SK_4d614c92,essential,medical records manager,esco
+JOB_HEALTH_INFORMATION_TECH,SK_76395873,essential,medical records manager,esco
+JOB_HEALTH_INFORMATION_TECH,SK_7110bf9f,essential,medical records manager,esco
+JOB_HEALTH_INFORMATION_TECH,SK_d3eccb86,essential,medical records manager,esco
+JOB_HEALTH_INFORMATION_TECH,SK_fa3e5cec,essential,medical records manager,esco
+JOB_HEALTH_INFORMATION_TECH,SK_43ae58b9,essential,medical records manager,esco
+JOB_HEALTH_INFORMATION_TECH,SK_0c8c1e58,essential,medical records manager,esco
+JOB_HEALTH_INFORMATION_TECH,SK_ea1bf5e5,essential,medical records manager,esco
+JOB_HEALTH_INFORMATION_TECH,SK_b21e2984,essential,medical records manager,esco
+JOB_HEALTH_INFORMATION_TECH,SK_fb15ca73,essential,medical records manager,esco
+JOB_HEALTH_INFORMATION_TECH,SK_9ec07ba9,essential,medical records manager,esco
+JOB_HEALTH_INFORMATION_TECH,SK_d4f9906e,essential,medical records manager,esco
+JOB_HEALTH_INFORMATION_TECH,SK_5d7890d5,essential,medical records manager,esco
+JOB_HEALTH_INFORMATION_TECH,SK_cf0b92de,essential,medical records manager,esco
+JOB_HEALTH_INFORMATION_TECH,SK_496932f1,essential,medical records manager,esco
+JOB_HEALTH_INFORMATION_TECH,SK_9a7cc3c2,essential,medical records manager,esco
+JOB_HEALTH_INFORMATION_TECH,SK_8b9332c7,essential,medical records manager,esco
+JOB_HEALTH_INFORMATION_TECH,SK_f022b5ff,essential,medical records manager,esco
+JOB_HEALTH_INFORMATION_TECH,SK_2e040fb0,essential,medical records manager,esco
+JOB_HEALTH_INFORMATION_TECH,SK_12428071,optional,medical records manager,esco
+JOB_HEALTH_INFORMATION_TECH,SK_7d08e3cd,optional,medical records manager,esco
+JOB_HEALTH_INFORMATION_TECH,SK_b394396b,optional,medical records manager,esco
+JOB_HEALTH_INFORMATION_TECH,SK_2ff405ec,optional,medical records manager,esco
+JOB_HEALTH_INFORMATION_TECH,SK_15a33d76,optional,medical records manager,esco
+JOB_HEALTH_INFORMATION_TECH,SK_9b63d92b,optional,medical records manager,esco
+JOB_HEALTH_INFORMATION_TECH,SK_6eff134b,optional,medical records manager,esco
+JOB_HEALTH_INFORMATION_TECH,SK_7d0da710,optional,medical records manager,esco
+JOB_HEALTH_INFORMATION_TECH,SK_d5e9b47e,optional,medical records manager,esco
+JOB_HEALTH_INFORMATION_TECH,SK_51e53aff,optional,medical records manager,esco
+JOB_HEALTH_INFORMATION_TECH,SK_38cd93b5,optional,medical records manager,esco
+JOB_HEALTH_INFORMATION_TECH,SK_9ec4252d,optional,medical records manager,esco
+JOB_HEALTH_INFORMATION_TECH,SK_d70701ca,optional,medical records manager,esco
+JOB_HEALTH_INFORMATION_TECH,SK_cf3e976d,optional,medical records manager,esco
+JOB_HEALTH_INFORMATION_TECH,SK_f2d57f41,optional,medical records manager,esco
+JOB_HEALTH_INFORMATION_TECH,SK_2806260f,optional,medical records manager,esco
+JOB_HEALTH_INFORMATION_TECH,SK_9b9c1749,optional,medical records manager,esco
+JOB_HEALTH_INFORMATION_TECH,SK_66d47084,optional,medical records manager,esco
+JOB_HEALTH_INFORMATION_TECH,SK_5c5dae25,optional,medical records manager,esco
+JOB_HEALTH_INFORMATION_TECH,SK_fd02e17b,optional,medical records manager,esco
+JOB_HEALTH_INFORMATION_TECH,SK_3adb8e1f,optional,medical records manager,esco
+JOB_HEALTH_INFORMATION_TECH,SK_51ece34f,optional,medical records manager,esco
+JOB_HEALTH_INFORMATION_TECH,SK_7add3681,optional,medical records manager,esco
+JOB_HEALTH_INFORMATION_TECH,SK_1b7d5366,optional,medical records manager,esco
+JOB_HEALTH_INFORMATION_TECH,SK_21c5790c,optional,medical records manager,esco
+JOB_HEALTH_INFORMATION_TECH,SK_9013b46e,optional,medical records manager,esco
+JOB_HEALTH_INFORMATION_TECH,SK_d0d3c335,optional,medical records manager,esco

@@ -1,0 +1,293 @@
+{
+  "_note": "Engine output for snapshot 2026-10-20.",
+  "snapshot_date": "2026-10-20",
+  "scenario": {
+    "id": "moderate",
+    "name": "Moderate pace",
+    "doubling_days": 187.778,
+    "note": "METR all-time doubling time (TH 1.1 data file)",
+    "sources": [
+      "metr_th_1_1"
+    ],
+    "is_estimate": true
+  },
+  "start": {
+    "model": "claude_mythos_preview_early_inspect",
+    "release_date": "2026-04-07",
+    "horizon_80pct_min": 185.91
+  },
+  "assumptions": {
+    "office_work": true,
+    "domain_discount": 50,
+    "adoption_delay_years": 0
+  },
+  "years": [
+    2026,
+    2027,
+    2028,
+    2029,
+    2030,
+    2031,
+    2032,
+    2033,
+    2034,
+    2035
+  ],
+  "tasks": [
+    {
+      "task_id": "TASK_2487",
+      "name": "Operate computers programmed with accounting software to record, store, and analyze information.",
+      "status": "dated",
+      "from": 2028.76,
+      "to": 2029.18,
+      "mid": 2028.97,
+      "mode": null,
+      "used_with_ai_today": null,
+      "sources": [
+        "metr_th_1_1",
+        "aei_2026_03",
+        "onet"
+      ],
+      "is_estimate": true,
+      "hours": 5.5
+    },
+    {
+      "task_id": "TASK_2497",
+      "name": "Perform financial calculations, such as amounts due, interest charges, balances, discounts, equity, and principal.",
+      "status": "dated",
+      "from": 2027.48,
+      "to": 2027.71,
+      "mid": 2027.6,
+      "mode": "augment",
+      "used_with_ai_today": 0.26,
+      "sources": [
+        "metr_th_1_1",
+        "aei_2026_03",
+        "onet",
+        "aei_2026_06"
+      ],
+      "is_estimate": true,
+      "hours": 4.5
+    },
+    {
+      "task_id": "TASK_2498",
+      "name": "Perform general office duties, such as filing, answering telephones, and handling routine correspondence.",
+      "status": "dated",
+      "from": 2027.38,
+      "to": 2028.41,
+      "mid": 2027.9,
+      "mode": null,
+      "used_with_ai_today": null,
+      "sources": [
+        "metr_th_1_1",
+        "aei_2026_03",
+        "onet"
+      ],
+      "is_estimate": true,
+      "hours": 5.5
+    },
+    {
+      "task_id": "TASK_2494",
+      "name": "Access computerized financial information to answer general questions as well as those related to specific accounts.",
+      "status": "dated",
+      "from": 2026.65,
+      "to": 2027.3,
+      "mid": 2026.98,
+      "mode": "automate",
+      "used_with_ai_today": 0,
+      "sources": [
+        "metr_th_1_1",
+        "aei_2026_03",
+        "onet",
+        "aei_2026_06"
+      ],
+      "is_estimate": true,
+      "hours": 4.5
+    },
+    {
+      "task_id": "TASK_2490",
+      "name": "Classify, record, and summarize numerical and financial data to compile and keep financial records, using journals and ledgers or computers.",
+      "status": "dated",
+      "from": 2028.87,
+      "to": 2029.03,
+      "mid": 2028.95,
+      "mode": "automate",
+      "used_with_ai_today": 0.01,
+      "sources": [
+        "metr_th_1_1",
+        "aei_2026_03",
+        "onet",
+        "aei_2026_06"
+      ],
+      "is_estimate": true,
+      "hours": 4.5
+    },
+    {
+      "task_id": "TASK_2489",
+      "name": "Debit, credit, and total accounts on computer spreadsheets and databases, using specialized accounting software.",
+      "status": "dated",
+      "from": 2028.15,
+      "to": 2029.06,
+      "mid": 2028.6,
+      "mode": "automate",
+      "used_with_ai_today": 0.01,
+      "sources": [
+        "metr_th_1_1",
+        "aei_2026_03",
+        "onet",
+        "aei_2026_06"
+      ],
+      "is_estimate": true,
+      "hours": 4.5
+    },
+    {
+      "task_id": "TASK_2495",
+      "name": "Operate 10-key calculators, typewriters, and copy machines to perform calculations and produce documents.",
+      "status": "no_data",
+      "reason": "No published time for this task (not in Anthropic's usage data)",
+      "sources": [
+        "onet"
+      ],
+      "is_estimate": false,
+      "hours": 6
+    },
+    {
+      "task_id": "TASK_2486",
+      "name": "Check figures, postings, and documents for correct entry, mathematical accuracy, and proper codes.",
+      "status": "no_data",
+      "reason": "No published time for this task (not in Anthropic's usage data)",
+      "sources": [
+        "onet",
+        "aei_2026_06"
+      ],
+      "is_estimate": false,
+      "hours": 5
+    }
+  ],
+  "by_year": {
+    "2026": {
+      "hours_ai": 0,
+      "hours_no_data": 11,
+      "hours_total": 40,
+      "share_ai": 0,
+      "leftover_task_ids": [
+        "TASK_2487",
+        "TASK_2497",
+        "TASK_2498",
+        "TASK_2494",
+        "TASK_2490",
+        "TASK_2489",
+        "TASK_2495",
+        "TASK_2486"
+      ],
+      "is_estimate": true
+    },
+    "2027": {
+      "hours_ai": 4.5,
+      "hours_no_data": 11,
+      "hours_total": 40,
+      "share_ai": 0.113,
+      "leftover_task_ids": [
+        "TASK_2487",
+        "TASK_2497",
+        "TASK_2498",
+        "TASK_2490",
+        "TASK_2489",
+        "TASK_2495",
+        "TASK_2486"
+      ],
+      "is_estimate": true
+    },
+    "2028": {
+      "hours_ai": 14.5,
+      "hours_no_data": 11,
+      "hours_total": 40,
+      "share_ai": 0.363,
+      "leftover_task_ids": [
+        "TASK_2487",
+        "TASK_2490",
+        "TASK_2489",
+        "TASK_2495",
+        "TASK_2486"
+      ],
+      "is_estimate": true
+    },
+    "2029": {
+      "hours_ai": 29,
+      "hours_no_data": 11,
+      "hours_total": 40,
+      "share_ai": 0.725,
+      "leftover_task_ids": [
+        "TASK_2495",
+        "TASK_2486"
+      ],
+      "is_estimate": true
+    },
+    "2030": {
+      "hours_ai": 29,
+      "hours_no_data": 11,
+      "hours_total": 40,
+      "share_ai": 0.725,
+      "leftover_task_ids": [
+        "TASK_2495",
+        "TASK_2486"
+      ],
+      "is_estimate": true
+    },
+    "2031": {
+      "hours_ai": 29,
+      "hours_no_data": 11,
+      "hours_total": 40,
+      "share_ai": 0.725,
+      "leftover_task_ids": [
+        "TASK_2495",
+        "TASK_2486"
+      ],
+      "is_estimate": true
+    },
+    "2032": {
+      "hours_ai": 29,
+      "hours_no_data": 11,
+      "hours_total": 40,
+      "share_ai": 0.725,
+      "leftover_task_ids": [
+        "TASK_2495",
+        "TASK_2486"
+      ],
+      "is_estimate": true
+    },
+    "2033": {
+      "hours_ai": 29,
+      "hours_no_data": 11,
+      "hours_total": 40,
+      "share_ai": 0.725,
+      "leftover_task_ids": [
+        "TASK_2495",
+        "TASK_2486"
+      ],
+      "is_estimate": true
+    },
+    "2034": {
+      "hours_ai": 29,
+      "hours_no_data": 11,
+      "hours_total": 40,
+      "share_ai": 0.725,
+      "leftover_task_ids": [
+        "TASK_2495",
+        "TASK_2486"
+      ],
+      "is_estimate": true
+    },
+    "2035": {
+      "hours_ai": 29,
+      "hours_no_data": 11,
+      "hours_total": 40,
+      "share_ai": 0.725,
+      "leftover_task_ids": [
+        "TASK_2495",
+        "TASK_2486"
+      ],
+      "is_estimate": true
+    }
+  }
+}

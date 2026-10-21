@@ -1,0 +1,10 @@
+task_id,job,task_description,minutes_median,minutes_low,minutes_high,minutes_source,minutes_is_estimate,automate_or_augment,aei_usage_share,source,date
+TASK_1,JOB_AP,"Enter invoice data, including tax codes, into the system",2.4,1.2,4.8,test_aei,true,automate,0.004,test_onet,2026-10-20
+TASK_2,JOB_AP,Match invoices to purchase orders,4.8,2.4,9.6,test_aei,true,automate,0.003,test_onet,2026-10-20
+TASK_3,JOB_AP,"Answer supplier emails about payments",9.6,4.8,19.2,test_aei,true,augment,0.006,test_onet,2026-10-20
+TASK_4,JOB_AP,Investigate unusual invoices,38.4,19.2,76.8,test_aei,true,augment,0.001,test_onet,2026-10-20
+TASK_5,JOB_AP,Resolve supplier disputes,76.8,38.4,153.6,test_aei,true,augment,0.001,test_onet,2026-10-20
+TASK_6,JOB_AUD,Examine records for signs of fraud,76.8,38.4,153.6,test_aei,true,augment,0.002,test_onet,2026-10-20
+TASK_7,JOB_AUD,Prepare audit reports,19.2,9.6,38.4,test_aei,true,automate,0.005,test_onet,2026-10-20
+TASK_8,JOB_ANL,Build financial models,9.6,4.8,19.2,test_aei,true,augment,0.007,test_onet,2026-10-20
+TASK_9,JOB_ANL,Present findings to managers,,,,,,,,test_onet,2026-10-20

@@ -1,0 +1,17 @@
+task_id,skill_id,is_estimate,model
+TASK_1,S_DATA,true,test-model
+TASK_1,S_MODEL,true,test-model
+TASK_2,S_RECON,true,test-model
+TASK_2,S_DATA,true,test-model
+TASK_3,S_COMM,true,test-model
+TASK_4,S_INVEST,true,test-model
+TASK_4,S_RECON,true,test-model
+TASK_5,S_NEGOT,true,test-model
+TASK_5,S_COMM,true,test-model
+TASK_6,S_INVEST,true,test-model
+TASK_6,S_AUDIT,true,test-model
+TASK_7,S_REPORT,true,test-model
+TASK_7,S_AUDIT,true,test-model
+TASK_8,S_MODEL,true,test-model
+TASK_9,S_PRES,true,test-model
+TASK_9,S_COMM,true,test-model

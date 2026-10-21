@@ -1,0 +1,132 @@
+{
+  "snapshot_date": "2026-10-20",
+  "llm_model_used": "Qwen/Qwen3-32B-AWQ via Runpod Public Endpoint (SDG links for roles/skills only, offline; rows is_estimate=true)",
+  "sources": [
+    {
+      "id": "onet",
+      "name": "O*NET Database 31.0",
+      "url": "https://www.onetcenter.org/database.html",
+      "date_taken": "2026-08-30",
+      "licence": "CC BY 4.0"
+    },
+    {
+      "id": "aei_2026_06",
+      "name": "Anthropic Economic Index, release 2026-06-26 (data Apr-May 2026)",
+      "url": "https://huggingface.co/datasets/Anthropic/EconomicIndex/tree/main/release_2026_06_26",
+      "date_taken": "2026-06-26",
+      "licence": "CC BY"
+    },
+    {
+      "id": "aei_2026_03",
+      "name": "Anthropic Economic Index, release 2026-03-24 (data 2026-02-05..02-12)",
+      "url": "https://huggingface.co/datasets/Anthropic/EconomicIndex/tree/main/release_2026_03_24",
+      "date_taken": "2026-03-24",
+      "licence": "CC BY"
+    },
+    {
+      "id": "aei_2026_01",
+      "name": "Anthropic Economic Index, release 2026-01-15 (data 2025-11-13..11-20)",
+      "url": "https://huggingface.co/datasets/Anthropic/EconomicIndex/tree/main/release_2026_01_15",
+      "date_taken": "2026-01-15",
+      "licence": "CC BY"
+    },
+    {
+      "id": "metr_th_1_1",
+      "name": "METR Time Horizon 1.1 (page not updated since 2026-09-08)",
+      "url": "https://metr.org/time-horizons/",
+      "date_taken": "2026-05-08",
+      "licence": "No licence stated - published numbers cited only"
+    },
+    {
+      "id": "metr_domains",
+      "name": "METR: How Does Time Horizon Vary Across Domains?",
+      "url": "https://metr.org/blog/2025-07-14-how-does-time-horizon-vary-across-domains/",
+      "date_taken": "2025-07-14",
+      "licence": "No licence stated - published numbers cited only"
+    },
+    {
+      "id": "esco",
+      "name": "ESCO classification (skills, occupations) via ESCO API",
+      "url": "https://esco.ec.europa.eu/en/use-esco/use-esco-services-api",
+      "date_taken": "2026-10-21",
+      "licence": "CC BY 4.0 (European Commission)"
+    },
+    {
+      "id": "onet_esco_crosswalk",
+      "name": "ESCO to O*NET-SOC 2019 crosswalk",
+      "url": "https://www.onetcenter.org/crosswalks.html#esco",
+      "date_taken": "2022-10",
+      "licence": "O*NET / European Commission"
+    },
+    {
+      "id": "aurora_sdg_queries",
+      "name": "Aurora SDG queries v5.0.3 (one query per UN target)",
+      "url": "https://github.com/Aurora-Network-Global/sdg-queries",
+      "date_taken": "2023-04",
+      "licence": "CC BY 4.0"
+    },
+    {
+      "id": "qwen3_32b_awq",
+      "name": "Qwen/Qwen3-32B-AWQ via Runpod Public Endpoint (SDG links for roles/skills, offline, 2026-10-21)",
+      "url": "https://docs.runpod.io/public-endpoints/models/qwen3-32b",
+      "date_taken": "2026-10-21",
+      "licence": "Open model (Apache 2.0); outputs is_estimate = true"
+    },
+    {
+      "id": "un_sdg_api",
+      "name": "UN SDG API: official text of the 169 targets",
+      "url": "https://unstats.un.org/sdgs/UNSDGAPIV5/v1/sdg/Target/List",
+      "date_taken": "2026-10-21",
+      "licence": "UN Statistics Division, free with citation"
+    },
+    {
+      "id": "team_hand_linked",
+      "name": "Task-to-skill links chosen by our team (Darishka) from each job's ESCO skill list",
+      "url": "data/docs/hand-links-worksheet.csv",
+      "date_taken": "2026-10-21",
+      "licence": "Team work (no AI); only for the 17 demo tasks"
+    },
+    {
+      "id": "slowdown_2025",
+      "name": "Whitfill, Snodin & Becker: Forecasting AI Time Horizon Under Compute Slowdowns",
+      "url": "https://arxiv.org/abs/2511.19492",
+      "date_taken": "2025-11-23",
+      "licence": "CC BY 4.0"
+    },
+    {
+      "id": "sdsn_sdr_2026",
+      "name": "SDSN Sustainable Development Report 2026: Malaysia goal dashboard and trend",
+      "url": "https://dashboards.sdgindex.org/downloads",
+      "date_taken": "2026-10-21",
+      "licence": "Use confirmed by SDSN by email on 2026-10-21 (Danesh, Jeffrey Sachs Center, Sunway University: 'Please proceed'). Values shown unchanged, non-commercial, with citation: Sachs, Lafortune, Fuller, Iablonovski, Sustainable Development Report (SDSN)"
+    },
+    {
+      "id": "dosm_jmi_q2_2026",
+      "name": "DOSM Big Data Analytics: Job Market Insights (online job offerings by MASCO major group)",
+      "url": "https://www.dosm.gov.my/portal-main/release-content/big-data-analytics-job-market-insights-q22026",
+      "date_taken": "2026-07",
+      "licence": "DOSM terms of use; cite DOSM"
+    },
+    {
+      "id": "bls_ep_2025_35",
+      "name": "US BLS Employment Projections 2025-35, Table 1.2 (occupational openings) - US, used as a proxy",
+      "url": "https://www.bls.gov/emp/tables/occupational-projections-and-characteristics.htm",
+      "date_taken": "2026-10-21 (downloaded by Darishka)",
+      "licence": "Public domain (US government)"
+    },
+    {
+      "id": "mslearn_catalog",
+      "name": "Microsoft Learn Catalog API (free courses, duration stated)",
+      "url": "https://learn.microsoft.com/api/catalog/",
+      "date_taken": "2026-10-21",
+      "licence": "Public catalogue; link to course"
+    },
+    {
+      "id": "coursera_catalog",
+      "name": "Coursera public course catalogue (workload as stated; cost checked on the course page)",
+      "url": "https://api.coursera.org/api/courses.v1",
+      "date_taken": "2026-10-21",
+      "licence": "Public catalogue; link to course"
+    }
+  ]
+}

@@ -1,0 +1,4665 @@
+{
+  "_note": "Engine output for snapshot 2026-10-20.",
+  "snapshot_date": "2026-10-20",
+  "scenario": {
+    "id": "moderate",
+    "name": "Moderate pace",
+    "doubling_days": 187.778,
+    "note": "METR all-time doubling time (TH 1.1 data file)",
+    "sources": [
+      "metr_th_1_1"
+    ],
+    "is_estimate": true
+  },
+  "mode": "market",
+  "note": null,
+  "weights": {
+    "skills": 0.4,
+    "leftover": 0.3,
+    "outlook": 0.3,
+    "related_skill_credit": 0.5,
+    "sdg_points_per_link": 0,
+    "label": "our weighting"
+  },
+  "skill_links": {
+    "level": "task",
+    "note": "Each task's skills were picked by our team from its job's ESCO list. Other tasks use their job's whole ESCO list",
+    "is_estimate": false
+  },
+  "person_skill_ids": [
+    "SK_a0d79341",
+    "SK_faf8943c",
+    "SK_08371fe9",
+    "SK_99b163e8",
+    "SK_dc417e19",
+    "SK_28a2ff4b",
+    "SK_2ecf90f1",
+    "SK_d63c2bad",
+    "SK_f75b740c",
+    "SK_6451e645",
+    "SK_3e04e39d",
+    "SK_f7e7ccb6",
+    "SK_e2e15494",
+    "SK_eaa9727c",
+    "SK_880c54f9",
+    "SK_e9030465",
+    "SK_d6e78d9a",
+    "SK_60f51172",
+    "SK_3982571a",
+    "SK_7ee4c2ea",
+    "SK_8a326ee1"
+  ],
+  "years": [
+    2026,
+    2027,
+    2028,
+    2029,
+    2030,
+    2031,
+    2032,
+    2033,
+    2034,
+    2035
+  ],
+  "by_year": {
+    "2026": {
+      "emerging_role": null,
+      "roles": [
+        {
+          "role_id": "JOB_FRAUD_EXAMINER",
+          "name": "Fraud Examiners, Investigators and Analysts",
+          "closest_real_occupation": "Fraud Examiners, Investigators and Analysts (O*NET) / financial fraud examiner (ESCO)",
+          "codes": {
+            "onet": "13-2099.04",
+            "esco": "http://data.europa.eu/esco/occupation/a04eedcf-8424-475a-8dc5-f30a9da4b151",
+            "isco": "2411"
+          },
+          "score": 50,
+          "parts": {
+            "skills": 13,
+            "leftover": 7,
+            "outlook": 30
+          },
+          "shares_skills": true,
+          "have": 1,
+          "related": 7,
+          "need": 14,
+          "have_skill_ids": [
+            "SK_8a326ee1"
+          ],
+          "related_skill_ids": [
+            "SK_658a38bd",
+            "SK_29d80dad",
+            "SK_3c209873",
+            "SK_3e9b580d",
+            "SK_5f1d1319",
+            "SK_4a460161",
+            "SK_89ff28d6"
+          ],
+          "missing_skill_ids": [
+            "SK_658a38bd",
+            "SK_f5afbe94",
+            "SK_29d80dad",
+            "SK_541cdc23",
+            "SK_3c209873",
+            "SK_3e9b580d",
+            "SK_5f1d1319",
+            "SK_4a460161",
+            "SK_f14ff4b7",
+            "SK_89ff28d6",
+            "SK_5b71cb01",
+            "SK_0295b2a4",
+            "SK_93f1caa3"
+          ],
+          "sdg": [
+            {
+              "target": "16.5",
+              "sign": "+",
+              "reason": "Reduces corruption and bribery in economic systems.",
+              "source": "qwen3_32b_awq",
+              "is_estimate": true,
+              "reviewed": null
+            }
+          ],
+          "sources": [
+            "onet",
+            "esco",
+            "metr_th_1_1",
+            "qwen3_32b_awq"
+          ],
+          "is_estimate": true
+        },
+        {
+          "role_id": "JOB_BI_ANALYST",
+          "name": "Business Intelligence Analysts",
+          "closest_real_occupation": "Business Intelligence Analysts (O*NET) / data analyst (ESCO)",
+          "codes": {
+            "onet": "15-2051.01",
+            "esco": "http://data.europa.eu/esco/occupation/d3edb8f8-3a06-47a0-8fb9-9b212c006aa2",
+            "isco": "2511"
+          },
+          "score": 45,
+          "parts": {
+            "skills": 10,
+            "leftover": 5,
+            "outlook": 30
+          },
+          "shares_skills": true,
+          "have": 1,
+          "related": 12,
+          "need": 28,
+          "have_skill_ids": [
+            "SK_7ee4c2ea"
+          ],
+          "related_skill_ids": [
+            "SK_46ec0033",
+            "SK_07889c08",
+            "SK_9ff9db9d",
+            "SK_31c69100",
+            "SK_47a49cd6",
+            "SK_382c11ed",
+            "SK_2daec0e6",
+            "SK_1e77e42a",
+            "SK_713fb616",
+            "SK_4216e465",
+            "SK_cc7370dd",
+            "SK_50b100ea"
+          ],
+          "missing_skill_ids": [
+            "SK_143769cb",
+            "SK_348b74cd",
+            "SK_46ec0033",
+            "SK_07889c08",
+            "SK_9ff9db9d",
+            "SK_31c69100",
+            "SK_327d15c8",
+            "SK_696e3b5b",
+            "SK_47a49cd6",
+            "SK_382c11ed",
+            "SK_79e29b8b",
+            "SK_a56dec32",
+            "SK_99207709",
+            "SK_c5e8abde",
+            "SK_9cf681c7",
+            "SK_4a193795",
+            "SK_2daec0e6",
+            "SK_54c9c155",
+            "SK_25f0ea33",
+            "SK_1e77e42a",
+            "SK_93aaf65c",
+            "SK_03ff0d53",
+            "SK_713fb616",
+            "SK_fecf8a0d",
+            "SK_4216e465",
+            "SK_cc7370dd",
+            "SK_50b100ea"
+          ],
+          "sdg": [
+            {
+              "target": "8.2",
+              "sign": "+",
+              "reason": "Supports economic productivity through data-driven insights.",
+              "source": "qwen3_32b_awq",
+              "is_estimate": true,
+              "reviewed": null
+            }
+          ],
+          "sources": [
+            "onet",
+            "esco",
+            "metr_th_1_1",
+            "qwen3_32b_awq"
+          ],
+          "is_estimate": true
+        },
+        {
+          "role_id": "JOB_HEALTH_INFORMATION_TECH",
+          "name": "Health Information Technologists and Medical Registrars",
+          "closest_real_occupation": "Health Information Technologists and Medical Registrars (O*NET) / medical records manager (ESCO)",
+          "codes": {
+            "onet": "29-9021.00",
+            "esco": "http://data.europa.eu/esco/occupation/983c2816-a339-4817-97f4-151a9ff3e64d",
+            "isco": "3252"
+          },
+          "score": 41,
+          "parts": {
+            "skills": 7,
+            "leftover": 4,
+            "outlook": 30
+          },
+          "shares_skills": true,
+          "have": 0,
+          "related": 10,
+          "need": 30,
+          "have_skill_ids": [],
+          "related_skill_ids": [
+            "SK_1709f408",
+            "SK_b22828a8",
+            "SK_6c3e28d6",
+            "SK_53141450",
+            "SK_fa3e5cec",
+            "SK_0c8c1e58",
+            "SK_fb15ca73",
+            "SK_9ec07ba9",
+            "SK_d4f9906e",
+            "SK_2e040fb0"
+          ],
+          "missing_skill_ids": [
+            "SK_16636767",
+            "SK_1709f408",
+            "SK_b55f61a4",
+            "SK_a7f0fbe0",
+            "SK_add39442",
+            "SK_9fcf9918",
+            "SK_b22828a8",
+            "SK_6c3e28d6",
+            "SK_53141450",
+            "SK_9601b2a8",
+            "SK_eba85523",
+            "SK_4d614c92",
+            "SK_76395873",
+            "SK_7110bf9f",
+            "SK_d3eccb86",
+            "SK_fa3e5cec",
+            "SK_43ae58b9",
+            "SK_0c8c1e58",
+            "SK_ea1bf5e5",
+            "SK_b21e2984",
+            "SK_fb15ca73",
+            "SK_9ec07ba9",
+            "SK_d4f9906e",
+            "SK_5d7890d5",
+            "SK_cf0b92de",
+            "SK_496932f1",
+            "SK_9a7cc3c2",
+            "SK_8b9332c7",
+            "SK_f022b5ff",
+            "SK_2e040fb0"
+          ],
+          "sdg": [
+            {
+              "target": "3.8",
+              "sign": "+",
+              "reason": "Supports universal health coverage through data management.",
+              "source": "qwen3_32b_awq",
+              "is_estimate": true,
+              "reviewed": null
+            }
+          ],
+          "sources": [
+            "onet",
+            "esco",
+            "metr_th_1_1",
+            "qwen3_32b_awq"
+          ],
+          "is_estimate": true
+        },
+        {
+          "role_id": "JOB_SUSTAINABILITY_SPECIALIST",
+          "name": "Sustainability Specialists",
+          "closest_real_occupation": "Sustainability Specialists (O*NET) / environmental programme coordinator (ESCO)",
+          "codes": {
+            "onet": "13-1199.05",
+            "esco": "http://data.europa.eu/esco/occupation/59883630-45f9-40e7-9732-9e5ff9758d2b",
+            "isco": "2133"
+          },
+          "score": 35,
+          "parts": {
+            "skills": 3,
+            "leftover": 1,
+            "outlook": 30
+          },
+          "shares_skills": true,
+          "have": 0,
+          "related": 2,
+          "need": 13,
+          "have_skill_ids": [],
+          "related_skill_ids": [
+            "SK_6f5850ea",
+            "SK_77f109c4"
+          ],
+          "missing_skill_ids": [
+            "SK_3f82a026",
+            "SK_507e2b21",
+            "SK_089ee650",
+            "SK_f6d7ba88",
+            "SK_6f5850ea",
+            "SK_96835f47",
+            "SK_59004ee8",
+            "SK_f3cc52e3",
+            "SK_77f109c4",
+            "SK_60ab2bf7",
+            "SK_e541c69c",
+            "SK_8abdc43c",
+            "SK_081d7679"
+          ],
+          "sdg": [
+            {
+              "target": "15.1",
+              "sign": "+",
+              "reason": "Text mentions \"environmental sustainability\", which Aurora links to target 15.1: By 2020, ensure the conservation, restoration and sustainable use of terrestrial and inland freshwater ecosystems and th",
+              "source": "aurora_sdg_queries",
+              "is_estimate": false,
+              "reviewed": null
+            },
+            {
+              "target": "12.2",
+              "sign": "+",
+              "reason": "Promotes sustainable management of natural resources.",
+              "source": "qwen3_32b_awq",
+              "is_estimate": true,
+              "reviewed": null
+            }
+          ],
+          "sources": [
+            "onet",
+            "esco",
+            "metr_th_1_1",
+            "aurora_sdg_queries",
+            "qwen3_32b_awq"
+          ],
+          "is_estimate": true
+        },
+        {
+          "role_id": "JOB_ENVIRONMENTAL_ENGINEER",
+          "name": "Environmental Engineers",
+          "closest_real_occupation": "Environmental Engineers (O*NET) / environmental engineer (ESCO)",
+          "codes": {
+            "onet": "17-2081.00",
+            "esco": "http://data.europa.eu/esco/occupation/ac1fc6a9-70d2-475c-8fa0-82ef83830968",
+            "isco": "2143"
+          },
+          "score": 34,
+          "parts": {
+            "skills": 2,
+            "leftover": 1,
+            "outlook": 30
+          },
+          "shares_skills": true,
+          "have": 0,
+          "related": 3,
+          "need": 28,
+          "have_skill_ids": [],
+          "related_skill_ids": [
+            "SK_5641a2af",
+            "SK_77f109c4",
+            "SK_6f5850ea"
+          ],
+          "missing_skill_ids": [
+            "SK_541561bc",
+            "SK_c0ccbd15",
+            "SK_1cebfd4f",
+            "SK_081d7679",
+            "SK_e4ff825c",
+            "SK_4fabca9a",
+            "SK_f54c10e4",
+            "SK_209a5498",
+            "SK_233be639",
+            "SK_96835f47",
+            "SK_42b23922",
+            "SK_cde9911c",
+            "SK_5641a2af",
+            "SK_eb65ce8e",
+            "SK_9570e84e",
+            "SK_b422efe7",
+            "SK_82887396",
+            "SK_b1b118c4",
+            "SK_0d6c9508",
+            "SK_9433da85",
+            "SK_77f109c4",
+            "SK_ce4990a4",
+            "SK_72a74f69",
+            "SK_d1ec6846",
+            "SK_75f312e1",
+            "SK_59ea80e1",
+            "SK_60ab2bf7",
+            "SK_6f5850ea"
+          ],
+          "sdg": [
+            {
+              "target": "12.2",
+              "sign": "+",
+              "reason": "Text mentions \"sustainable\", which Aurora links to target 12.2: By 2030, achieve the sustainable management and efficient use of natural resources",
+              "source": "aurora_sdg_queries",
+              "is_estimate": false,
+              "reviewed": null
+            },
+            {
+              "target": "15.1",
+              "sign": "+",
+              "reason": "Text mentions \"environmental and sustainable\", which Aurora links to target 15.1: By 2020, ensure the conservation, restoration and sustainable use of terrestrial and inland freshwater ecosystems and th",
+              "source": "aurora_sdg_queries",
+              "is_estimate": false,
+              "reviewed": null
+            },
+            {
+              "target": "6.4",
+              "sign": "+",
+              "reason": "Improves water-use efficiency and sustainability.",
+              "source": "qwen3_32b_awq",
+              "is_estimate": true,
+              "reviewed": null
+            }
+          ],
+          "sources": [
+            "onet",
+            "esco",
+            "metr_th_1_1",
+            "aurora_sdg_queries",
+            "qwen3_32b_awq"
+          ],
+          "is_estimate": true
+        },
+        {
+          "role_id": "JOB_SOLAR_PV_INSTALLER",
+          "name": "Solar Photovoltaic Installers",
+          "closest_real_occupation": "Solar Photovoltaic Installers (O*NET) / solar energy technician (ESCO)",
+          "codes": {
+            "onet": "47-2231.00",
+            "esco": "http://data.europa.eu/esco/occupation/75b63949-1b93-4bf2-a777-ccf978dc3e8a",
+            "isco": "7411"
+          },
+          "score": 30,
+          "parts": {
+            "skills": 0,
+            "leftover": 0,
+            "outlook": 30
+          },
+          "shares_skills": false,
+          "have": 0,
+          "related": 0,
+          "need": 19,
+          "have_skill_ids": [],
+          "related_skill_ids": [],
+          "missing_skill_ids": [
+            "SK_3892f2ff",
+            "SK_3d3ee5c3",
+            "SK_d15e92c4",
+            "SK_50f2d23c",
+            "SK_08a5f6dd",
+            "SK_efa141df",
+            "SK_156f8c5b",
+            "SK_c8ac1986",
+            "SK_86df7af2",
+            "SK_52797dce",
+            "SK_05e5e14f",
+            "SK_b92758d4",
+            "SK_76b9e515",
+            "SK_aafbb139",
+            "SK_2179e0fd",
+            "SK_0dc8813a",
+            "SK_4af56376",
+            "SK_dfce2aba",
+            "SK_fafbb75f"
+          ],
+          "sdg": [
+            {
+              "target": "7.2",
+              "sign": "+",
+              "reason": "Supports renewable energy expansion for all.",
+              "source": "qwen3_32b_awq",
+              "is_estimate": true,
+              "reviewed": null
+            }
+          ],
+          "sources": [
+            "onet",
+            "esco",
+            "metr_th_1_1",
+            "qwen3_32b_awq"
+          ],
+          "is_estimate": true
+        }
+      ]
+    },
+    "2027": {
+      "emerging_role": {
+        "role_id": "JOB_FRAUD_EXAMINER",
+        "name": "Fraud Examiners, Investigators and Analysts",
+        "closest_real_occupation": "Fraud Examiners, Investigators and Analysts (O*NET) / financial fraud examiner (ESCO)",
+        "overlap": 0.23,
+        "note": "Your leftover tasks look most like this real job",
+        "sources": [
+          "onet",
+          "esco"
+        ],
+        "is_estimate": true
+      },
+      "roles": [
+        {
+          "role_id": "JOB_FRAUD_EXAMINER",
+          "name": "Fraud Examiners, Investigators and Analysts",
+          "closest_real_occupation": "Fraud Examiners, Investigators and Analysts (O*NET) / financial fraud examiner (ESCO)",
+          "codes": {
+            "onet": "13-2099.04",
+            "esco": "http://data.europa.eu/esco/occupation/a04eedcf-8424-475a-8dc5-f30a9da4b151",
+            "isco": "2411"
+          },
+          "score": 50,
+          "parts": {
+            "skills": 13,
+            "leftover": 7,
+            "outlook": 30
+          },
+          "shares_skills": true,
+          "have": 1,
+          "related": 7,
+          "need": 14,
+          "have_skill_ids": [
+            "SK_8a326ee1"
+          ],
+          "related_skill_ids": [
+            "SK_658a38bd",
+            "SK_29d80dad",
+            "SK_3c209873",
+            "SK_3e9b580d",
+            "SK_5f1d1319",
+            "SK_4a460161",
+            "SK_89ff28d6"
+          ],
+          "missing_skill_ids": [
+            "SK_658a38bd",
+            "SK_f5afbe94",
+            "SK_29d80dad",
+            "SK_541cdc23",
+            "SK_3c209873",
+            "SK_3e9b580d",
+            "SK_5f1d1319",
+            "SK_4a460161",
+            "SK_f14ff4b7",
+            "SK_89ff28d6",
+            "SK_5b71cb01",
+            "SK_0295b2a4",
+            "SK_93f1caa3"
+          ],
+          "sdg": [
+            {
+              "target": "16.5",
+              "sign": "+",
+              "reason": "Reduces corruption and bribery in economic systems.",
+              "source": "qwen3_32b_awq",
+              "is_estimate": true,
+              "reviewed": null
+            }
+          ],
+          "sources": [
+            "onet",
+            "esco",
+            "metr_th_1_1",
+            "qwen3_32b_awq"
+          ],
+          "is_estimate": true
+        },
+        {
+          "role_id": "JOB_BI_ANALYST",
+          "name": "Business Intelligence Analysts",
+          "closest_real_occupation": "Business Intelligence Analysts (O*NET) / data analyst (ESCO)",
+          "codes": {
+            "onet": "15-2051.01",
+            "esco": "http://data.europa.eu/esco/occupation/d3edb8f8-3a06-47a0-8fb9-9b212c006aa2",
+            "isco": "2511"
+          },
+          "score": 43,
+          "parts": {
+            "skills": 10,
+            "leftover": 5,
+            "outlook": 28
+          },
+          "shares_skills": true,
+          "have": 1,
+          "related": 12,
+          "need": 28,
+          "have_skill_ids": [
+            "SK_7ee4c2ea"
+          ],
+          "related_skill_ids": [
+            "SK_46ec0033",
+            "SK_07889c08",
+            "SK_9ff9db9d",
+            "SK_31c69100",
+            "SK_47a49cd6",
+            "SK_382c11ed",
+            "SK_2daec0e6",
+            "SK_1e77e42a",
+            "SK_713fb616",
+            "SK_4216e465",
+            "SK_cc7370dd",
+            "SK_50b100ea"
+          ],
+          "missing_skill_ids": [
+            "SK_143769cb",
+            "SK_348b74cd",
+            "SK_46ec0033",
+            "SK_07889c08",
+            "SK_9ff9db9d",
+            "SK_31c69100",
+            "SK_327d15c8",
+            "SK_696e3b5b",
+            "SK_47a49cd6",
+            "SK_382c11ed",
+            "SK_79e29b8b",
+            "SK_a56dec32",
+            "SK_99207709",
+            "SK_c5e8abde",
+            "SK_9cf681c7",
+            "SK_4a193795",
+            "SK_2daec0e6",
+            "SK_54c9c155",
+            "SK_25f0ea33",
+            "SK_1e77e42a",
+            "SK_93aaf65c",
+            "SK_03ff0d53",
+            "SK_713fb616",
+            "SK_fecf8a0d",
+            "SK_4216e465",
+            "SK_cc7370dd",
+            "SK_50b100ea"
+          ],
+          "sdg": [
+            {
+              "target": "8.2",
+              "sign": "+",
+              "reason": "Supports economic productivity through data-driven insights.",
+              "source": "qwen3_32b_awq",
+              "is_estimate": true,
+              "reviewed": null
+            }
+          ],
+          "sources": [
+            "onet",
+            "esco",
+            "metr_th_1_1",
+            "qwen3_32b_awq"
+          ],
+          "is_estimate": true
+        },
+        {
+          "role_id": "JOB_HEALTH_INFORMATION_TECH",
+          "name": "Health Information Technologists and Medical Registrars",
+          "closest_real_occupation": "Health Information Technologists and Medical Registrars (O*NET) / medical records manager (ESCO)",
+          "codes": {
+            "onet": "29-9021.00",
+            "esco": "http://data.europa.eu/esco/occupation/983c2816-a339-4817-97f4-151a9ff3e64d",
+            "isco": "3252"
+          },
+          "score": 40,
+          "parts": {
+            "skills": 7,
+            "leftover": 4,
+            "outlook": 30
+          },
+          "shares_skills": true,
+          "have": 0,
+          "related": 10,
+          "need": 30,
+          "have_skill_ids": [],
+          "related_skill_ids": [
+            "SK_1709f408",
+            "SK_b22828a8",
+            "SK_6c3e28d6",
+            "SK_53141450",
+            "SK_fa3e5cec",
+            "SK_0c8c1e58",
+            "SK_fb15ca73",
+            "SK_9ec07ba9",
+            "SK_d4f9906e",
+            "SK_2e040fb0"
+          ],
+          "missing_skill_ids": [
+            "SK_16636767",
+            "SK_1709f408",
+            "SK_b55f61a4",
+            "SK_a7f0fbe0",
+            "SK_add39442",
+            "SK_9fcf9918",
+            "SK_b22828a8",
+            "SK_6c3e28d6",
+            "SK_53141450",
+            "SK_9601b2a8",
+            "SK_eba85523",
+            "SK_4d614c92",
+            "SK_76395873",
+            "SK_7110bf9f",
+            "SK_d3eccb86",
+            "SK_fa3e5cec",
+            "SK_43ae58b9",
+            "SK_0c8c1e58",
+            "SK_ea1bf5e5",
+            "SK_b21e2984",
+            "SK_fb15ca73",
+            "SK_9ec07ba9",
+            "SK_d4f9906e",
+            "SK_5d7890d5",
+            "SK_cf0b92de",
+            "SK_496932f1",
+            "SK_9a7cc3c2",
+            "SK_8b9332c7",
+            "SK_f022b5ff",
+            "SK_2e040fb0"
+          ],
+          "sdg": [
+            {
+              "target": "3.8",
+              "sign": "+",
+              "reason": "Supports universal health coverage through data management.",
+              "source": "qwen3_32b_awq",
+              "is_estimate": true,
+              "reviewed": null
+            }
+          ],
+          "sources": [
+            "onet",
+            "esco",
+            "metr_th_1_1",
+            "qwen3_32b_awq"
+          ],
+          "is_estimate": true
+        },
+        {
+          "role_id": "JOB_SUSTAINABILITY_SPECIALIST",
+          "name": "Sustainability Specialists",
+          "closest_real_occupation": "Sustainability Specialists (O*NET) / environmental programme coordinator (ESCO)",
+          "codes": {
+            "onet": "13-1199.05",
+            "esco": "http://data.europa.eu/esco/occupation/59883630-45f9-40e7-9732-9e5ff9758d2b",
+            "isco": "2133"
+          },
+          "score": 35,
+          "parts": {
+            "skills": 3,
+            "leftover": 2,
+            "outlook": 30
+          },
+          "shares_skills": true,
+          "have": 0,
+          "related": 2,
+          "need": 13,
+          "have_skill_ids": [],
+          "related_skill_ids": [
+            "SK_6f5850ea",
+            "SK_77f109c4"
+          ],
+          "missing_skill_ids": [
+            "SK_3f82a026",
+            "SK_507e2b21",
+            "SK_089ee650",
+            "SK_f6d7ba88",
+            "SK_6f5850ea",
+            "SK_96835f47",
+            "SK_59004ee8",
+            "SK_f3cc52e3",
+            "SK_77f109c4",
+            "SK_60ab2bf7",
+            "SK_e541c69c",
+            "SK_8abdc43c",
+            "SK_081d7679"
+          ],
+          "sdg": [
+            {
+              "target": "15.1",
+              "sign": "+",
+              "reason": "Text mentions \"environmental sustainability\", which Aurora links to target 15.1: By 2020, ensure the conservation, restoration and sustainable use of terrestrial and inland freshwater ecosystems and th",
+              "source": "aurora_sdg_queries",
+              "is_estimate": false,
+              "reviewed": null
+            },
+            {
+              "target": "12.2",
+              "sign": "+",
+              "reason": "Promotes sustainable management of natural resources.",
+              "source": "qwen3_32b_awq",
+              "is_estimate": true,
+              "reviewed": null
+            }
+          ],
+          "sources": [
+            "onet",
+            "esco",
+            "metr_th_1_1",
+            "aurora_sdg_queries",
+            "qwen3_32b_awq"
+          ],
+          "is_estimate": true
+        },
+        {
+          "role_id": "JOB_ENVIRONMENTAL_ENGINEER",
+          "name": "Environmental Engineers",
+          "closest_real_occupation": "Environmental Engineers (O*NET) / environmental engineer (ESCO)",
+          "codes": {
+            "onet": "17-2081.00",
+            "esco": "http://data.europa.eu/esco/occupation/ac1fc6a9-70d2-475c-8fa0-82ef83830968",
+            "isco": "2143"
+          },
+          "score": 34,
+          "parts": {
+            "skills": 2,
+            "leftover": 2,
+            "outlook": 30
+          },
+          "shares_skills": true,
+          "have": 0,
+          "related": 3,
+          "need": 28,
+          "have_skill_ids": [],
+          "related_skill_ids": [
+            "SK_5641a2af",
+            "SK_77f109c4",
+            "SK_6f5850ea"
+          ],
+          "missing_skill_ids": [
+            "SK_541561bc",
+            "SK_c0ccbd15",
+            "SK_1cebfd4f",
+            "SK_081d7679",
+            "SK_e4ff825c",
+            "SK_4fabca9a",
+            "SK_f54c10e4",
+            "SK_209a5498",
+            "SK_233be639",
+            "SK_96835f47",
+            "SK_42b23922",
+            "SK_cde9911c",
+            "SK_5641a2af",
+            "SK_eb65ce8e",
+            "SK_9570e84e",
+            "SK_b422efe7",
+            "SK_82887396",
+            "SK_b1b118c4",
+            "SK_0d6c9508",
+            "SK_9433da85",
+            "SK_77f109c4",
+            "SK_ce4990a4",
+            "SK_72a74f69",
+            "SK_d1ec6846",
+            "SK_75f312e1",
+            "SK_59ea80e1",
+            "SK_60ab2bf7",
+            "SK_6f5850ea"
+          ],
+          "sdg": [
+            {
+              "target": "12.2",
+              "sign": "+",
+              "reason": "Text mentions \"sustainable\", which Aurora links to target 12.2: By 2030, achieve the sustainable management and efficient use of natural resources",
+              "source": "aurora_sdg_queries",
+              "is_estimate": false,
+              "reviewed": null
+            },
+            {
+              "target": "15.1",
+              "sign": "+",
+              "reason": "Text mentions \"environmental and sustainable\", which Aurora links to target 15.1: By 2020, ensure the conservation, restoration and sustainable use of terrestrial and inland freshwater ecosystems and th",
+              "source": "aurora_sdg_queries",
+              "is_estimate": false,
+              "reviewed": null
+            },
+            {
+              "target": "6.4",
+              "sign": "+",
+              "reason": "Improves water-use efficiency and sustainability.",
+              "source": "qwen3_32b_awq",
+              "is_estimate": true,
+              "reviewed": null
+            }
+          ],
+          "sources": [
+            "onet",
+            "esco",
+            "metr_th_1_1",
+            "aurora_sdg_queries",
+            "qwen3_32b_awq"
+          ],
+          "is_estimate": true
+        },
+        {
+          "role_id": "JOB_SOLAR_PV_INSTALLER",
+          "name": "Solar Photovoltaic Installers",
+          "closest_real_occupation": "Solar Photovoltaic Installers (O*NET) / solar energy technician (ESCO)",
+          "codes": {
+            "onet": "47-2231.00",
+            "esco": "http://data.europa.eu/esco/occupation/75b63949-1b93-4bf2-a777-ccf978dc3e8a",
+            "isco": "7411"
+          },
+          "score": 30,
+          "parts": {
+            "skills": 0,
+            "leftover": 0,
+            "outlook": 30
+          },
+          "shares_skills": false,
+          "have": 0,
+          "related": 0,
+          "need": 19,
+          "have_skill_ids": [],
+          "related_skill_ids": [],
+          "missing_skill_ids": [
+            "SK_3892f2ff",
+            "SK_3d3ee5c3",
+            "SK_d15e92c4",
+            "SK_50f2d23c",
+            "SK_08a5f6dd",
+            "SK_efa141df",
+            "SK_156f8c5b",
+            "SK_c8ac1986",
+            "SK_86df7af2",
+            "SK_52797dce",
+            "SK_05e5e14f",
+            "SK_b92758d4",
+            "SK_76b9e515",
+            "SK_aafbb139",
+            "SK_2179e0fd",
+            "SK_0dc8813a",
+            "SK_4af56376",
+            "SK_dfce2aba",
+            "SK_fafbb75f"
+          ],
+          "sdg": [
+            {
+              "target": "7.2",
+              "sign": "+",
+              "reason": "Supports renewable energy expansion for all.",
+              "source": "qwen3_32b_awq",
+              "is_estimate": true,
+              "reviewed": null
+            }
+          ],
+          "sources": [
+            "onet",
+            "esco",
+            "metr_th_1_1",
+            "qwen3_32b_awq"
+          ],
+          "is_estimate": true
+        }
+      ]
+    },
+    "2028": {
+      "emerging_role": {
+        "role_id": "JOB_FRAUD_EXAMINER",
+        "name": "Fraud Examiners, Investigators and Analysts",
+        "closest_real_occupation": "Fraud Examiners, Investigators and Analysts (O*NET) / financial fraud examiner (ESCO)",
+        "overlap": 0.3,
+        "note": "Your leftover tasks look most like this real job",
+        "sources": [
+          "onet",
+          "esco"
+        ],
+        "is_estimate": true
+      },
+      "roles": [
+        {
+          "role_id": "JOB_FRAUD_EXAMINER",
+          "name": "Fraud Examiners, Investigators and Analysts",
+          "closest_real_occupation": "Fraud Examiners, Investigators and Analysts (O*NET) / financial fraud examiner (ESCO)",
+          "codes": {
+            "onet": "13-2099.04",
+            "esco": "http://data.europa.eu/esco/occupation/a04eedcf-8424-475a-8dc5-f30a9da4b151",
+            "isco": "2411"
+          },
+          "score": 40,
+          "parts": {
+            "skills": 13,
+            "leftover": 9,
+            "outlook": 18
+          },
+          "shares_skills": true,
+          "have": 1,
+          "related": 7,
+          "need": 14,
+          "have_skill_ids": [
+            "SK_8a326ee1"
+          ],
+          "related_skill_ids": [
+            "SK_658a38bd",
+            "SK_29d80dad",
+            "SK_3c209873",
+            "SK_3e9b580d",
+            "SK_5f1d1319",
+            "SK_4a460161",
+            "SK_89ff28d6"
+          ],
+          "missing_skill_ids": [
+            "SK_658a38bd",
+            "SK_f5afbe94",
+            "SK_29d80dad",
+            "SK_541cdc23",
+            "SK_3c209873",
+            "SK_3e9b580d",
+            "SK_5f1d1319",
+            "SK_4a460161",
+            "SK_f14ff4b7",
+            "SK_89ff28d6",
+            "SK_5b71cb01",
+            "SK_0295b2a4",
+            "SK_93f1caa3"
+          ],
+          "sdg": [
+            {
+              "target": "16.5",
+              "sign": "+",
+              "reason": "Reduces corruption and bribery in economic systems.",
+              "source": "qwen3_32b_awq",
+              "is_estimate": true,
+              "reviewed": null
+            }
+          ],
+          "sources": [
+            "onet",
+            "esco",
+            "metr_th_1_1",
+            "qwen3_32b_awq"
+          ],
+          "is_estimate": true
+        },
+        {
+          "role_id": "JOB_BI_ANALYST",
+          "name": "Business Intelligence Analysts",
+          "closest_real_occupation": "Business Intelligence Analysts (O*NET) / data analyst (ESCO)",
+          "codes": {
+            "onet": "15-2051.01",
+            "esco": "http://data.europa.eu/esco/occupation/d3edb8f8-3a06-47a0-8fb9-9b212c006aa2",
+            "isco": "2511"
+          },
+          "score": 38,
+          "parts": {
+            "skills": 10,
+            "leftover": 4,
+            "outlook": 24
+          },
+          "shares_skills": true,
+          "have": 1,
+          "related": 12,
+          "need": 28,
+          "have_skill_ids": [
+            "SK_7ee4c2ea"
+          ],
+          "related_skill_ids": [
+            "SK_46ec0033",
+            "SK_07889c08",
+            "SK_9ff9db9d",
+            "SK_31c69100",
+            "SK_47a49cd6",
+            "SK_382c11ed",
+            "SK_2daec0e6",
+            "SK_1e77e42a",
+            "SK_713fb616",
+            "SK_4216e465",
+            "SK_cc7370dd",
+            "SK_50b100ea"
+          ],
+          "missing_skill_ids": [
+            "SK_143769cb",
+            "SK_348b74cd",
+            "SK_46ec0033",
+            "SK_07889c08",
+            "SK_9ff9db9d",
+            "SK_31c69100",
+            "SK_327d15c8",
+            "SK_696e3b5b",
+            "SK_47a49cd6",
+            "SK_382c11ed",
+            "SK_79e29b8b",
+            "SK_a56dec32",
+            "SK_99207709",
+            "SK_c5e8abde",
+            "SK_9cf681c7",
+            "SK_4a193795",
+            "SK_2daec0e6",
+            "SK_54c9c155",
+            "SK_25f0ea33",
+            "SK_1e77e42a",
+            "SK_93aaf65c",
+            "SK_03ff0d53",
+            "SK_713fb616",
+            "SK_fecf8a0d",
+            "SK_4216e465",
+            "SK_cc7370dd",
+            "SK_50b100ea"
+          ],
+          "sdg": [
+            {
+              "target": "8.2",
+              "sign": "+",
+              "reason": "Supports economic productivity through data-driven insights.",
+              "source": "qwen3_32b_awq",
+              "is_estimate": true,
+              "reviewed": null
+            }
+          ],
+          "sources": [
+            "onet",
+            "esco",
+            "metr_th_1_1",
+            "qwen3_32b_awq"
+          ],
+          "is_estimate": true
+        },
+        {
+          "role_id": "JOB_HEALTH_INFORMATION_TECH",
+          "name": "Health Information Technologists and Medical Registrars",
+          "closest_real_occupation": "Health Information Technologists and Medical Registrars (O*NET) / medical records manager (ESCO)",
+          "codes": {
+            "onet": "29-9021.00",
+            "esco": "http://data.europa.eu/esco/occupation/983c2816-a339-4817-97f4-151a9ff3e64d",
+            "isco": "3252"
+          },
+          "score": 33,
+          "parts": {
+            "skills": 7,
+            "leftover": 2,
+            "outlook": 24
+          },
+          "shares_skills": true,
+          "have": 0,
+          "related": 10,
+          "need": 30,
+          "have_skill_ids": [],
+          "related_skill_ids": [
+            "SK_1709f408",
+            "SK_b22828a8",
+            "SK_6c3e28d6",
+            "SK_53141450",
+            "SK_fa3e5cec",
+            "SK_0c8c1e58",
+            "SK_fb15ca73",
+            "SK_9ec07ba9",
+            "SK_d4f9906e",
+            "SK_2e040fb0"
+          ],
+          "missing_skill_ids": [
+            "SK_16636767",
+            "SK_1709f408",
+            "SK_b55f61a4",
+            "SK_a7f0fbe0",
+            "SK_add39442",
+            "SK_9fcf9918",
+            "SK_b22828a8",
+            "SK_6c3e28d6",
+            "SK_53141450",
+            "SK_9601b2a8",
+            "SK_eba85523",
+            "SK_4d614c92",
+            "SK_76395873",
+            "SK_7110bf9f",
+            "SK_d3eccb86",
+            "SK_fa3e5cec",
+            "SK_43ae58b9",
+            "SK_0c8c1e58",
+            "SK_ea1bf5e5",
+            "SK_b21e2984",
+            "SK_fb15ca73",
+            "SK_9ec07ba9",
+            "SK_d4f9906e",
+            "SK_5d7890d5",
+            "SK_cf0b92de",
+            "SK_496932f1",
+            "SK_9a7cc3c2",
+            "SK_8b9332c7",
+            "SK_f022b5ff",
+            "SK_2e040fb0"
+          ],
+          "sdg": [
+            {
+              "target": "3.8",
+              "sign": "+",
+              "reason": "Supports universal health coverage through data management.",
+              "source": "qwen3_32b_awq",
+              "is_estimate": true,
+              "reviewed": null
+            }
+          ],
+          "sources": [
+            "onet",
+            "esco",
+            "metr_th_1_1",
+            "qwen3_32b_awq"
+          ],
+          "is_estimate": true
+        },
+        {
+          "role_id": "JOB_SUSTAINABILITY_SPECIALIST",
+          "name": "Sustainability Specialists",
+          "closest_real_occupation": "Sustainability Specialists (O*NET) / environmental programme coordinator (ESCO)",
+          "codes": {
+            "onet": "13-1199.05",
+            "esco": "http://data.europa.eu/esco/occupation/59883630-45f9-40e7-9732-9e5ff9758d2b",
+            "isco": "2133"
+          },
+          "score": 33,
+          "parts": {
+            "skills": 3,
+            "leftover": 0,
+            "outlook": 30
+          },
+          "shares_skills": true,
+          "have": 0,
+          "related": 2,
+          "need": 13,
+          "have_skill_ids": [],
+          "related_skill_ids": [
+            "SK_6f5850ea",
+            "SK_77f109c4"
+          ],
+          "missing_skill_ids": [
+            "SK_3f82a026",
+            "SK_507e2b21",
+            "SK_089ee650",
+            "SK_f6d7ba88",
+            "SK_6f5850ea",
+            "SK_96835f47",
+            "SK_59004ee8",
+            "SK_f3cc52e3",
+            "SK_77f109c4",
+            "SK_60ab2bf7",
+            "SK_e541c69c",
+            "SK_8abdc43c",
+            "SK_081d7679"
+          ],
+          "sdg": [
+            {
+              "target": "15.1",
+              "sign": "+",
+              "reason": "Text mentions \"environmental sustainability\", which Aurora links to target 15.1: By 2020, ensure the conservation, restoration and sustainable use of terrestrial and inland freshwater ecosystems and th",
+              "source": "aurora_sdg_queries",
+              "is_estimate": false,
+              "reviewed": null
+            },
+            {
+              "target": "12.2",
+              "sign": "+",
+              "reason": "Promotes sustainable management of natural resources.",
+              "source": "qwen3_32b_awq",
+              "is_estimate": true,
+              "reviewed": null
+            }
+          ],
+          "sources": [
+            "onet",
+            "esco",
+            "metr_th_1_1",
+            "aurora_sdg_queries",
+            "qwen3_32b_awq"
+          ],
+          "is_estimate": true
+        },
+        {
+          "role_id": "JOB_ENVIRONMENTAL_ENGINEER",
+          "name": "Environmental Engineers",
+          "closest_real_occupation": "Environmental Engineers (O*NET) / environmental engineer (ESCO)",
+          "codes": {
+            "onet": "17-2081.00",
+            "esco": "http://data.europa.eu/esco/occupation/ac1fc6a9-70d2-475c-8fa0-82ef83830968",
+            "isco": "2143"
+          },
+          "score": 32,
+          "parts": {
+            "skills": 2,
+            "leftover": 0,
+            "outlook": 30
+          },
+          "shares_skills": true,
+          "have": 0,
+          "related": 3,
+          "need": 28,
+          "have_skill_ids": [],
+          "related_skill_ids": [
+            "SK_5641a2af",
+            "SK_77f109c4",
+            "SK_6f5850ea"
+          ],
+          "missing_skill_ids": [
+            "SK_541561bc",
+            "SK_c0ccbd15",
+            "SK_1cebfd4f",
+            "SK_081d7679",
+            "SK_e4ff825c",
+            "SK_4fabca9a",
+            "SK_f54c10e4",
+            "SK_209a5498",
+            "SK_233be639",
+            "SK_96835f47",
+            "SK_42b23922",
+            "SK_cde9911c",
+            "SK_5641a2af",
+            "SK_eb65ce8e",
+            "SK_9570e84e",
+            "SK_b422efe7",
+            "SK_82887396",
+            "SK_b1b118c4",
+            "SK_0d6c9508",
+            "SK_9433da85",
+            "SK_77f109c4",
+            "SK_ce4990a4",
+            "SK_72a74f69",
+            "SK_d1ec6846",
+            "SK_75f312e1",
+            "SK_59ea80e1",
+            "SK_60ab2bf7",
+            "SK_6f5850ea"
+          ],
+          "sdg": [
+            {
+              "target": "12.2",
+              "sign": "+",
+              "reason": "Text mentions \"sustainable\", which Aurora links to target 12.2: By 2030, achieve the sustainable management and efficient use of natural resources",
+              "source": "aurora_sdg_queries",
+              "is_estimate": false,
+              "reviewed": null
+            },
+            {
+              "target": "15.1",
+              "sign": "+",
+              "reason": "Text mentions \"environmental and sustainable\", which Aurora links to target 15.1: By 2020, ensure the conservation, restoration and sustainable use of terrestrial and inland freshwater ecosystems and th",
+              "source": "aurora_sdg_queries",
+              "is_estimate": false,
+              "reviewed": null
+            },
+            {
+              "target": "6.4",
+              "sign": "+",
+              "reason": "Improves water-use efficiency and sustainability.",
+              "source": "qwen3_32b_awq",
+              "is_estimate": true,
+              "reviewed": null
+            }
+          ],
+          "sources": [
+            "onet",
+            "esco",
+            "metr_th_1_1",
+            "aurora_sdg_queries",
+            "qwen3_32b_awq"
+          ],
+          "is_estimate": true
+        },
+        {
+          "role_id": "JOB_SOLAR_PV_INSTALLER",
+          "name": "Solar Photovoltaic Installers",
+          "closest_real_occupation": "Solar Photovoltaic Installers (O*NET) / solar energy technician (ESCO)",
+          "codes": {
+            "onet": "47-2231.00",
+            "esco": "http://data.europa.eu/esco/occupation/75b63949-1b93-4bf2-a777-ccf978dc3e8a",
+            "isco": "7411"
+          },
+          "score": 25,
+          "parts": {
+            "skills": 0,
+            "leftover": 0,
+            "outlook": 25
+          },
+          "shares_skills": false,
+          "have": 0,
+          "related": 0,
+          "need": 19,
+          "have_skill_ids": [],
+          "related_skill_ids": [],
+          "missing_skill_ids": [
+            "SK_3892f2ff",
+            "SK_3d3ee5c3",
+            "SK_d15e92c4",
+            "SK_50f2d23c",
+            "SK_08a5f6dd",
+            "SK_efa141df",
+            "SK_156f8c5b",
+            "SK_c8ac1986",
+            "SK_86df7af2",
+            "SK_52797dce",
+            "SK_05e5e14f",
+            "SK_b92758d4",
+            "SK_76b9e515",
+            "SK_aafbb139",
+            "SK_2179e0fd",
+            "SK_0dc8813a",
+            "SK_4af56376",
+            "SK_dfce2aba",
+            "SK_fafbb75f"
+          ],
+          "sdg": [
+            {
+              "target": "7.2",
+              "sign": "+",
+              "reason": "Supports renewable energy expansion for all.",
+              "source": "qwen3_32b_awq",
+              "is_estimate": true,
+              "reviewed": null
+            }
+          ],
+          "sources": [
+            "onet",
+            "esco",
+            "metr_th_1_1",
+            "qwen3_32b_awq"
+          ],
+          "is_estimate": true
+        }
+      ]
+    },
+    "2029": {
+      "emerging_role": {
+        "role_id": "JOB_FRAUD_EXAMINER",
+        "name": "Fraud Examiners, Investigators and Analysts",
+        "closest_real_occupation": "Fraud Examiners, Investigators and Analysts (O*NET) / financial fraud examiner (ESCO)",
+        "overlap": 0.25,
+        "note": "Your leftover tasks look most like this real job",
+        "sources": [
+          "onet",
+          "esco"
+        ],
+        "is_estimate": true
+      },
+      "roles": [
+        {
+          "role_id": "JOB_FRAUD_EXAMINER",
+          "name": "Fraud Examiners, Investigators and Analysts",
+          "closest_real_occupation": "Fraud Examiners, Investigators and Analysts (O*NET) / financial fraud examiner (ESCO)",
+          "codes": {
+            "onet": "13-2099.04",
+            "esco": "http://data.europa.eu/esco/occupation/a04eedcf-8424-475a-8dc5-f30a9da4b151",
+            "isco": "2411"
+          },
+          "score": 32,
+          "parts": {
+            "skills": 13,
+            "leftover": 8,
+            "outlook": 12
+          },
+          "shares_skills": true,
+          "have": 1,
+          "related": 7,
+          "need": 14,
+          "have_skill_ids": [
+            "SK_8a326ee1"
+          ],
+          "related_skill_ids": [
+            "SK_658a38bd",
+            "SK_29d80dad",
+            "SK_3c209873",
+            "SK_3e9b580d",
+            "SK_5f1d1319",
+            "SK_4a460161",
+            "SK_89ff28d6"
+          ],
+          "missing_skill_ids": [
+            "SK_658a38bd",
+            "SK_f5afbe94",
+            "SK_29d80dad",
+            "SK_541cdc23",
+            "SK_3c209873",
+            "SK_3e9b580d",
+            "SK_5f1d1319",
+            "SK_4a460161",
+            "SK_f14ff4b7",
+            "SK_89ff28d6",
+            "SK_5b71cb01",
+            "SK_0295b2a4",
+            "SK_93f1caa3"
+          ],
+          "sdg": [
+            {
+              "target": "16.5",
+              "sign": "+",
+              "reason": "Reduces corruption and bribery in economic systems.",
+              "source": "qwen3_32b_awq",
+              "is_estimate": true,
+              "reviewed": null
+            }
+          ],
+          "sources": [
+            "onet",
+            "esco",
+            "metr_th_1_1",
+            "qwen3_32b_awq"
+          ],
+          "is_estimate": true
+        },
+        {
+          "role_id": "JOB_BI_ANALYST",
+          "name": "Business Intelligence Analysts",
+          "closest_real_occupation": "Business Intelligence Analysts (O*NET) / data analyst (ESCO)",
+          "codes": {
+            "onet": "15-2051.01",
+            "esco": "http://data.europa.eu/esco/occupation/d3edb8f8-3a06-47a0-8fb9-9b212c006aa2",
+            "isco": "2511"
+          },
+          "score": 30,
+          "parts": {
+            "skills": 10,
+            "leftover": 8,
+            "outlook": 13
+          },
+          "shares_skills": true,
+          "have": 1,
+          "related": 12,
+          "need": 28,
+          "have_skill_ids": [
+            "SK_7ee4c2ea"
+          ],
+          "related_skill_ids": [
+            "SK_46ec0033",
+            "SK_07889c08",
+            "SK_9ff9db9d",
+            "SK_31c69100",
+            "SK_47a49cd6",
+            "SK_382c11ed",
+            "SK_2daec0e6",
+            "SK_1e77e42a",
+            "SK_713fb616",
+            "SK_4216e465",
+            "SK_cc7370dd",
+            "SK_50b100ea"
+          ],
+          "missing_skill_ids": [
+            "SK_143769cb",
+            "SK_348b74cd",
+            "SK_46ec0033",
+            "SK_07889c08",
+            "SK_9ff9db9d",
+            "SK_31c69100",
+            "SK_327d15c8",
+            "SK_696e3b5b",
+            "SK_47a49cd6",
+            "SK_382c11ed",
+            "SK_79e29b8b",
+            "SK_a56dec32",
+            "SK_99207709",
+            "SK_c5e8abde",
+            "SK_9cf681c7",
+            "SK_4a193795",
+            "SK_2daec0e6",
+            "SK_54c9c155",
+            "SK_25f0ea33",
+            "SK_1e77e42a",
+            "SK_93aaf65c",
+            "SK_03ff0d53",
+            "SK_713fb616",
+            "SK_fecf8a0d",
+            "SK_4216e465",
+            "SK_cc7370dd",
+            "SK_50b100ea"
+          ],
+          "sdg": [
+            {
+              "target": "8.2",
+              "sign": "+",
+              "reason": "Supports economic productivity through data-driven insights.",
+              "source": "qwen3_32b_awq",
+              "is_estimate": true,
+              "reviewed": null
+            }
+          ],
+          "sources": [
+            "onet",
+            "esco",
+            "metr_th_1_1",
+            "qwen3_32b_awq"
+          ],
+          "is_estimate": true
+        },
+        {
+          "role_id": "JOB_ENVIRONMENTAL_ENGINEER",
+          "name": "Environmental Engineers",
+          "closest_real_occupation": "Environmental Engineers (O*NET) / environmental engineer (ESCO)",
+          "codes": {
+            "onet": "17-2081.00",
+            "esco": "http://data.europa.eu/esco/occupation/ac1fc6a9-70d2-475c-8fa0-82ef83830968",
+            "isco": "2143"
+          },
+          "score": 20,
+          "parts": {
+            "skills": 2,
+            "leftover": 0,
+            "outlook": 18
+          },
+          "shares_skills": true,
+          "have": 0,
+          "related": 3,
+          "need": 28,
+          "have_skill_ids": [],
+          "related_skill_ids": [
+            "SK_5641a2af",
+            "SK_77f109c4",
+            "SK_6f5850ea"
+          ],
+          "missing_skill_ids": [
+            "SK_541561bc",
+            "SK_c0ccbd15",
+            "SK_1cebfd4f",
+            "SK_081d7679",
+            "SK_e4ff825c",
+            "SK_4fabca9a",
+            "SK_f54c10e4",
+            "SK_209a5498",
+            "SK_233be639",
+            "SK_96835f47",
+            "SK_42b23922",
+            "SK_cde9911c",
+            "SK_5641a2af",
+            "SK_eb65ce8e",
+            "SK_9570e84e",
+            "SK_b422efe7",
+            "SK_82887396",
+            "SK_b1b118c4",
+            "SK_0d6c9508",
+            "SK_9433da85",
+            "SK_77f109c4",
+            "SK_ce4990a4",
+            "SK_72a74f69",
+            "SK_d1ec6846",
+            "SK_75f312e1",
+            "SK_59ea80e1",
+            "SK_60ab2bf7",
+            "SK_6f5850ea"
+          ],
+          "sdg": [
+            {
+              "target": "12.2",
+              "sign": "+",
+              "reason": "Text mentions \"sustainable\", which Aurora links to target 12.2: By 2030, achieve the sustainable management and efficient use of natural resources",
+              "source": "aurora_sdg_queries",
+              "is_estimate": false,
+              "reviewed": null
+            },
+            {
+              "target": "15.1",
+              "sign": "+",
+              "reason": "Text mentions \"environmental and sustainable\", which Aurora links to target 15.1: By 2020, ensure the conservation, restoration and sustainable use of terrestrial and inland freshwater ecosystems and th",
+              "source": "aurora_sdg_queries",
+              "is_estimate": false,
+              "reviewed": null
+            },
+            {
+              "target": "6.4",
+              "sign": "+",
+              "reason": "Improves water-use efficiency and sustainability.",
+              "source": "qwen3_32b_awq",
+              "is_estimate": true,
+              "reviewed": null
+            }
+          ],
+          "sources": [
+            "onet",
+            "esco",
+            "metr_th_1_1",
+            "aurora_sdg_queries",
+            "qwen3_32b_awq"
+          ],
+          "is_estimate": true
+        },
+        {
+          "role_id": "JOB_HEALTH_INFORMATION_TECH",
+          "name": "Health Information Technologists and Medical Registrars",
+          "closest_real_occupation": "Health Information Technologists and Medical Registrars (O*NET) / medical records manager (ESCO)",
+          "codes": {
+            "onet": "29-9021.00",
+            "esco": "http://data.europa.eu/esco/occupation/983c2816-a339-4817-97f4-151a9ff3e64d",
+            "isco": "3252"
+          },
+          "score": 19,
+          "parts": {
+            "skills": 7,
+            "leftover": 0,
+            "outlook": 12
+          },
+          "shares_skills": true,
+          "have": 0,
+          "related": 10,
+          "need": 30,
+          "have_skill_ids": [],
+          "related_skill_ids": [
+            "SK_1709f408",
+            "SK_b22828a8",
+            "SK_6c3e28d6",
+            "SK_53141450",
+            "SK_fa3e5cec",
+            "SK_0c8c1e58",
+            "SK_fb15ca73",
+            "SK_9ec07ba9",
+            "SK_d4f9906e",
+            "SK_2e040fb0"
+          ],
+          "missing_skill_ids": [
+            "SK_16636767",
+            "SK_1709f408",
+            "SK_b55f61a4",
+            "SK_a7f0fbe0",
+            "SK_add39442",
+            "SK_9fcf9918",
+            "SK_b22828a8",
+            "SK_6c3e28d6",
+            "SK_53141450",
+            "SK_9601b2a8",
+            "SK_eba85523",
+            "SK_4d614c92",
+            "SK_76395873",
+            "SK_7110bf9f",
+            "SK_d3eccb86",
+            "SK_fa3e5cec",
+            "SK_43ae58b9",
+            "SK_0c8c1e58",
+            "SK_ea1bf5e5",
+            "SK_b21e2984",
+            "SK_fb15ca73",
+            "SK_9ec07ba9",
+            "SK_d4f9906e",
+            "SK_5d7890d5",
+            "SK_cf0b92de",
+            "SK_496932f1",
+            "SK_9a7cc3c2",
+            "SK_8b9332c7",
+            "SK_f022b5ff",
+            "SK_2e040fb0"
+          ],
+          "sdg": [
+            {
+              "target": "3.8",
+              "sign": "+",
+              "reason": "Supports universal health coverage through data management.",
+              "source": "qwen3_32b_awq",
+              "is_estimate": true,
+              "reviewed": null
+            }
+          ],
+          "sources": [
+            "onet",
+            "esco",
+            "metr_th_1_1",
+            "qwen3_32b_awq"
+          ],
+          "is_estimate": true
+        },
+        {
+          "role_id": "JOB_SUSTAINABILITY_SPECIALIST",
+          "name": "Sustainability Specialists",
+          "closest_real_occupation": "Sustainability Specialists (O*NET) / environmental programme coordinator (ESCO)",
+          "codes": {
+            "onet": "13-1199.05",
+            "esco": "http://data.europa.eu/esco/occupation/59883630-45f9-40e7-9732-9e5ff9758d2b",
+            "isco": "2133"
+          },
+          "score": 8,
+          "parts": {
+            "skills": 3,
+            "leftover": 0,
+            "outlook": 5
+          },
+          "shares_skills": true,
+          "have": 0,
+          "related": 2,
+          "need": 13,
+          "have_skill_ids": [],
+          "related_skill_ids": [
+            "SK_6f5850ea",
+            "SK_77f109c4"
+          ],
+          "missing_skill_ids": [
+            "SK_3f82a026",
+            "SK_507e2b21",
+            "SK_089ee650",
+            "SK_f6d7ba88",
+            "SK_6f5850ea",
+            "SK_96835f47",
+            "SK_59004ee8",
+            "SK_f3cc52e3",
+            "SK_77f109c4",
+            "SK_60ab2bf7",
+            "SK_e541c69c",
+            "SK_8abdc43c",
+            "SK_081d7679"
+          ],
+          "sdg": [
+            {
+              "target": "15.1",
+              "sign": "+",
+              "reason": "Text mentions \"environmental sustainability\", which Aurora links to target 15.1: By 2020, ensure the conservation, restoration and sustainable use of terrestrial and inland freshwater ecosystems and th",
+              "source": "aurora_sdg_queries",
+              "is_estimate": false,
+              "reviewed": null
+            },
+            {
+              "target": "12.2",
+              "sign": "+",
+              "reason": "Promotes sustainable management of natural resources.",
+              "source": "qwen3_32b_awq",
+              "is_estimate": true,
+              "reviewed": null
+            }
+          ],
+          "sources": [
+            "onet",
+            "esco",
+            "metr_th_1_1",
+            "aurora_sdg_queries",
+            "qwen3_32b_awq"
+          ],
+          "is_estimate": true
+        },
+        {
+          "role_id": "JOB_SOLAR_PV_INSTALLER",
+          "name": "Solar Photovoltaic Installers",
+          "closest_real_occupation": "Solar Photovoltaic Installers (O*NET) / solar energy technician (ESCO)",
+          "codes": {
+            "onet": "47-2231.00",
+            "esco": "http://data.europa.eu/esco/occupation/75b63949-1b93-4bf2-a777-ccf978dc3e8a",
+            "isco": "7411"
+          },
+          "score": 5,
+          "parts": {
+            "skills": 0,
+            "leftover": 0,
+            "outlook": 5
+          },
+          "shares_skills": false,
+          "have": 0,
+          "related": 0,
+          "need": 19,
+          "have_skill_ids": [],
+          "related_skill_ids": [],
+          "missing_skill_ids": [
+            "SK_3892f2ff",
+            "SK_3d3ee5c3",
+            "SK_d15e92c4",
+            "SK_50f2d23c",
+            "SK_08a5f6dd",
+            "SK_efa141df",
+            "SK_156f8c5b",
+            "SK_c8ac1986",
+            "SK_86df7af2",
+            "SK_52797dce",
+            "SK_05e5e14f",
+            "SK_b92758d4",
+            "SK_76b9e515",
+            "SK_aafbb139",
+            "SK_2179e0fd",
+            "SK_0dc8813a",
+            "SK_4af56376",
+            "SK_dfce2aba",
+            "SK_fafbb75f"
+          ],
+          "sdg": [
+            {
+              "target": "7.2",
+              "sign": "+",
+              "reason": "Supports renewable energy expansion for all.",
+              "source": "qwen3_32b_awq",
+              "is_estimate": true,
+              "reviewed": null
+            }
+          ],
+          "sources": [
+            "onet",
+            "esco",
+            "metr_th_1_1",
+            "qwen3_32b_awq"
+          ],
+          "is_estimate": true
+        }
+      ]
+    },
+    "2030": {
+      "emerging_role": {
+        "role_id": "JOB_FRAUD_EXAMINER",
+        "name": "Fraud Examiners, Investigators and Analysts",
+        "closest_real_occupation": "Fraud Examiners, Investigators and Analysts (O*NET) / financial fraud examiner (ESCO)",
+        "overlap": 0.25,
+        "note": "Your leftover tasks look most like this real job",
+        "sources": [
+          "onet",
+          "esco"
+        ],
+        "is_estimate": true
+      },
+      "roles": [
+        {
+          "role_id": "JOB_FRAUD_EXAMINER",
+          "name": "Fraud Examiners, Investigators and Analysts",
+          "closest_real_occupation": "Fraud Examiners, Investigators and Analysts (O*NET) / financial fraud examiner (ESCO)",
+          "codes": {
+            "onet": "13-2099.04",
+            "esco": "http://data.europa.eu/esco/occupation/a04eedcf-8424-475a-8dc5-f30a9da4b151",
+            "isco": "2411"
+          },
+          "score": 20,
+          "parts": {
+            "skills": 13,
+            "leftover": 8,
+            "outlook": 0
+          },
+          "shares_skills": true,
+          "have": 1,
+          "related": 7,
+          "need": 14,
+          "have_skill_ids": [
+            "SK_8a326ee1"
+          ],
+          "related_skill_ids": [
+            "SK_658a38bd",
+            "SK_29d80dad",
+            "SK_3c209873",
+            "SK_3e9b580d",
+            "SK_5f1d1319",
+            "SK_4a460161",
+            "SK_89ff28d6"
+          ],
+          "missing_skill_ids": [
+            "SK_658a38bd",
+            "SK_f5afbe94",
+            "SK_29d80dad",
+            "SK_541cdc23",
+            "SK_3c209873",
+            "SK_3e9b580d",
+            "SK_5f1d1319",
+            "SK_4a460161",
+            "SK_f14ff4b7",
+            "SK_89ff28d6",
+            "SK_5b71cb01",
+            "SK_0295b2a4",
+            "SK_93f1caa3"
+          ],
+          "sdg": [
+            {
+              "target": "16.5",
+              "sign": "+",
+              "reason": "Reduces corruption and bribery in economic systems.",
+              "source": "qwen3_32b_awq",
+              "is_estimate": true,
+              "reviewed": null
+            }
+          ],
+          "sources": [
+            "onet",
+            "esco",
+            "metr_th_1_1",
+            "qwen3_32b_awq"
+          ],
+          "is_estimate": true
+        },
+        {
+          "role_id": "JOB_BI_ANALYST",
+          "name": "Business Intelligence Analysts",
+          "closest_real_occupation": "Business Intelligence Analysts (O*NET) / data analyst (ESCO)",
+          "codes": {
+            "onet": "15-2051.01",
+            "esco": "http://data.europa.eu/esco/occupation/d3edb8f8-3a06-47a0-8fb9-9b212c006aa2",
+            "isco": "2511"
+          },
+          "score": 18,
+          "parts": {
+            "skills": 10,
+            "leftover": 8,
+            "outlook": 0
+          },
+          "shares_skills": true,
+          "have": 1,
+          "related": 12,
+          "need": 28,
+          "have_skill_ids": [
+            "SK_7ee4c2ea"
+          ],
+          "related_skill_ids": [
+            "SK_46ec0033",
+            "SK_07889c08",
+            "SK_9ff9db9d",
+            "SK_31c69100",
+            "SK_47a49cd6",
+            "SK_382c11ed",
+            "SK_2daec0e6",
+            "SK_1e77e42a",
+            "SK_713fb616",
+            "SK_4216e465",
+            "SK_cc7370dd",
+            "SK_50b100ea"
+          ],
+          "missing_skill_ids": [
+            "SK_143769cb",
+            "SK_348b74cd",
+            "SK_46ec0033",
+            "SK_07889c08",
+            "SK_9ff9db9d",
+            "SK_31c69100",
+            "SK_327d15c8",
+            "SK_696e3b5b",
+            "SK_47a49cd6",
+            "SK_382c11ed",
+            "SK_79e29b8b",
+            "SK_a56dec32",
+            "SK_99207709",
+            "SK_c5e8abde",
+            "SK_9cf681c7",
+            "SK_4a193795",
+            "SK_2daec0e6",
+            "SK_54c9c155",
+            "SK_25f0ea33",
+            "SK_1e77e42a",
+            "SK_93aaf65c",
+            "SK_03ff0d53",
+            "SK_713fb616",
+            "SK_fecf8a0d",
+            "SK_4216e465",
+            "SK_cc7370dd",
+            "SK_50b100ea"
+          ],
+          "sdg": [
+            {
+              "target": "8.2",
+              "sign": "+",
+              "reason": "Supports economic productivity through data-driven insights.",
+              "source": "qwen3_32b_awq",
+              "is_estimate": true,
+              "reviewed": null
+            }
+          ],
+          "sources": [
+            "onet",
+            "esco",
+            "metr_th_1_1",
+            "qwen3_32b_awq"
+          ],
+          "is_estimate": true
+        },
+        {
+          "role_id": "JOB_HEALTH_INFORMATION_TECH",
+          "name": "Health Information Technologists and Medical Registrars",
+          "closest_real_occupation": "Health Information Technologists and Medical Registrars (O*NET) / medical records manager (ESCO)",
+          "codes": {
+            "onet": "29-9021.00",
+            "esco": "http://data.europa.eu/esco/occupation/983c2816-a339-4817-97f4-151a9ff3e64d",
+            "isco": "3252"
+          },
+          "score": 7,
+          "parts": {
+            "skills": 7,
+            "leftover": 0,
+            "outlook": 0
+          },
+          "shares_skills": true,
+          "have": 0,
+          "related": 10,
+          "need": 30,
+          "have_skill_ids": [],
+          "related_skill_ids": [
+            "SK_1709f408",
+            "SK_b22828a8",
+            "SK_6c3e28d6",
+            "SK_53141450",
+            "SK_fa3e5cec",
+            "SK_0c8c1e58",
+            "SK_fb15ca73",
+            "SK_9ec07ba9",
+            "SK_d4f9906e",
+            "SK_2e040fb0"
+          ],
+          "missing_skill_ids": [
+            "SK_16636767",
+            "SK_1709f408",
+            "SK_b55f61a4",
+            "SK_a7f0fbe0",
+            "SK_add39442",
+            "SK_9fcf9918",
+            "SK_b22828a8",
+            "SK_6c3e28d6",
+            "SK_53141450",
+            "SK_9601b2a8",
+            "SK_eba85523",
+            "SK_4d614c92",
+            "SK_76395873",
+            "SK_7110bf9f",
+            "SK_d3eccb86",
+            "SK_fa3e5cec",
+            "SK_43ae58b9",
+            "SK_0c8c1e58",
+            "SK_ea1bf5e5",
+            "SK_b21e2984",
+            "SK_fb15ca73",
+            "SK_9ec07ba9",
+            "SK_d4f9906e",
+            "SK_5d7890d5",
+            "SK_cf0b92de",
+            "SK_496932f1",
+            "SK_9a7cc3c2",
+            "SK_8b9332c7",
+            "SK_f022b5ff",
+            "SK_2e040fb0"
+          ],
+          "sdg": [
+            {
+              "target": "3.8",
+              "sign": "+",
+              "reason": "Supports universal health coverage through data management.",
+              "source": "qwen3_32b_awq",
+              "is_estimate": true,
+              "reviewed": null
+            }
+          ],
+          "sources": [
+            "onet",
+            "esco",
+            "metr_th_1_1",
+            "qwen3_32b_awq"
+          ],
+          "is_estimate": true
+        },
+        {
+          "role_id": "JOB_SUSTAINABILITY_SPECIALIST",
+          "name": "Sustainability Specialists",
+          "closest_real_occupation": "Sustainability Specialists (O*NET) / environmental programme coordinator (ESCO)",
+          "codes": {
+            "onet": "13-1199.05",
+            "esco": "http://data.europa.eu/esco/occupation/59883630-45f9-40e7-9732-9e5ff9758d2b",
+            "isco": "2133"
+          },
+          "score": 3,
+          "parts": {
+            "skills": 3,
+            "leftover": 0,
+            "outlook": 0
+          },
+          "shares_skills": true,
+          "have": 0,
+          "related": 2,
+          "need": 13,
+          "have_skill_ids": [],
+          "related_skill_ids": [
+            "SK_6f5850ea",
+            "SK_77f109c4"
+          ],
+          "missing_skill_ids": [
+            "SK_3f82a026",
+            "SK_507e2b21",
+            "SK_089ee650",
+            "SK_f6d7ba88",
+            "SK_6f5850ea",
+            "SK_96835f47",
+            "SK_59004ee8",
+            "SK_f3cc52e3",
+            "SK_77f109c4",
+            "SK_60ab2bf7",
+            "SK_e541c69c",
+            "SK_8abdc43c",
+            "SK_081d7679"
+          ],
+          "sdg": [
+            {
+              "target": "15.1",
+              "sign": "+",
+              "reason": "Text mentions \"environmental sustainability\", which Aurora links to target 15.1: By 2020, ensure the conservation, restoration and sustainable use of terrestrial and inland freshwater ecosystems and th",
+              "source": "aurora_sdg_queries",
+              "is_estimate": false,
+              "reviewed": null
+            },
+            {
+              "target": "12.2",
+              "sign": "+",
+              "reason": "Promotes sustainable management of natural resources.",
+              "source": "qwen3_32b_awq",
+              "is_estimate": true,
+              "reviewed": null
+            }
+          ],
+          "sources": [
+            "onet",
+            "esco",
+            "metr_th_1_1",
+            "aurora_sdg_queries",
+            "qwen3_32b_awq"
+          ],
+          "is_estimate": true
+        },
+        {
+          "role_id": "JOB_ENVIRONMENTAL_ENGINEER",
+          "name": "Environmental Engineers",
+          "closest_real_occupation": "Environmental Engineers (O*NET) / environmental engineer (ESCO)",
+          "codes": {
+            "onet": "17-2081.00",
+            "esco": "http://data.europa.eu/esco/occupation/ac1fc6a9-70d2-475c-8fa0-82ef83830968",
+            "isco": "2143"
+          },
+          "score": 2,
+          "parts": {
+            "skills": 2,
+            "leftover": 0,
+            "outlook": 0
+          },
+          "shares_skills": true,
+          "have": 0,
+          "related": 3,
+          "need": 28,
+          "have_skill_ids": [],
+          "related_skill_ids": [
+            "SK_5641a2af",
+            "SK_77f109c4",
+            "SK_6f5850ea"
+          ],
+          "missing_skill_ids": [
+            "SK_541561bc",
+            "SK_c0ccbd15",
+            "SK_1cebfd4f",
+            "SK_081d7679",
+            "SK_e4ff825c",
+            "SK_4fabca9a",
+            "SK_f54c10e4",
+            "SK_209a5498",
+            "SK_233be639",
+            "SK_96835f47",
+            "SK_42b23922",
+            "SK_cde9911c",
+            "SK_5641a2af",
+            "SK_eb65ce8e",
+            "SK_9570e84e",
+            "SK_b422efe7",
+            "SK_82887396",
+            "SK_b1b118c4",
+            "SK_0d6c9508",
+            "SK_9433da85",
+            "SK_77f109c4",
+            "SK_ce4990a4",
+            "SK_72a74f69",
+            "SK_d1ec6846",
+            "SK_75f312e1",
+            "SK_59ea80e1",
+            "SK_60ab2bf7",
+            "SK_6f5850ea"
+          ],
+          "sdg": [
+            {
+              "target": "12.2",
+              "sign": "+",
+              "reason": "Text mentions \"sustainable\", which Aurora links to target 12.2: By 2030, achieve the sustainable management and efficient use of natural resources",
+              "source": "aurora_sdg_queries",
+              "is_estimate": false,
+              "reviewed": null
+            },
+            {
+              "target": "15.1",
+              "sign": "+",
+              "reason": "Text mentions \"environmental and sustainable\", which Aurora links to target 15.1: By 2020, ensure the conservation, restoration and sustainable use of terrestrial and inland freshwater ecosystems and th",
+              "source": "aurora_sdg_queries",
+              "is_estimate": false,
+              "reviewed": null
+            },
+            {
+              "target": "6.4",
+              "sign": "+",
+              "reason": "Improves water-use efficiency and sustainability.",
+              "source": "qwen3_32b_awq",
+              "is_estimate": true,
+              "reviewed": null
+            }
+          ],
+          "sources": [
+            "onet",
+            "esco",
+            "metr_th_1_1",
+            "aurora_sdg_queries",
+            "qwen3_32b_awq"
+          ],
+          "is_estimate": true
+        },
+        {
+          "role_id": "JOB_SOLAR_PV_INSTALLER",
+          "name": "Solar Photovoltaic Installers",
+          "closest_real_occupation": "Solar Photovoltaic Installers (O*NET) / solar energy technician (ESCO)",
+          "codes": {
+            "onet": "47-2231.00",
+            "esco": "http://data.europa.eu/esco/occupation/75b63949-1b93-4bf2-a777-ccf978dc3e8a",
+            "isco": "7411"
+          },
+          "score": 0,
+          "parts": {
+            "skills": 0,
+            "leftover": 0,
+            "outlook": 0
+          },
+          "shares_skills": false,
+          "have": 0,
+          "related": 0,
+          "need": 19,
+          "have_skill_ids": [],
+          "related_skill_ids": [],
+          "missing_skill_ids": [
+            "SK_3892f2ff",
+            "SK_3d3ee5c3",
+            "SK_d15e92c4",
+            "SK_50f2d23c",
+            "SK_08a5f6dd",
+            "SK_efa141df",
+            "SK_156f8c5b",
+            "SK_c8ac1986",
+            "SK_86df7af2",
+            "SK_52797dce",
+            "SK_05e5e14f",
+            "SK_b92758d4",
+            "SK_76b9e515",
+            "SK_aafbb139",
+            "SK_2179e0fd",
+            "SK_0dc8813a",
+            "SK_4af56376",
+            "SK_dfce2aba",
+            "SK_fafbb75f"
+          ],
+          "sdg": [
+            {
+              "target": "7.2",
+              "sign": "+",
+              "reason": "Supports renewable energy expansion for all.",
+              "source": "qwen3_32b_awq",
+              "is_estimate": true,
+              "reviewed": null
+            }
+          ],
+          "sources": [
+            "onet",
+            "esco",
+            "metr_th_1_1",
+            "qwen3_32b_awq"
+          ],
+          "is_estimate": true
+        }
+      ]
+    },
+    "2031": {
+      "emerging_role": {
+        "role_id": "JOB_FRAUD_EXAMINER",
+        "name": "Fraud Examiners, Investigators and Analysts",
+        "closest_real_occupation": "Fraud Examiners, Investigators and Analysts (O*NET) / financial fraud examiner (ESCO)",
+        "overlap": 0.25,
+        "note": "Your leftover tasks look most like this real job",
+        "sources": [
+          "onet",
+          "esco"
+        ],
+        "is_estimate": true
+      },
+      "roles": [
+        {
+          "role_id": "JOB_FRAUD_EXAMINER",
+          "name": "Fraud Examiners, Investigators and Analysts",
+          "closest_real_occupation": "Fraud Examiners, Investigators and Analysts (O*NET) / financial fraud examiner (ESCO)",
+          "codes": {
+            "onet": "13-2099.04",
+            "esco": "http://data.europa.eu/esco/occupation/a04eedcf-8424-475a-8dc5-f30a9da4b151",
+            "isco": "2411"
+          },
+          "score": 20,
+          "parts": {
+            "skills": 13,
+            "leftover": 8,
+            "outlook": 0
+          },
+          "shares_skills": true,
+          "have": 1,
+          "related": 7,
+          "need": 14,
+          "have_skill_ids": [
+            "SK_8a326ee1"
+          ],
+          "related_skill_ids": [
+            "SK_658a38bd",
+            "SK_29d80dad",
+            "SK_3c209873",
+            "SK_3e9b580d",
+            "SK_5f1d1319",
+            "SK_4a460161",
+            "SK_89ff28d6"
+          ],
+          "missing_skill_ids": [
+            "SK_658a38bd",
+            "SK_f5afbe94",
+            "SK_29d80dad",
+            "SK_541cdc23",
+            "SK_3c209873",
+            "SK_3e9b580d",
+            "SK_5f1d1319",
+            "SK_4a460161",
+            "SK_f14ff4b7",
+            "SK_89ff28d6",
+            "SK_5b71cb01",
+            "SK_0295b2a4",
+            "SK_93f1caa3"
+          ],
+          "sdg": [
+            {
+              "target": "16.5",
+              "sign": "+",
+              "reason": "Reduces corruption and bribery in economic systems.",
+              "source": "qwen3_32b_awq",
+              "is_estimate": true,
+              "reviewed": null
+            }
+          ],
+          "sources": [
+            "onet",
+            "esco",
+            "metr_th_1_1",
+            "qwen3_32b_awq"
+          ],
+          "is_estimate": true
+        },
+        {
+          "role_id": "JOB_BI_ANALYST",
+          "name": "Business Intelligence Analysts",
+          "closest_real_occupation": "Business Intelligence Analysts (O*NET) / data analyst (ESCO)",
+          "codes": {
+            "onet": "15-2051.01",
+            "esco": "http://data.europa.eu/esco/occupation/d3edb8f8-3a06-47a0-8fb9-9b212c006aa2",
+            "isco": "2511"
+          },
+          "score": 18,
+          "parts": {
+            "skills": 10,
+            "leftover": 8,
+            "outlook": 0
+          },
+          "shares_skills": true,
+          "have": 1,
+          "related": 12,
+          "need": 28,
+          "have_skill_ids": [
+            "SK_7ee4c2ea"
+          ],
+          "related_skill_ids": [
+            "SK_46ec0033",
+            "SK_07889c08",
+            "SK_9ff9db9d",
+            "SK_31c69100",
+            "SK_47a49cd6",
+            "SK_382c11ed",
+            "SK_2daec0e6",
+            "SK_1e77e42a",
+            "SK_713fb616",
+            "SK_4216e465",
+            "SK_cc7370dd",
+            "SK_50b100ea"
+          ],
+          "missing_skill_ids": [
+            "SK_143769cb",
+            "SK_348b74cd",
+            "SK_46ec0033",
+            "SK_07889c08",
+            "SK_9ff9db9d",
+            "SK_31c69100",
+            "SK_327d15c8",
+            "SK_696e3b5b",
+            "SK_47a49cd6",
+            "SK_382c11ed",
+            "SK_79e29b8b",
+            "SK_a56dec32",
+            "SK_99207709",
+            "SK_c5e8abde",
+            "SK_9cf681c7",
+            "SK_4a193795",
+            "SK_2daec0e6",
+            "SK_54c9c155",
+            "SK_25f0ea33",
+            "SK_1e77e42a",
+            "SK_93aaf65c",
+            "SK_03ff0d53",
+            "SK_713fb616",
+            "SK_fecf8a0d",
+            "SK_4216e465",
+            "SK_cc7370dd",
+            "SK_50b100ea"
+          ],
+          "sdg": [
+            {
+              "target": "8.2",
+              "sign": "+",
+              "reason": "Supports economic productivity through data-driven insights.",
+              "source": "qwen3_32b_awq",
+              "is_estimate": true,
+              "reviewed": null
+            }
+          ],
+          "sources": [
+            "onet",
+            "esco",
+            "metr_th_1_1",
+            "qwen3_32b_awq"
+          ],
+          "is_estimate": true
+        },
+        {
+          "role_id": "JOB_HEALTH_INFORMATION_TECH",
+          "name": "Health Information Technologists and Medical Registrars",
+          "closest_real_occupation": "Health Information Technologists and Medical Registrars (O*NET) / medical records manager (ESCO)",
+          "codes": {
+            "onet": "29-9021.00",
+            "esco": "http://data.europa.eu/esco/occupation/983c2816-a339-4817-97f4-151a9ff3e64d",
+            "isco": "3252"
+          },
+          "score": 7,
+          "parts": {
+            "skills": 7,
+            "leftover": 0,
+            "outlook": 0
+          },
+          "shares_skills": true,
+          "have": 0,
+          "related": 10,
+          "need": 30,
+          "have_skill_ids": [],
+          "related_skill_ids": [
+            "SK_1709f408",
+            "SK_b22828a8",
+            "SK_6c3e28d6",
+            "SK_53141450",
+            "SK_fa3e5cec",
+            "SK_0c8c1e58",
+            "SK_fb15ca73",
+            "SK_9ec07ba9",
+            "SK_d4f9906e",
+            "SK_2e040fb0"
+          ],
+          "missing_skill_ids": [
+            "SK_16636767",
+            "SK_1709f408",
+            "SK_b55f61a4",
+            "SK_a7f0fbe0",
+            "SK_add39442",
+            "SK_9fcf9918",
+            "SK_b22828a8",
+            "SK_6c3e28d6",
+            "SK_53141450",
+            "SK_9601b2a8",
+            "SK_eba85523",
+            "SK_4d614c92",
+            "SK_76395873",
+            "SK_7110bf9f",
+            "SK_d3eccb86",
+            "SK_fa3e5cec",
+            "SK_43ae58b9",
+            "SK_0c8c1e58",
+            "SK_ea1bf5e5",
+            "SK_b21e2984",
+            "SK_fb15ca73",
+            "SK_9ec07ba9",
+            "SK_d4f9906e",
+            "SK_5d7890d5",
+            "SK_cf0b92de",
+            "SK_496932f1",
+            "SK_9a7cc3c2",
+            "SK_8b9332c7",
+            "SK_f022b5ff",
+            "SK_2e040fb0"
+          ],
+          "sdg": [
+            {
+              "target": "3.8",
+              "sign": "+",
+              "reason": "Supports universal health coverage through data management.",
+              "source": "qwen3_32b_awq",
+              "is_estimate": true,
+              "reviewed": null
+            }
+          ],
+          "sources": [
+            "onet",
+            "esco",
+            "metr_th_1_1",
+            "qwen3_32b_awq"
+          ],
+          "is_estimate": true
+        },
+        {
+          "role_id": "JOB_SUSTAINABILITY_SPECIALIST",
+          "name": "Sustainability Specialists",
+          "closest_real_occupation": "Sustainability Specialists (O*NET) / environmental programme coordinator (ESCO)",
+          "codes": {
+            "onet": "13-1199.05",
+            "esco": "http://data.europa.eu/esco/occupation/59883630-45f9-40e7-9732-9e5ff9758d2b",
+            "isco": "2133"
+          },
+          "score": 3,
+          "parts": {
+            "skills": 3,
+            "leftover": 0,
+            "outlook": 0
+          },
+          "shares_skills": true,
+          "have": 0,
+          "related": 2,
+          "need": 13,
+          "have_skill_ids": [],
+          "related_skill_ids": [
+            "SK_6f5850ea",
+            "SK_77f109c4"
+          ],
+          "missing_skill_ids": [
+            "SK_3f82a026",
+            "SK_507e2b21",
+            "SK_089ee650",
+            "SK_f6d7ba88",
+            "SK_6f5850ea",
+            "SK_96835f47",
+            "SK_59004ee8",
+            "SK_f3cc52e3",
+            "SK_77f109c4",
+            "SK_60ab2bf7",
+            "SK_e541c69c",
+            "SK_8abdc43c",
+            "SK_081d7679"
+          ],
+          "sdg": [
+            {
+              "target": "15.1",
+              "sign": "+",
+              "reason": "Text mentions \"environmental sustainability\", which Aurora links to target 15.1: By 2020, ensure the conservation, restoration and sustainable use of terrestrial and inland freshwater ecosystems and th",
+              "source": "aurora_sdg_queries",
+              "is_estimate": false,
+              "reviewed": null
+            },
+            {
+              "target": "12.2",
+              "sign": "+",
+              "reason": "Promotes sustainable management of natural resources.",
+              "source": "qwen3_32b_awq",
+              "is_estimate": true,
+              "reviewed": null
+            }
+          ],
+          "sources": [
+            "onet",
+            "esco",
+            "metr_th_1_1",
+            "aurora_sdg_queries",
+            "qwen3_32b_awq"
+          ],
+          "is_estimate": true
+        },
+        {
+          "role_id": "JOB_ENVIRONMENTAL_ENGINEER",
+          "name": "Environmental Engineers",
+          "closest_real_occupation": "Environmental Engineers (O*NET) / environmental engineer (ESCO)",
+          "codes": {
+            "onet": "17-2081.00",
+            "esco": "http://data.europa.eu/esco/occupation/ac1fc6a9-70d2-475c-8fa0-82ef83830968",
+            "isco": "2143"
+          },
+          "score": 2,
+          "parts": {
+            "skills": 2,
+            "leftover": 0,
+            "outlook": 0
+          },
+          "shares_skills": true,
+          "have": 0,
+          "related": 3,
+          "need": 28,
+          "have_skill_ids": [],
+          "related_skill_ids": [
+            "SK_5641a2af",
+            "SK_77f109c4",
+            "SK_6f5850ea"
+          ],
+          "missing_skill_ids": [
+            "SK_541561bc",
+            "SK_c0ccbd15",
+            "SK_1cebfd4f",
+            "SK_081d7679",
+            "SK_e4ff825c",
+            "SK_4fabca9a",
+            "SK_f54c10e4",
+            "SK_209a5498",
+            "SK_233be639",
+            "SK_96835f47",
+            "SK_42b23922",
+            "SK_cde9911c",
+            "SK_5641a2af",
+            "SK_eb65ce8e",
+            "SK_9570e84e",
+            "SK_b422efe7",
+            "SK_82887396",
+            "SK_b1b118c4",
+            "SK_0d6c9508",
+            "SK_9433da85",
+            "SK_77f109c4",
+            "SK_ce4990a4",
+            "SK_72a74f69",
+            "SK_d1ec6846",
+            "SK_75f312e1",
+            "SK_59ea80e1",
+            "SK_60ab2bf7",
+            "SK_6f5850ea"
+          ],
+          "sdg": [
+            {
+              "target": "12.2",
+              "sign": "+",
+              "reason": "Text mentions \"sustainable\", which Aurora links to target 12.2: By 2030, achieve the sustainable management and efficient use of natural resources",
+              "source": "aurora_sdg_queries",
+              "is_estimate": false,
+              "reviewed": null
+            },
+            {
+              "target": "15.1",
+              "sign": "+",
+              "reason": "Text mentions \"environmental and sustainable\", which Aurora links to target 15.1: By 2020, ensure the conservation, restoration and sustainable use of terrestrial and inland freshwater ecosystems and th",
+              "source": "aurora_sdg_queries",
+              "is_estimate": false,
+              "reviewed": null
+            },
+            {
+              "target": "6.4",
+              "sign": "+",
+              "reason": "Improves water-use efficiency and sustainability.",
+              "source": "qwen3_32b_awq",
+              "is_estimate": true,
+              "reviewed": null
+            }
+          ],
+          "sources": [
+            "onet",
+            "esco",
+            "metr_th_1_1",
+            "aurora_sdg_queries",
+            "qwen3_32b_awq"
+          ],
+          "is_estimate": true
+        },
+        {
+          "role_id": "JOB_SOLAR_PV_INSTALLER",
+          "name": "Solar Photovoltaic Installers",
+          "closest_real_occupation": "Solar Photovoltaic Installers (O*NET) / solar energy technician (ESCO)",
+          "codes": {
+            "onet": "47-2231.00",
+            "esco": "http://data.europa.eu/esco/occupation/75b63949-1b93-4bf2-a777-ccf978dc3e8a",
+            "isco": "7411"
+          },
+          "score": 0,
+          "parts": {
+            "skills": 0,
+            "leftover": 0,
+            "outlook": 0
+          },
+          "shares_skills": false,
+          "have": 0,
+          "related": 0,
+          "need": 19,
+          "have_skill_ids": [],
+          "related_skill_ids": [],
+          "missing_skill_ids": [
+            "SK_3892f2ff",
+            "SK_3d3ee5c3",
+            "SK_d15e92c4",
+            "SK_50f2d23c",
+            "SK_08a5f6dd",
+            "SK_efa141df",
+            "SK_156f8c5b",
+            "SK_c8ac1986",
+            "SK_86df7af2",
+            "SK_52797dce",
+            "SK_05e5e14f",
+            "SK_b92758d4",
+            "SK_76b9e515",
+            "SK_aafbb139",
+            "SK_2179e0fd",
+            "SK_0dc8813a",
+            "SK_4af56376",
+            "SK_dfce2aba",
+            "SK_fafbb75f"
+          ],
+          "sdg": [
+            {
+              "target": "7.2",
+              "sign": "+",
+              "reason": "Supports renewable energy expansion for all.",
+              "source": "qwen3_32b_awq",
+              "is_estimate": true,
+              "reviewed": null
+            }
+          ],
+          "sources": [
+            "onet",
+            "esco",
+            "metr_th_1_1",
+            "qwen3_32b_awq"
+          ],
+          "is_estimate": true
+        }
+      ]
+    },
+    "2032": {
+      "emerging_role": {
+        "role_id": "JOB_FRAUD_EXAMINER",
+        "name": "Fraud Examiners, Investigators and Analysts",
+        "closest_real_occupation": "Fraud Examiners, Investigators and Analysts (O*NET) / financial fraud examiner (ESCO)",
+        "overlap": 0.25,
+        "note": "Your leftover tasks look most like this real job",
+        "sources": [
+          "onet",
+          "esco"
+        ],
+        "is_estimate": true
+      },
+      "roles": [
+        {
+          "role_id": "JOB_FRAUD_EXAMINER",
+          "name": "Fraud Examiners, Investigators and Analysts",
+          "closest_real_occupation": "Fraud Examiners, Investigators and Analysts (O*NET) / financial fraud examiner (ESCO)",
+          "codes": {
+            "onet": "13-2099.04",
+            "esco": "http://data.europa.eu/esco/occupation/a04eedcf-8424-475a-8dc5-f30a9da4b151",
+            "isco": "2411"
+          },
+          "score": 20,
+          "parts": {
+            "skills": 13,
+            "leftover": 8,
+            "outlook": 0
+          },
+          "shares_skills": true,
+          "have": 1,
+          "related": 7,
+          "need": 14,
+          "have_skill_ids": [
+            "SK_8a326ee1"
+          ],
+          "related_skill_ids": [
+            "SK_658a38bd",
+            "SK_29d80dad",
+            "SK_3c209873",
+            "SK_3e9b580d",
+            "SK_5f1d1319",
+            "SK_4a460161",
+            "SK_89ff28d6"
+          ],
+          "missing_skill_ids": [
+            "SK_658a38bd",
+            "SK_f5afbe94",
+            "SK_29d80dad",
+            "SK_541cdc23",
+            "SK_3c209873",
+            "SK_3e9b580d",
+            "SK_5f1d1319",
+            "SK_4a460161",
+            "SK_f14ff4b7",
+            "SK_89ff28d6",
+            "SK_5b71cb01",
+            "SK_0295b2a4",
+            "SK_93f1caa3"
+          ],
+          "sdg": [
+            {
+              "target": "16.5",
+              "sign": "+",
+              "reason": "Reduces corruption and bribery in economic systems.",
+              "source": "qwen3_32b_awq",
+              "is_estimate": true,
+              "reviewed": null
+            }
+          ],
+          "sources": [
+            "onet",
+            "esco",
+            "metr_th_1_1",
+            "qwen3_32b_awq"
+          ],
+          "is_estimate": true
+        },
+        {
+          "role_id": "JOB_BI_ANALYST",
+          "name": "Business Intelligence Analysts",
+          "closest_real_occupation": "Business Intelligence Analysts (O*NET) / data analyst (ESCO)",
+          "codes": {
+            "onet": "15-2051.01",
+            "esco": "http://data.europa.eu/esco/occupation/d3edb8f8-3a06-47a0-8fb9-9b212c006aa2",
+            "isco": "2511"
+          },
+          "score": 18,
+          "parts": {
+            "skills": 10,
+            "leftover": 8,
+            "outlook": 0
+          },
+          "shares_skills": true,
+          "have": 1,
+          "related": 12,
+          "need": 28,
+          "have_skill_ids": [
+            "SK_7ee4c2ea"
+          ],
+          "related_skill_ids": [
+            "SK_46ec0033",
+            "SK_07889c08",
+            "SK_9ff9db9d",
+            "SK_31c69100",
+            "SK_47a49cd6",
+            "SK_382c11ed",
+            "SK_2daec0e6",
+            "SK_1e77e42a",
+            "SK_713fb616",
+            "SK_4216e465",
+            "SK_cc7370dd",
+            "SK_50b100ea"
+          ],
+          "missing_skill_ids": [
+            "SK_143769cb",
+            "SK_348b74cd",
+            "SK_46ec0033",
+            "SK_07889c08",
+            "SK_9ff9db9d",
+            "SK_31c69100",
+            "SK_327d15c8",
+            "SK_696e3b5b",
+            "SK_47a49cd6",
+            "SK_382c11ed",
+            "SK_79e29b8b",
+            "SK_a56dec32",
+            "SK_99207709",
+            "SK_c5e8abde",
+            "SK_9cf681c7",
+            "SK_4a193795",
+            "SK_2daec0e6",
+            "SK_54c9c155",
+            "SK_25f0ea33",
+            "SK_1e77e42a",
+            "SK_93aaf65c",
+            "SK_03ff0d53",
+            "SK_713fb616",
+            "SK_fecf8a0d",
+            "SK_4216e465",
+            "SK_cc7370dd",
+            "SK_50b100ea"
+          ],
+          "sdg": [
+            {
+              "target": "8.2",
+              "sign": "+",
+              "reason": "Supports economic productivity through data-driven insights.",
+              "source": "qwen3_32b_awq",
+              "is_estimate": true,
+              "reviewed": null
+            }
+          ],
+          "sources": [
+            "onet",
+            "esco",
+            "metr_th_1_1",
+            "qwen3_32b_awq"
+          ],
+          "is_estimate": true
+        },
+        {
+          "role_id": "JOB_HEALTH_INFORMATION_TECH",
+          "name": "Health Information Technologists and Medical Registrars",
+          "closest_real_occupation": "Health Information Technologists and Medical Registrars (O*NET) / medical records manager (ESCO)",
+          "codes": {
+            "onet": "29-9021.00",
+            "esco": "http://data.europa.eu/esco/occupation/983c2816-a339-4817-97f4-151a9ff3e64d",
+            "isco": "3252"
+          },
+          "score": 7,
+          "parts": {
+            "skills": 7,
+            "leftover": 0,
+            "outlook": 0
+          },
+          "shares_skills": true,
+          "have": 0,
+          "related": 10,
+          "need": 30,
+          "have_skill_ids": [],
+          "related_skill_ids": [
+            "SK_1709f408",
+            "SK_b22828a8",
+            "SK_6c3e28d6",
+            "SK_53141450",
+            "SK_fa3e5cec",
+            "SK_0c8c1e58",
+            "SK_fb15ca73",
+            "SK_9ec07ba9",
+            "SK_d4f9906e",
+            "SK_2e040fb0"
+          ],
+          "missing_skill_ids": [
+            "SK_16636767",
+            "SK_1709f408",
+            "SK_b55f61a4",
+            "SK_a7f0fbe0",
+            "SK_add39442",
+            "SK_9fcf9918",
+            "SK_b22828a8",
+            "SK_6c3e28d6",
+            "SK_53141450",
+            "SK_9601b2a8",
+            "SK_eba85523",
+            "SK_4d614c92",
+            "SK_76395873",
+            "SK_7110bf9f",
+            "SK_d3eccb86",
+            "SK_fa3e5cec",
+            "SK_43ae58b9",
+            "SK_0c8c1e58",
+            "SK_ea1bf5e5",
+            "SK_b21e2984",
+            "SK_fb15ca73",
+            "SK_9ec07ba9",
+            "SK_d4f9906e",
+            "SK_5d7890d5",
+            "SK_cf0b92de",
+            "SK_496932f1",
+            "SK_9a7cc3c2",
+            "SK_8b9332c7",
+            "SK_f022b5ff",
+            "SK_2e040fb0"
+          ],
+          "sdg": [
+            {
+              "target": "3.8",
+              "sign": "+",
+              "reason": "Supports universal health coverage through data management.",
+              "source": "qwen3_32b_awq",
+              "is_estimate": true,
+              "reviewed": null
+            }
+          ],
+          "sources": [
+            "onet",
+            "esco",
+            "metr_th_1_1",
+            "qwen3_32b_awq"
+          ],
+          "is_estimate": true
+        },
+        {
+          "role_id": "JOB_SUSTAINABILITY_SPECIALIST",
+          "name": "Sustainability Specialists",
+          "closest_real_occupation": "Sustainability Specialists (O*NET) / environmental programme coordinator (ESCO)",
+          "codes": {
+            "onet": "13-1199.05",
+            "esco": "http://data.europa.eu/esco/occupation/59883630-45f9-40e7-9732-9e5ff9758d2b",
+            "isco": "2133"
+          },
+          "score": 3,
+          "parts": {
+            "skills": 3,
+            "leftover": 0,
+            "outlook": 0
+          },
+          "shares_skills": true,
+          "have": 0,
+          "related": 2,
+          "need": 13,
+          "have_skill_ids": [],
+          "related_skill_ids": [
+            "SK_6f5850ea",
+            "SK_77f109c4"
+          ],
+          "missing_skill_ids": [
+            "SK_3f82a026",
+            "SK_507e2b21",
+            "SK_089ee650",
+            "SK_f6d7ba88",
+            "SK_6f5850ea",
+            "SK_96835f47",
+            "SK_59004ee8",
+            "SK_f3cc52e3",
+            "SK_77f109c4",
+            "SK_60ab2bf7",
+            "SK_e541c69c",
+            "SK_8abdc43c",
+            "SK_081d7679"
+          ],
+          "sdg": [
+            {
+              "target": "15.1",
+              "sign": "+",
+              "reason": "Text mentions \"environmental sustainability\", which Aurora links to target 15.1: By 2020, ensure the conservation, restoration and sustainable use of terrestrial and inland freshwater ecosystems and th",
+              "source": "aurora_sdg_queries",
+              "is_estimate": false,
+              "reviewed": null
+            },
+            {
+              "target": "12.2",
+              "sign": "+",
+              "reason": "Promotes sustainable management of natural resources.",
+              "source": "qwen3_32b_awq",
+              "is_estimate": true,
+              "reviewed": null
+            }
+          ],
+          "sources": [
+            "onet",
+            "esco",
+            "metr_th_1_1",
+            "aurora_sdg_queries",
+            "qwen3_32b_awq"
+          ],
+          "is_estimate": true
+        },
+        {
+          "role_id": "JOB_ENVIRONMENTAL_ENGINEER",
+          "name": "Environmental Engineers",
+          "closest_real_occupation": "Environmental Engineers (O*NET) / environmental engineer (ESCO)",
+          "codes": {
+            "onet": "17-2081.00",
+            "esco": "http://data.europa.eu/esco/occupation/ac1fc6a9-70d2-475c-8fa0-82ef83830968",
+            "isco": "2143"
+          },
+          "score": 2,
+          "parts": {
+            "skills": 2,
+            "leftover": 0,
+            "outlook": 0
+          },
+          "shares_skills": true,
+          "have": 0,
+          "related": 3,
+          "need": 28,
+          "have_skill_ids": [],
+          "related_skill_ids": [
+            "SK_5641a2af",
+            "SK_77f109c4",
+            "SK_6f5850ea"
+          ],
+          "missing_skill_ids": [
+            "SK_541561bc",
+            "SK_c0ccbd15",
+            "SK_1cebfd4f",
+            "SK_081d7679",
+            "SK_e4ff825c",
+            "SK_4fabca9a",
+            "SK_f54c10e4",
+            "SK_209a5498",
+            "SK_233be639",
+            "SK_96835f47",
+            "SK_42b23922",
+            "SK_cde9911c",
+            "SK_5641a2af",
+            "SK_eb65ce8e",
+            "SK_9570e84e",
+            "SK_b422efe7",
+            "SK_82887396",
+            "SK_b1b118c4",
+            "SK_0d6c9508",
+            "SK_9433da85",
+            "SK_77f109c4",
+            "SK_ce4990a4",
+            "SK_72a74f69",
+            "SK_d1ec6846",
+            "SK_75f312e1",
+            "SK_59ea80e1",
+            "SK_60ab2bf7",
+            "SK_6f5850ea"
+          ],
+          "sdg": [
+            {
+              "target": "12.2",
+              "sign": "+",
+              "reason": "Text mentions \"sustainable\", which Aurora links to target 12.2: By 2030, achieve the sustainable management and efficient use of natural resources",
+              "source": "aurora_sdg_queries",
+              "is_estimate": false,
+              "reviewed": null
+            },
+            {
+              "target": "15.1",
+              "sign": "+",
+              "reason": "Text mentions \"environmental and sustainable\", which Aurora links to target 15.1: By 2020, ensure the conservation, restoration and sustainable use of terrestrial and inland freshwater ecosystems and th",
+              "source": "aurora_sdg_queries",
+              "is_estimate": false,
+              "reviewed": null
+            },
+            {
+              "target": "6.4",
+              "sign": "+",
+              "reason": "Improves water-use efficiency and sustainability.",
+              "source": "qwen3_32b_awq",
+              "is_estimate": true,
+              "reviewed": null
+            }
+          ],
+          "sources": [
+            "onet",
+            "esco",
+            "metr_th_1_1",
+            "aurora_sdg_queries",
+            "qwen3_32b_awq"
+          ],
+          "is_estimate": true
+        },
+        {
+          "role_id": "JOB_SOLAR_PV_INSTALLER",
+          "name": "Solar Photovoltaic Installers",
+          "closest_real_occupation": "Solar Photovoltaic Installers (O*NET) / solar energy technician (ESCO)",
+          "codes": {
+            "onet": "47-2231.00",
+            "esco": "http://data.europa.eu/esco/occupation/75b63949-1b93-4bf2-a777-ccf978dc3e8a",
+            "isco": "7411"
+          },
+          "score": 0,
+          "parts": {
+            "skills": 0,
+            "leftover": 0,
+            "outlook": 0
+          },
+          "shares_skills": false,
+          "have": 0,
+          "related": 0,
+          "need": 19,
+          "have_skill_ids": [],
+          "related_skill_ids": [],
+          "missing_skill_ids": [
+            "SK_3892f2ff",
+            "SK_3d3ee5c3",
+            "SK_d15e92c4",
+            "SK_50f2d23c",
+            "SK_08a5f6dd",
+            "SK_efa141df",
+            "SK_156f8c5b",
+            "SK_c8ac1986",
+            "SK_86df7af2",
+            "SK_52797dce",
+            "SK_05e5e14f",
+            "SK_b92758d4",
+            "SK_76b9e515",
+            "SK_aafbb139",
+            "SK_2179e0fd",
+            "SK_0dc8813a",
+            "SK_4af56376",
+            "SK_dfce2aba",
+            "SK_fafbb75f"
+          ],
+          "sdg": [
+            {
+              "target": "7.2",
+              "sign": "+",
+              "reason": "Supports renewable energy expansion for all.",
+              "source": "qwen3_32b_awq",
+              "is_estimate": true,
+              "reviewed": null
+            }
+          ],
+          "sources": [
+            "onet",
+            "esco",
+            "metr_th_1_1",
+            "qwen3_32b_awq"
+          ],
+          "is_estimate": true
+        }
+      ]
+    },
+    "2033": {
+      "emerging_role": {
+        "role_id": "JOB_FRAUD_EXAMINER",
+        "name": "Fraud Examiners, Investigators and Analysts",
+        "closest_real_occupation": "Fraud Examiners, Investigators and Analysts (O*NET) / financial fraud examiner (ESCO)",
+        "overlap": 0.25,
+        "note": "Your leftover tasks look most like this real job",
+        "sources": [
+          "onet",
+          "esco"
+        ],
+        "is_estimate": true
+      },
+      "roles": [
+        {
+          "role_id": "JOB_FRAUD_EXAMINER",
+          "name": "Fraud Examiners, Investigators and Analysts",
+          "closest_real_occupation": "Fraud Examiners, Investigators and Analysts (O*NET) / financial fraud examiner (ESCO)",
+          "codes": {
+            "onet": "13-2099.04",
+            "esco": "http://data.europa.eu/esco/occupation/a04eedcf-8424-475a-8dc5-f30a9da4b151",
+            "isco": "2411"
+          },
+          "score": 20,
+          "parts": {
+            "skills": 13,
+            "leftover": 8,
+            "outlook": 0
+          },
+          "shares_skills": true,
+          "have": 1,
+          "related": 7,
+          "need": 14,
+          "have_skill_ids": [
+            "SK_8a326ee1"
+          ],
+          "related_skill_ids": [
+            "SK_658a38bd",
+            "SK_29d80dad",
+            "SK_3c209873",
+            "SK_3e9b580d",
+            "SK_5f1d1319",
+            "SK_4a460161",
+            "SK_89ff28d6"
+          ],
+          "missing_skill_ids": [
+            "SK_658a38bd",
+            "SK_f5afbe94",
+            "SK_29d80dad",
+            "SK_541cdc23",
+            "SK_3c209873",
+            "SK_3e9b580d",
+            "SK_5f1d1319",
+            "SK_4a460161",
+            "SK_f14ff4b7",
+            "SK_89ff28d6",
+            "SK_5b71cb01",
+            "SK_0295b2a4",
+            "SK_93f1caa3"
+          ],
+          "sdg": [
+            {
+              "target": "16.5",
+              "sign": "+",
+              "reason": "Reduces corruption and bribery in economic systems.",
+              "source": "qwen3_32b_awq",
+              "is_estimate": true,
+              "reviewed": null
+            }
+          ],
+          "sources": [
+            "onet",
+            "esco",
+            "metr_th_1_1",
+            "qwen3_32b_awq"
+          ],
+          "is_estimate": true
+        },
+        {
+          "role_id": "JOB_BI_ANALYST",
+          "name": "Business Intelligence Analysts",
+          "closest_real_occupation": "Business Intelligence Analysts (O*NET) / data analyst (ESCO)",
+          "codes": {
+            "onet": "15-2051.01",
+            "esco": "http://data.europa.eu/esco/occupation/d3edb8f8-3a06-47a0-8fb9-9b212c006aa2",
+            "isco": "2511"
+          },
+          "score": 18,
+          "parts": {
+            "skills": 10,
+            "leftover": 8,
+            "outlook": 0
+          },
+          "shares_skills": true,
+          "have": 1,
+          "related": 12,
+          "need": 28,
+          "have_skill_ids": [
+            "SK_7ee4c2ea"
+          ],
+          "related_skill_ids": [
+            "SK_46ec0033",
+            "SK_07889c08",
+            "SK_9ff9db9d",
+            "SK_31c69100",
+            "SK_47a49cd6",
+            "SK_382c11ed",
+            "SK_2daec0e6",
+            "SK_1e77e42a",
+            "SK_713fb616",
+            "SK_4216e465",
+            "SK_cc7370dd",
+            "SK_50b100ea"
+          ],
+          "missing_skill_ids": [
+            "SK_143769cb",
+            "SK_348b74cd",
+            "SK_46ec0033",
+            "SK_07889c08",
+            "SK_9ff9db9d",
+            "SK_31c69100",
+            "SK_327d15c8",
+            "SK_696e3b5b",
+            "SK_47a49cd6",
+            "SK_382c11ed",
+            "SK_79e29b8b",
+            "SK_a56dec32",
+            "SK_99207709",
+            "SK_c5e8abde",
+            "SK_9cf681c7",
+            "SK_4a193795",
+            "SK_2daec0e6",
+            "SK_54c9c155",
+            "SK_25f0ea33",
+            "SK_1e77e42a",
+            "SK_93aaf65c",
+            "SK_03ff0d53",
+            "SK_713fb616",
+            "SK_fecf8a0d",
+            "SK_4216e465",
+            "SK_cc7370dd",
+            "SK_50b100ea"
+          ],
+          "sdg": [
+            {
+              "target": "8.2",
+              "sign": "+",
+              "reason": "Supports economic productivity through data-driven insights.",
+              "source": "qwen3_32b_awq",
+              "is_estimate": true,
+              "reviewed": null
+            }
+          ],
+          "sources": [
+            "onet",
+            "esco",
+            "metr_th_1_1",
+            "qwen3_32b_awq"
+          ],
+          "is_estimate": true
+        },
+        {
+          "role_id": "JOB_HEALTH_INFORMATION_TECH",
+          "name": "Health Information Technologists and Medical Registrars",
+          "closest_real_occupation": "Health Information Technologists and Medical Registrars (O*NET) / medical records manager (ESCO)",
+          "codes": {
+            "onet": "29-9021.00",
+            "esco": "http://data.europa.eu/esco/occupation/983c2816-a339-4817-97f4-151a9ff3e64d",
+            "isco": "3252"
+          },
+          "score": 7,
+          "parts": {
+            "skills": 7,
+            "leftover": 0,
+            "outlook": 0
+          },
+          "shares_skills": true,
+          "have": 0,
+          "related": 10,
+          "need": 30,
+          "have_skill_ids": [],
+          "related_skill_ids": [
+            "SK_1709f408",
+            "SK_b22828a8",
+            "SK_6c3e28d6",
+            "SK_53141450",
+            "SK_fa3e5cec",
+            "SK_0c8c1e58",
+            "SK_fb15ca73",
+            "SK_9ec07ba9",
+            "SK_d4f9906e",
+            "SK_2e040fb0"
+          ],
+          "missing_skill_ids": [
+            "SK_16636767",
+            "SK_1709f408",
+            "SK_b55f61a4",
+            "SK_a7f0fbe0",
+            "SK_add39442",
+            "SK_9fcf9918",
+            "SK_b22828a8",
+            "SK_6c3e28d6",
+            "SK_53141450",
+            "SK_9601b2a8",
+            "SK_eba85523",
+            "SK_4d614c92",
+            "SK_76395873",
+            "SK_7110bf9f",
+            "SK_d3eccb86",
+            "SK_fa3e5cec",
+            "SK_43ae58b9",
+            "SK_0c8c1e58",
+            "SK_ea1bf5e5",
+            "SK_b21e2984",
+            "SK_fb15ca73",
+            "SK_9ec07ba9",
+            "SK_d4f9906e",
+            "SK_5d7890d5",
+            "SK_cf0b92de",
+            "SK_496932f1",
+            "SK_9a7cc3c2",
+            "SK_8b9332c7",
+            "SK_f022b5ff",
+            "SK_2e040fb0"
+          ],
+          "sdg": [
+            {
+              "target": "3.8",
+              "sign": "+",
+              "reason": "Supports universal health coverage through data management.",
+              "source": "qwen3_32b_awq",
+              "is_estimate": true,
+              "reviewed": null
+            }
+          ],
+          "sources": [
+            "onet",
+            "esco",
+            "metr_th_1_1",
+            "qwen3_32b_awq"
+          ],
+          "is_estimate": true
+        },
+        {
+          "role_id": "JOB_SUSTAINABILITY_SPECIALIST",
+          "name": "Sustainability Specialists",
+          "closest_real_occupation": "Sustainability Specialists (O*NET) / environmental programme coordinator (ESCO)",
+          "codes": {
+            "onet": "13-1199.05",
+            "esco": "http://data.europa.eu/esco/occupation/59883630-45f9-40e7-9732-9e5ff9758d2b",
+            "isco": "2133"
+          },
+          "score": 3,
+          "parts": {
+            "skills": 3,
+            "leftover": 0,
+            "outlook": 0
+          },
+          "shares_skills": true,
+          "have": 0,
+          "related": 2,
+          "need": 13,
+          "have_skill_ids": [],
+          "related_skill_ids": [
+            "SK_6f5850ea",
+            "SK_77f109c4"
+          ],
+          "missing_skill_ids": [
+            "SK_3f82a026",
+            "SK_507e2b21",
+            "SK_089ee650",
+            "SK_f6d7ba88",
+            "SK_6f5850ea",
+            "SK_96835f47",
+            "SK_59004ee8",
+            "SK_f3cc52e3",
+            "SK_77f109c4",
+            "SK_60ab2bf7",
+            "SK_e541c69c",
+            "SK_8abdc43c",
+            "SK_081d7679"
+          ],
+          "sdg": [
+            {
+              "target": "15.1",
+              "sign": "+",
+              "reason": "Text mentions \"environmental sustainability\", which Aurora links to target 15.1: By 2020, ensure the conservation, restoration and sustainable use of terrestrial and inland freshwater ecosystems and th",
+              "source": "aurora_sdg_queries",
+              "is_estimate": false,
+              "reviewed": null
+            },
+            {
+              "target": "12.2",
+              "sign": "+",
+              "reason": "Promotes sustainable management of natural resources.",
+              "source": "qwen3_32b_awq",
+              "is_estimate": true,
+              "reviewed": null
+            }
+          ],
+          "sources": [
+            "onet",
+            "esco",
+            "metr_th_1_1",
+            "aurora_sdg_queries",
+            "qwen3_32b_awq"
+          ],
+          "is_estimate": true
+        },
+        {
+          "role_id": "JOB_ENVIRONMENTAL_ENGINEER",
+          "name": "Environmental Engineers",
+          "closest_real_occupation": "Environmental Engineers (O*NET) / environmental engineer (ESCO)",
+          "codes": {
+            "onet": "17-2081.00",
+            "esco": "http://data.europa.eu/esco/occupation/ac1fc6a9-70d2-475c-8fa0-82ef83830968",
+            "isco": "2143"
+          },
+          "score": 2,
+          "parts": {
+            "skills": 2,
+            "leftover": 0,
+            "outlook": 0
+          },
+          "shares_skills": true,
+          "have": 0,
+          "related": 3,
+          "need": 28,
+          "have_skill_ids": [],
+          "related_skill_ids": [
+            "SK_5641a2af",
+            "SK_77f109c4",
+            "SK_6f5850ea"
+          ],
+          "missing_skill_ids": [
+            "SK_541561bc",
+            "SK_c0ccbd15",
+            "SK_1cebfd4f",
+            "SK_081d7679",
+            "SK_e4ff825c",
+            "SK_4fabca9a",
+            "SK_f54c10e4",
+            "SK_209a5498",
+            "SK_233be639",
+            "SK_96835f47",
+            "SK_42b23922",
+            "SK_cde9911c",
+            "SK_5641a2af",
+            "SK_eb65ce8e",
+            "SK_9570e84e",
+            "SK_b422efe7",
+            "SK_82887396",
+            "SK_b1b118c4",
+            "SK_0d6c9508",
+            "SK_9433da85",
+            "SK_77f109c4",
+            "SK_ce4990a4",
+            "SK_72a74f69",
+            "SK_d1ec6846",
+            "SK_75f312e1",
+            "SK_59ea80e1",
+            "SK_60ab2bf7",
+            "SK_6f5850ea"
+          ],
+          "sdg": [
+            {
+              "target": "12.2",
+              "sign": "+",
+              "reason": "Text mentions \"sustainable\", which Aurora links to target 12.2: By 2030, achieve the sustainable management and efficient use of natural resources",
+              "source": "aurora_sdg_queries",
+              "is_estimate": false,
+              "reviewed": null
+            },
+            {
+              "target": "15.1",
+              "sign": "+",
+              "reason": "Text mentions \"environmental and sustainable\", which Aurora links to target 15.1: By 2020, ensure the conservation, restoration and sustainable use of terrestrial and inland freshwater ecosystems and th",
+              "source": "aurora_sdg_queries",
+              "is_estimate": false,
+              "reviewed": null
+            },
+            {
+              "target": "6.4",
+              "sign": "+",
+              "reason": "Improves water-use efficiency and sustainability.",
+              "source": "qwen3_32b_awq",
+              "is_estimate": true,
+              "reviewed": null
+            }
+          ],
+          "sources": [
+            "onet",
+            "esco",
+            "metr_th_1_1",
+            "aurora_sdg_queries",
+            "qwen3_32b_awq"
+          ],
+          "is_estimate": true
+        },
+        {
+          "role_id": "JOB_SOLAR_PV_INSTALLER",
+          "name": "Solar Photovoltaic Installers",
+          "closest_real_occupation": "Solar Photovoltaic Installers (O*NET) / solar energy technician (ESCO)",
+          "codes": {
+            "onet": "47-2231.00",
+            "esco": "http://data.europa.eu/esco/occupation/75b63949-1b93-4bf2-a777-ccf978dc3e8a",
+            "isco": "7411"
+          },
+          "score": 0,
+          "parts": {
+            "skills": 0,
+            "leftover": 0,
+            "outlook": 0
+          },
+          "shares_skills": false,
+          "have": 0,
+          "related": 0,
+          "need": 19,
+          "have_skill_ids": [],
+          "related_skill_ids": [],
+          "missing_skill_ids": [
+            "SK_3892f2ff",
+            "SK_3d3ee5c3",
+            "SK_d15e92c4",
+            "SK_50f2d23c",
+            "SK_08a5f6dd",
+            "SK_efa141df",
+            "SK_156f8c5b",
+            "SK_c8ac1986",
+            "SK_86df7af2",
+            "SK_52797dce",
+            "SK_05e5e14f",
+            "SK_b92758d4",
+            "SK_76b9e515",
+            "SK_aafbb139",
+            "SK_2179e0fd",
+            "SK_0dc8813a",
+            "SK_4af56376",
+            "SK_dfce2aba",
+            "SK_fafbb75f"
+          ],
+          "sdg": [
+            {
+              "target": "7.2",
+              "sign": "+",
+              "reason": "Supports renewable energy expansion for all.",
+              "source": "qwen3_32b_awq",
+              "is_estimate": true,
+              "reviewed": null
+            }
+          ],
+          "sources": [
+            "onet",
+            "esco",
+            "metr_th_1_1",
+            "qwen3_32b_awq"
+          ],
+          "is_estimate": true
+        }
+      ]
+    },
+    "2034": {
+      "emerging_role": {
+        "role_id": "JOB_FRAUD_EXAMINER",
+        "name": "Fraud Examiners, Investigators and Analysts",
+        "closest_real_occupation": "Fraud Examiners, Investigators and Analysts (O*NET) / financial fraud examiner (ESCO)",
+        "overlap": 0.25,
+        "note": "Your leftover tasks look most like this real job",
+        "sources": [
+          "onet",
+          "esco"
+        ],
+        "is_estimate": true
+      },
+      "roles": [
+        {
+          "role_id": "JOB_FRAUD_EXAMINER",
+          "name": "Fraud Examiners, Investigators and Analysts",
+          "closest_real_occupation": "Fraud Examiners, Investigators and Analysts (O*NET) / financial fraud examiner (ESCO)",
+          "codes": {
+            "onet": "13-2099.04",
+            "esco": "http://data.europa.eu/esco/occupation/a04eedcf-8424-475a-8dc5-f30a9da4b151",
+            "isco": "2411"
+          },
+          "score": 20,
+          "parts": {
+            "skills": 13,
+            "leftover": 8,
+            "outlook": 0
+          },
+          "shares_skills": true,
+          "have": 1,
+          "related": 7,
+          "need": 14,
+          "have_skill_ids": [
+            "SK_8a326ee1"
+          ],
+          "related_skill_ids": [
+            "SK_658a38bd",
+            "SK_29d80dad",
+            "SK_3c209873",
+            "SK_3e9b580d",
+            "SK_5f1d1319",
+            "SK_4a460161",
+            "SK_89ff28d6"
+          ],
+          "missing_skill_ids": [
+            "SK_658a38bd",
+            "SK_f5afbe94",
+            "SK_29d80dad",
+            "SK_541cdc23",
+            "SK_3c209873",
+            "SK_3e9b580d",
+            "SK_5f1d1319",
+            "SK_4a460161",
+            "SK_f14ff4b7",
+            "SK_89ff28d6",
+            "SK_5b71cb01",
+            "SK_0295b2a4",
+            "SK_93f1caa3"
+          ],
+          "sdg": [
+            {
+              "target": "16.5",
+              "sign": "+",
+              "reason": "Reduces corruption and bribery in economic systems.",
+              "source": "qwen3_32b_awq",
+              "is_estimate": true,
+              "reviewed": null
+            }
+          ],
+          "sources": [
+            "onet",
+            "esco",
+            "metr_th_1_1",
+            "qwen3_32b_awq"
+          ],
+          "is_estimate": true
+        },
+        {
+          "role_id": "JOB_BI_ANALYST",
+          "name": "Business Intelligence Analysts",
+          "closest_real_occupation": "Business Intelligence Analysts (O*NET) / data analyst (ESCO)",
+          "codes": {
+            "onet": "15-2051.01",
+            "esco": "http://data.europa.eu/esco/occupation/d3edb8f8-3a06-47a0-8fb9-9b212c006aa2",
+            "isco": "2511"
+          },
+          "score": 18,
+          "parts": {
+            "skills": 10,
+            "leftover": 8,
+            "outlook": 0
+          },
+          "shares_skills": true,
+          "have": 1,
+          "related": 12,
+          "need": 28,
+          "have_skill_ids": [
+            "SK_7ee4c2ea"
+          ],
+          "related_skill_ids": [
+            "SK_46ec0033",
+            "SK_07889c08",
+            "SK_9ff9db9d",
+            "SK_31c69100",
+            "SK_47a49cd6",
+            "SK_382c11ed",
+            "SK_2daec0e6",
+            "SK_1e77e42a",
+            "SK_713fb616",
+            "SK_4216e465",
+            "SK_cc7370dd",
+            "SK_50b100ea"
+          ],
+          "missing_skill_ids": [
+            "SK_143769cb",
+            "SK_348b74cd",
+            "SK_46ec0033",
+            "SK_07889c08",
+            "SK_9ff9db9d",
+            "SK_31c69100",
+            "SK_327d15c8",
+            "SK_696e3b5b",
+            "SK_47a49cd6",
+            "SK_382c11ed",
+            "SK_79e29b8b",
+            "SK_a56dec32",
+            "SK_99207709",
+            "SK_c5e8abde",
+            "SK_9cf681c7",
+            "SK_4a193795",
+            "SK_2daec0e6",
+            "SK_54c9c155",
+            "SK_25f0ea33",
+            "SK_1e77e42a",
+            "SK_93aaf65c",
+            "SK_03ff0d53",
+            "SK_713fb616",
+            "SK_fecf8a0d",
+            "SK_4216e465",
+            "SK_cc7370dd",
+            "SK_50b100ea"
+          ],
+          "sdg": [
+            {
+              "target": "8.2",
+              "sign": "+",
+              "reason": "Supports economic productivity through data-driven insights.",
+              "source": "qwen3_32b_awq",
+              "is_estimate": true,
+              "reviewed": null
+            }
+          ],
+          "sources": [
+            "onet",
+            "esco",
+            "metr_th_1_1",
+            "qwen3_32b_awq"
+          ],
+          "is_estimate": true
+        },
+        {
+          "role_id": "JOB_HEALTH_INFORMATION_TECH",
+          "name": "Health Information Technologists and Medical Registrars",
+          "closest_real_occupation": "Health Information Technologists and Medical Registrars (O*NET) / medical records manager (ESCO)",
+          "codes": {
+            "onet": "29-9021.00",
+            "esco": "http://data.europa.eu/esco/occupation/983c2816-a339-4817-97f4-151a9ff3e64d",
+            "isco": "3252"
+          },
+          "score": 7,
+          "parts": {
+            "skills": 7,
+            "leftover": 0,
+            "outlook": 0
+          },
+          "shares_skills": true,
+          "have": 0,
+          "related": 10,
+          "need": 30,
+          "have_skill_ids": [],
+          "related_skill_ids": [
+            "SK_1709f408",
+            "SK_b22828a8",
+            "SK_6c3e28d6",
+            "SK_53141450",
+            "SK_fa3e5cec",
+            "SK_0c8c1e58",
+            "SK_fb15ca73",
+            "SK_9ec07ba9",
+            "SK_d4f9906e",
+            "SK_2e040fb0"
+          ],
+          "missing_skill_ids": [
+            "SK_16636767",
+            "SK_1709f408",
+            "SK_b55f61a4",
+            "SK_a7f0fbe0",
+            "SK_add39442",
+            "SK_9fcf9918",
+            "SK_b22828a8",
+            "SK_6c3e28d6",
+            "SK_53141450",
+            "SK_9601b2a8",
+            "SK_eba85523",
+            "SK_4d614c92",
+            "SK_76395873",
+            "SK_7110bf9f",
+            "SK_d3eccb86",
+            "SK_fa3e5cec",
+            "SK_43ae58b9",
+            "SK_0c8c1e58",
+            "SK_ea1bf5e5",
+            "SK_b21e2984",
+            "SK_fb15ca73",
+            "SK_9ec07ba9",
+            "SK_d4f9906e",
+            "SK_5d7890d5",
+            "SK_cf0b92de",
+            "SK_496932f1",
+            "SK_9a7cc3c2",
+            "SK_8b9332c7",
+            "SK_f022b5ff",
+            "SK_2e040fb0"
+          ],
+          "sdg": [
+            {
+              "target": "3.8",
+              "sign": "+",
+              "reason": "Supports universal health coverage through data management.",
+              "source": "qwen3_32b_awq",
+              "is_estimate": true,
+              "reviewed": null
+            }
+          ],
+          "sources": [
+            "onet",
+            "esco",
+            "metr_th_1_1",
+            "qwen3_32b_awq"
+          ],
+          "is_estimate": true
+        },
+        {
+          "role_id": "JOB_SUSTAINABILITY_SPECIALIST",
+          "name": "Sustainability Specialists",
+          "closest_real_occupation": "Sustainability Specialists (O*NET) / environmental programme coordinator (ESCO)",
+          "codes": {
+            "onet": "13-1199.05",
+            "esco": "http://data.europa.eu/esco/occupation/59883630-45f9-40e7-9732-9e5ff9758d2b",
+            "isco": "2133"
+          },
+          "score": 3,
+          "parts": {
+            "skills": 3,
+            "leftover": 0,
+            "outlook": 0
+          },
+          "shares_skills": true,
+          "have": 0,
+          "related": 2,
+          "need": 13,
+          "have_skill_ids": [],
+          "related_skill_ids": [
+            "SK_6f5850ea",
+            "SK_77f109c4"
+          ],
+          "missing_skill_ids": [
+            "SK_3f82a026",
+            "SK_507e2b21",
+            "SK_089ee650",
+            "SK_f6d7ba88",
+            "SK_6f5850ea",
+            "SK_96835f47",
+            "SK_59004ee8",
+            "SK_f3cc52e3",
+            "SK_77f109c4",
+            "SK_60ab2bf7",
+            "SK_e541c69c",
+            "SK_8abdc43c",
+            "SK_081d7679"
+          ],
+          "sdg": [
+            {
+              "target": "15.1",
+              "sign": "+",
+              "reason": "Text mentions \"environmental sustainability\", which Aurora links to target 15.1: By 2020, ensure the conservation, restoration and sustainable use of terrestrial and inland freshwater ecosystems and th",
+              "source": "aurora_sdg_queries",
+              "is_estimate": false,
+              "reviewed": null
+            },
+            {
+              "target": "12.2",
+              "sign": "+",
+              "reason": "Promotes sustainable management of natural resources.",
+              "source": "qwen3_32b_awq",
+              "is_estimate": true,
+              "reviewed": null
+            }
+          ],
+          "sources": [
+            "onet",
+            "esco",
+            "metr_th_1_1",
+            "aurora_sdg_queries",
+            "qwen3_32b_awq"
+          ],
+          "is_estimate": true
+        },
+        {
+          "role_id": "JOB_ENVIRONMENTAL_ENGINEER",
+          "name": "Environmental Engineers",
+          "closest_real_occupation": "Environmental Engineers (O*NET) / environmental engineer (ESCO)",
+          "codes": {
+            "onet": "17-2081.00",
+            "esco": "http://data.europa.eu/esco/occupation/ac1fc6a9-70d2-475c-8fa0-82ef83830968",
+            "isco": "2143"
+          },
+          "score": 2,
+          "parts": {
+            "skills": 2,
+            "leftover": 0,
+            "outlook": 0
+          },
+          "shares_skills": true,
+          "have": 0,
+          "related": 3,
+          "need": 28,
+          "have_skill_ids": [],
+          "related_skill_ids": [
+            "SK_5641a2af",
+            "SK_77f109c4",
+            "SK_6f5850ea"
+          ],
+          "missing_skill_ids": [
+            "SK_541561bc",
+            "SK_c0ccbd15",
+            "SK_1cebfd4f",
+            "SK_081d7679",
+            "SK_e4ff825c",
+            "SK_4fabca9a",
+            "SK_f54c10e4",
+            "SK_209a5498",
+            "SK_233be639",
+            "SK_96835f47",
+            "SK_42b23922",
+            "SK_cde9911c",
+            "SK_5641a2af",
+            "SK_eb65ce8e",
+            "SK_9570e84e",
+            "SK_b422efe7",
+            "SK_82887396",
+            "SK_b1b118c4",
+            "SK_0d6c9508",
+            "SK_9433da85",
+            "SK_77f109c4",
+            "SK_ce4990a4",
+            "SK_72a74f69",
+            "SK_d1ec6846",
+            "SK_75f312e1",
+            "SK_59ea80e1",
+            "SK_60ab2bf7",
+            "SK_6f5850ea"
+          ],
+          "sdg": [
+            {
+              "target": "12.2",
+              "sign": "+",
+              "reason": "Text mentions \"sustainable\", which Aurora links to target 12.2: By 2030, achieve the sustainable management and efficient use of natural resources",
+              "source": "aurora_sdg_queries",
+              "is_estimate": false,
+              "reviewed": null
+            },
+            {
+              "target": "15.1",
+              "sign": "+",
+              "reason": "Text mentions \"environmental and sustainable\", which Aurora links to target 15.1: By 2020, ensure the conservation, restoration and sustainable use of terrestrial and inland freshwater ecosystems and th",
+              "source": "aurora_sdg_queries",
+              "is_estimate": false,
+              "reviewed": null
+            },
+            {
+              "target": "6.4",
+              "sign": "+",
+              "reason": "Improves water-use efficiency and sustainability.",
+              "source": "qwen3_32b_awq",
+              "is_estimate": true,
+              "reviewed": null
+            }
+          ],
+          "sources": [
+            "onet",
+            "esco",
+            "metr_th_1_1",
+            "aurora_sdg_queries",
+            "qwen3_32b_awq"
+          ],
+          "is_estimate": true
+        },
+        {
+          "role_id": "JOB_SOLAR_PV_INSTALLER",
+          "name": "Solar Photovoltaic Installers",
+          "closest_real_occupation": "Solar Photovoltaic Installers (O*NET) / solar energy technician (ESCO)",
+          "codes": {
+            "onet": "47-2231.00",
+            "esco": "http://data.europa.eu/esco/occupation/75b63949-1b93-4bf2-a777-ccf978dc3e8a",
+            "isco": "7411"
+          },
+          "score": 0,
+          "parts": {
+            "skills": 0,
+            "leftover": 0,
+            "outlook": 0
+          },
+          "shares_skills": false,
+          "have": 0,
+          "related": 0,
+          "need": 19,
+          "have_skill_ids": [],
+          "related_skill_ids": [],
+          "missing_skill_ids": [
+            "SK_3892f2ff",
+            "SK_3d3ee5c3",
+            "SK_d15e92c4",
+            "SK_50f2d23c",
+            "SK_08a5f6dd",
+            "SK_efa141df",
+            "SK_156f8c5b",
+            "SK_c8ac1986",
+            "SK_86df7af2",
+            "SK_52797dce",
+            "SK_05e5e14f",
+            "SK_b92758d4",
+            "SK_76b9e515",
+            "SK_aafbb139",
+            "SK_2179e0fd",
+            "SK_0dc8813a",
+            "SK_4af56376",
+            "SK_dfce2aba",
+            "SK_fafbb75f"
+          ],
+          "sdg": [
+            {
+              "target": "7.2",
+              "sign": "+",
+              "reason": "Supports renewable energy expansion for all.",
+              "source": "qwen3_32b_awq",
+              "is_estimate": true,
+              "reviewed": null
+            }
+          ],
+          "sources": [
+            "onet",
+            "esco",
+            "metr_th_1_1",
+            "qwen3_32b_awq"
+          ],
+          "is_estimate": true
+        }
+      ]
+    },
+    "2035": {
+      "emerging_role": {
+        "role_id": "JOB_FRAUD_EXAMINER",
+        "name": "Fraud Examiners, Investigators and Analysts",
+        "closest_real_occupation": "Fraud Examiners, Investigators and Analysts (O*NET) / financial fraud examiner (ESCO)",
+        "overlap": 0.25,
+        "note": "Your leftover tasks look most like this real job",
+        "sources": [
+          "onet",
+          "esco"
+        ],
+        "is_estimate": true
+      },
+      "roles": [
+        {
+          "role_id": "JOB_FRAUD_EXAMINER",
+          "name": "Fraud Examiners, Investigators and Analysts",
+          "closest_real_occupation": "Fraud Examiners, Investigators and Analysts (O*NET) / financial fraud examiner (ESCO)",
+          "codes": {
+            "onet": "13-2099.04",
+            "esco": "http://data.europa.eu/esco/occupation/a04eedcf-8424-475a-8dc5-f30a9da4b151",
+            "isco": "2411"
+          },
+          "score": 20,
+          "parts": {
+            "skills": 13,
+            "leftover": 8,
+            "outlook": 0
+          },
+          "shares_skills": true,
+          "have": 1,
+          "related": 7,
+          "need": 14,
+          "have_skill_ids": [
+            "SK_8a326ee1"
+          ],
+          "related_skill_ids": [
+            "SK_658a38bd",
+            "SK_29d80dad",
+            "SK_3c209873",
+            "SK_3e9b580d",
+            "SK_5f1d1319",
+            "SK_4a460161",
+            "SK_89ff28d6"
+          ],
+          "missing_skill_ids": [
+            "SK_658a38bd",
+            "SK_f5afbe94",
+            "SK_29d80dad",
+            "SK_541cdc23",
+            "SK_3c209873",
+            "SK_3e9b580d",
+            "SK_5f1d1319",
+            "SK_4a460161",
+            "SK_f14ff4b7",
+            "SK_89ff28d6",
+            "SK_5b71cb01",
+            "SK_0295b2a4",
+            "SK_93f1caa3"
+          ],
+          "sdg": [
+            {
+              "target": "16.5",
+              "sign": "+",
+              "reason": "Reduces corruption and bribery in economic systems.",
+              "source": "qwen3_32b_awq",
+              "is_estimate": true,
+              "reviewed": null
+            }
+          ],
+          "sources": [
+            "onet",
+            "esco",
+            "metr_th_1_1",
+            "qwen3_32b_awq"
+          ],
+          "is_estimate": true
+        },
+        {
+          "role_id": "JOB_BI_ANALYST",
+          "name": "Business Intelligence Analysts",
+          "closest_real_occupation": "Business Intelligence Analysts (O*NET) / data analyst (ESCO)",
+          "codes": {
+            "onet": "15-2051.01",
+            "esco": "http://data.europa.eu/esco/occupation/d3edb8f8-3a06-47a0-8fb9-9b212c006aa2",
+            "isco": "2511"
+          },
+          "score": 18,
+          "parts": {
+            "skills": 10,
+            "leftover": 8,
+            "outlook": 0
+          },
+          "shares_skills": true,
+          "have": 1,
+          "related": 12,
+          "need": 28,
+          "have_skill_ids": [
+            "SK_7ee4c2ea"
+          ],
+          "related_skill_ids": [
+            "SK_46ec0033",
+            "SK_07889c08",
+            "SK_9ff9db9d",
+            "SK_31c69100",
+            "SK_47a49cd6",
+            "SK_382c11ed",
+            "SK_2daec0e6",
+            "SK_1e77e42a",
+            "SK_713fb616",
+            "SK_4216e465",
+            "SK_cc7370dd",
+            "SK_50b100ea"
+          ],
+          "missing_skill_ids": [
+            "SK_143769cb",
+            "SK_348b74cd",
+            "SK_46ec0033",
+            "SK_07889c08",
+            "SK_9ff9db9d",
+            "SK_31c69100",
+            "SK_327d15c8",
+            "SK_696e3b5b",
+            "SK_47a49cd6",
+            "SK_382c11ed",
+            "SK_79e29b8b",
+            "SK_a56dec32",
+            "SK_99207709",
+            "SK_c5e8abde",
+            "SK_9cf681c7",
+            "SK_4a193795",
+            "SK_2daec0e6",
+            "SK_54c9c155",
+            "SK_25f0ea33",
+            "SK_1e77e42a",
+            "SK_93aaf65c",
+            "SK_03ff0d53",
+            "SK_713fb616",
+            "SK_fecf8a0d",
+            "SK_4216e465",
+            "SK_cc7370dd",
+            "SK_50b100ea"
+          ],
+          "sdg": [
+            {
+              "target": "8.2",
+              "sign": "+",
+              "reason": "Supports economic productivity through data-driven insights.",
+              "source": "qwen3_32b_awq",
+              "is_estimate": true,
+              "reviewed": null
+            }
+          ],
+          "sources": [
+            "onet",
+            "esco",
+            "metr_th_1_1",
+            "qwen3_32b_awq"
+          ],
+          "is_estimate": true
+        },
+        {
+          "role_id": "JOB_HEALTH_INFORMATION_TECH",
+          "name": "Health Information Technologists and Medical Registrars",
+          "closest_real_occupation": "Health Information Technologists and Medical Registrars (O*NET) / medical records manager (ESCO)",
+          "codes": {
+            "onet": "29-9021.00",
+            "esco": "http://data.europa.eu/esco/occupation/983c2816-a339-4817-97f4-151a9ff3e64d",
+            "isco": "3252"
+          },
+          "score": 7,
+          "parts": {
+            "skills": 7,
+            "leftover": 0,
+            "outlook": 0
+          },
+          "shares_skills": true,
+          "have": 0,
+          "related": 10,
+          "need": 30,
+          "have_skill_ids": [],
+          "related_skill_ids": [
+            "SK_1709f408",
+            "SK_b22828a8",
+            "SK_6c3e28d6",
+            "SK_53141450",
+            "SK_fa3e5cec",
+            "SK_0c8c1e58",
+            "SK_fb15ca73",
+            "SK_9ec07ba9",
+            "SK_d4f9906e",
+            "SK_2e040fb0"
+          ],
+          "missing_skill_ids": [
+            "SK_16636767",
+            "SK_1709f408",
+            "SK_b55f61a4",
+            "SK_a7f0fbe0",
+            "SK_add39442",
+            "SK_9fcf9918",
+            "SK_b22828a8",
+            "SK_6c3e28d6",
+            "SK_53141450",
+            "SK_9601b2a8",
+            "SK_eba85523",
+            "SK_4d614c92",
+            "SK_76395873",
+            "SK_7110bf9f",
+            "SK_d3eccb86",
+            "SK_fa3e5cec",
+            "SK_43ae58b9",
+            "SK_0c8c1e58",
+            "SK_ea1bf5e5",
+            "SK_b21e2984",
+            "SK_fb15ca73",
+            "SK_9ec07ba9",
+            "SK_d4f9906e",
+            "SK_5d7890d5",
+            "SK_cf0b92de",
+            "SK_496932f1",
+            "SK_9a7cc3c2",
+            "SK_8b9332c7",
+            "SK_f022b5ff",
+            "SK_2e040fb0"
+          ],
+          "sdg": [
+            {
+              "target": "3.8",
+              "sign": "+",
+              "reason": "Supports universal health coverage through data management.",
+              "source": "qwen3_32b_awq",
+              "is_estimate": true,
+              "reviewed": null
+            }
+          ],
+          "sources": [
+            "onet",
+            "esco",
+            "metr_th_1_1",
+            "qwen3_32b_awq"
+          ],
+          "is_estimate": true
+        },
+        {
+          "role_id": "JOB_SUSTAINABILITY_SPECIALIST",
+          "name": "Sustainability Specialists",
+          "closest_real_occupation": "Sustainability Specialists (O*NET) / environmental programme coordinator (ESCO)",
+          "codes": {
+            "onet": "13-1199.05",
+            "esco": "http://data.europa.eu/esco/occupation/59883630-45f9-40e7-9732-9e5ff9758d2b",
+            "isco": "2133"
+          },
+          "score": 3,
+          "parts": {
+            "skills": 3,
+            "leftover": 0,
+            "outlook": 0
+          },
+          "shares_skills": true,
+          "have": 0,
+          "related": 2,
+          "need": 13,
+          "have_skill_ids": [],
+          "related_skill_ids": [
+            "SK_6f5850ea",
+            "SK_77f109c4"
+          ],
+          "missing_skill_ids": [
+            "SK_3f82a026",
+            "SK_507e2b21",
+            "SK_089ee650",
+            "SK_f6d7ba88",
+            "SK_6f5850ea",
+            "SK_96835f47",
+            "SK_59004ee8",
+            "SK_f3cc52e3",
+            "SK_77f109c4",
+            "SK_60ab2bf7",
+            "SK_e541c69c",
+            "SK_8abdc43c",
+            "SK_081d7679"
+          ],
+          "sdg": [
+            {
+              "target": "15.1",
+              "sign": "+",
+              "reason": "Text mentions \"environmental sustainability\", which Aurora links to target 15.1: By 2020, ensure the conservation, restoration and sustainable use of terrestrial and inland freshwater ecosystems and th",
+              "source": "aurora_sdg_queries",
+              "is_estimate": false,
+              "reviewed": null
+            },
+            {
+              "target": "12.2",
+              "sign": "+",
+              "reason": "Promotes sustainable management of natural resources.",
+              "source": "qwen3_32b_awq",
+              "is_estimate": true,
+              "reviewed": null
+            }
+          ],
+          "sources": [
+            "onet",
+            "esco",
+            "metr_th_1_1",
+            "aurora_sdg_queries",
+            "qwen3_32b_awq"
+          ],
+          "is_estimate": true
+        },
+        {
+          "role_id": "JOB_ENVIRONMENTAL_ENGINEER",
+          "name": "Environmental Engineers",
+          "closest_real_occupation": "Environmental Engineers (O*NET) / environmental engineer (ESCO)",
+          "codes": {
+            "onet": "17-2081.00",
+            "esco": "http://data.europa.eu/esco/occupation/ac1fc6a9-70d2-475c-8fa0-82ef83830968",
+            "isco": "2143"
+          },
+          "score": 2,
+          "parts": {
+            "skills": 2,
+            "leftover": 0,
+            "outlook": 0
+          },
+          "shares_skills": true,
+          "have": 0,
+          "related": 3,
+          "need": 28,
+          "have_skill_ids": [],
+          "related_skill_ids": [
+            "SK_5641a2af",
+            "SK_77f109c4",
+            "SK_6f5850ea"
+          ],
+          "missing_skill_ids": [
+            "SK_541561bc",
+            "SK_c0ccbd15",
+            "SK_1cebfd4f",
+            "SK_081d7679",
+            "SK_e4ff825c",
+            "SK_4fabca9a",
+            "SK_f54c10e4",
+            "SK_209a5498",
+            "SK_233be639",
+            "SK_96835f47",
+            "SK_42b23922",
+            "SK_cde9911c",
+            "SK_5641a2af",
+            "SK_eb65ce8e",
+            "SK_9570e84e",
+            "SK_b422efe7",
+            "SK_82887396",
+            "SK_b1b118c4",
+            "SK_0d6c9508",
+            "SK_9433da85",
+            "SK_77f109c4",
+            "SK_ce4990a4",
+            "SK_72a74f69",
+            "SK_d1ec6846",
+            "SK_75f312e1",
+            "SK_59ea80e1",
+            "SK_60ab2bf7",
+            "SK_6f5850ea"
+          ],
+          "sdg": [
+            {
+              "target": "12.2",
+              "sign": "+",
+              "reason": "Text mentions \"sustainable\", which Aurora links to target 12.2: By 2030, achieve the sustainable management and efficient use of natural resources",
+              "source": "aurora_sdg_queries",
+              "is_estimate": false,
+              "reviewed": null
+            },
+            {
+              "target": "15.1",
+              "sign": "+",
+              "reason": "Text mentions \"environmental and sustainable\", which Aurora links to target 15.1: By 2020, ensure the conservation, restoration and sustainable use of terrestrial and inland freshwater ecosystems and th",
+              "source": "aurora_sdg_queries",
+              "is_estimate": false,
+              "reviewed": null
+            },
+            {
+              "target": "6.4",
+              "sign": "+",
+              "reason": "Improves water-use efficiency and sustainability.",
+              "source": "qwen3_32b_awq",
+              "is_estimate": true,
+              "reviewed": null
+            }
+          ],
+          "sources": [
+            "onet",
+            "esco",
+            "metr_th_1_1",
+            "aurora_sdg_queries",
+            "qwen3_32b_awq"
+          ],
+          "is_estimate": true
+        },
+        {
+          "role_id": "JOB_SOLAR_PV_INSTALLER",
+          "name": "Solar Photovoltaic Installers",
+          "closest_real_occupation": "Solar Photovoltaic Installers (O*NET) / solar energy technician (ESCO)",
+          "codes": {
+            "onet": "47-2231.00",
+            "esco": "http://data.europa.eu/esco/occupation/75b63949-1b93-4bf2-a777-ccf978dc3e8a",
+            "isco": "7411"
+          },
+          "score": 0,
+          "parts": {
+            "skills": 0,
+            "leftover": 0,
+            "outlook": 0
+          },
+          "shares_skills": false,
+          "have": 0,
+          "related": 0,
+          "need": 19,
+          "have_skill_ids": [],
+          "related_skill_ids": [],
+          "missing_skill_ids": [
+            "SK_3892f2ff",
+            "SK_3d3ee5c3",
+            "SK_d15e92c4",
+            "SK_50f2d23c",
+            "SK_08a5f6dd",
+            "SK_efa141df",
+            "SK_156f8c5b",
+            "SK_c8ac1986",
+            "SK_86df7af2",
+            "SK_52797dce",
+            "SK_05e5e14f",
+            "SK_b92758d4",
+            "SK_76b9e515",
+            "SK_aafbb139",
+            "SK_2179e0fd",
+            "SK_0dc8813a",
+            "SK_4af56376",
+            "SK_dfce2aba",
+            "SK_fafbb75f"
+          ],
+          "sdg": [
+            {
+              "target": "7.2",
+              "sign": "+",
+              "reason": "Supports renewable energy expansion for all.",
+              "source": "qwen3_32b_awq",
+              "is_estimate": true,
+              "reviewed": null
+            }
+          ],
+          "sources": [
+            "onet",
+            "esco",
+            "metr_th_1_1",
+            "qwen3_32b_awq"
+          ],
+          "is_estimate": true
+        }
+      ]
+    }
+  }
+}

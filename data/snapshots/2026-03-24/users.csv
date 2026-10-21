@@ -1,0 +1,3 @@
+user_id,display_name,display_age,current_job,target_job,tasks,skill_ids,is_sample,hours_note,source
+aisyah,Aisyah,45,JOB_BOOKKEEPING_CLERK,,TASK_2487:5.5;TASK_2497:4.5;TASK_2498:5.5;TASK_2494:4.5;TASK_2490:4.5;TASK_2489:4.5;TASK_2495:6;TASK_2486:5,,true,"Sample person. Tasks: real O*NET core tasks, mostly ones with published AEI times. Hours: 40 h/week split by O*NET Frequency of Task ratings",onet_30_2
+daniel,Daniel,22,,JOB_MARKETING_SPECIALIST,,SK_de03f4fd;SK_d3e585e9;SK_8770350e;SK_7ee4c2ea;SK_348b74cd;SK_2b92a5b2;SK_d0f2f8a7;SK_8316979b;SK_f73ed9e8,true,"Sample person (graduate, no current job): no tasks or hours - the engine uses the target job's tasks. Skills: sample ESCO skills that fit a marketing degree",onet_30_2;esco

@@ -1,0 +1,4 @@
+scenario_id,name,doubling_days,assumption_note,source
+moderate,Moderate pace,187.778,METR all-time doubling time (TH 1.1 data file),metr_th_1_1
+fast,Fast pace,128.744,METR doubling time from 2023 on; 95% CI 104.4-158.0 days,metr_th_1_1
+slowdown,Compute slowdown (illustrative),,Not a constant doubling time: published milestone delays in slowdown_milestones.csv. Authors call the scenario 'primarily illustrative',slowdown_2025
