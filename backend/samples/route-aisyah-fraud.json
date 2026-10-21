@@ -32,7 +32,7 @@
     "title": "Fraud Examiners, Investigators and Analysts",
     "scenario": "moderate",
     "source": {
-      "label": "O*NET Database 31.0 (2026-08-30) · ESCO classification (skills, occupations) via ESCO API (2026-10-21) · Microsoft Learn Catalog API (free courses, duration stated) (2026-10-21) · Coursera public course catalogue (workload as stated; cost checked on the course page) (2026-10-21)",
+      "label": "O*NET Database 31.0 (2026-08-30) · ESCO classification (skills, occupations) via ESCO API (2026-10-21) · Microsoft Learn Catalog API (free courses, duration stated) (2026-10-21) · Coursera public course catalogue (workload as stated; cost checked on the course page) (2026-10-21) · METR Time Horizon 1.1 (page not updated since 2026-09-08) (2026-05-08) · Anthropic Economic Index, release 2026-03-24 (data 2026-02-05..02-12) (2026-03-24) · Whitfill, Snodin & Becker: Forecasting AI Time Horizon Under Compute Slowdowns (2025-11-23) · Anthropic Economic Index, release 2026-06-26 (data Apr-May 2026) (2026-06-26)",
       "url": "https://www.onetcenter.org/database.html",
       "date": "2026-10-20",
       "isEstimate": true
@@ -46,8 +46,31 @@
         "order": 1,
         "skill": "manage corporate bank accounts",
         "label": null,
+        "label_by_year": {
+          "2026": "robust",
+          "2027": "robust",
+          "2028": "robust",
+          "2029": "bet",
+          "2030": "bet",
+          "2031": "bet",
+          "2032": "bet",
+          "2033": "bet",
+          "2034": "bet",
+          "2035": "bet"
+        },
         "related": true,
         "note": "Close to a skill you already have",
+        "sdg": [
+          {
+            "target": "8.1",
+            "label": "Decent work and economic growth",
+            "effect": 1,
+            "reason": "Supports economic growth through financial oversight.",
+            "reviewed": null,
+            "is_estimate": true,
+            "malaysia_off_track": false
+          }
+        ],
         "source": {
           "label": "Microsoft Learn Catalog API (free courses, duration stated) (2026-10-21)",
           "url": "https://learn.microsoft.com/en-us/training/paths/reconcile-bank-accounts-dynamics-365-business-central/",
@@ -69,8 +92,31 @@
         "order": 2,
         "skill": "perform forensic accounting",
         "label": null,
+        "label_by_year": {
+          "2026": "robust",
+          "2027": "robust",
+          "2028": "robust",
+          "2029": "bet",
+          "2030": "bet",
+          "2031": "bet",
+          "2032": "bet",
+          "2033": "bet",
+          "2034": "bet",
+          "2035": "bet"
+        },
         "related": true,
         "note": "Close to a skill you already have",
+        "sdg": [
+          {
+            "target": "16.4",
+            "label": "Peace, justice and strong institutions",
+            "effect": 1,
+            "reason": "Text mentions \"money laundering\", which Aurora links to target 16.4: By 2030, significantly reduce illicit financial and arms flows, strengthen the recovery and return of stolen assets and ",
+            "reviewed": null,
+            "is_estimate": false,
+            "malaysia_off_track": true
+          }
+        ],
         "source": {
           "label": "Coursera public course catalogue (workload as stated; cost checked on the course page) (2026-10-21)",
           "url": "https://www.coursera.org/learn/forensic-accounting-detect-investigate-prevent-fraud",
@@ -92,8 +138,31 @@
         "order": 3,
         "skill": "banking activities",
         "label": null,
+        "label_by_year": {
+          "2026": "robust",
+          "2027": "robust",
+          "2028": "robust",
+          "2029": "bet",
+          "2030": "bet",
+          "2031": "bet",
+          "2032": "bet",
+          "2033": "bet",
+          "2034": "bet",
+          "2035": "bet"
+        },
         "related": true,
         "note": "Close to a skill you already have",
+        "sdg": [
+          {
+            "target": "17.10",
+            "label": "Partnerships for the goals",
+            "effect": 1,
+            "reason": "Text mentions \"trading trading in equities\", which Aurora links to target 17.10: Promote a universal, rules-based, open, non-discriminatory and equitable multilateral trading system under the World Tra",
+            "reviewed": null,
+            "is_estimate": false,
+            "malaysia_off_track": true
+          }
+        ],
         "source": {
           "label": "Coursera public course catalogue (workload as stated; cost checked on the course page) (2026-10-21)",
           "url": "https://www.coursera.org/learn/analyze-digital-banking-and-fintech-transformation",
@@ -115,8 +184,31 @@
         "order": 4,
         "skill": "prepare financial auditing reports",
         "label": null,
+        "label_by_year": {
+          "2026": "robust",
+          "2027": "robust",
+          "2028": "robust",
+          "2029": "bet",
+          "2030": "bet",
+          "2031": "bet",
+          "2032": "bet",
+          "2033": "bet",
+          "2034": "bet",
+          "2035": "bet"
+        },
         "related": true,
         "note": "Close to a skill you already have",
+        "sdg": [
+          {
+            "target": "17.1",
+            "label": "Partnerships for the goals",
+            "effect": 1,
+            "reason": "Auditing supports domestic resource mobilization.",
+            "reviewed": null,
+            "is_estimate": true,
+            "malaysia_off_track": true
+          }
+        ],
         "source": {
           "label": "Coursera public course catalogue (workload as stated; cost checked on the course page) (2026-10-21)",
           "url": "https://www.coursera.org/learn/financial-business-accounting-and-mis-reports",
@@ -138,8 +230,31 @@
         "order": 5,
         "skill": "interpret financial statements",
         "label": null,
+        "label_by_year": {
+          "2026": "robust",
+          "2027": "robust",
+          "2028": "robust",
+          "2029": "bet",
+          "2030": "bet",
+          "2031": "bet",
+          "2032": "bet",
+          "2033": "bet",
+          "2034": "bet",
+          "2035": "bet"
+        },
         "related": true,
         "note": "Close to a skill you already have",
+        "sdg": [
+          {
+            "target": "17.1",
+            "label": "Partnerships for the goals",
+            "effect": 1,
+            "reason": "Supports financial transparency and accountability.",
+            "reviewed": null,
+            "is_estimate": true,
+            "malaysia_off_track": true
+          }
+        ],
         "source": {
           "label": "Coursera public course catalogue (workload as stated; cost checked on the course page) (2026-10-21)",
           "url": "https://www.coursera.org/learn/financial-statements-ratios-and-month-end-close-essentials",
@@ -161,8 +276,31 @@
         "order": 6,
         "skill": "conduct financial audits",
         "label": null,
+        "label_by_year": {
+          "2026": "robust",
+          "2027": "robust",
+          "2028": "robust",
+          "2029": "bet",
+          "2030": "bet",
+          "2031": "bet",
+          "2032": "bet",
+          "2033": "bet",
+          "2034": "bet",
+          "2035": "bet"
+        },
         "related": true,
         "note": "Close to a skill you already have",
+        "sdg": [
+          {
+            "target": "8.5",
+            "label": "Decent work and economic growth",
+            "effect": 1,
+            "reason": "Supports financial transparency and accountability.",
+            "reviewed": null,
+            "is_estimate": true,
+            "malaysia_off_track": false
+          }
+        ],
         "source": {
           "label": "Microsoft Learn Catalog API (free courses, duration stated) (2026-10-21)",
           "url": "https://learn.microsoft.com/en-us/training/paths/set-up-configure-financial-management-work-general-ledger/",
@@ -184,8 +322,31 @@
         "order": 7,
         "skill": "detect financial crime",
         "label": null,
+        "label_by_year": {
+          "2026": "robust",
+          "2027": "robust",
+          "2028": "robust",
+          "2029": "bet",
+          "2030": "bet",
+          "2031": "bet",
+          "2032": "bet",
+          "2033": "bet",
+          "2034": "bet",
+          "2035": "bet"
+        },
         "related": false,
         "note": null,
+        "sdg": [
+          {
+            "target": "16.4",
+            "label": "Peace, justice and strong institutions",
+            "effect": 1,
+            "reason": "Text mentions \"money laundering\", which Aurora links to target 16.4: By 2030, significantly reduce illicit financial and arms flows, strengthen the recovery and return of stolen assets and ",
+            "reviewed": null,
+            "is_estimate": false,
+            "malaysia_off_track": true
+          }
+        ],
         "source": {
           "label": "Microsoft Learn Catalog API (free courses, duration stated) (2026-10-21)",
           "url": "https://learn.microsoft.com/en-us/training/paths/process-financial-periodic-activities-dynamics-365-business-central/",
@@ -207,8 +368,31 @@
         "order": 8,
         "skill": "fraud detection",
         "label": null,
+        "label_by_year": {
+          "2026": "robust",
+          "2027": "robust",
+          "2028": "robust",
+          "2029": "bet",
+          "2030": "bet",
+          "2031": "bet",
+          "2032": "bet",
+          "2033": "bet",
+          "2034": "bet",
+          "2035": "bet"
+        },
         "related": false,
         "note": null,
+        "sdg": [
+          {
+            "target": "16.4",
+            "label": "Peace, justice and strong institutions",
+            "effect": 1,
+            "reason": "Helps reduce corruption and fraud in financial systems.",
+            "reviewed": null,
+            "is_estimate": true,
+            "malaysia_off_track": true
+          }
+        ],
         "source": {
           "label": "Coursera public course catalogue (workload as stated; cost checked on the course page) (2026-10-21)",
           "url": "https://www.coursera.org/learn/googlecloud-fraud-detection-on-financial-transactions-with-machine-learnin-3bian",
@@ -230,8 +414,31 @@
         "order": 9,
         "skill": "liaise with managers",
         "label": null,
+        "label_by_year": {
+          "2026": "robust",
+          "2027": "robust",
+          "2028": "robust",
+          "2029": "bet",
+          "2030": "bet",
+          "2031": "bet",
+          "2032": "bet",
+          "2033": "bet",
+          "2034": "bet",
+          "2035": "bet"
+        },
         "related": false,
         "note": null,
+        "sdg": [
+          {
+            "target": "8.5",
+            "label": "Decent work and economic growth",
+            "effect": 1,
+            "reason": "Supports decent work through interdepartmental coordination.",
+            "reviewed": null,
+            "is_estimate": true,
+            "malaysia_off_track": false
+          }
+        ],
         "source": {
           "label": "Coursera public course catalogue (workload as stated; cost checked on the course page) (2026-10-21)",
           "url": "https://www.coursera.org/learn/data-intelligence-imtbs",
@@ -253,8 +460,31 @@
         "order": 10,
         "skill": "interpret law",
         "label": null,
+        "label_by_year": {
+          "2026": "robust",
+          "2027": "robust",
+          "2028": "robust",
+          "2029": "bet",
+          "2030": "bet",
+          "2031": "bet",
+          "2032": "bet",
+          "2033": "bet",
+          "2034": "bet",
+          "2035": "bet"
+        },
         "related": false,
         "note": null,
+        "sdg": [
+          {
+            "target": "16.3",
+            "label": "Peace, justice and strong institutions",
+            "effect": 1,
+            "reason": "Supports rule of law through legal interpretation.",
+            "reviewed": null,
+            "is_estimate": true,
+            "malaysia_off_track": true
+          }
+        ],
         "source": {
           "label": "Coursera public course catalogue (workload as stated; cost checked on the course page) (2026-10-21)",
           "url": "https://www.coursera.org/learn/law-student",
@@ -276,8 +506,31 @@
         "order": 11,
         "skill": "trace financial transactions",
         "label": null,
+        "label_by_year": {
+          "2026": "robust",
+          "2027": "robust",
+          "2028": "robust",
+          "2029": "bet",
+          "2030": "bet",
+          "2031": "bet",
+          "2032": "bet",
+          "2033": "bet",
+          "2034": "bet",
+          "2035": "bet"
+        },
         "related": false,
         "note": null,
+        "sdg": [
+          {
+            "target": "16.4",
+            "label": "Peace, justice and strong institutions",
+            "effect": 1,
+            "reason": "Tracing financial transactions supports reducing illicit financial flows.",
+            "reviewed": null,
+            "is_estimate": true,
+            "malaysia_off_track": true
+          }
+        ],
         "source": {
           "label": "Coursera public course catalogue (workload as stated; cost checked on the course page) (2026-10-21)",
           "url": "https://www.coursera.org/learn/packt-financial-adjustments-recording-transactions-and-corrections-my58a",
@@ -301,6 +554,455 @@
       "forensic intelligence"
     ],
     "stop_investing": [],
+    "stop_investing_by_year": {
+      "2026": [],
+      "2027": [],
+      "2028": [],
+      "2029": [
+        {
+          "skill": "handle financial transactions",
+          "label": "trap",
+          "source": {
+            "label": "METR Time Horizon 1.1 (page not updated since 2026-09-08) (2026-05-08) · Anthropic Economic Index, release 2026-03-24 (data 2026-02-05..02-12) (2026-03-24) · O*NET Database 31.0 (2026-08-30) · Anthropic Economic Index, release 2026-06-26 (data Apr-May 2026) (2026-06-26) · Whitfill, Snodin & Becker: Forecasting AI Time Horizon Under Compute Slowdowns (2025-11-23)",
+            "url": "https://metr.org/time-horizons/",
+            "date": "2026-10-20",
+            "isEstimate": true
+          }
+        },
+        {
+          "skill": "manage accounts",
+          "label": "trap",
+          "source": {
+            "label": "METR Time Horizon 1.1 (page not updated since 2026-09-08) (2026-05-08) · Anthropic Economic Index, release 2026-03-24 (data 2026-02-05..02-12) (2026-03-24) · O*NET Database 31.0 (2026-08-30) · Anthropic Economic Index, release 2026-06-26 (data Apr-May 2026) (2026-06-26) · Whitfill, Snodin & Becker: Forecasting AI Time Horizon Under Compute Slowdowns (2025-11-23)",
+            "url": "https://metr.org/time-horizons/",
+            "date": "2026-10-20",
+            "isEstimate": true
+          }
+        }
+      ],
+      "2030": [
+        {
+          "skill": "handle financial transactions",
+          "label": "trap",
+          "source": {
+            "label": "METR Time Horizon 1.1 (page not updated since 2026-09-08) (2026-05-08) · Anthropic Economic Index, release 2026-03-24 (data 2026-02-05..02-12) (2026-03-24) · O*NET Database 31.0 (2026-08-30) · Anthropic Economic Index, release 2026-06-26 (data Apr-May 2026) (2026-06-26) · Whitfill, Snodin & Becker: Forecasting AI Time Horizon Under Compute Slowdowns (2025-11-23)",
+            "url": "https://metr.org/time-horizons/",
+            "date": "2026-10-20",
+            "isEstimate": true
+          }
+        },
+        {
+          "skill": "manage accounts",
+          "label": "trap",
+          "source": {
+            "label": "METR Time Horizon 1.1 (page not updated since 2026-09-08) (2026-05-08) · Anthropic Economic Index, release 2026-03-24 (data 2026-02-05..02-12) (2026-03-24) · O*NET Database 31.0 (2026-08-30) · Anthropic Economic Index, release 2026-06-26 (data Apr-May 2026) (2026-06-26) · Whitfill, Snodin & Becker: Forecasting AI Time Horizon Under Compute Slowdowns (2025-11-23)",
+            "url": "https://metr.org/time-horizons/",
+            "date": "2026-10-20",
+            "isEstimate": true
+          }
+        }
+      ],
+      "2031": [
+        {
+          "skill": "allocate bills",
+          "label": "trap",
+          "source": {
+            "label": "METR Time Horizon 1.1 (page not updated since 2026-09-08) (2026-05-08) · Anthropic Economic Index, release 2026-03-24 (data 2026-02-05..02-12) (2026-03-24) · O*NET Database 31.0 (2026-08-30) · Anthropic Economic Index, release 2026-06-26 (data Apr-May 2026) (2026-06-26) · Whitfill, Snodin & Becker: Forecasting AI Time Horizon Under Compute Slowdowns (2025-11-23)",
+            "url": "https://metr.org/time-horizons/",
+            "date": "2026-10-20",
+            "isEstimate": true
+          }
+        },
+        {
+          "skill": "calculate tax",
+          "label": "trap",
+          "source": {
+            "label": "METR Time Horizon 1.1 (page not updated since 2026-09-08) (2026-05-08) · Anthropic Economic Index, release 2026-03-24 (data 2026-02-05..02-12) (2026-03-24) · O*NET Database 31.0 (2026-08-30) · Anthropic Economic Index, release 2026-06-26 (data Apr-May 2026) (2026-06-26) · Whitfill, Snodin & Becker: Forecasting AI Time Horizon Under Compute Slowdowns (2025-11-23)",
+            "url": "https://metr.org/time-horizons/",
+            "date": "2026-10-20",
+            "isEstimate": true
+          }
+        },
+        {
+          "skill": "handle financial transactions",
+          "label": "trap",
+          "source": {
+            "label": "METR Time Horizon 1.1 (page not updated since 2026-09-08) (2026-05-08) · Anthropic Economic Index, release 2026-03-24 (data 2026-02-05..02-12) (2026-03-24) · O*NET Database 31.0 (2026-08-30) · Anthropic Economic Index, release 2026-06-26 (data Apr-May 2026) (2026-06-26) · Whitfill, Snodin & Becker: Forecasting AI Time Horizon Under Compute Slowdowns (2025-11-23)",
+            "url": "https://metr.org/time-horizons/",
+            "date": "2026-10-20",
+            "isEstimate": true
+          }
+        },
+        {
+          "skill": "manage accounts",
+          "label": "trap",
+          "source": {
+            "label": "METR Time Horizon 1.1 (page not updated since 2026-09-08) (2026-05-08) · Anthropic Economic Index, release 2026-03-24 (data 2026-02-05..02-12) (2026-03-24) · O*NET Database 31.0 (2026-08-30) · Anthropic Economic Index, release 2026-06-26 (data Apr-May 2026) (2026-06-26) · Whitfill, Snodin & Becker: Forecasting AI Time Horizon Under Compute Slowdowns (2025-11-23)",
+            "url": "https://metr.org/time-horizons/",
+            "date": "2026-10-20",
+            "isEstimate": true
+          }
+        }
+      ],
+      "2032": [
+        {
+          "skill": "allocate bills",
+          "label": "trap",
+          "source": {
+            "label": "METR Time Horizon 1.1 (page not updated since 2026-09-08) (2026-05-08) · Anthropic Economic Index, release 2026-03-24 (data 2026-02-05..02-12) (2026-03-24) · O*NET Database 31.0 (2026-08-30) · Anthropic Economic Index, release 2026-06-26 (data Apr-May 2026) (2026-06-26) · Whitfill, Snodin & Becker: Forecasting AI Time Horizon Under Compute Slowdowns (2025-11-23)",
+            "url": "https://metr.org/time-horizons/",
+            "date": "2026-10-20",
+            "isEstimate": true
+          }
+        },
+        {
+          "skill": "calculate tax",
+          "label": "trap",
+          "source": {
+            "label": "METR Time Horizon 1.1 (page not updated since 2026-09-08) (2026-05-08) · Anthropic Economic Index, release 2026-03-24 (data 2026-02-05..02-12) (2026-03-24) · O*NET Database 31.0 (2026-08-30) · Anthropic Economic Index, release 2026-06-26 (data Apr-May 2026) (2026-06-26) · Whitfill, Snodin & Becker: Forecasting AI Time Horizon Under Compute Slowdowns (2025-11-23)",
+            "url": "https://metr.org/time-horizons/",
+            "date": "2026-10-20",
+            "isEstimate": true
+          }
+        },
+        {
+          "skill": "commercial law",
+          "label": "trap",
+          "source": {
+            "label": "METR Time Horizon 1.1 (page not updated since 2026-09-08) (2026-05-08) · Anthropic Economic Index, release 2026-03-24 (data 2026-02-05..02-12) (2026-03-24) · O*NET Database 31.0 (2026-08-30) · Whitfill, Snodin & Becker: Forecasting AI Time Horizon Under Compute Slowdowns (2025-11-23)",
+            "url": "https://metr.org/time-horizons/",
+            "date": "2026-10-20",
+            "isEstimate": true
+          }
+        },
+        {
+          "skill": "company policies",
+          "label": "trap",
+          "source": {
+            "label": "METR Time Horizon 1.1 (page not updated since 2026-09-08) (2026-05-08) · Anthropic Economic Index, release 2026-03-24 (data 2026-02-05..02-12) (2026-03-24) · O*NET Database 31.0 (2026-08-30) · Whitfill, Snodin & Becker: Forecasting AI Time Horizon Under Compute Slowdowns (2025-11-23)",
+            "url": "https://metr.org/time-horizons/",
+            "date": "2026-10-20",
+            "isEstimate": true
+          }
+        },
+        {
+          "skill": "archive documentation related to the work",
+          "label": "trap",
+          "source": {
+            "label": "METR Time Horizon 1.1 (page not updated since 2026-09-08) (2026-05-08) · Anthropic Economic Index, release 2026-03-24 (data 2026-02-05..02-12) (2026-03-24) · O*NET Database 31.0 (2026-08-30) · Whitfill, Snodin & Becker: Forecasting AI Time Horizon Under Compute Slowdowns (2025-11-23)",
+            "url": "https://metr.org/time-horizons/",
+            "date": "2026-10-20",
+            "isEstimate": true
+          }
+        },
+        {
+          "skill": "organise business documents",
+          "label": "trap",
+          "source": {
+            "label": "METR Time Horizon 1.1 (page not updated since 2026-09-08) (2026-05-08) · Anthropic Economic Index, release 2026-03-24 (data 2026-02-05..02-12) (2026-03-24) · O*NET Database 31.0 (2026-08-30) · Whitfill, Snodin & Becker: Forecasting AI Time Horizon Under Compute Slowdowns (2025-11-23)",
+            "url": "https://metr.org/time-horizons/",
+            "date": "2026-10-20",
+            "isEstimate": true
+          }
+        },
+        {
+          "skill": "handle financial transactions",
+          "label": "trap",
+          "source": {
+            "label": "METR Time Horizon 1.1 (page not updated since 2026-09-08) (2026-05-08) · Anthropic Economic Index, release 2026-03-24 (data 2026-02-05..02-12) (2026-03-24) · O*NET Database 31.0 (2026-08-30) · Anthropic Economic Index, release 2026-06-26 (data Apr-May 2026) (2026-06-26) · Whitfill, Snodin & Becker: Forecasting AI Time Horizon Under Compute Slowdowns (2025-11-23)",
+            "url": "https://metr.org/time-horizons/",
+            "date": "2026-10-20",
+            "isEstimate": true
+          }
+        },
+        {
+          "skill": "manage accounts",
+          "label": "trap",
+          "source": {
+            "label": "METR Time Horizon 1.1 (page not updated since 2026-09-08) (2026-05-08) · Anthropic Economic Index, release 2026-03-24 (data 2026-02-05..02-12) (2026-03-24) · O*NET Database 31.0 (2026-08-30) · Anthropic Economic Index, release 2026-06-26 (data Apr-May 2026) (2026-06-26) · Whitfill, Snodin & Becker: Forecasting AI Time Horizon Under Compute Slowdowns (2025-11-23)",
+            "url": "https://metr.org/time-horizons/",
+            "date": "2026-10-20",
+            "isEstimate": true
+          }
+        }
+      ],
+      "2033": [
+        {
+          "skill": "allocate bills",
+          "label": "trap",
+          "source": {
+            "label": "METR Time Horizon 1.1 (page not updated since 2026-09-08) (2026-05-08) · Anthropic Economic Index, release 2026-03-24 (data 2026-02-05..02-12) (2026-03-24) · O*NET Database 31.0 (2026-08-30) · Anthropic Economic Index, release 2026-06-26 (data Apr-May 2026) (2026-06-26) · Whitfill, Snodin & Becker: Forecasting AI Time Horizon Under Compute Slowdowns (2025-11-23)",
+            "url": "https://metr.org/time-horizons/",
+            "date": "2026-10-20",
+            "isEstimate": true
+          }
+        },
+        {
+          "skill": "calculate tax",
+          "label": "trap",
+          "source": {
+            "label": "METR Time Horizon 1.1 (page not updated since 2026-09-08) (2026-05-08) · Anthropic Economic Index, release 2026-03-24 (data 2026-02-05..02-12) (2026-03-24) · O*NET Database 31.0 (2026-08-30) · Anthropic Economic Index, release 2026-06-26 (data Apr-May 2026) (2026-06-26) · Whitfill, Snodin & Becker: Forecasting AI Time Horizon Under Compute Slowdowns (2025-11-23)",
+            "url": "https://metr.org/time-horizons/",
+            "date": "2026-10-20",
+            "isEstimate": true
+          }
+        },
+        {
+          "skill": "commercial law",
+          "label": "trap",
+          "source": {
+            "label": "METR Time Horizon 1.1 (page not updated since 2026-09-08) (2026-05-08) · Anthropic Economic Index, release 2026-03-24 (data 2026-02-05..02-12) (2026-03-24) · O*NET Database 31.0 (2026-08-30) · Whitfill, Snodin & Becker: Forecasting AI Time Horizon Under Compute Slowdowns (2025-11-23)",
+            "url": "https://metr.org/time-horizons/",
+            "date": "2026-10-20",
+            "isEstimate": true
+          }
+        },
+        {
+          "skill": "company policies",
+          "label": "trap",
+          "source": {
+            "label": "METR Time Horizon 1.1 (page not updated since 2026-09-08) (2026-05-08) · Anthropic Economic Index, release 2026-03-24 (data 2026-02-05..02-12) (2026-03-24) · O*NET Database 31.0 (2026-08-30) · Whitfill, Snodin & Becker: Forecasting AI Time Horizon Under Compute Slowdowns (2025-11-23)",
+            "url": "https://metr.org/time-horizons/",
+            "date": "2026-10-20",
+            "isEstimate": true
+          }
+        },
+        {
+          "skill": "archive documentation related to the work",
+          "label": "trap",
+          "source": {
+            "label": "METR Time Horizon 1.1 (page not updated since 2026-09-08) (2026-05-08) · Anthropic Economic Index, release 2026-03-24 (data 2026-02-05..02-12) (2026-03-24) · O*NET Database 31.0 (2026-08-30) · Whitfill, Snodin & Becker: Forecasting AI Time Horizon Under Compute Slowdowns (2025-11-23)",
+            "url": "https://metr.org/time-horizons/",
+            "date": "2026-10-20",
+            "isEstimate": true
+          }
+        },
+        {
+          "skill": "organise business documents",
+          "label": "trap",
+          "source": {
+            "label": "METR Time Horizon 1.1 (page not updated since 2026-09-08) (2026-05-08) · Anthropic Economic Index, release 2026-03-24 (data 2026-02-05..02-12) (2026-03-24) · O*NET Database 31.0 (2026-08-30) · Whitfill, Snodin & Becker: Forecasting AI Time Horizon Under Compute Slowdowns (2025-11-23)",
+            "url": "https://metr.org/time-horizons/",
+            "date": "2026-10-20",
+            "isEstimate": true
+          }
+        },
+        {
+          "skill": "handle financial transactions",
+          "label": "trap",
+          "source": {
+            "label": "METR Time Horizon 1.1 (page not updated since 2026-09-08) (2026-05-08) · Anthropic Economic Index, release 2026-03-24 (data 2026-02-05..02-12) (2026-03-24) · O*NET Database 31.0 (2026-08-30) · Anthropic Economic Index, release 2026-06-26 (data Apr-May 2026) (2026-06-26) · Whitfill, Snodin & Becker: Forecasting AI Time Horizon Under Compute Slowdowns (2025-11-23)",
+            "url": "https://metr.org/time-horizons/",
+            "date": "2026-10-20",
+            "isEstimate": true
+          }
+        },
+        {
+          "skill": "manage accounts",
+          "label": "trap",
+          "source": {
+            "label": "METR Time Horizon 1.1 (page not updated since 2026-09-08) (2026-05-08) · Anthropic Economic Index, release 2026-03-24 (data 2026-02-05..02-12) (2026-03-24) · O*NET Database 31.0 (2026-08-30) · Anthropic Economic Index, release 2026-06-26 (data Apr-May 2026) (2026-06-26) · Whitfill, Snodin & Becker: Forecasting AI Time Horizon Under Compute Slowdowns (2025-11-23)",
+            "url": "https://metr.org/time-horizons/",
+            "date": "2026-10-20",
+            "isEstimate": true
+          }
+        }
+      ],
+      "2034": [
+        {
+          "skill": "allocate bills",
+          "label": "trap",
+          "source": {
+            "label": "METR Time Horizon 1.1 (page not updated since 2026-09-08) (2026-05-08) · Anthropic Economic Index, release 2026-03-24 (data 2026-02-05..02-12) (2026-03-24) · O*NET Database 31.0 (2026-08-30) · Anthropic Economic Index, release 2026-06-26 (data Apr-May 2026) (2026-06-26) · Whitfill, Snodin & Becker: Forecasting AI Time Horizon Under Compute Slowdowns (2025-11-23)",
+            "url": "https://metr.org/time-horizons/",
+            "date": "2026-10-20",
+            "isEstimate": true
+          }
+        },
+        {
+          "skill": "calculate tax",
+          "label": "trap",
+          "source": {
+            "label": "METR Time Horizon 1.1 (page not updated since 2026-09-08) (2026-05-08) · Anthropic Economic Index, release 2026-03-24 (data 2026-02-05..02-12) (2026-03-24) · O*NET Database 31.0 (2026-08-30) · Anthropic Economic Index, release 2026-06-26 (data Apr-May 2026) (2026-06-26) · Whitfill, Snodin & Becker: Forecasting AI Time Horizon Under Compute Slowdowns (2025-11-23)",
+            "url": "https://metr.org/time-horizons/",
+            "date": "2026-10-20",
+            "isEstimate": true
+          }
+        },
+        {
+          "skill": "commercial law",
+          "label": "trap",
+          "source": {
+            "label": "METR Time Horizon 1.1 (page not updated since 2026-09-08) (2026-05-08) · Anthropic Economic Index, release 2026-03-24 (data 2026-02-05..02-12) (2026-03-24) · O*NET Database 31.0 (2026-08-30) · Whitfill, Snodin & Becker: Forecasting AI Time Horizon Under Compute Slowdowns (2025-11-23)",
+            "url": "https://metr.org/time-horizons/",
+            "date": "2026-10-20",
+            "isEstimate": true
+          }
+        },
+        {
+          "skill": "company policies",
+          "label": "trap",
+          "source": {
+            "label": "METR Time Horizon 1.1 (page not updated since 2026-09-08) (2026-05-08) · Anthropic Economic Index, release 2026-03-24 (data 2026-02-05..02-12) (2026-03-24) · O*NET Database 31.0 (2026-08-30) · Whitfill, Snodin & Becker: Forecasting AI Time Horizon Under Compute Slowdowns (2025-11-23)",
+            "url": "https://metr.org/time-horizons/",
+            "date": "2026-10-20",
+            "isEstimate": true
+          }
+        },
+        {
+          "skill": "archive documentation related to the work",
+          "label": "trap",
+          "source": {
+            "label": "METR Time Horizon 1.1 (page not updated since 2026-09-08) (2026-05-08) · Anthropic Economic Index, release 2026-03-24 (data 2026-02-05..02-12) (2026-03-24) · O*NET Database 31.0 (2026-08-30) · Whitfill, Snodin & Becker: Forecasting AI Time Horizon Under Compute Slowdowns (2025-11-23)",
+            "url": "https://metr.org/time-horizons/",
+            "date": "2026-10-20",
+            "isEstimate": true
+          }
+        },
+        {
+          "skill": "organise business documents",
+          "label": "trap",
+          "source": {
+            "label": "METR Time Horizon 1.1 (page not updated since 2026-09-08) (2026-05-08) · Anthropic Economic Index, release 2026-03-24 (data 2026-02-05..02-12) (2026-03-24) · O*NET Database 31.0 (2026-08-30) · Whitfill, Snodin & Becker: Forecasting AI Time Horizon Under Compute Slowdowns (2025-11-23)",
+            "url": "https://metr.org/time-horizons/",
+            "date": "2026-10-20",
+            "isEstimate": true
+          }
+        },
+        {
+          "skill": "handle financial transactions",
+          "label": "trap",
+          "source": {
+            "label": "METR Time Horizon 1.1 (page not updated since 2026-09-08) (2026-05-08) · Anthropic Economic Index, release 2026-03-24 (data 2026-02-05..02-12) (2026-03-24) · O*NET Database 31.0 (2026-08-30) · Anthropic Economic Index, release 2026-06-26 (data Apr-May 2026) (2026-06-26) · Whitfill, Snodin & Becker: Forecasting AI Time Horizon Under Compute Slowdowns (2025-11-23)",
+            "url": "https://metr.org/time-horizons/",
+            "date": "2026-10-20",
+            "isEstimate": true
+          }
+        },
+        {
+          "skill": "manage accounts",
+          "label": "trap",
+          "source": {
+            "label": "METR Time Horizon 1.1 (page not updated since 2026-09-08) (2026-05-08) · Anthropic Economic Index, release 2026-03-24 (data 2026-02-05..02-12) (2026-03-24) · O*NET Database 31.0 (2026-08-30) · Anthropic Economic Index, release 2026-06-26 (data Apr-May 2026) (2026-06-26) · Whitfill, Snodin & Becker: Forecasting AI Time Horizon Under Compute Slowdowns (2025-11-23)",
+            "url": "https://metr.org/time-horizons/",
+            "date": "2026-10-20",
+            "isEstimate": true
+          }
+        }
+      ],
+      "2035": [
+        {
+          "skill": "allocate bills",
+          "label": "trap",
+          "source": {
+            "label": "METR Time Horizon 1.1 (page not updated since 2026-09-08) (2026-05-08) · Anthropic Economic Index, release 2026-03-24 (data 2026-02-05..02-12) (2026-03-24) · O*NET Database 31.0 (2026-08-30) · Anthropic Economic Index, release 2026-06-26 (data Apr-May 2026) (2026-06-26) · Whitfill, Snodin & Becker: Forecasting AI Time Horizon Under Compute Slowdowns (2025-11-23)",
+            "url": "https://metr.org/time-horizons/",
+            "date": "2026-10-20",
+            "isEstimate": true
+          }
+        },
+        {
+          "skill": "calculate tax",
+          "label": "trap",
+          "source": {
+            "label": "METR Time Horizon 1.1 (page not updated since 2026-09-08) (2026-05-08) · Anthropic Economic Index, release 2026-03-24 (data 2026-02-05..02-12) (2026-03-24) · O*NET Database 31.0 (2026-08-30) · Anthropic Economic Index, release 2026-06-26 (data Apr-May 2026) (2026-06-26) · Whitfill, Snodin & Becker: Forecasting AI Time Horizon Under Compute Slowdowns (2025-11-23)",
+            "url": "https://metr.org/time-horizons/",
+            "date": "2026-10-20",
+            "isEstimate": true
+          }
+        },
+        {
+          "skill": "commercial law",
+          "label": "trap",
+          "source": {
+            "label": "METR Time Horizon 1.1 (page not updated since 2026-09-08) (2026-05-08) · Anthropic Economic Index, release 2026-03-24 (data 2026-02-05..02-12) (2026-03-24) · O*NET Database 31.0 (2026-08-30) · Whitfill, Snodin & Becker: Forecasting AI Time Horizon Under Compute Slowdowns (2025-11-23)",
+            "url": "https://metr.org/time-horizons/",
+            "date": "2026-10-20",
+            "isEstimate": true
+          }
+        },
+        {
+          "skill": "company policies",
+          "label": "trap",
+          "source": {
+            "label": "METR Time Horizon 1.1 (page not updated since 2026-09-08) (2026-05-08) · Anthropic Economic Index, release 2026-03-24 (data 2026-02-05..02-12) (2026-03-24) · O*NET Database 31.0 (2026-08-30) · Whitfill, Snodin & Becker: Forecasting AI Time Horizon Under Compute Slowdowns (2025-11-23)",
+            "url": "https://metr.org/time-horizons/",
+            "date": "2026-10-20",
+            "isEstimate": true
+          }
+        },
+        {
+          "skill": "archive documentation related to the work",
+          "label": "trap",
+          "source": {
+            "label": "METR Time Horizon 1.1 (page not updated since 2026-09-08) (2026-05-08) · Anthropic Economic Index, release 2026-03-24 (data 2026-02-05..02-12) (2026-03-24) · O*NET Database 31.0 (2026-08-30) · Whitfill, Snodin & Becker: Forecasting AI Time Horizon Under Compute Slowdowns (2025-11-23)",
+            "url": "https://metr.org/time-horizons/",
+            "date": "2026-10-20",
+            "isEstimate": true
+          }
+        },
+        {
+          "skill": "organise business documents",
+          "label": "trap",
+          "source": {
+            "label": "METR Time Horizon 1.1 (page not updated since 2026-09-08) (2026-05-08) · Anthropic Economic Index, release 2026-03-24 (data 2026-02-05..02-12) (2026-03-24) · O*NET Database 31.0 (2026-08-30) · Whitfill, Snodin & Becker: Forecasting AI Time Horizon Under Compute Slowdowns (2025-11-23)",
+            "url": "https://metr.org/time-horizons/",
+            "date": "2026-10-20",
+            "isEstimate": true
+          }
+        },
+        {
+          "skill": "handle financial transactions",
+          "label": "trap",
+          "source": {
+            "label": "METR Time Horizon 1.1 (page not updated since 2026-09-08) (2026-05-08) · Anthropic Economic Index, release 2026-03-24 (data 2026-02-05..02-12) (2026-03-24) · O*NET Database 31.0 (2026-08-30) · Anthropic Economic Index, release 2026-06-26 (data Apr-May 2026) (2026-06-26) · Whitfill, Snodin & Becker: Forecasting AI Time Horizon Under Compute Slowdowns (2025-11-23)",
+            "url": "https://metr.org/time-horizons/",
+            "date": "2026-10-20",
+            "isEstimate": true
+          }
+        },
+        {
+          "skill": "manage accounts",
+          "label": "trap",
+          "source": {
+            "label": "METR Time Horizon 1.1 (page not updated since 2026-09-08) (2026-05-08) · Anthropic Economic Index, release 2026-03-24 (data 2026-02-05..02-12) (2026-03-24) · O*NET Database 31.0 (2026-08-30) · Anthropic Economic Index, release 2026-06-26 (data Apr-May 2026) (2026-06-26) · Whitfill, Snodin & Becker: Forecasting AI Time Horizon Under Compute Slowdowns (2025-11-23)",
+            "url": "https://metr.org/time-horizons/",
+            "date": "2026-10-20",
+            "isEstimate": true
+          }
+        },
+        {
+          "skill": "accounting techniques",
+          "label": "trap",
+          "source": {
+            "label": "METR Time Horizon 1.1 (page not updated since 2026-09-08) (2026-05-08) · Anthropic Economic Index, release 2026-03-24 (data 2026-02-05..02-12) (2026-03-24) · O*NET Database 31.0 (2026-08-30) · Anthropic Economic Index, release 2026-06-26 (data Apr-May 2026) (2026-06-26) · Whitfill, Snodin & Becker: Forecasting AI Time Horizon Under Compute Slowdowns (2025-11-23)",
+            "url": "https://metr.org/time-horizons/",
+            "date": "2026-10-20",
+            "isEstimate": true
+          }
+        },
+        {
+          "skill": "attach accounting certificates to accounting transactions",
+          "label": "trap",
+          "source": {
+            "label": "METR Time Horizon 1.1 (page not updated since 2026-09-08) (2026-05-08) · Anthropic Economic Index, release 2026-03-24 (data 2026-02-05..02-12) (2026-03-24) · O*NET Database 31.0 (2026-08-30) · Anthropic Economic Index, release 2026-06-26 (data Apr-May 2026) (2026-06-26) · Whitfill, Snodin & Becker: Forecasting AI Time Horizon Under Compute Slowdowns (2025-11-23)",
+            "url": "https://metr.org/time-horizons/",
+            "date": "2026-10-20",
+            "isEstimate": true
+          }
+        },
+        {
+          "skill": "ensure compliance with accounting conventions",
+          "label": "trap",
+          "source": {
+            "label": "METR Time Horizon 1.1 (page not updated since 2026-09-08) (2026-05-08) · Anthropic Economic Index, release 2026-03-24 (data 2026-02-05..02-12) (2026-03-24) · O*NET Database 31.0 (2026-08-30) · Anthropic Economic Index, release 2026-06-26 (data Apr-May 2026) (2026-06-26) · Whitfill, Snodin & Becker: Forecasting AI Time Horizon Under Compute Slowdowns (2025-11-23)",
+            "url": "https://metr.org/time-horizons/",
+            "date": "2026-10-20",
+            "isEstimate": true
+          }
+        }
+      ]
+    },
     "sdg": [
       {
         "target": "16.5",
@@ -308,6 +1010,7 @@
         "effect": 1,
         "reason": "Reduces corruption and bribery in economic systems.",
         "reviewed": null,
+        "is_estimate": true,
         "malaysia_off_track": true
       }
     ]

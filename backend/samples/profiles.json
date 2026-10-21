@@ -1,0 +1,300 @@
+{
+  "snapshot": "2026-03-24",
+  "request": "GET /api/profiles",
+  "response": [
+    {
+      "id": "aisyah",
+      "name": "Aisyah",
+      "title": "Bookkeeping, Accounting, and Auditing Clerks",
+      "target_job": null,
+      "tasks": [
+        {
+          "task_id": "TASK_2487",
+          "name": "Operate computers programmed with accounting software to record, store, and analyze information.",
+          "hours": 5.5
+        },
+        {
+          "task_id": "TASK_2497",
+          "name": "Perform financial calculations, such as amounts due, interest charges, balances, discounts, equity, and principal.",
+          "hours": 4.5
+        },
+        {
+          "task_id": "TASK_2498",
+          "name": "Perform general office duties, such as filing, answering telephones, and handling routine correspondence.",
+          "hours": 5.5
+        },
+        {
+          "task_id": "TASK_2494",
+          "name": "Access computerized financial information to answer general questions as well as those related to specific accounts.",
+          "hours": 4.5
+        },
+        {
+          "task_id": "TASK_2490",
+          "name": "Classify, record, and summarize numerical and financial data to compile and keep financial records, using journals and ledgers or computers.",
+          "hours": 4.5
+        },
+        {
+          "task_id": "TASK_2489",
+          "name": "Debit, credit, and total accounts on computer spreadsheets and databases, using specialized accounting software.",
+          "hours": 4.5
+        },
+        {
+          "task_id": "TASK_2495",
+          "name": "Operate 10-key calculators, typewriters, and copy machines to perform calculations and produce documents.",
+          "hours": 6
+        },
+        {
+          "task_id": "TASK_2486",
+          "name": "Check figures, postings, and documents for correct entry, mathematical accuracy, and proper codes.",
+          "hours": 5
+        }
+      ],
+      "skill_ids": [
+        "SK_a0d79341",
+        "SK_faf8943c",
+        "SK_08371fe9",
+        "SK_99b163e8",
+        "SK_dc417e19",
+        "SK_28a2ff4b",
+        "SK_2ecf90f1",
+        "SK_d63c2bad",
+        "SK_f75b740c",
+        "SK_6451e645",
+        "SK_3e04e39d",
+        "SK_f7e7ccb6",
+        "SK_e2e15494",
+        "SK_eaa9727c",
+        "SK_880c54f9",
+        "SK_e9030465",
+        "SK_d6e78d9a",
+        "SK_60f51172",
+        "SK_3982571a",
+        "SK_7ee4c2ea",
+        "SK_8a326ee1"
+      ],
+      "skills": [
+        {
+          "skill_id": "SK_a0d79341",
+          "name": "use accounting systems"
+        },
+        {
+          "skill_id": "SK_faf8943c",
+          "name": "maintain financial records"
+        },
+        {
+          "skill_id": "SK_08371fe9",
+          "name": "accounting department processes"
+        },
+        {
+          "skill_id": "SK_99b163e8",
+          "name": "accounting entries"
+        },
+        {
+          "skill_id": "SK_dc417e19",
+          "name": "manage the general ledger"
+        },
+        {
+          "skill_id": "SK_28a2ff4b",
+          "name": "allocate bills"
+        },
+        {
+          "skill_id": "SK_2ecf90f1",
+          "name": "calculate tax"
+        },
+        {
+          "skill_id": "SK_d63c2bad",
+          "name": "commercial law"
+        },
+        {
+          "skill_id": "SK_f75b740c",
+          "name": "company policies"
+        },
+        {
+          "skill_id": "SK_6451e645",
+          "name": "archive documentation related to the work"
+        },
+        {
+          "skill_id": "SK_3e04e39d",
+          "name": "organise business documents"
+        },
+        {
+          "skill_id": "SK_f7e7ccb6",
+          "name": "handle financial transactions"
+        },
+        {
+          "skill_id": "SK_e2e15494",
+          "name": "manage accounts"
+        },
+        {
+          "skill_id": "SK_eaa9727c",
+          "name": "prepare trial accounting balances"
+        },
+        {
+          "skill_id": "SK_880c54f9",
+          "name": "accounting techniques"
+        },
+        {
+          "skill_id": "SK_e9030465",
+          "name": "attach accounting certificates to accounting transactions"
+        },
+        {
+          "skill_id": "SK_d6e78d9a",
+          "name": "ensure compliance with accounting conventions"
+        },
+        {
+          "skill_id": "SK_60f51172",
+          "name": "prepare financial statements"
+        },
+        {
+          "skill_id": "SK_3982571a",
+          "name": "manage cash desk"
+        },
+        {
+          "skill_id": "SK_7ee4c2ea",
+          "name": "statistics"
+        },
+        {
+          "skill_id": "SK_8a326ee1",
+          "name": "identify accounting errors"
+        }
+      ],
+      "target_job_tasks": []
+    },
+    {
+      "id": "daniel",
+      "name": "Daniel",
+      "title": "No current job · aiming for Market Research Analysts and Marketing Specialists",
+      "target_job": "Market Research Analysts and Marketing Specialists",
+      "tasks": [],
+      "skill_ids": [
+        "SK_de03f4fd",
+        "SK_d3e585e9",
+        "SK_8770350e",
+        "SK_7ee4c2ea",
+        "SK_348b74cd",
+        "SK_2b92a5b2",
+        "SK_d0f2f8a7",
+        "SK_8316979b",
+        "SK_f73ed9e8"
+      ],
+      "skills": [
+        {
+          "skill_id": "SK_de03f4fd",
+          "name": "marketing principles"
+        },
+        {
+          "skill_id": "SK_d3e585e9",
+          "name": "marketing mix"
+        },
+        {
+          "skill_id": "SK_8770350e",
+          "name": "market research"
+        },
+        {
+          "skill_id": "SK_7ee4c2ea",
+          "name": "statistics"
+        },
+        {
+          "skill_id": "SK_348b74cd",
+          "name": "visual presentation techniques"
+        },
+        {
+          "skill_id": "SK_2b92a5b2",
+          "name": "perform data analysis"
+        },
+        {
+          "skill_id": "SK_d0f2f8a7",
+          "name": "present reports"
+        },
+        {
+          "skill_id": "SK_8316979b",
+          "name": "conduct quantitative research"
+        },
+        {
+          "skill_id": "SK_f73ed9e8",
+          "name": "design questionnaires"
+        }
+      ],
+      "target_job_tasks": [
+        {
+          "task_id": "TASK_5434",
+          "name": "Prepare reports of findings, illustrating data graphically and translating complex findings into written text.",
+          "hours": 0,
+          "share_ai": null
+        },
+        {
+          "task_id": "TASK_5433",
+          "name": "Collect and analyze data on customer demographics, preferences, needs, and buying habits to identify potential markets and factors affecting product demand.",
+          "hours": 0,
+          "share_ai": null
+        },
+        {
+          "task_id": "TASK_5439",
+          "name": "Conduct research on consumer opinions and marketing strategies, collaborating with marketing professionals, statisticians, pollsters, and other professionals.",
+          "hours": 0,
+          "share_ai": null
+        },
+        {
+          "task_id": "TASK_5435",
+          "name": "Measure and assess customer and employee satisfaction.",
+          "hours": 0,
+          "share_ai": null
+        },
+        {
+          "task_id": "TASK_5443",
+          "name": "Devise and evaluate methods and procedures for collecting data, such as surveys, opinion polls, or questionnaires, or arrange to obtain existing data.",
+          "hours": 0,
+          "share_ai": null
+        },
+        {
+          "task_id": "TASK_5438",
+          "name": "Measure the effectiveness of marketing, advertising, and communications programs and strategies.",
+          "hours": 0,
+          "share_ai": null
+        },
+        {
+          "task_id": "TASK_5437",
+          "name": "Seek and provide information to help companies determine their position in the marketplace.",
+          "hours": 0,
+          "share_ai": null
+        },
+        {
+          "task_id": "TASK_5436",
+          "name": "Forecast and track marketing and sales trends, analyzing collected data.",
+          "hours": 0,
+          "share_ai": null
+        },
+        {
+          "task_id": "TASK_5441",
+          "name": "Gather data on competitors and analyze their prices, sales, and method of marketing and distribution.",
+          "hours": 0,
+          "share_ai": null
+        },
+        {
+          "task_id": "TASK_5442",
+          "name": "Monitor industry statistics and follow trends in trade literature.",
+          "hours": 0,
+          "share_ai": null
+        },
+        {
+          "task_id": "TASK_5440",
+          "name": "Attend staff conferences to provide management with information and proposals concerning the promotion, distribution, design, and pricing of company products or services.",
+          "hours": 0,
+          "share_ai": null
+        },
+        {
+          "task_id": "TASK_5445",
+          "name": "Direct trained survey interviewers.",
+          "hours": 0,
+          "share_ai": null
+        },
+        {
+          "task_id": "TASK_5444",
+          "name": "Develop and implement procedures for identifying advertising needs.",
+          "hours": 0,
+          "share_ai": null
+        }
+      ]
+    }
+  ]
+}
