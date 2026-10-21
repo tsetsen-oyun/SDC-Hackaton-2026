@@ -42,6 +42,8 @@ function sdgPills(links) {
     reason: l.reason ?? l.one_line_reason ?? null,
     // Empty until a person checks the link, so the page can say "not yet checked".
     reviewed: l.reviewed ?? null,
+    // true when SDSN says Malaysia is off track on this goal (it counts double in the planet ranking).
+    malaysia_off_track: l.malaysia_off_track ?? null,
   }));
 }
 
@@ -224,7 +226,7 @@ export function getSources() {
       "A task counts as \"AI could do this\" once the year passes the middle of its date range.",
       "Tasks with no published time in Anthropic's data are never counted as something AI could do.",
       `Match score (our weighting): skills ${WEIGHTS.skills * 100}%, fit with what's left of your week ${WEIGHTS.leftover * 100}%, job outlook ${WEIGHTS.outlook * 100}%. A missing skill in the same ESCO group as one you have counts ${RELATED_CREDIT}.`,
-      `Market + planet ranking: ${SDG_POINTS} points added or taken away per SDG target link (our weighting).`,
+      `Market + planet ranking (our weighting): each SDG goal a job helps adds ${SDG_POINTS.goal} points (or takes them away if it harms it), ${SDG_POINTS.off_track_goal} if Malaysia is off track on that goal (SDSN, ${snap.malaysiaSdg.length ? `off track on goals ${[...snap.offTrackGoals].join(", ")}` : "no status in this snapshot"}). Each goal counts once per job, and the total is at most ${SDG_POINTS.cap} points either way.`,
       `Route weeks assume ${HOURS_PER_WEEK} hours of study a week. Course cost and length are as written on the course page on the date checked. HRD Corp status is not checked.`,
       "Name and age are never used in any calculation.",
     ],

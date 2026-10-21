@@ -43,7 +43,8 @@ test("a skill outside the task's job is dropped, with a warning", () => {
 });
 
 test("missing optional files are listed, not fatal", () => {
-  assert.deepEqual(old.missing, ["job_skills.csv", "sdg_links.csv", "courses.csv"]);
+  assert.deepEqual(old.missing, ["job_skills.csv", "sdg_links.csv", "courses.csv", "malaysia_sdg_status.csv"]);
+  assert.equal(old.offTrackGoals.size, 0);
   assert.deepEqual(old.courses, []);
 });
 
@@ -151,4 +152,10 @@ test("a person with no current job has a target job and their own skills", () =>
   assert.equal(grad.target_job, "JOB_AUD");
   assert.deepEqual(grad.skill_ids, ["S_COMM", "S_REPORT"]);
   assert.deepEqual(grad.tasks, []);
+});
+
+test("Malaysia SDG status: the goals marked off track become a set of goal numbers", async () => {
+  const snap = await changedCopy((folder, fs, path) => fs.writeFileSync(path.join(folder, "malaysia_sdg_status.csv"),
+    "sdg_goal,off_track,source\n8,true,test_sdsn\n9,false,test_sdsn\n12,TRUE,test_sdsn\n"));
+  assert.deepEqual([...snap.offTrackGoals], ["8", "12"]);
 });

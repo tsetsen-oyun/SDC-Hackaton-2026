@@ -60,14 +60,43 @@ test("marketPlanet without SDG data: same ranking, with a note", () => {
   assert.match(planet.note, /No SDG links/);
 });
 
-test("marketPlanet with SDG links can change the order", () => {
-  const sdgLinks = [
-    { item_type: "role", item_id: "JOB_ANL", sdg_target: "8.5", sign: "+", one_line_reason: "test", source: "test_onet" },
-    { item_type: "role", item_id: "JOB_AUD", sdg_target: "12.2", sign: "-", one_line_reason: "test", source: "test_onet" },
-  ];
-  const r = matchScenario({ ...old, sdgLinks }, { tasks: siti, scenario: "moderate", mode: "marketPlanet" });
+// SDG test data: a role link, and a Malaysia status where the given goals are off track.
+const sdgLink = (item_id, sdg_target, sign) => ({ item_type: "role", item_id, sdg_target, sign, one_line_reason: "test", source: "test_onet" });
+const malaysia = (...offTrack) => ({
+  malaysiaSdg: offTrack.map((g) => ({ sdg_goal: g, off_track: true, source: "test_sdsn" })),
+  offTrackGoals: new Set(offTrack),
+});
+const planetRun = (extra) => matchScenario({ ...old, ...extra }, { tasks: siti, scenario: "moderate", mode: "marketPlanet" });
+
+test("marketPlanet: goals Malaysia is off track on count double, and can change the order", () => {
+  const sdgLinks = [sdgLink("JOB_ANL", "8.5", "+"), sdgLink("JOB_AUD", "12.2", "-")];
+  const r = planetRun({ sdgLinks, ...malaysia("8", "12") });
   assert.equal(r.by_year[2031].roles[0].role_id, "JOB_ANL"); // 35 + 10 = 45 beats 50 - 10 = 40
   assert.equal(role(r, 2031, "JOB_ANL").parts.sdg, 10);
+  assert.equal(role(r, 2031, "JOB_ANL").sdg[0].malaysia_off_track, true);
+  assert.ok(role(r, 2031, "JOB_ANL").sources.includes("test_sdsn"));
+});
+
+test("marketPlanet: a goal Malaysia is on track with counts 5, so close roles keep their order", () => {
+  const sdgLinks = [sdgLink("JOB_ANL", "8.5", "+"), sdgLink("JOB_AUD", "12.2", "-")];
+  const r = planetRun({ sdgLinks, ...malaysia("4") });
+  assert.equal(r.by_year[2031].roles[0].role_id, "JOB_AUD"); // 50 - 5 = 45 beats 35 + 5 = 40
+  assert.equal(role(r, 2031, "JOB_ANL").parts.sdg, 5);
+  assert.ok(!role(r, 2031, "JOB_ANL").sources.includes("test_sdsn"));
+});
+
+test("marketPlanet: several targets of one goal count once, and the total is capped", () => {
+  const sdgLinks = [sdgLink("JOB_ANL", "8.2", "+"), sdgLink("JOB_ANL", "8.5", "+"),
+    sdgLink("JOB_AUD", "4.4", "+"), sdgLink("JOB_AUD", "8.5", "+"), sdgLink("JOB_AUD", "13.1", "+")];
+  const r = planetRun({ sdgLinks, ...malaysia("4", "8", "13") });
+  assert.equal(role(r, 2031, "JOB_ANL").parts.sdg, 10); // goal 8 once, not twice
+  assert.equal(role(r, 2031, "JOB_AUD").parts.sdg, 15); // 10 + 10 + 10, capped at 15
+});
+
+test("marketPlanet without Malaysia status: every goal counts the same, with a note", () => {
+  const r = planetRun({ sdgLinks: [sdgLink("JOB_ANL", "8.5", "+")] });
+  assert.equal(role(r, 2031, "JOB_ANL").parts.sdg, 5);
+  assert.match(r.note, /No Malaysia SDG status/);
 });
 
 test("every role card carries sources and is an estimate", () => {
