@@ -94,6 +94,19 @@ app.post(
   })
 );
 
+app.post(
+  "/api/mentor",
+  needs("mentor"),
+  wrap(async (req, res) => {
+    const { tasks, skills, scenario, userId } = req.body;
+
+    if (!validTasks(tasks) || !Array.isArray(skills) || !SCENARIOS.includes(scenario))
+      return bad(res, "Need tasks[], skills[], scenario, userId");
+
+    res.json(await engine.mentor({ tasks, skills, scenario, userId }));
+  })
+);
+
 app.get(
   "/api/sources",
   needs("getSources"),

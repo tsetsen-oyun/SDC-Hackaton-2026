@@ -204,6 +204,39 @@ export function buildRoute({ jobId, skills = [], scenario }) {
   };
 }
 
+// The mentor card: written from the point of view of the person on screen ("you bring" / "they bring").
+// The other person's name is only shown on the card; the engine never reads it.
+export function mentor({ tasks = [], skills = [], scenario, userId = null }) {
+  const snap = engine.snapshot();
+  const r = engine.mentor({ tasks: worked(tasks), skills, scenario, userId });
+  const names = (ids) => ids.map((s) => skillName(snap, s));
+  return {
+    scenario,
+    snapshot: r.snapshot_date,
+    consent_note: r.consent_note,
+    pairs: r.pairs.map((p) => {
+      const senior = p.person_side === "senior";
+      const by_year = {};
+      for (const [y, w] of Object.entries(p.by_year)) {
+        by_year[y] = {
+          possible: w.possible,
+          you_bring: names(senior ? w.senior_brings : w.junior_brings),
+          they_bring: names(senior ? w.junior_brings : w.senior_brings),
+          // The job the senior fits best that year, so the card can say what the senior is moving towards.
+          senior_next_job: snap.roles.get(w.senior_top_role)?.role_name ?? null,
+        };
+      }
+      return {
+        with_id: p.user_id,
+        with_name: snap.users.get(p.user_id)?.display_name ?? p.user_id,
+        you_are: p.person_side,
+        by_year,
+        source: receipt(snap, p.sources, p.is_estimate),
+      };
+    }),
+  };
+}
+
 export function getSources() {
   const s = engine.getSources();
   const snap = engine.snapshot();
