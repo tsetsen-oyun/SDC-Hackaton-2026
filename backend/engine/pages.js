@@ -42,6 +42,8 @@ function sdgPills(links) {
     reason: l.reason ?? l.one_line_reason ?? null,
     // Empty until a person checks the link, so the page can say "not yet checked".
     reviewed: l.reviewed ?? null,
+    // true when SDSN says Malaysia is off track on this goal (it counts double in the planet ranking).
+    malaysia_off_track: l.malaysia_off_track ?? null,
   }));
 }
 
@@ -202,6 +204,39 @@ export function buildRoute({ jobId, skills = [], scenario }) {
   };
 }
 
+// The mentor card: written from the point of view of the person on screen ("you bring" / "they bring").
+// The other person's name is only shown on the card; the engine never reads it.
+export function mentor({ tasks = [], skills = [], scenario, userId = null }) {
+  const snap = engine.snapshot();
+  const r = engine.mentor({ tasks: worked(tasks), skills, scenario, userId });
+  const names = (ids) => ids.map((s) => skillName(snap, s));
+  return {
+    scenario,
+    snapshot: r.snapshot_date,
+    consent_note: r.consent_note,
+    pairs: r.pairs.map((p) => {
+      const senior = p.person_side === "senior";
+      const by_year = {};
+      for (const [y, w] of Object.entries(p.by_year)) {
+        by_year[y] = {
+          possible: w.possible,
+          you_bring: names(senior ? w.senior_brings : w.junior_brings),
+          they_bring: names(senior ? w.junior_brings : w.senior_brings),
+          // The job the senior fits best that year, so the card can say what the senior is moving towards.
+          senior_next_job: snap.roles.get(w.senior_top_role)?.role_name ?? null,
+        };
+      }
+      return {
+        with_id: p.user_id,
+        with_name: snap.users.get(p.user_id)?.display_name ?? p.user_id,
+        you_are: p.person_side,
+        by_year,
+        source: receipt(snap, p.sources, p.is_estimate),
+      };
+    }),
+  };
+}
+
 export function getSources() {
   const s = engine.getSources();
   const snap = engine.snapshot();
@@ -224,7 +259,7 @@ export function getSources() {
       "A task counts as \"AI could do this\" once the year passes the middle of its date range.",
       "Tasks with no published time in Anthropic's data are never counted as something AI could do.",
       `Match score (our weighting): skills ${WEIGHTS.skills * 100}%, fit with what's left of your week ${WEIGHTS.leftover * 100}%, job outlook ${WEIGHTS.outlook * 100}%. A missing skill in the same ESCO group as one you have counts ${RELATED_CREDIT}.`,
-      `Market + planet ranking: ${SDG_POINTS} points added or taken away per SDG target link (our weighting).`,
+      `Market + planet ranking (our weighting): each SDG goal a job helps adds ${SDG_POINTS.goal} points (or takes them away if it harms it), ${SDG_POINTS.off_track_goal} if Malaysia is off track on that goal (SDSN, ${snap.malaysiaSdg.length ? `off track on goals ${[...snap.offTrackGoals].join(", ")}` : "no status in this snapshot"}). Each goal counts once per job, and the total is at most ${SDG_POINTS.cap} points either way.`,
       `Route weeks assume ${HOURS_PER_WEEK} hours of study a week. Course cost and length are as written on the course page on the date checked. HRD Corp status is not checked.`,
       "Name and age are never used in any calculation.",
     ],

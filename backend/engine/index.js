@@ -5,6 +5,7 @@ import { listSnapshots, loadSnapshot, snapshotsDir } from "./load.js";
 import { forecastScenario } from "./forecast.js";
 import { matchScenario, roleTasks } from "./match.js";
 import { routeFor } from "./route.js";
+import { mentorPairs } from "./mentor.js";
 
 let current = null;
 
@@ -43,6 +44,12 @@ export function match({ tasks, skills = [], scenario, mode = "market", assumptio
 // Without courses.csv it says so instead of guessing courses.
 export function buildRoute({ jobId, skills = [] } = {}) {
   return routeFor(snapshot(), { jobId, skills });
+}
+
+// Possible junior–senior pairs with the sample people, from skills only. userId keeps a sample person
+// from being paired with themselves. Returns every year, like match.
+export function mentor({ tasks = [], skills = [], scenario, userId = null } = {}) {
+  return mentorPairs(snapshot(), { tasks: cleanTasks(tasks), skills, scenario, userId });
 }
 
 // Everything the About page and the receipts need.
