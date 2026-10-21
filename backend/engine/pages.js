@@ -42,23 +42,39 @@ function sdgPills(links) {
     reason: l.reason ?? l.one_line_reason ?? null,
     // Empty until a person checks the link, so the page can say "not yet checked".
     reviewed: l.reviewed ?? null,
+    is_estimate: l.is_estimate ?? null,
     // true when SDSN says Malaysia is off track on this goal (it counts double in the planet ranking).
     malaysia_off_track: l.malaysia_off_track ?? null,
   }));
 }
 
+// Adds whether SDSN says Malaysia is off track on the link's goal.
+const withOffTrack = (snap, l) => ({ ...l, malaysia_off_track: snap.offTrackGoals.has(String(l.sdg_target).split(".")[0]) });
+
+// SDG pills for one skill, from the skill rows of sdg_links.csv. They don't change any score.
+function skillSdgPills(snap, skillId) {
+  return sdgPills(snap.sdgLinks.filter((l) => l.item_type === "skill" && l.item_id === skillId).map((l) => withOffTrack(snap, l)));
+}
+
 export function getProfiles() {
   const snap = engine.snapshot();
-  return engine.getProfiles().map((p) => ({
+  return engine.getProfiles().map((p) => profileForPage(snap, p));
+}
+
+function profileForPage(snap, p) {
+  // Their own skills plus the skills of the tasks they do, so the Map and Route pages can send them.
+  const skillIds = [...new Set([...p.skill_ids, ...p.tasks.flatMap((t) => snap.taskSkills.get(t.task_id) ?? [])])];
+  return {
     id: p.user_id,
     name: p.display_name,
     title: p.current_job_name ?? (p.target_job_name ? `No current job · aiming for ${p.target_job_name}` : "No current job"),
     target_job: p.target_job_name,
     tasks: p.tasks.map(({ task_id, name, hours }) => ({ task_id, name, hours })),
-    // Their own skills plus the skills of the tasks they do, so the Map and Route pages can send them.
-    skill_ids: [...new Set([...p.skill_ids, ...p.tasks.flatMap((t) => snap.taskSkills.get(t.task_id) ?? [])])],
+    skill_ids: skillIds,
+    // The same skills with names, for showing them on the page.
+    skills: skillIds.map((id) => ({ skill_id: id, name: skillName(snap, id) })),
     target_job_tasks: p.target_job_tasks.map(({ task_id, name }) => ({ task_id, name, hours: 0, share_ai: null })),
-  }));
+  };
 }
 
 export function forecast(tasks, scenario) {
@@ -66,6 +82,7 @@ export function forecast(tasks, scenario) {
   const f = engine.forecast(tasks, scenario);
   // "What's left" changes with the year, and the engine works it out in match.
   const m = engine.match({ tasks: worked(tasks), skills: [], scenario });
+  const cards = engine.skillWeather(tasks, scenario);
 
   const rows = f.tasks.map((t) => ({
     task_id: t.task_id,
@@ -101,6 +118,19 @@ export function forecast(tasks, scenario) {
         is_estimate: true,
         source: receipt(snap, er.sources, true),
       },
+      // Same shape as the mock's skill cards: trend = rising / steady / declining, label = robust / bet / trap.
+      // Both are null when no task using the skill has a published time.
+      skills: cards.by_year[y].map((c) => ({
+        id: c.skill_id,
+        name: skillName(snap, c.skill_id),
+        trend: c.weather,
+        label: c.label,
+        hours: c.hours,
+        no_data: c.label === null,
+        human_until: c.human_until,
+        sdg: skillSdgPills(snap, c.skill_id),
+        source: receipt(snap, c.sources, true),
+      })),
     };
   }
 
@@ -112,8 +142,10 @@ export function forecast(tasks, scenario) {
     by_year,
     // Per year now: the page should read by_year[year].emerging_role. null here so nothing out of date shows.
     emerging_role: null,
-    // Weather cards come with skills.js.
+    // Per year now: the page should read by_year[year].skills. Empty here so nothing out of date shows.
     skills: [],
+    // "week" = the person's own tasks; "tasks_shown" = no work week, so the target job's tasks are used.
+    skills_from: cards.skills_from,
   };
 }
 
@@ -163,8 +195,9 @@ export function match({ tasks, skills = [], scenario, mode = "market" }) {
 
 export function buildRoute({ jobId, skills = [], scenario }) {
   const snap = engine.snapshot();
-  const r = engine.buildRoute({ jobId, skills });
-  const sdg = sdgPills(snap.sdgLinks.filter((l) => l.item_type === "role" && l.item_id === jobId));
+  const r = engine.buildRoute({ jobId, skills, scenario });
+  const sdg = sdgPills(snap.sdgLinks.filter((l) => l.item_type === "role" && l.item_id === jobId)
+    .map((l) => withOffTrack(snap, l)));
   if (r.status !== "ready") {
     return { job_id: jobId, title: snap.roles.get(jobId)?.role_name ?? jobId, scenario, message: r.message,
       steps: [], total_hours: 0, total_weeks: 0, stop_investing: [], sdg, source: receipt(snap, [], false) };
@@ -181,10 +214,12 @@ export function buildRoute({ jobId, skills = [], scenario }) {
     steps: r.steps.map((s) => ({
       order: s.order,
       skill: skillName(snap, s.skill_id),
-      // robust / bet / trap come with skills.js.
+      // robust / bet / trap per year (the page reads label_by_year[year]); null = no published task time.
       label: null,
+      label_by_year: s.label_by_year,
       related: s.related,
       note: s.related ? "Close to a skill you already have" : null,
+      sdg: skillSdgPills(snap, s.skill_id),
       source: { ...receipt(snap, [s.course.source], false), url: s.course.link, date: s.course.date_checked },
       course: {
         title: s.course.course_name,
@@ -200,6 +235,9 @@ export function buildRoute({ jobId, skills = [], scenario }) {
     })),
     no_course: r.no_course_skill_ids.map((s) => skillName(snap, s)),
     stop_investing: [],
+    // Per year: skills the person has that are a trap that year and that this job doesn't need.
+    stop_investing_by_year: Object.fromEntries(Object.entries(r.stop_investing_by_year ?? {}).map(([y, items]) => [y,
+      items.map((t) => ({ skill: skillName(snap, t.skill_id), label: "trap", source: receipt(snap, t.sources, true) }))])),
     sdg,
   };
 }
@@ -260,6 +298,8 @@ export function getSources() {
       "Tasks with no published time in Anthropic's data are never counted as something AI could do.",
       `Match score (our weighting): skills ${WEIGHTS.skills * 100}%, fit with what's left of your week ${WEIGHTS.leftover * 100}%, job outlook ${WEIGHTS.outlook * 100}%. A missing skill in the same ESCO group as one you have counts ${RELATED_CREDIT}.`,
       `Market + planet ranking (our weighting): each SDG goal a job helps adds ${SDG_POINTS.goal} points (or takes them away if it harms it), ${SDG_POINTS.off_track_goal} if Malaysia is off track on that goal (SDSN, ${snap.malaysiaSdg.length ? `off track on goals ${[...snap.offTrackGoals].join(", ")}` : "no status in this snapshot"}). Each goal counts once per job, and the total is at most ${SDG_POINTS.cap} points either way.`,
+      "Skill labels for a year: robust = some task in our data using the skill is still human after that year in every scenario; bet = only in some (in practice, only if AI slows down); trap = in none. Tasks with no published time are left out, so a skill never looks safe only because data is missing.",
+      "Skill weather: whether the skill is a bigger (rising), smaller (declining) or the same (steady) part of the still-human hours of your week than today, under the chosen scenario.",
       `Route weeks assume ${HOURS_PER_WEEK} hours of study a week. Course cost and length are as written on the course page on the date checked. HRD Corp status is not checked.`,
       "Name and age are never used in any calculation.",
     ],

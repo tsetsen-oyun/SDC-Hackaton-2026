@@ -6,6 +6,7 @@ import { forecastScenario } from "./forecast.js";
 import { matchScenario, roleTasks } from "./match.js";
 import { routeFor } from "./route.js";
 import { mentorPairs } from "./mentor.js";
+import { skillCards } from "./skills.js";
 
 let current = null;
 
@@ -41,9 +42,14 @@ export function match({ tasks, skills = [], scenario, mode = "market", assumptio
 }
 
 // The missing skills for one role, in order, each with a real course. skills = the person's skill ids.
-// Without courses.csv it says so instead of guessing courses.
-export function buildRoute({ jobId, skills = [] } = {}) {
-  return routeFor(snapshot(), { jobId, skills });
+// Without courses.csv it says so instead of guessing courses. With a scenario, steps get robust / bet / trap labels.
+export function buildRoute({ jobId, skills = [], scenario = null } = {}) {
+  return routeFor(snapshot(), { jobId, skills, scenario });
+}
+
+// The Forecast page's skill weather cards with robust / bet / trap labels, for every year.
+export function skillWeather(tasks, scenario, assumptions = {}) {
+  return skillCards(snapshot(), cleanTasks(tasks), scenario, assumptions);
 }
 
 // Possible junior–senior pairs with the sample people, from skills only. userId keeps a sample person

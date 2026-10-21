@@ -1,0 +1,23 @@
+{
+  "note": "started on 2026-03-24, Refresh moved to the newest snapshot",
+  "request": "POST /api/refresh",
+  "response": {
+    "snapshot_date": "2026-10-20",
+    "previous": "2026-03-24",
+    "changed": true,
+    "fallback": false,
+    "missing_files": [],
+    "warnings": [
+      "tasks.csv: TASK_15981 breaks low <= median <= high",
+      "tasks.csv: TASK_16146 breaks low <= median <= high",
+      "tasks.csv: TASK_17026 breaks low <= median <= high",
+      "tasks.csv: TASK_17037 breaks low <= median <= high",
+      "tasks.csv: TASK_301 breaks low <= median <= high",
+      "tasks.csv: TASK_2497 breaks low <= median <= high",
+      "tasks.csv: TASK_18565 breaks low <= median <= high",
+      "tasks.csv: TASK_17763 breaks low <= median <= high",
+      "slowdown_milestones.csv: skipped \"1 work week\" (no length in minutes or no delay)"
+    ],
+    "snapshotDate": "2026-10-20"
+  }
+}
