@@ -3,7 +3,7 @@ import "dotenv/config";
 import express from "express";
 
 const engine = await import(
-  process.env.USE_MOCK ? "./mock/engine.js" : "./engine/index.js"
+  process.env.USE_MOCK ? "./mock/engine.js" : "./engine/pages.js"
 );
 
 const SCENARIOS = ["moderate", "fast", "slowdown"];

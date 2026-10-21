@@ -4,12 +4,14 @@
 import { listSnapshots, loadSnapshot, snapshotsDir } from "./load.js";
 import { forecastScenario } from "./forecast.js";
 import { matchScenario, roleTasks } from "./match.js";
+import { routeFor } from "./route.js";
 
 let current = null;
 
 // Which snapshot the app starts with. For the Refresh demo, set START_SNAPSHOT to the older date;
 // Refresh then moves to the newest one. Without it, the app starts on the newest.
-function snapshot() {
+// Exported so pages.js can look up names and sources in the same snapshot.
+export function snapshot() {
   if (!current) {
     const dates = listSnapshots();
     if (!dates.length) throw new Error(`No snapshot folders in ${snapshotsDir()}`);
@@ -37,9 +39,10 @@ export function match({ tasks, skills = [], scenario, mode = "market", assumptio
   return matchScenario(snapshot(), { tasks: cleanTasks(tasks), skills, scenario, mode }, assumptions);
 }
 
-// The Route page waits for courses.csv; until then it says so instead of guessing courses.
-export function buildRoute({ jobId } = {}) {
-  return { status: "not_ready", role_id: jobId ?? null, message: "Learning routes aren't built yet: they need the real course list (courses.csv)" };
+// The missing skills for one role, in order, each with a real course. skills = the person's skill ids.
+// Without courses.csv it says so instead of guessing courses.
+export function buildRoute({ jobId, skills = [] } = {}) {
+  return routeFor(snapshot(), { jobId, skills });
 }
 
 // Everything the About page and the receipts need.

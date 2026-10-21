@@ -115,7 +115,11 @@ test("a task with no row in task_skills.csv falls back to its job's skills", asy
 test("with job_skills.csv, a task link may also use the job's optional ESCO skills", async () => {
   const snap = await changedCopy((folder, fs, path) => {
     fs.writeFileSync(path.join(folder, "job_skills.csv"), "job_id,skill_id,relation\nJOB_AP,S_MODEL,optional\n");
-    fs.appendFileSync(path.join(folder, "task_skills.csv"), "\nTASK_1,S_MODEL,false,team\nTASK_1,S_PRES,false,team\n");
+    // Rewritten with one line ending: on Windows git may check the file out with \r\n.
+    const file = path.join(folder, "task_skills.csv");
+    const lines = fs.readFileSync(file, "utf8").split(/\r?\n/).filter(Boolean);
+    lines.push("TASK_1,S_MODEL,false,team", "TASK_1,S_PRES,false,team");
+    fs.writeFileSync(file, lines.join("\n") + "\n");
   });
   assert.ok(snap.taskSkills.get("TASK_1").includes("S_MODEL"));
   assert.ok(!snap.taskSkills.get("TASK_1").includes("S_PRES"));

@@ -116,13 +116,13 @@ export function roleTasks(snap, role) {
 }
 
 // The ESCO groups of a list of skills. A skill can be in several groups; a skill with no group adds none.
-function groupsOf(snap, skillIds) {
+export function groupsOf(snap, skillIds) {
   return new Set([...skillIds].flatMap((id) => snap.skills.get(id)?.group_uri ?? []));
 }
 
 // How much one skill counts against a set of skills: 1 if it's in the set,
 // RELATED_CREDIT if it shares an ESCO group with any of them, otherwise 0.
-function skillCredit(snap, skillId, skillSet, groupSet) {
+export function skillCredit(snap, skillId, skillSet, groupSet) {
   if (skillSet.has(skillId)) return 1;
   const groups = snap.skills.get(skillId)?.group_uri ?? [];
   return groups.some((g) => groupSet.has(g)) ? RELATED_CREDIT : 0;
