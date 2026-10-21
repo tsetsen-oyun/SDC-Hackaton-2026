@@ -1,0 +1,10 @@
+skill_id,skill_name,type,esco_uri,green_flag
+S_DATA,data entry,skill,https://example.org/esco/s_data,
+S_RECON,reconcile accounts,skill,https://example.org/esco/s_recon,
+S_COMM,"write clearly, in English",skill,https://example.org/esco/s_comm,
+S_INVEST,investigate irregularities,skill,https://example.org/esco/s_invest,
+S_NEGOT,negotiate with suppliers,skill,https://example.org/esco/s_negot,
+S_AUDIT,audit techniques,knowledge,https://example.org/esco/s_audit,
+S_REPORT,write reports,skill,https://example.org/esco/s_report,
+S_MODEL,financial modelling,knowledge,https://example.org/esco/s_model,
+S_PRES,present to an audience,skill,https://example.org/esco/s_pres,

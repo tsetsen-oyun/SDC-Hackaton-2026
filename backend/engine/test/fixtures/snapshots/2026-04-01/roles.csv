@@ -1,0 +1,4 @@
+role_id,role_name,kind,closest_real_occupation,onet_code,esco_uri,isco_code,task_ids,skill_ids,is_estimate,source
+JOB_AP,Accounts payable clerk (test),current,Bookkeeping clerk (test),43-0000.00,https://example.org/esco/occ_ap,4311,TASK_1;TASK_2;TASK_3;TASK_4;TASK_5,S_DATA;S_RECON;S_COMM;S_INVEST;S_NEGOT,false,test_onet
+JOB_AUD,Auditor (test),target,Auditor (test),13-0000.00,https://example.org/esco/occ_aud,2411,TASK_6;TASK_7,S_INVEST;S_AUDIT;S_REPORT;S_COMM,false,test_onet
+JOB_ANL,Financial analyst (test),target,Financial analyst (test),13-0001.00,https://example.org/esco/occ_anl,2413,TASK_8;TASK_9,S_MODEL;S_PRES;S_RECON;S_COMM,false,test_onet

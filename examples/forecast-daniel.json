@@ -1,0 +1,363 @@
+{
+  "_note": "Engine output for snapshot 2026-10-20.",
+  "snapshot_date": "2026-10-20",
+  "scenario": {
+    "id": "moderate",
+    "name": "Moderate pace",
+    "doubling_days": 187.778,
+    "note": "METR all-time doubling time (TH 1.1 data file)",
+    "sources": [
+      "metr_th_1_1"
+    ],
+    "is_estimate": true
+  },
+  "start": {
+    "model": "claude_mythos_preview_early_inspect",
+    "release_date": "2026-04-07",
+    "horizon_80pct_min": 185.91
+  },
+  "assumptions": {
+    "office_work": true,
+    "domain_discount": 50,
+    "adoption_delay_years": 0
+  },
+  "years": [
+    2026,
+    2027,
+    2028,
+    2029,
+    2030,
+    2031,
+    2032,
+    2033,
+    2034,
+    2035
+  ],
+  "tasks": [
+    {
+      "task_id": "TASK_5434",
+      "name": "Prepare reports of findings, illustrating data graphically and translating complex findings into written text.",
+      "status": "dated",
+      "from": 2028.94,
+      "to": 2029.23,
+      "mid": 2029.08,
+      "mode": "automate",
+      "used_with_ai_today": 0.04,
+      "sources": [
+        "metr_th_1_1",
+        "aei_2026_03",
+        "onet",
+        "aei_2026_06"
+      ],
+      "is_estimate": true,
+      "hours": 0
+    },
+    {
+      "task_id": "TASK_5437",
+      "name": "Seek and provide information to help companies determine their position in the marketplace.",
+      "status": "dated",
+      "from": 2028.42,
+      "to": 2028.63,
+      "mid": 2028.52,
+      "mode": null,
+      "used_with_ai_today": null,
+      "sources": [
+        "metr_th_1_1",
+        "aei_2026_03",
+        "onet"
+      ],
+      "is_estimate": true,
+      "hours": 0
+    },
+    {
+      "task_id": "TASK_5439",
+      "name": "Conduct research on consumer opinions and marketing strategies, collaborating with marketing professionals, statisticians, pollsters, and other professionals.",
+      "status": "dated",
+      "from": 2028.9,
+      "to": 2029.26,
+      "mid": 2029.08,
+      "mode": null,
+      "used_with_ai_today": null,
+      "sources": [
+        "metr_th_1_1",
+        "aei_2026_03",
+        "onet"
+      ],
+      "is_estimate": true,
+      "hours": 0
+    },
+    {
+      "task_id": "TASK_5433",
+      "name": "Collect and analyze data on customer demographics, preferences, needs, and buying habits to identify potential markets and factors affecting product demand.",
+      "status": "dated",
+      "from": 2029.3,
+      "to": 2029.44,
+      "mid": 2029.37,
+      "mode": "augment",
+      "used_with_ai_today": 0.02,
+      "sources": [
+        "metr_th_1_1",
+        "aei_2026_03",
+        "onet",
+        "aei_2026_06"
+      ],
+      "is_estimate": true,
+      "hours": 0
+    },
+    {
+      "task_id": "TASK_5443",
+      "name": "Devise and evaluate methods and procedures for collecting data, such as surveys, opinion polls, or questionnaires, or arrange to obtain existing data.",
+      "status": "dated",
+      "from": 2028.72,
+      "to": 2029.42,
+      "mid": 2029.07,
+      "mode": null,
+      "used_with_ai_today": null,
+      "sources": [
+        "metr_th_1_1",
+        "aei_2026_03",
+        "onet"
+      ],
+      "is_estimate": true,
+      "hours": 0
+    },
+    {
+      "task_id": "TASK_5441",
+      "name": "Gather data on competitors and analyze their prices, sales, and method of marketing and distribution.",
+      "status": "dated",
+      "from": 2029.03,
+      "to": 2029.18,
+      "mid": 2029.11,
+      "mode": "augment",
+      "used_with_ai_today": 0.08,
+      "sources": [
+        "metr_th_1_1",
+        "aei_2026_03",
+        "onet",
+        "aei_2026_06"
+      ],
+      "is_estimate": true,
+      "hours": 0
+    },
+    {
+      "task_id": "TASK_5435",
+      "name": "Measure and assess customer and employee satisfaction.",
+      "status": "no_data",
+      "reason": "No published time for this task (not in Anthropic's usage data)",
+      "sources": [
+        "onet"
+      ],
+      "is_estimate": false,
+      "hours": 0
+    },
+    {
+      "task_id": "TASK_5442",
+      "name": "Monitor industry statistics and follow trends in trade literature.",
+      "status": "dated",
+      "from": 2028.67,
+      "to": 2029.35,
+      "mid": 2029.01,
+      "mode": null,
+      "used_with_ai_today": null,
+      "sources": [
+        "metr_th_1_1",
+        "aei_2026_03",
+        "onet"
+      ],
+      "is_estimate": true,
+      "hours": 0
+    },
+    {
+      "task_id": "TASK_5445",
+      "name": "Direct trained survey interviewers.",
+      "status": "no_data",
+      "reason": "No published time for this task (not in Anthropic's usage data)",
+      "sources": [
+        "onet"
+      ],
+      "is_estimate": false,
+      "hours": 0
+    },
+    {
+      "task_id": "TASK_5438",
+      "name": "Measure the effectiveness of marketing, advertising, and communications programs and strategies.",
+      "status": "dated",
+      "from": 2028.97,
+      "to": 2029.13,
+      "mid": 2029.05,
+      "mode": null,
+      "used_with_ai_today": null,
+      "sources": [
+        "metr_th_1_1",
+        "aei_2026_03",
+        "onet"
+      ],
+      "is_estimate": true,
+      "hours": 0
+    },
+    {
+      "task_id": "TASK_5436",
+      "name": "Forecast and track marketing and sales trends, analyzing collected data.",
+      "status": "dated",
+      "from": 2028.76,
+      "to": 2029.05,
+      "mid": 2028.9,
+      "mode": "augment",
+      "used_with_ai_today": 0.02,
+      "sources": [
+        "metr_th_1_1",
+        "aei_2026_03",
+        "onet",
+        "aei_2026_06"
+      ],
+      "is_estimate": true,
+      "hours": 0
+    }
+  ],
+  "by_year": {
+    "2026": {
+      "hours_ai": 0,
+      "hours_no_data": 0,
+      "hours_total": 0,
+      "share_ai": null,
+      "leftover_task_ids": [
+        "TASK_5434",
+        "TASK_5437",
+        "TASK_5439",
+        "TASK_5433",
+        "TASK_5443",
+        "TASK_5441",
+        "TASK_5435",
+        "TASK_5442",
+        "TASK_5445",
+        "TASK_5438",
+        "TASK_5436"
+      ],
+      "is_estimate": true
+    },
+    "2027": {
+      "hours_ai": 0,
+      "hours_no_data": 0,
+      "hours_total": 0,
+      "share_ai": null,
+      "leftover_task_ids": [
+        "TASK_5434",
+        "TASK_5437",
+        "TASK_5439",
+        "TASK_5433",
+        "TASK_5443",
+        "TASK_5441",
+        "TASK_5435",
+        "TASK_5442",
+        "TASK_5445",
+        "TASK_5438",
+        "TASK_5436"
+      ],
+      "is_estimate": true
+    },
+    "2028": {
+      "hours_ai": 0,
+      "hours_no_data": 0,
+      "hours_total": 0,
+      "share_ai": null,
+      "leftover_task_ids": [
+        "TASK_5434",
+        "TASK_5437",
+        "TASK_5439",
+        "TASK_5433",
+        "TASK_5443",
+        "TASK_5441",
+        "TASK_5435",
+        "TASK_5442",
+        "TASK_5445",
+        "TASK_5438",
+        "TASK_5436"
+      ],
+      "is_estimate": true
+    },
+    "2029": {
+      "hours_ai": 0,
+      "hours_no_data": 0,
+      "hours_total": 0,
+      "share_ai": null,
+      "leftover_task_ids": [
+        "TASK_5434",
+        "TASK_5439",
+        "TASK_5433",
+        "TASK_5443",
+        "TASK_5441",
+        "TASK_5435",
+        "TASK_5442",
+        "TASK_5445",
+        "TASK_5438"
+      ],
+      "is_estimate": true
+    },
+    "2030": {
+      "hours_ai": 0,
+      "hours_no_data": 0,
+      "hours_total": 0,
+      "share_ai": null,
+      "leftover_task_ids": [
+        "TASK_5435",
+        "TASK_5445"
+      ],
+      "is_estimate": true
+    },
+    "2031": {
+      "hours_ai": 0,
+      "hours_no_data": 0,
+      "hours_total": 0,
+      "share_ai": null,
+      "leftover_task_ids": [
+        "TASK_5435",
+        "TASK_5445"
+      ],
+      "is_estimate": true
+    },
+    "2032": {
+      "hours_ai": 0,
+      "hours_no_data": 0,
+      "hours_total": 0,
+      "share_ai": null,
+      "leftover_task_ids": [
+        "TASK_5435",
+        "TASK_5445"
+      ],
+      "is_estimate": true
+    },
+    "2033": {
+      "hours_ai": 0,
+      "hours_no_data": 0,
+      "hours_total": 0,
+      "share_ai": null,
+      "leftover_task_ids": [
+        "TASK_5435",
+        "TASK_5445"
+      ],
+      "is_estimate": true
+    },
+    "2034": {
+      "hours_ai": 0,
+      "hours_no_data": 0,
+      "hours_total": 0,
+      "share_ai": null,
+      "leftover_task_ids": [
+        "TASK_5435",
+        "TASK_5445"
+      ],
+      "is_estimate": true
+    },
+    "2035": {
+      "hours_ai": 0,
+      "hours_no_data": 0,
+      "hours_total": 0,
+      "share_ai": null,
+      "leftover_task_ids": [
+        "TASK_5435",
+        "TASK_5445"
+      ],
+      "is_estimate": true
+    }
+  }
+}

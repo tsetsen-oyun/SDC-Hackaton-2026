@@ -1,0 +1,9 @@
+reliability,milestone,task_length_minutes,length_definition,delay_years_under_slowdown,trend_year_text,source,note
+50%,1 work week,,NO published hour definition found for a work week - ask Amina,2,,slowdown_2025,Figure 1 label (paper calls scenario 'primarily illustrative')
+50%,1 work month,10020,"167 work hours (METR, Kwa et al. 2025)",4,2029,slowdown_2025,"Text: '1-month, 50% reliable AI arrives in 2033 instead of 2029'"
+50%,3 work months,30060,3 x 167 work hours (METR month),6,,slowdown_2025,Figure 1 label
+50%,1 work year,120000,"2,000 work hours (METR, Kwa et al. 2025, cost appendix)",8,,slowdown_2025,Figure 1 label
+80%,1 work week,,NO published hour definition found for a work week - ask Amina,5,,slowdown_2025,Figure 'p80' label
+80%,1 work month,10020,"167 work hours (METR, Kwa et al. 2025)",7,,slowdown_2025,Abstract: '1-month time horizons at 80% reliability occur 7 years later than simple trend extrapolation suggests'
+80%,3 work months,30060,3 x 167 work hours (METR month),8,,slowdown_2025,Figure 'p80' label
+80%,1 work year,120000,"2,000 work hours (METR, Kwa et al. 2025, cost appendix)",10,,slowdown_2025,Figure 'p80' label
