@@ -2,7 +2,7 @@
 // Senior = has a work week (tasks with hours); junior = has none. Name and age are never read here,
 // so they can't change who is paired or what each side brings.
 import { forecastScenario } from "./forecast.js";
-import { matchScenario, groupsOf, skillCredit } from "./match.js";
+import { matchScenario, groupsOf, skillCredit, taskSkillsFor } from "./match.js";
 import { splitSourceIds } from "./load.js";
 
 export const CONSENT_NOTE = "A possible pair only: both people must say yes, and a person approves the match. Age is not used.";
@@ -27,7 +27,7 @@ export function mentorPairs(snap, { tasks = [], skills = [], userId = null, scen
     for (const year of forecast.years) {
       const leftover = [...forecast.by_year[year].leftover_task_ids].sort((a, b) => latest.get(b) - latest.get(a));
       // The senior brings skills from tasks AI could not do yet this year, which the junior doesn't have.
-      const seniorBrings = unique(leftover.flatMap((id) => snap.taskSkills.get(id) ?? [])).filter((s) => !junior.skills.has(s));
+      const seniorBrings = unique(leftover.flatMap(senior.skillsOf)).filter((s) => !junior.skills.has(s));
       // The junior brings skills the senior doesn't have. The ones the senior's best next role needs come first,
       // then ones related to it (same ESCO group, the same rule as matching), then the rest.
       const topRole = snap.roles.get(seniorMatch.by_year[year].roles[0]?.role_id);
@@ -65,8 +65,9 @@ export function mentorPairs(snap, { tasks = [], skills = [], userId = null, scen
 // Which side a person is on, and all their skills (their own list plus the skills of the tasks they do).
 function sideOf(snap, { tasks, skills }) {
   const worked = tasks.filter((t) => t.hours > 0);
-  const all = new Set([...skills, ...worked.flatMap((t) => snap.taskSkills.get(t.task_id) ?? [])].filter((s) => snap.skills.has(s)));
-  return { side: worked.length ? "senior" : "junior", tasks: worked, skills: all };
+  const skillsOf = taskSkillsFor(snap, worked);
+  const all = new Set([...skills, ...worked.flatMap((t) => skillsOf(t.task_id))].filter((s) => snap.skills.has(s)));
+  return { side: worked.length ? "senior" : "junior", tasks: worked, skills: all, skillsOf };
 }
 
 function unique(list) {

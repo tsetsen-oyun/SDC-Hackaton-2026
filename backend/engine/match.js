@@ -19,8 +19,9 @@ export function matchScenario(snap, { tasks: personTasks, skills: extraSkills = 
   const ctx = buildContext(snap, assumptions);
   const scenarioRow = snap.scenarios.get(scenario);
 
-  const ownJobs = new Set(personTasks.map((t) => snap.tasks.get(t.task_id)?.job).filter(Boolean));
-  const personSkills = new Set(personTasks.flatMap((t) => snap.taskSkills.get(t.task_id) ?? []));
+  const ownJobs = mainJobs(snap, personTasks);
+  const skillsOf = taskSkillsFor(snap, personTasks);
+  const personSkills = new Set(personTasks.flatMap((t) => skillsOf(t.task_id)));
   // Skills the person adds themselves count only if they are real skills from our list.
   for (const s of extraSkills) if (!snap.skills.size || snap.skills.has(s)) personSkills.add(s);
   const personGroups = groupsOf(snap, personSkills);
@@ -40,7 +41,7 @@ export function matchScenario(snap, { tasks: personTasks, skills: extraSkills = 
   const by_year = {};
   for (const year of forecast.years) {
     const week = forecast.by_year[year];
-    const leftoverSkills = new Set(week.leftover_task_ids.flatMap((id) => snap.taskSkills.get(id) ?? []));
+    const leftoverSkills = new Set(week.leftover_task_ids.flatMap(skillsOf));
 
     const roles = candidates.map((role) => {
       const need = role.skill_ids;
@@ -107,6 +108,30 @@ export function matchScenario(snap, { tasks: personTasks, skills: extraSkills = 
     person_skill_ids: [...personSkills],
     years: forecast.years,
     by_year,
+  };
+}
+
+// The person's own job: the one most of their hours belong to (several if tied). A task they add from
+// another job doesn't make that job "theirs", so it stays on the Map, and fits a little better.
+export function mainJobs(snap, personTasks) {
+  const hours = new Map();
+  for (const t of personTasks) {
+    const job = snap.tasks.get(t.task_id)?.job;
+    if (job && t.hours > 0) hours.set(job, (hours.get(job) ?? 0) + t.hours);
+  }
+  const most = Math.max(0, ...hours.values());
+  return new Set([...hours].filter(([, h]) => most > 0 && h === most).map(([job]) => job));
+}
+
+// The skills each of a person's tasks counts for. A task from another job (one the person added) brings
+// skills only if it was linked to skills one by one. Otherwise it would bring that job's whole skill list,
+// and one added task would look like the whole job. Used by matching, the skill cards and the mentor card.
+export function taskSkillsFor(snap, personTasks) {
+  const ownJobs = mainJobs(snap, personTasks);
+  return (id) => {
+    const task = snap.tasks.get(id);
+    if (!task || !ownJobs.size || ownJobs.has(task.job) || snap.ownLinkTaskIds?.has(id)) return snap.taskSkills.get(id) ?? [];
+    return [];
   };
 }
 

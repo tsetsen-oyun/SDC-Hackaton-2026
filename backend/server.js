@@ -44,6 +44,14 @@ app.get(
   })
 );
 
+app.get(
+  "/api/tasks",
+  needs("getTasks"),
+  wrap(async (req, res) => {
+    res.json(await engine.getTasks());
+  })
+);
+
 app.post(
   "/api/forecast",
   needs("forecast"),

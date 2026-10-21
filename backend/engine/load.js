@@ -109,6 +109,8 @@ export function loadSnapshot(date, dir = snapshotsDir()) {
     taskSkills,
     skillLinks,
     tasksWithOwnLinks: linked.size,
+    // Tasks linked to skills one by one; the others got their job's whole skill list.
+    ownLinkTaskIds: new Set(linked.keys()),
     taskLinksAreEstimates,
     roles,
     users,

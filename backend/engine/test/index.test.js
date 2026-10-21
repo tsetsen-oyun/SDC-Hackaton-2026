@@ -67,3 +67,15 @@ test("profiles: a person with no current job gets the target job's tasks, with n
   assert.ok(f.tasks.every((t) => t.sources));
   assert.deepEqual(engine.getProfiles().find((p) => p.user_id === "siti").target_job_tasks, []);
 });
+
+test("tasks: every task in the data, with its job, and whether it has a published time", () => {
+  engine.useSnapshot("2026-04-01");
+  const tasks = engine.getTasks();
+  assert.equal(tasks.length, 9);
+  const t1 = tasks.find((t) => t.task_id === "TASK_1");
+  assert.equal(t1.job_id, "JOB_AP");
+  assert.equal(t1.no_data, false);
+  assert.equal(tasks.find((t) => t.task_id === "TASK_5").no_data, true);
+  // A task picked from the list works in the forecast like any other.
+  assert.equal(engine.forecast([{ task_id: t1.task_id, hours: 3 }], "moderate").tasks[0].status, "dated");
+});

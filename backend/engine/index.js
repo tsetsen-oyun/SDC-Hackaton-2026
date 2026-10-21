@@ -78,6 +78,22 @@ export function getSources() {
   };
 }
 
+// Every task in our data, so a person can add one to their week. They can only pick from this list:
+// the app never makes up a task. no_data = no published time, so AI-could-do dates can't be given for it.
+export function getTasks() {
+  const snap = snapshot();
+  return [...snap.tasks.values()]
+    .map((t) => ({
+      task_id: t.task_id,
+      name: t.task_description,
+      job_id: t.job,
+      job_name: snap.roles.get(t.job)?.role_name ?? null,
+      no_data: (t.minutes_low ?? t.minutes_median) === null || (t.minutes_high ?? t.minutes_median) === null,
+      source: t.source,
+    }))
+    .sort((a, b) => (a.job_name ?? "").localeCompare(b.job_name ?? "") || a.name.localeCompare(b.name));
+}
+
 // The sample people. Name and age are for display only.
 export function getProfiles() {
   const snap = snapshot();
