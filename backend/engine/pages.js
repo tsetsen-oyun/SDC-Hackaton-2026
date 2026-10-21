@@ -77,6 +77,11 @@ function profileForPage(snap, p) {
   };
 }
 
+// Tasks a person can add to their week, from our list only, grouped by job on the page.
+export function getTasks() {
+  return engine.getTasks().map(({ task_id, name, job_id, job_name, no_data }) => ({ task_id, name, job_id, job_name, no_data }));
+}
+
 export function forecast(tasks, scenario) {
   const snap = engine.snapshot();
   const f = engine.forecast(tasks, scenario);

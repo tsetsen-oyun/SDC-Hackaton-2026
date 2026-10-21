@@ -168,3 +168,20 @@ test("what's left only names a target role, never another person's current job",
   roles.set("JOB_AP", { ...roles.get("JOB_AP"), kind: "target" });
   assert.ok(named({ ...now, roles }).includes("JOB_AP"));
 });
+
+test("a task added from another job doesn't hide that job: own job = where most hours are", () => {
+  const withAudit = [...siti, { task_id: "TASK_6", hours: 1 }]; // TASK_6 belongs to JOB_AUD
+  const r = matchScenario(old, { tasks: withAudit, scenario: "moderate" });
+  assert.ok(role(r, 2031, "JOB_AUD"));
+  assert.ok(!role(r, 2031, "JOB_AP")); // still her own job
+});
+
+test("an added task with no skill links of its own doesn't bring its whole job's skill list", () => {
+  // TASK_8 (analyst job) has its own link, S_MODEL. Without it, it would get the job's list (fallback).
+  const linked = matchScenario(old, { tasks: [...siti, { task_id: "TASK_8", hours: 1 }], scenario: "moderate" });
+  assert.ok(linked.person_skill_ids.includes("S_MODEL"));
+  const unlinked = { ...old, ownLinkTaskIds: new Set([...old.ownLinkTaskIds].filter((id) => id !== "TASK_8")),
+    taskSkills: new Map(old.taskSkills).set("TASK_8", old.roles.get("JOB_ANL").skill_ids) };
+  const r = matchScenario(unlinked, { tasks: [...siti, { task_id: "TASK_8", hours: 1 }], scenario: "moderate" });
+  assert.ok(!r.person_skill_ids.includes("S_MODEL") && !r.person_skill_ids.includes("S_PRES"));
+});

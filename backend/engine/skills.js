@@ -3,6 +3,7 @@
 // gets the same label on every page. The weather comes from the person's own week.
 import { buildContext, forecastTask, forecastScenario } from "./forecast.js";
 import { splitSourceIds } from "./load.js";
+import { taskSkillsFor } from "./match.js";
 
 // For each skill, per scenario: the year AI could do the last dated task in our data that uses it.
 // Tasks with no published time are left out: counting them would make a skill look safe only because data is missing.
@@ -44,14 +45,15 @@ export function skillCards(snap, personTasks, scenarioId, assumptions = {}) {
   const forecast = forecastScenario(snap, tasks, scenarioId, assumptions);
   const timeline = skillTimeline(snap, assumptions);
   const dated = new Map(forecast.tasks.filter((t) => t.status === "dated").map((t) => [t.task_id, t.mid]));
-  const skillIds = [...new Set(tasks.flatMap((t) => snap.taskSkills.get(t.task_id) ?? []))];
+  const skillsOf = taskSkillsFor(snap, tasks);
+  const skillIds = [...new Set(tasks.flatMap((t) => skillsOf(t.task_id)))];
 
   // Each skill's share of the dated hours that are still human in `year`.
   const shares = (year) => {
     const human = tasks.filter((t) => dated.has(t.task_id) && dated.get(t.task_id) > year);
     const total = human.reduce((sum, t) => sum + t.hours, 0);
     const out = new Map();
-    for (const t of human) for (const s of snap.taskSkills.get(t.task_id) ?? []) out.set(s, (out.get(s) ?? 0) + t.hours);
+    for (const t of human) for (const s of skillsOf(t.task_id)) out.set(s, (out.get(s) ?? 0) + t.hours);
     return new Map(skillIds.map((s) => [s, total ? (out.get(s) ?? 0) / total : 0]));
   };
   // Today: the whole week as the person does it now, before AI could do any of it.
@@ -67,7 +69,7 @@ export function skillCards(snap, personTasks, scenarioId, assumptions = {}) {
         label: skillLabel(snap, timeline, s, year),
         // null when none of this person's tasks using the skill has a published time.
         weather: !now.get(s) ? null : weatherOf(now.get(s), later.get(s)),
-        hours: tasks.filter((t) => (snap.taskSkills.get(t.task_id) ?? []).includes(s)).reduce((sum, t) => sum + t.hours, 0),
+        hours: tasks.filter((t) => skillsOf(t.task_id).includes(s)).reduce((sum, t) => sum + t.hours, 0),
         human_until: entry ? Object.fromEntries(Object.entries(entry.until).map(([id, y]) => [id, Math.round(y * 10) / 10])) : null,
         sources: entry ? splitSourceIds([...entry.sources]) : [],
         is_estimate: true,

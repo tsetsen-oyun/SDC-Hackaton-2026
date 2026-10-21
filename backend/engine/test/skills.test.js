@@ -51,3 +51,11 @@ test("every card carries sources and is an estimate", () => {
   assert.ok(c.sources.includes("test_metr") && c.sources.includes("test_slowdown"));
   assert.equal(c.is_estimate, true);
 });
+
+test("an added task from another job with no skill links of its own adds no skill cards", () => {
+  // TASK_8 (analyst job) loses its own link here, so it would otherwise get the analyst job's whole list.
+  const unlinked = { ...old, ownLinkTaskIds: new Set([...old.ownLinkTaskIds].filter((id) => id !== "TASK_8")),
+    taskSkills: new Map(old.taskSkills).set("TASK_8", old.roles.get("JOB_ANL").skill_ids) };
+  const ids = skillCards(unlinked, [...siti, { task_id: "TASK_8", hours: 1 }], "moderate").by_year[2026].map((c) => c.skill_id);
+  assert.ok(!ids.includes("S_MODEL") && !ids.includes("S_PRES"));
+});
