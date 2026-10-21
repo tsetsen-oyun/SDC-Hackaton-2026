@@ -1,0 +1,372 @@
+{
+  "snapshot": "2026-10-20",
+  "request": {
+    "jobId": "JOB_MARKETING_SPECIALIST",
+    "skills": [
+      "SK_de03f4fd",
+      "SK_d3e585e9",
+      "SK_8770350e",
+      "SK_7ee4c2ea",
+      "SK_348b74cd",
+      "SK_2b92a5b2",
+      "SK_d0f2f8a7",
+      "SK_8316979b",
+      "SK_f73ed9e8"
+    ],
+    "scenario": "moderate"
+  },
+  "response": {
+    "job_id": "JOB_MARKETING_SPECIALIST",
+    "title": "Market Research Analysts and Marketing Specialists",
+    "scenario": "moderate",
+    "source": {
+      "label": "O*NET Database 31.0 (2026-08-30) · ESCO classification (skills, occupations) via ESCO API (2026-10-21) · Coursera public course catalogue (workload as stated; cost checked on the course page) (2026-10-21) · Microsoft Learn Catalog API (free courses, duration stated) (2026-10-21)",
+      "url": "https://www.onetcenter.org/database.html",
+      "date": "2026-10-20",
+      "isEstimate": true
+    },
+    "total_hours": 10,
+    "total_weeks": 3,
+    "hours_per_week": 3.5,
+    "courses_without_hours": 10,
+    "steps": [
+      {
+        "order": 1,
+        "skill": "identify customer's needs",
+        "label": null,
+        "related": true,
+        "note": "Close to a skill you already have",
+        "source": {
+          "label": "Coursera public course catalogue (workload as stated; cost checked on the course page) (2026-10-21)",
+          "url": "https://www.coursera.org/learn/packt-jtbd-playbook-align-strategy-with-customer-needs",
+          "date": "2026-10-21",
+          "isEstimate": false
+        },
+        "course": {
+          "title": "JTBD Playbook: Align Strategy with Customer Needs",
+          "provider": "Coursera",
+          "hours": null,
+          "stated_duration": "4 weeks,10 hour each week",
+          "cost": "49 USD",
+          "hrd_claimable": "check",
+          "url": "https://www.coursera.org/learn/packt-jtbd-playbook-align-strategy-with-customer-needs",
+          "checked": "2026-10-21"
+        }
+      },
+      {
+        "order": 2,
+        "skill": "marketing department processes",
+        "label": null,
+        "related": true,
+        "note": "Close to a skill you already have",
+        "source": {
+          "label": "Microsoft Learn Catalog API (free courses, duration stated) (2026-10-21)",
+          "url": "https://learn.microsoft.com/en-us/training/paths/work-automation-flow/",
+          "date": "2026-10-21",
+          "isEstimate": false
+        },
+        "course": {
+          "title": "Automate processes with Robotic Process Automation and Power Automate for desktop",
+          "provider": "Microsoft Learn",
+          "hours": 2.9,
+          "stated_duration": "174 min",
+          "cost": "Free",
+          "hrd_claimable": "check",
+          "url": "https://learn.microsoft.com/en-us/training/paths/work-automation-flow/",
+          "checked": "2026-10-21"
+        }
+      },
+      {
+        "order": 3,
+        "skill": "draw conclusions from market research results",
+        "label": null,
+        "related": true,
+        "note": "Close to a skill you already have",
+        "source": {
+          "label": "Coursera public course catalogue (workload as stated; cost checked on the course page) (2026-10-21)",
+          "url": "https://www.coursera.org/learn/microsoft-market-research-and-competitive-analysis",
+          "date": "2026-10-21",
+          "isEstimate": false
+        },
+        "course": {
+          "title": "Market Research and Competitive Analysis",
+          "provider": "Coursera",
+          "hours": null,
+          "stated_duration": "2 weeks",
+          "cost": "29dollars one month, 7 days free trial",
+          "hrd_claimable": "check",
+          "url": "https://www.coursera.org/learn/microsoft-market-research-and-competitive-analysis",
+          "checked": "2026-10-21"
+        }
+      },
+      {
+        "order": 4,
+        "skill": "perform market research",
+        "label": null,
+        "related": true,
+        "note": "Close to a skill you already have",
+        "source": {
+          "label": "Coursera public course catalogue (workload as stated; cost checked on the course page) (2026-10-21)",
+          "url": "https://www.coursera.org/learn/microsoft-market-research-and-competitive-analysis",
+          "date": "2026-10-21",
+          "isEstimate": false
+        },
+        "course": {
+          "title": "Market Research and Competitive Analysis",
+          "provider": "Coursera",
+          "hours": null,
+          "stated_duration": "2 weeks",
+          "cost": "29dollars one month, 7 days free trial",
+          "hrd_claimable": "check",
+          "url": "https://www.coursera.org/learn/microsoft-market-research-and-competitive-analysis",
+          "checked": "2026-10-21"
+        }
+      },
+      {
+        "order": 5,
+        "skill": "analyse internal factors of companies",
+        "label": null,
+        "related": false,
+        "note": null,
+        "source": {
+          "label": "Coursera public course catalogue (workload as stated; cost checked on the course page) (2026-10-21)",
+          "url": "https://www.coursera.org/learn/navigating-internal-politics",
+          "date": "2026-10-21",
+          "isEstimate": false
+        },
+        "course": {
+          "title": "Navigating Internal Politics",
+          "provider": "Coursera",
+          "hours": 2,
+          "stated_duration": "2 hours",
+          "cost": "29dollars one month, 7 days free trial",
+          "hrd_claimable": "check",
+          "url": "https://www.coursera.org/learn/navigating-internal-politics",
+          "checked": "2026-10-21"
+        }
+      },
+      {
+        "order": 6,
+        "skill": "prepare market research reports",
+        "label": null,
+        "related": false,
+        "note": null,
+        "source": {
+          "label": "Coursera public course catalogue (workload as stated; cost checked on the course page) (2026-10-21)",
+          "url": "https://www.coursera.org/learn/microsoft-market-research-and-competitive-analysis",
+          "date": "2026-10-21",
+          "isEstimate": false
+        },
+        "course": {
+          "title": "Market Research and Competitive Analysis",
+          "provider": "Coursera",
+          "hours": null,
+          "stated_duration": "2 weeks",
+          "cost": "29dollars one month, 7 days free trial",
+          "hrd_claimable": "check",
+          "url": "https://www.coursera.org/learn/microsoft-market-research-and-competitive-analysis",
+          "checked": "2026-10-21"
+        }
+      },
+      {
+        "order": 7,
+        "skill": "prepare presentation material",
+        "label": null,
+        "related": false,
+        "note": null,
+        "source": {
+          "label": "Coursera public course catalogue (workload as stated; cost checked on the course page) (2026-10-21)",
+          "url": "https://www.coursera.org/learn/presentation-skills",
+          "date": "2026-10-21",
+          "isEstimate": false
+        },
+        "course": {
+          "title": "Successful Presentation",
+          "provider": "Coursera",
+          "hours": null,
+          "stated_duration": "4  weeks of study, 2 hours/week",
+          "cost": "29dollars one month, 7 days free trial",
+          "hrd_claimable": "check",
+          "url": "https://www.coursera.org/learn/presentation-skills",
+          "checked": "2026-10-21"
+        }
+      },
+      {
+        "order": 8,
+        "skill": "recommend market-related measures",
+        "label": null,
+        "related": false,
+        "note": null,
+        "source": {
+          "label": "Coursera public course catalogue (workload as stated; cost checked on the course page) (2026-10-21)",
+          "url": "https://www.coursera.org/learn/market-equilibrium-government-policies-and-elasticity",
+          "date": "2026-10-21",
+          "isEstimate": false
+        },
+        "course": {
+          "title": "Market Equilibrium, Government Policy & Elasticity",
+          "provider": "Coursera",
+          "hours": null,
+          "stated_duration": "Customizable based on your level of interest",
+          "cost": "29dollars one month, 7 days free trial",
+          "hrd_claimable": "check",
+          "url": "https://www.coursera.org/learn/market-equilibrium-government-policies-and-elasticity",
+          "checked": "2026-10-21"
+        }
+      },
+      {
+        "order": 9,
+        "skill": "analyse market financial trends",
+        "label": null,
+        "related": false,
+        "note": null,
+        "source": {
+          "label": "Coursera public course catalogue (workload as stated; cost checked on the course page) (2026-10-21)",
+          "url": "https://www.coursera.org/learn/uncover-market-trends-with-data-analysis",
+          "date": "2026-10-21",
+          "isEstimate": false
+        },
+        "course": {
+          "title": "Uncover Market Trends with Data Analysis",
+          "provider": "Coursera",
+          "hours": 2.83,
+          "stated_duration": "Approximately 170 minutes",
+          "cost": "29dollars one month, 7 days free trial",
+          "hrd_claimable": "check",
+          "url": "https://www.coursera.org/learn/uncover-market-trends-with-data-analysis",
+          "checked": "2026-10-21"
+        }
+      },
+      {
+        "order": 10,
+        "skill": "analyse consumer buying trends",
+        "label": null,
+        "related": false,
+        "note": null,
+        "source": {
+          "label": "Coursera public course catalogue (workload as stated; cost checked on the course page) (2026-10-21)",
+          "url": "https://www.coursera.org/learn/sustainable-marketing-and-consumer-trends",
+          "date": "2026-10-21",
+          "isEstimate": false
+        },
+        "course": {
+          "title": "Sustainable Marketing and Consumer Trends",
+          "provider": "Coursera",
+          "hours": null,
+          "stated_duration": "About 4 weeks",
+          "cost": "29dollars one month, 7 days free trial",
+          "hrd_claimable": "check",
+          "url": "https://www.coursera.org/learn/sustainable-marketing-and-consumer-trends",
+          "checked": "2026-10-21"
+        }
+      },
+      {
+        "order": 11,
+        "skill": "identify potential markets for companies",
+        "label": null,
+        "related": false,
+        "note": null,
+        "source": {
+          "label": "Coursera public course catalogue (workload as stated; cost checked on the course page) (2026-10-21)",
+          "url": "https://www.coursera.org/learn/analyze-financial-markets-technical-analysis",
+          "date": "2026-10-21",
+          "isEstimate": false
+        },
+        "course": {
+          "title": "Analyze Financial Markets with Technical Analysis",
+          "provider": "Coursera",
+          "hours": null,
+          "stated_duration": "1 week, 10 hour",
+          "cost": "29dollars one month, 7 days free trial",
+          "hrd_claimable": "check",
+          "url": "https://www.coursera.org/learn/analyze-financial-markets-technical-analysis",
+          "checked": "2026-10-21"
+        }
+      },
+      {
+        "order": 12,
+        "skill": "analyse economic trends",
+        "label": null,
+        "related": false,
+        "note": null,
+        "source": {
+          "label": "Coursera public course catalogue (workload as stated; cost checked on the course page) (2026-10-21)",
+          "url": "https://www.coursera.org/learn/economic-growth-part-2",
+          "date": "2026-10-21",
+          "isEstimate": false
+        },
+        "course": {
+          "title": "Economic Growth and Distributive Justice Part II - Maximize Social Wellbeing",
+          "provider": "Coursera",
+          "hours": null,
+          "stated_duration": "5 weeks of study, 1-3 hours/week",
+          "cost": "49 USD",
+          "hrd_claimable": "check",
+          "url": "https://www.coursera.org/learn/economic-growth-part-2",
+          "checked": "2026-10-21"
+        }
+      },
+      {
+        "order": 13,
+        "skill": "make strategic business decisions",
+        "label": null,
+        "related": false,
+        "note": null,
+        "source": {
+          "label": "Coursera public course catalogue (workload as stated; cost checked on the course page) (2026-10-21)",
+          "url": "https://www.coursera.org/learn/business-accounting",
+          "date": "2026-10-21",
+          "isEstimate": false
+        },
+        "course": {
+          "title": "Accounting for Business Decision Making: Measurement and Operational Decisions",
+          "provider": "Coursera",
+          "hours": null,
+          "stated_duration": "4 weeks of study, 1-3 hours/week",
+          "cost": "29dollars one month, 7 days free trial",
+          "hrd_claimable": "check",
+          "url": "https://www.coursera.org/learn/business-accounting",
+          "checked": "2026-10-21"
+        }
+      },
+      {
+        "order": 14,
+        "skill": "analyse external factors of companies",
+        "label": null,
+        "related": false,
+        "note": null,
+        "source": {
+          "label": "Microsoft Learn Catalog API (free courses, duration stated) (2026-10-21)",
+          "url": "https://learn.microsoft.com/en-us/training/paths/integrate-dataverse-external-services/",
+          "date": "2026-10-21",
+          "isEstimate": false
+        },
+        "course": {
+          "title": "Integrate Dataverse with services and external data",
+          "provider": "Microsoft Learn",
+          "hours": 2.23,
+          "stated_duration": "134 min",
+          "cost": "Free",
+          "hrd_claimable": "check",
+          "url": "https://learn.microsoft.com/en-us/training/paths/integrate-dataverse-external-services/",
+          "checked": "2026-10-21"
+        }
+      }
+    ],
+    "no_course": [
+      "identify market niches",
+      "trendwatching"
+    ],
+    "stop_investing": [],
+    "sdg": [
+      {
+        "target": "8.2",
+        "label": "Decent work and economic growth",
+        "effect": 1,
+        "reason": "Supports economic productivity through market innovation.",
+        "reviewed": null,
+        "malaysia_off_track": false
+      }
+    ]
+  }
+}

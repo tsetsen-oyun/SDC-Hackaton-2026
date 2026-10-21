@@ -1,0 +1,315 @@
+{
+  "snapshot": "2026-10-20",
+  "request": {
+    "jobId": "JOB_FRAUD_EXAMINER",
+    "skills": [
+      "SK_a0d79341",
+      "SK_faf8943c",
+      "SK_08371fe9",
+      "SK_99b163e8",
+      "SK_dc417e19",
+      "SK_28a2ff4b",
+      "SK_2ecf90f1",
+      "SK_d63c2bad",
+      "SK_f75b740c",
+      "SK_6451e645",
+      "SK_3e04e39d",
+      "SK_f7e7ccb6",
+      "SK_e2e15494",
+      "SK_eaa9727c",
+      "SK_880c54f9",
+      "SK_e9030465",
+      "SK_d6e78d9a",
+      "SK_60f51172",
+      "SK_3982571a",
+      "SK_7ee4c2ea",
+      "SK_8a326ee1"
+    ],
+    "scenario": "moderate"
+  },
+  "response": {
+    "job_id": "JOB_FRAUD_EXAMINER",
+    "title": "Fraud Examiners, Investigators and Analysts",
+    "scenario": "moderate",
+    "source": {
+      "label": "O*NET Database 31.0 (2026-08-30) · ESCO classification (skills, occupations) via ESCO API (2026-10-21) · Microsoft Learn Catalog API (free courses, duration stated) (2026-10-21) · Coursera public course catalogue (workload as stated; cost checked on the course page) (2026-10-21)",
+      "url": "https://www.onetcenter.org/database.html",
+      "date": "2026-10-20",
+      "isEstimate": true
+    },
+    "total_hours": 62.9,
+    "total_weeks": 18,
+    "hours_per_week": 3.5,
+    "courses_without_hours": 4,
+    "steps": [
+      {
+        "order": 1,
+        "skill": "manage corporate bank accounts",
+        "label": null,
+        "related": true,
+        "note": "Close to a skill you already have",
+        "source": {
+          "label": "Microsoft Learn Catalog API (free courses, duration stated) (2026-10-21)",
+          "url": "https://learn.microsoft.com/en-us/training/paths/reconcile-bank-accounts-dynamics-365-business-central/",
+          "date": "2026-10-21",
+          "isEstimate": false
+        },
+        "course": {
+          "title": "Reconcile bank accounts in Microsoft Dynamics 365 Business Central",
+          "provider": "Microsoft Learn",
+          "hours": 1.9,
+          "stated_duration": "114 min",
+          "cost": "Free",
+          "hrd_claimable": "check",
+          "url": "https://learn.microsoft.com/en-us/training/paths/reconcile-bank-accounts-dynamics-365-business-central/",
+          "checked": "2026-10-21"
+        }
+      },
+      {
+        "order": 2,
+        "skill": "perform forensic accounting",
+        "label": null,
+        "related": true,
+        "note": "Close to a skill you already have",
+        "source": {
+          "label": "Coursera public course catalogue (workload as stated; cost checked on the course page) (2026-10-21)",
+          "url": "https://www.coursera.org/learn/forensic-accounting-detect-investigate-prevent-fraud",
+          "date": "2026-10-21",
+          "isEstimate": false
+        },
+        "course": {
+          "title": "Forensic Accounting: Detect, Investigate & Prevent Fraud",
+          "provider": "Coursera",
+          "hours": 8,
+          "stated_duration": "8 hours",
+          "cost": "49USD",
+          "hrd_claimable": "check",
+          "url": "https://www.coursera.org/learn/forensic-accounting-detect-investigate-prevent-fraud",
+          "checked": "2026-10-21"
+        }
+      },
+      {
+        "order": 3,
+        "skill": "banking activities",
+        "label": null,
+        "related": true,
+        "note": "Close to a skill you already have",
+        "source": {
+          "label": "Coursera public course catalogue (workload as stated; cost checked on the course page) (2026-10-21)",
+          "url": "https://www.coursera.org/learn/analyze-digital-banking-and-fintech-transformation",
+          "date": "2026-10-21",
+          "isEstimate": false
+        },
+        "course": {
+          "title": "Analyze Digital Banking and Fintech Transformation",
+          "provider": "Coursera",
+          "hours": null,
+          "stated_duration": "5 hours to complete, 4 modules",
+          "cost": "35dollars one month, 7 days free trial",
+          "hrd_claimable": "check",
+          "url": "https://www.coursera.org/learn/analyze-digital-banking-and-fintech-transformation",
+          "checked": "2026-10-21"
+        }
+      },
+      {
+        "order": 4,
+        "skill": "prepare financial auditing reports",
+        "label": null,
+        "related": true,
+        "note": "Close to a skill you already have",
+        "source": {
+          "label": "Coursera public course catalogue (workload as stated; cost checked on the course page) (2026-10-21)",
+          "url": "https://www.coursera.org/learn/financial-business-accounting-and-mis-reports",
+          "date": "2026-10-21",
+          "isEstimate": false
+        },
+        "course": {
+          "title": "Financial Business Accounting and MIS Reports",
+          "provider": "Coursera",
+          "hours": null,
+          "stated_duration": "4 weeks of study, 6 hours/week",
+          "cost": "49USD",
+          "hrd_claimable": "check",
+          "url": "https://www.coursera.org/learn/financial-business-accounting-and-mis-reports",
+          "checked": "2026-10-21"
+        }
+      },
+      {
+        "order": 5,
+        "skill": "interpret financial statements",
+        "label": null,
+        "related": true,
+        "note": "Close to a skill you already have",
+        "source": {
+          "label": "Coursera public course catalogue (workload as stated; cost checked on the course page) (2026-10-21)",
+          "url": "https://www.coursera.org/learn/financial-statements-ratios-and-month-end-close-essentials",
+          "date": "2026-10-21",
+          "isEstimate": false
+        },
+        "course": {
+          "title": "Financial Statements, Ratios, and Month-End Close Essentials",
+          "provider": "Coursera",
+          "hours": 8,
+          "stated_duration": "8 hours",
+          "cost": "29dollars one month, 7 days free trial",
+          "hrd_claimable": "check",
+          "url": "https://www.coursera.org/learn/financial-statements-ratios-and-month-end-close-essentials",
+          "checked": "2026-10-21"
+        }
+      },
+      {
+        "order": 6,
+        "skill": "conduct financial audits",
+        "label": null,
+        "related": true,
+        "note": "Close to a skill you already have",
+        "source": {
+          "label": "Microsoft Learn Catalog API (free courses, duration stated) (2026-10-21)",
+          "url": "https://learn.microsoft.com/en-us/training/paths/set-up-configure-financial-management-work-general-ledger/",
+          "date": "2026-10-21",
+          "isEstimate": false
+        },
+        "course": {
+          "title": "Configure financial management",
+          "provider": "Microsoft Learn",
+          "hours": 20.38,
+          "stated_duration": "1223 min",
+          "cost": "Free",
+          "hrd_claimable": "check",
+          "url": "https://learn.microsoft.com/en-us/training/paths/set-up-configure-financial-management-work-general-ledger/",
+          "checked": "2026-10-21"
+        }
+      },
+      {
+        "order": 7,
+        "skill": "detect financial crime",
+        "label": null,
+        "related": false,
+        "note": null,
+        "source": {
+          "label": "Microsoft Learn Catalog API (free courses, duration stated) (2026-10-21)",
+          "url": "https://learn.microsoft.com/en-us/training/paths/process-financial-periodic-activities-dynamics-365-business-central/",
+          "date": "2026-10-21",
+          "isEstimate": false
+        },
+        "course": {
+          "title": "Process financial periodic activities in Microsoft Dynamics 365 Business Central",
+          "provider": "Microsoft Learn",
+          "hours": 3.15,
+          "stated_duration": "189 min",
+          "cost": "Free",
+          "hrd_claimable": "check",
+          "url": "https://learn.microsoft.com/en-us/training/paths/process-financial-periodic-activities-dynamics-365-business-central/",
+          "checked": "2026-10-21"
+        }
+      },
+      {
+        "order": 8,
+        "skill": "fraud detection",
+        "label": null,
+        "related": false,
+        "note": null,
+        "source": {
+          "label": "Coursera public course catalogue (workload as stated; cost checked on the course page) (2026-10-21)",
+          "url": "https://www.coursera.org/learn/googlecloud-fraud-detection-on-financial-transactions-with-machine-learnin-3bian",
+          "date": "2026-10-21",
+          "isEstimate": false
+        },
+        "course": {
+          "title": "Fraud Detection on Financial Transactions with Machine Learning on Google Cloud",
+          "provider": "Coursera",
+          "hours": 1.5,
+          "stated_duration": "1.5 hours",
+          "cost": "9.99 USD",
+          "hrd_claimable": "check",
+          "url": "https://www.coursera.org/learn/googlecloud-fraud-detection-on-financial-transactions-with-machine-learnin-3bian",
+          "checked": "2026-10-21"
+        }
+      },
+      {
+        "order": 9,
+        "skill": "liaise with managers",
+        "label": null,
+        "related": false,
+        "note": null,
+        "source": {
+          "label": "Coursera public course catalogue (workload as stated; cost checked on the course page) (2026-10-21)",
+          "url": "https://www.coursera.org/learn/data-intelligence-imtbs",
+          "date": "2026-10-21",
+          "isEstimate": false
+        },
+        "course": {
+          "title": "Data intelligence for businesses and managers",
+          "provider": "Coursera",
+          "hours": null,
+          "stated_duration": "5 weeks of study, 4 to 5 hours/week",
+          "cost": "49USD",
+          "hrd_claimable": "check",
+          "url": "https://www.coursera.org/learn/data-intelligence-imtbs",
+          "checked": "2026-10-21"
+        }
+      },
+      {
+        "order": 10,
+        "skill": "interpret law",
+        "label": null,
+        "related": false,
+        "note": null,
+        "source": {
+          "label": "Coursera public course catalogue (workload as stated; cost checked on the course page) (2026-10-21)",
+          "url": "https://www.coursera.org/learn/law-student",
+          "date": "2026-10-21",
+          "isEstimate": false
+        },
+        "course": {
+          "title": "A Law Student's Toolkit",
+          "provider": "Coursera",
+          "hours": 20,
+          "stated_duration": "2 weeks to complete at 10 hours per week",
+          "cost": "Free to join (audit); certificate paid",
+          "hrd_claimable": "check",
+          "url": "https://www.coursera.org/learn/law-student",
+          "checked": "2026-10-21"
+        }
+      },
+      {
+        "order": 11,
+        "skill": "trace financial transactions",
+        "label": null,
+        "related": false,
+        "note": null,
+        "source": {
+          "label": "Coursera public course catalogue (workload as stated; cost checked on the course page) (2026-10-21)",
+          "url": "https://www.coursera.org/learn/packt-financial-adjustments-recording-transactions-and-corrections-my58a",
+          "date": "2026-10-21",
+          "isEstimate": false
+        },
+        "course": {
+          "title": "Financial Adjustments, Recording Transactions & Corrections",
+          "provider": "Coursera",
+          "hours": null,
+          "stated_duration": "2 weeks to complete",
+          "cost": "29dollars one month, 7 days free trial",
+          "hrd_claimable": "check",
+          "url": "https://www.coursera.org/learn/packt-financial-adjustments-recording-transactions-and-corrections-my58a",
+          "checked": "2026-10-21"
+        }
+      }
+    ],
+    "no_course": [
+      "financial statements",
+      "forensic intelligence"
+    ],
+    "stop_investing": [],
+    "sdg": [
+      {
+        "target": "16.5",
+        "label": "Peace, justice and strong institutions",
+        "effect": 1,
+        "reason": "Reduces corruption and bribery in economic systems.",
+        "reviewed": null,
+        "malaysia_off_track": true
+      }
+    ]
+  }
+}

@@ -164,7 +164,8 @@ export function match({ tasks, skills = [], scenario, mode = "market" }) {
 export function buildRoute({ jobId, skills = [], scenario }) {
   const snap = engine.snapshot();
   const r = engine.buildRoute({ jobId, skills });
-  const sdg = sdgPills(snap.sdgLinks.filter((l) => l.item_type === "role" && l.item_id === jobId));
+  const sdg = sdgPills(snap.sdgLinks.filter((l) => l.item_type === "role" && l.item_id === jobId)
+    .map((l) => ({ ...l, malaysia_off_track: snap.offTrackGoals.has(String(l.sdg_target).split(".")[0]) })));
   if (r.status !== "ready") {
     return { job_id: jobId, title: snap.roles.get(jobId)?.role_name ?? jobId, scenario, message: r.message,
       steps: [], total_hours: 0, total_weeks: 0, stop_investing: [], sdg, source: receipt(snap, [], false) };
