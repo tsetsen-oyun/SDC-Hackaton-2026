@@ -1,0 +1,12 @@
+{
+  "snapshot_date": "2026-04-01",
+  "llm_model_used": null,
+  "sources": [
+    { "id": "test_metr", "name": "TEST: made-up AI progress", "url": "https://example.org/metr", "date_taken": "2026-04-01", "licence": "test" },
+    { "id": "test_aei", "name": "TEST: made-up task times", "url": "https://example.org/aei", "date_taken": "2026-04-01", "licence": "test" },
+    { "id": "test_onet", "name": "TEST: made-up tasks", "url": "https://example.org/onet", "date_taken": "2026-04-01", "licence": "test" },
+    { "id": "test_esco", "name": "TEST: made-up skills", "url": "https://example.org/esco", "date_taken": "2026-04-01", "licence": "test" },
+    { "id": "test_slowdown", "name": "TEST: made-up slowdown delays", "url": "https://example.org/slowdown", "date_taken": "2026-04-01", "licence": "test" },
+    { "id": "test_domains", "name": "TEST: made-up office-work factor", "url": "https://example.org/domains", "date_taken": "2026-04-01", "licence": "test" }
+  ]
+}

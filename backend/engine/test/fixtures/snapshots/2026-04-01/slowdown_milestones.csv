@@ -1,0 +1,7 @@
+reliability,milestone,task_length_minutes,delay_years_under_slowdown,source
+80%,1 week,2400,5,test_slowdown
+80%,1 month,10000,7,test_slowdown
+80%,3 months,30000,8,test_slowdown
+80%,1 year,120000,10,test_slowdown
+50%,1 month,10000,4,test_slowdown
+80%,1 day,,3,test_slowdown
