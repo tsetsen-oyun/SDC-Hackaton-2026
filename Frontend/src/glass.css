@@ -262,3 +262,24 @@ button { font-family: inherit; }
 .pie path { transition: d 0.15s; cursor: default; }
 .pie-label { font: 600 11px "DM Mono", monospace; fill: #2d3139; pointer-events: none; }
 @media (max-width: 900px) { .split-grid { grid-template-columns: 1fr; } }
+
+/* ---------- data-shape update: tags, mentor, editing ---------- */
+.sdg-tag { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 999px; border: 1px dashed #b4b8c2; color: #6f7480; margin-left: 4px; }
+.sdg-tag.off { border: 1px solid var(--coral); color: var(--coral-ink); background: var(--orange-soft); }
+.clamp { display: inline; }
+.sdg-list .clamp { display: -webkit-inline-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; vertical-align: bottom; }
+.nd { display: block; margin-top: 2px; color: var(--ink-soft); font-size: 12px; }
+.mentor { margin: 0 0 22px; }
+.mentor h2 { margin: 0 0 12px; font-size: 20px; }
+.mentor-pair { padding: 12px 0; border-top: 1px solid var(--line); }
+.mentor-pair p { margin: 6px 0 0; }
+.consent { margin: 12px 0 0; font-size: 13px; color: var(--ink-soft); }
+.edit-hours { display: inline-flex; align-items: center; gap: 6px; }
+.edit-hours input { width: 56px; font: inherit; text-align: right; padding: 4px 6px; border-radius: 8px; border: 1px solid var(--line); background: rgba(255,255,255,.8); }
+.x-btn { border: 0; background: none; font-size: 20px; line-height: 1; color: var(--ink-soft); cursor: pointer; padding: 0 4px; }
+.x-btn:hover { color: var(--coral-ink); }
+.edit-bar { margin-top: 16px; }
+.edit-bar p { margin: 0 0 10px; font-size: 13px; }
+.add-row { display: flex; gap: 10px; margin-bottom: 10px; }
+.add-row select { flex: 1; min-width: 0; font: inherit; padding: 8px 10px; border-radius: 10px; border: 1px solid var(--line); background: #fff; }
+.add-row .btn-blue:disabled { opacity: .45; cursor: default; }

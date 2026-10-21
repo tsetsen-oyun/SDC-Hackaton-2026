@@ -58,7 +58,7 @@ export default function Forecast() {
     if (!person) return;
     let ignore = false; // stops an old, slow response from overwriting a newer one
     setError(null);
-    api.forecast(toPayload(personTasks(person)), scenario, person.skill_ids ?? [])
+    api.forecast(toPayload(personTasks(person)), scenario)
       .then((d) => { if (!ignore) setData(d); })
       .catch((e) => { if (!ignore) setError(e.message); });
     return () => { ignore = true; };
@@ -75,6 +75,7 @@ export default function Forecast() {
   const totalHours = data.tasks.reduce((s, t) => s + t.hours, 0);
   const byId = Object.fromEntries(data.tasks.map((t) => [t.task_id, t]));
   const role = yearData.emerging_role;
+  const skills = yearData.skills ?? []; // the cards change with the slider year
 
   return (
     <>
@@ -123,13 +124,14 @@ export default function Forecast() {
               <div>
                 <small><span className="swatch blue" /> Still human</small>
                 <div className="big-num blue">{yearData.human_hours} h</div>
+                {yearData.no_data_hours > 0 && <small className="nd">incl. {yearData.no_data_hours} h with no AI date</small>}
               </div>
             </div>
             <p className="week-note">
               By {year}, AI could do about <b>{Math.round(yearData.share_ai * 100)}% of {person.name}'s weekly hours</b>{" "}
               under the {SCENARIO_LABEL[scenario]} scenario. <b>Estimate.</b>
               {yearData.no_data_hours > 0 &&
-                ` ${yearData.no_data_hours} h have no published timing, so we count them as still human.`}
+                ` ${yearData.no_data_hours} h have no AI date, so we count them as still human.`}
             </p>
           </div>
           <WeekBar tasks={data.tasks} doneIds={doneIds} />
@@ -201,17 +203,21 @@ export default function Forecast() {
             </section>
           )}
 
-          {data.skills?.length > 0 && (
+          {skills.length > 0 && (
             <section className="card skills">
-              <h2>{person.name}'s skills</h2>
-              {data.skills.map((s) => (
+              <h2>
+                {data.skills_from === "tasks_shown"
+                  ? `Skills in ${person.target_job ?? "the target job"}`
+                  : `${person.name}'s skills`}
+              </h2>
+              {skills.map((s) => (
                 <div key={s.id} className={"skill " + (s.label ?? "")}>
                   <span className="skill-bar" />
                   <div className="skill-main">
                     <div className="skill-name">{s.name}</div>
-                    <div className="skill-trend">{s.trend}</div>
+                    <div className="skill-trend">{s.trend ?? "no data"}</div>
                   </div>
-                  {s.label && <span className="tag">{s.label}</span>}
+                  <span className="tag">{s.label ?? "no data"}</span>
                 </div>
               ))}
             </section>

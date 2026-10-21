@@ -20,7 +20,8 @@ function slicePath(cx, cy, r, a0, a1) {
   return `M ${cx} ${cy} L ${x0} ${y0} A ${r} ${r} 0 ${large} 1 ${x1} ${y1} Z`;
 }
 
-export default function WeekSplit({ person }) {
+export default function WeekSplit({ person, onHours, onRemove, footer }) {
+  const editable = Boolean(onHours);
   const [hover, setHover] = useState(null);
   const tasks = personTasks(person).map((t, i) => ({
     id: t.task_id ?? t.id ?? i,
@@ -31,7 +32,7 @@ export default function WeekSplit({ person }) {
   const min = Math.min(...hrs), max = Math.max(...hrs);
   tasks.forEach((t) => { t.opacity = shade(t.hours, min, max); });
   const total = tasks.reduce((s, t) => s + t.hours, 0);
-  if (total === 0) return null;
+  if (total === 0) return <section className="week-split"><h2>{person.name}'s week</h2>{footer}</section>;
 
   let angle = 0;
   const slices = tasks.map((t) => {
@@ -56,9 +57,22 @@ export default function WeekSplit({ person }) {
                 <i className="dot" style={{ background: CORAL, opacity: s.opacity }} />
                 {s.name}
               </span>
-              <span>{s.hours} h</span>
+              {editable ? (
+                <span className="edit-hours">
+                  <input
+                    type="number" min="0" max="80" step="1" value={s.hours}
+                    aria-label={`Hours for ${s.name}`}
+                    onChange={(e) => onHours(s.id, Math.max(0, Number(e.target.value) || 0))}
+                  />
+                  h
+                  <button className="x-btn" aria-label={`Remove ${s.name}`} onClick={() => onRemove(s.id)}>×</button>
+                </span>
+              ) : (
+                <span>{s.hours} h</span>
+              )}
             </div>
           ))}
+          {footer}
         </div>
 
         <svg className="pie" viewBox="0 0 220 220" role="img" aria-label={`${person.name}'s ${total} hours split by task`}>

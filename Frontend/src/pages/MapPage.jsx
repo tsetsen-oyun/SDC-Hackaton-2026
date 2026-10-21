@@ -4,6 +4,8 @@ import { useApp } from "../context/AppContext.jsx";
 import { api } from "../api.js";
 import { personTasks, toPayload, SCENARIO_LABEL, skillName } from "../utils.js";
 import Receipt from "../components/Receipt.jsx";
+import SdgTags from "../components/SdgTags.jsx";
+import MentorCard from "../components/MentorCard.jsx";
 
 const YEARS = Array.from({ length: 10 }, (_, i) => 2026 + i);
 const WEATHER = { rising: "☀️ Rising", steady: "⛅ Steady", declining: "🌧️ Declining" };
@@ -80,7 +82,8 @@ function JobCard({ job, rank, mode, onChoose }) {
         {(job.sdg ?? []).map((s) => (
           <li key={s.target + s.label} className={s.effect < 0 ? "debit" : "credit"}>
             <b>{s.effect < 0 ? "−" : "+"} {s.target}</b> {s.label}
-            {s.reason && ` · ${s.reason}`}
+            {s.reason && <span className="clamp"> · {s.reason}</span>}{" "}
+            <SdgTags s={s} />
           </li>
         ))}
       </ul>
@@ -149,6 +152,8 @@ export default function MapPage() {
           : "Ranked by how well each job fits your tasks, skills and outlook."}{" "}
         These are suggestions to help you decide. You make the final call.
       </p>
+
+      <MentorCard person={person} scenario={scenario} year={year} dataVersion={dataVersion} />
 
       <div className="jobs">
         {jobs.map((job, i) => {

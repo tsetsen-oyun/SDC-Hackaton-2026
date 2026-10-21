@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useApp } from "../context/AppContext.jsx";
 import { api } from "../api.js";
 import Receipt from "../components/Receipt.jsx";
-import { skillName } from "../utils.js";
+import SdgTags from "../components/SdgTags.jsx";
 
 const HRD = { yes: "Yes", no: "No", check: "Check with provider", true: "Yes", false: "No" };
 
@@ -11,7 +11,7 @@ const duration = (c) =>
   c.hours != null ? `${c.hours} h` : c.stated_duration ?? "duration not stated";
 
 export default function RoutePage() {
-  const { person, scenario, chosenJob, dataVersion } = useApp();
+  const { person, scenario, year, chosenJob, dataVersion } = useApp();
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
 
@@ -36,6 +36,8 @@ export default function RoutePage() {
   if (!person || !data) return <p>Loading…</p>;
 
   const steps = data.steps ?? [];
+  const stops = data.stop_investing_by_year?.[year] ?? [];
+  const noHours = Array.isArray(data.courses_without_hours) ? data.courses_without_hours.length : data.courses_without_hours ?? 0;
   const supports = (data.sdg ?? []).filter((s) => s.effect > 0);
   const tradeoffs = (data.sdg ?? []).filter((s) => s.effect < 0);
 
@@ -45,7 +47,9 @@ export default function RoutePage() {
       <h1 className="hero">{data.title ?? chosenJob.title}</h1>
       {data.total_weeks != null && (
         <p className="lead muted">
-          Total: about {data.total_weeks} weeks, part-time <span className="badge-est">Estimate</span>
+          Total: about {data.total_weeks} weeks, part-time
+          {noHours > 0 && ` + ${noHours} course${noHours > 1 ? "s" : ""} with no stated hours`}{" "}
+          <span className="badge-est">Estimate</span>
         </p>
       )}
 
@@ -58,9 +62,16 @@ export default function RoutePage() {
               <div className="step-body">
                 <div className="step-head">
                   <h3>{s.skill}</h3>
-                  {s.label && <span className={"tag " + s.label}>{s.label}</span>}
+                  {s.label_by_year?.[year] && <span className={"tag " + s.label_by_year[year]}>{s.label_by_year[year]}</span>}
                 </div>
                 {s.note && <p className="muted">{s.note}</p>}
+                {s.sdg?.length > 0 && (
+                  <div className="sdg-line">
+                    {s.sdg.slice(0, 3).map((g) => (
+                      <span key={g.target + g.label} className="pill pill-outline">{g.target} {g.label}</span>
+                    ))}
+                  </div>
+                )}
                 <div className="course">
                   <b>{c.title}</b>
                   <span>{[c.provider, duration(c), c.cost].filter(Boolean).join(" · ")}</span>
@@ -83,16 +94,15 @@ export default function RoutePage() {
       )}
       {data.no_course?.length > 0 && (
         <p className="no-course">
-          <b>No course in our list yet for:</b> {data.no_course.map(skillName).join(", ")}
+          <b>No course in our list yet for:</b> {data.no_course.map((x) => (typeof x === "string" ? x : x.name ?? x.skill)).join(", ")}
         </p>
       )}
 
-      {data.stop_investing?.length > 0 && (
+      {stops.length > 0 && (
         <div className="stop">
-          <b>Stop investing in:</b>
-          {data.stop_investing.map(skillName).join(", ")}
+          <b>Stop investing in:</b> {stops.map((x) => x.skill).join(", ")}
           <span className="tag trap">trap</span>
-          <Receipt source={data.stop_investing[0].source} />
+          <Receipt source={stops[0].source} />
         </div>
       )}
 
