@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { fileURLToPath } from "node:url";
 import { loadSnapshot } from "../load.js";
 import { routeFor, HOURS_PER_WEEK } from "../route.js";
+import { skillTimeline, skillLabel } from "../skills.js";
 
 const DIR = fileURLToPath(new URL("./fixtures/snapshots/", import.meta.url));
 const old = loadSnapshot("2026-04-01", DIR);
@@ -46,6 +47,23 @@ test("a course with no stated hours is left out of the total and counted, never 
   const r = routeFor(withCourses([course("C1", "S_AUDIT", 10), course("C2", "S_REPORT", null)]), { jobId: "JOB_AUD", skills: siti });
   assert.equal(r.total_hours, 10);
   assert.equal(r.courses_without_hours, 1);
+});
+
+test("with a scenario, the skill that stays human longest comes first, with labels per year", () => {
+  // S_AUDIT stays human until 2032 under moderate, S_REPORT until 2030.
+  const r = routeFor(withCourses([course("C1", "S_AUDIT", 10), course("C2", "S_REPORT", 6)]), { jobId: "JOB_AUD", skills: siti, scenario: "moderate" });
+  assert.deepEqual(r.steps.map((s) => s.skill_id), ["S_AUDIT", "S_REPORT"]);
+  assert.equal(r.steps[0].label_by_year[2028], "robust");
+  assert.equal(r.steps[1].label_by_year[2034], "trap");
+});
+
+test("stop investing: her skills that are a trap that year and that the role doesn't need", () => {
+  const r = routeFor(withCourses([course("C1", "S_AUDIT", 10)]), { jobId: "JOB_AUD", skills: siti, scenario: "moderate" });
+  assert.deepEqual(r.stop_investing_by_year[2028], []);
+  assert.deepEqual(r.stop_investing_by_year[2030].map((s) => s.skill_id), ["S_DATA"]);
+  // By 2032 S_COMM is a trap too, but the auditor needs it, so it isn't listed.
+  assert.equal(skillLabel(old, skillTimeline(old), "S_COMM", 2032), "trap");
+  assert.deepEqual(r.stop_investing_by_year[2032].map((s) => s.skill_id), ["S_DATA"]);
 });
 
 test("an unknown role is an error", () => {

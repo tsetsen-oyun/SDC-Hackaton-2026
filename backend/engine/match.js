@@ -6,8 +6,10 @@ import { splitSourceIds } from "./load.js";
 
 // Our weighting, shown in the receipt. The three parts are each between 0 and 1.
 export const WEIGHTS = { skills: 0.4, leftover: 0.3, outlook: 0.3 };
-// marketPlanet ranking: points added (+) or taken away (−) per SDG link of a role. Also our weighting.
-export const SDG_POINTS = 10;
+// marketPlanet ranking (our weighting): each SDG goal a role helps (+) or hurts (−) counts once,
+// doubled when Malaysia is off track on that goal (SDSN), and the total is capped so the planet part
+// can reorder close jobs but never outweigh the skill fit.
+export const SDG_POINTS = { goal: 5, off_track_goal: 10, cap: 15 };
 // A skill that isn't an exact match but shares an ESCO group with one on the other side counts this much.
 // Also our weighting. ESCO job skill lists are very specific, so exact matches alone are almost always 0.
 export const RELATED_CREDIT = 0.5;
@@ -17,8 +19,9 @@ export function matchScenario(snap, { tasks: personTasks, skills: extraSkills = 
   const ctx = buildContext(snap, assumptions);
   const scenarioRow = snap.scenarios.get(scenario);
 
-  const ownJobs = new Set(personTasks.map((t) => snap.tasks.get(t.task_id)?.job).filter(Boolean));
-  const personSkills = new Set(personTasks.flatMap((t) => snap.taskSkills.get(t.task_id) ?? []));
+  const ownJobs = mainJobs(snap, personTasks);
+  const skillsOf = taskSkillsFor(snap, personTasks);
+  const personSkills = new Set(personTasks.flatMap((t) => skillsOf(t.task_id)));
   // Skills the person adds themselves count only if they are real skills from our list.
   for (const s of extraSkills) if (!snap.skills.size || snap.skills.has(s)) personSkills.add(s);
   const personGroups = groupsOf(snap, personSkills);
@@ -30,12 +33,15 @@ export function matchScenario(snap, { tasks: personTasks, skills: extraSkills = 
 
   const planetMode = mode === "marketPlanet";
   const sdgByRole = groupSdgLinks(snap.sdgLinks);
-  const note = planetMode && !snap.sdgLinks.length ? "No SDG links in this snapshot yet, so the ranking is the same as market" : null;
+  const note = !planetMode ? null
+    : !snap.sdgLinks.length ? "No SDG links in this snapshot yet, so the ranking is the same as market"
+    : !snap.malaysiaSdg.length ? "No Malaysia SDG status in this snapshot, so every goal counts the same"
+    : null;
 
   const by_year = {};
   for (const year of forecast.years) {
     const week = forecast.by_year[year];
-    const leftoverSkills = new Set(week.leftover_task_ids.flatMap((id) => snap.taskSkills.get(id) ?? []));
+    const leftoverSkills = new Set(week.leftover_task_ids.flatMap(skillsOf));
 
     const roles = candidates.map((role) => {
       const need = role.skill_ids;
@@ -54,8 +60,9 @@ export function matchScenario(snap, { tasks: personTasks, skills: extraSkills = 
       const sdg = (sdgByRole.get(role.role_id) ?? []).map((l) => ({
         target: l.sdg_target, sign: l.sign, reason: l.one_line_reason ?? null, source: l.source,
         is_estimate: l.is_estimate ?? null, reviewed: l.reviewed ?? null,
+        malaysia_off_track: snap.offTrackGoals.has(goalOf(l.sdg_target)),
       }));
-      const sdgPoints = planetMode ? sdg.reduce((sum, l) => sum + (l.sign === "+" ? SDG_POINTS : -SDG_POINTS), 0) : 0;
+      const sdgPoints = planetMode ? planetPoints(snap, sdg) : 0;
 
       return {
         role_id: role.role_id,
@@ -74,7 +81,10 @@ export function matchScenario(snap, { tasks: personTasks, skills: extraSkills = 
         related_skill_ids: related,
         missing_skill_ids: need.filter((s) => !personSkills.has(s)),
         sdg,
-        sources: splitSourceIds([role.source, ctx.frontier.source, scenarioRow.source, ...sdg.map((l) => l.source)]),
+        sources: splitSourceIds([
+          role.source, ctx.frontier.source, scenarioRow.source, ...sdg.map((l) => l.source),
+          ...(planetMode && sdg.some((l) => l.malaysia_off_track) ? snap.malaysiaSdg.map((r) => r.source) : []),
+        ]),
         // The score depends on a forecast, so it is always an estimate.
         is_estimate: true,
       };
@@ -91,11 +101,37 @@ export function matchScenario(snap, { tasks: personTasks, skills: extraSkills = 
     scenario: forecast.scenario,
     mode,
     note,
-    weights: { ...WEIGHTS, related_skill_credit: RELATED_CREDIT, sdg_points_per_link: planetMode ? SDG_POINTS : 0, label: "our weighting" },
+    weights: { ...WEIGHTS, related_skill_credit: RELATED_CREDIT, sdg_points: planetMode ? SDG_POINTS : null, label: "our weighting" },
+    // The goals that count double in the planet ranking (SDSN's Malaysia dashboard).
+    malaysia_off_track_goals: [...snap.offTrackGoals],
     skill_links: skillLinksNote(snap),
     person_skill_ids: [...personSkills],
     years: forecast.years,
     by_year,
+  };
+}
+
+// The person's own job: the one most of their hours belong to (several if tied). A task they add from
+// another job doesn't make that job "theirs", so it stays on the Map, and fits a little better.
+export function mainJobs(snap, personTasks) {
+  const hours = new Map();
+  for (const t of personTasks) {
+    const job = snap.tasks.get(t.task_id)?.job;
+    if (job && t.hours > 0) hours.set(job, (hours.get(job) ?? 0) + t.hours);
+  }
+  const most = Math.max(0, ...hours.values());
+  return new Set([...hours].filter(([, h]) => most > 0 && h === most).map(([job]) => job));
+}
+
+// The skills each of a person's tasks counts for. A task from another job (one the person added) brings
+// skills only if it was linked to skills one by one. Otherwise it would bring that job's whole skill list,
+// and one added task would look like the whole job. Used by matching, the skill cards and the mentor card.
+export function taskSkillsFor(snap, personTasks) {
+  const ownJobs = mainJobs(snap, personTasks);
+  return (id) => {
+    const task = snap.tasks.get(id);
+    if (!task || !ownJobs.size || ownJobs.has(task.job) || snap.ownLinkTaskIds?.has(id)) return snap.taskSkills.get(id) ?? [];
+    return [];
   };
 }
 
@@ -194,6 +230,26 @@ function emergingRole(snap, ownJobs, leftoverSkills, week) {
     sources: splitSourceIds([best.role.source]),
     is_estimate: true,
   };
+}
+
+// "12.2" -> "12": the goal a target belongs to.
+function goalOf(target) {
+  return String(target).split(".")[0].trim();
+}
+
+// Planet points for one role: each (goal, sign) pair counts once, so a role isn't pushed up just for
+// having more target links. A goal Malaysia is off track on counts double. The total is capped.
+function planetPoints(snap, links) {
+  const counted = new Set();
+  let total = 0;
+  for (const l of links) {
+    const goal = goalOf(l.target);
+    if (counted.has(`${goal}${l.sign}`)) continue;
+    counted.add(`${goal}${l.sign}`);
+    const points = snap.offTrackGoals.has(goal) ? SDG_POINTS.off_track_goal : SDG_POINTS.goal;
+    total += l.sign === "-" ? -points : points;
+  }
+  return Math.max(-SDG_POINTS.cap, Math.min(SDG_POINTS.cap, total));
 }
 
 function groupSdgLinks(links) {

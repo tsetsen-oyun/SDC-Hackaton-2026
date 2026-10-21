@@ -1,0 +1,161 @@
+{
+  "snapshot": "2026-03-24",
+  "request": "GET /api/sources",
+  "response": {
+    "snapshotDate": "2026-03-24",
+    "snapshot_date": "2026-03-24",
+    "model": "Qwen/Qwen3-32B-AWQ via Runpod Public Endpoint (SDG links for roles/skills only, offline; rows is_estimate=true)",
+    "sources": [
+      {
+        "label": "Anthropic Economic Index, release 2026-03-24 (data 2026-02-05..02-12)",
+        "url": "https://huggingface.co/datasets/Anthropic/EconomicIndex/tree/main/release_2026_03_24",
+        "date": "2026-03-24",
+        "licence": "CC BY"
+      },
+      {
+        "label": "Anthropic Economic Index, release 2026-01-15 (data 2025-11-13..11-20)",
+        "url": "https://huggingface.co/datasets/Anthropic/EconomicIndex/tree/main/release_2026_01_15",
+        "date": "2026-01-15",
+        "licence": "CC BY"
+      },
+      {
+        "label": "METR: How Does Time Horizon Vary Across Domains?",
+        "url": "https://metr.org/blog/2025-07-14-how-does-time-horizon-vary-across-domains/",
+        "date": "2025-07-14",
+        "licence": "No licence stated - published numbers cited only"
+      },
+      {
+        "label": "ESCO classification (skills, occupations) via ESCO API",
+        "url": "https://esco.ec.europa.eu/en/use-esco/use-esco-services-api",
+        "date": "2026-10-21",
+        "licence": "CC BY 4.0 (European Commission)"
+      },
+      {
+        "label": "ESCO to O*NET-SOC 2019 crosswalk",
+        "url": "https://www.onetcenter.org/crosswalks.html#esco",
+        "date": "2022-10",
+        "licence": "O*NET / European Commission"
+      },
+      {
+        "label": "Aurora SDG queries v5.0.3 (one query per UN target)",
+        "url": "https://github.com/Aurora-Network-Global/sdg-queries",
+        "date": "2023-04",
+        "licence": "CC BY 4.0"
+      },
+      {
+        "label": "Qwen/Qwen3-32B-AWQ via Runpod Public Endpoint (SDG links for roles/skills, offline, 2026-10-21)",
+        "url": "https://docs.runpod.io/public-endpoints/models/qwen3-32b",
+        "date": "2026-10-21",
+        "licence": "Open model (Apache 2.0); outputs is_estimate = true"
+      },
+      {
+        "label": "UN SDG API: official text of the 169 targets",
+        "url": "https://unstats.un.org/sdgs/UNSDGAPIV5/v1/sdg/Target/List",
+        "date": "2026-10-21",
+        "licence": "UN Statistics Division, free with citation"
+      },
+      {
+        "label": "Task-to-skill links chosen by our team (Darishka) from each job's ESCO skill list",
+        "url": "data/docs/hand-links-worksheet.csv",
+        "date": "2026-10-21",
+        "licence": "Team work (no AI); only for the 17 demo tasks"
+      },
+      {
+        "label": "Whitfill, Snodin & Becker: Forecasting AI Time Horizon Under Compute Slowdowns",
+        "url": "https://arxiv.org/abs/2511.19492",
+        "date": "2025-11-23",
+        "licence": "CC BY 4.0"
+      },
+      {
+        "label": "O*NET Database 30.2",
+        "url": "https://www.onetcenter.org/db_releases.html",
+        "date": "2026-02",
+        "licence": "CC BY 4.0"
+      },
+      {
+        "label": "METR Time Horizon 1.1 data file as online on 2026-03-23 (Internet Archive capture)",
+        "url": "https://web.archive.org/web/20260323090803/https://metr.org/assets/benchmark_results_1_1.yaml",
+        "date": "2026-03-23",
+        "licence": "No licence stated - published numbers cited only"
+      },
+      {
+        "label": "SDSN Sustainable Development Report 2025: Malaysia goal dashboard and trend",
+        "url": "https://web.archive.org/web/20260220073322/https://dashboards.sdgindex.org/static/downloads/files/SDR2025-data.xlsx",
+        "date": "2026-10-21",
+        "licence": "Use confirmed by SDSN by email on 2026-10-21 (Danesh, Jeffrey Sachs Center, Sunway University: 'Please proceed'). Values shown unchanged, non-commercial, with citation: Sachs, Lafortune, Fuller, Iablonovski, Sustainable Development Report (SDSN)"
+      },
+      {
+        "label": "DOSM Big Data Analytics: Job Market Insights (online job offerings by MASCO major group)",
+        "url": "https://www.dosm.gov.my/portal-main/release-content/big-data-analytics-job-market-insights-and-my-job-profile-second-quarter-of-",
+        "date": "2026-02-26",
+        "licence": "DOSM terms of use; cite DOSM"
+      },
+      {
+        "label": "US BLS Employment Projections 2024-34, Table 1.2 (occupational openings) - US, used as a proxy",
+        "url": "https://web.archive.org/web/20260213191801/https://www.bls.gov/emp/ind-occ-matrix/occupation.xlsx",
+        "date": "2026-02-13 (Internet Archive copy)",
+        "licence": "Public domain (US government)"
+      },
+      {
+        "label": "Microsoft Learn Catalog API (free courses, duration stated)",
+        "url": "https://learn.microsoft.com/api/catalog/",
+        "date": "2026-10-21",
+        "licence": "Public catalogue; link to course"
+      },
+      {
+        "label": "Coursera public course catalogue (workload as stated; cost checked on the course page)",
+        "url": "https://api.coursera.org/api/courses.v1",
+        "date": "2026-10-21",
+        "licence": "Public catalogue; link to course"
+      }
+    ],
+    "assumptions": [
+      "Starting point: the longest task the newest model can do at 80% reliability (claude_opus_4_6_inspect, released 2026-02-05: 69.87 minutes, METR).",
+      "Office work counts as 50 times harder for AI than METR's software tasks (METR's study of other domains).",
+      "No delay is added for companies to start using AI: every date means AI could do the task, not that it will.",
+      "Slowdown scenario: the published delays at 80% reliability (Whitfill, Snodin & Becker). The authors call it illustrative.",
+      "A task counts as \"AI could do this\" once the year passes the middle of its date range.",
+      "Tasks with no published time in Anthropic's data are never counted as something AI could do.",
+      "Match score (our weighting): skills 40%, fit with what's left of your week 30%, job outlook 30%. A missing skill in the same ESCO group as one you have counts 0.5.",
+      "Market + planet ranking (our weighting): each SDG goal a job helps adds 5 points (or takes them away if it harms it), 10 if Malaysia is off track on that goal (SDSN, off track on goals 2, 4, 5, 7, 8, 10, 12, 13, 14, 15, 16, 17). Each goal counts once per job, and the total is at most 15 points either way.",
+      "Skill labels for a year: robust = some task in our data using the skill is still human after that year in every scenario; bet = only in some (in practice, only if AI slows down); trap = in none. Tasks with no published time are left out, so a skill never looks safe only because data is missing.",
+      "Skill weather: whether the skill is a bigger (rising), smaller (declining) or the same (steady) part of the still-human hours of your week than today, under the chosen scenario.",
+      "Route weeks assume 3.5 hours of study a week. Course cost and length are as written on the course page on the date checked. HRD Corp status is not checked.",
+      "Name and age are never used in any calculation."
+    ],
+    "scenarios": [
+      {
+        "id": "moderate",
+        "name": "Moderate pace",
+        "doubling_days": 187.778,
+        "note": "METR all-time doubling time (TH 1.1 data file as of 2026-03-23)",
+        "source": "metr_th_1_1_20260323"
+      },
+      {
+        "id": "fast",
+        "name": "Fast pace",
+        "doubling_days": 128.744,
+        "note": "METR doubling time from 2023 on; 95% CI 105.26-157.336 days (as of 2026-03-23)",
+        "source": "metr_th_1_1_20260323"
+      },
+      {
+        "id": "slowdown",
+        "name": "Compute slowdown (illustrative)",
+        "doubling_days": null,
+        "note": "Not a constant doubling time: published milestone delays in slowdown_milestones.csv. Authors call the scenario 'primarily illustrative'",
+        "source": "slowdown_2025"
+      }
+    ],
+    "warnings": [
+      "tasks.csv: TASK_15981 breaks low <= median <= high",
+      "tasks.csv: TASK_16146 breaks low <= median <= high",
+      "tasks.csv: TASK_17026 breaks low <= median <= high",
+      "tasks.csv: TASK_17037 breaks low <= median <= high",
+      "tasks.csv: TASK_301 breaks low <= median <= high",
+      "tasks.csv: TASK_2497 breaks low <= median <= high",
+      "tasks.csv: TASK_18565 breaks low <= median <= high",
+      "tasks.csv: TASK_17763 breaks low <= median <= high",
+      "slowdown_milestones.csv: skipped \"1 work week\" (no length in minutes or no delay)"
+    ]
+  }
+}

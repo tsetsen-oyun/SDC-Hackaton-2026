@@ -24,6 +24,7 @@ const OPTIONAL = {
   users: ["user_id", "display_name", "current_job", "tasks"],
   sdg_links: ["item_type", "item_id", "sdg_target", "sign", "source"],
   courses: ["course_id", "skill_id", "course_name", "link"],
+  malaysia_sdg_status: ["sdg_goal", "off_track", "source"],
 };
 
 // Cells are text in a CSV, so we convert by column name.
@@ -108,10 +109,15 @@ export function loadSnapshot(date, dir = snapshotsDir()) {
     taskSkills,
     skillLinks,
     tasksWithOwnLinks: linked.size,
+    // Tasks linked to skills one by one; the others got their job's whole skill list.
+    ownLinkTaskIds: new Set(linked.keys()),
     taskLinksAreEstimates,
     roles,
     users,
     sdgLinks: cleanSdgLinks(files.sdg_links, warnings),
+    // SDSN's yearly status: the goals Malaysia is off track on (as "1".."17").
+    malaysiaSdg: files.malaysia_sdg_status,
+    offTrackGoals: new Set(files.malaysia_sdg_status.filter((r) => r.off_track).map((r) => String(r.sdg_goal))),
     courses: files.courses,
     missing,
     warnings,
@@ -145,7 +151,7 @@ function convertRow(row) {
     if (value === null) out[key] = LIST_COLUMNS.has(key) ? [] : null;
     else if (NUMBER_COLUMNS.has(key)) out[key] = Number(value);
     else if (LIST_COLUMNS.has(key)) out[key] = value.split(";").map((s) => s.trim()).filter(Boolean);
-    else if (key === "is_estimate" || key.endsWith("_is_estimate")) out[key] = value.toLowerCase() === "true";
+    else if (key === "is_estimate" || key.endsWith("_is_estimate") || key === "off_track") out[key] = value.toLowerCase() === "true";
     else out[key] = value;
   }
   return out;

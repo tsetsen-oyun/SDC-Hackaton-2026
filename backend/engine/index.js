@@ -5,6 +5,8 @@ import { listSnapshots, loadSnapshot, snapshotsDir } from "./load.js";
 import { forecastScenario } from "./forecast.js";
 import { matchScenario, roleTasks } from "./match.js";
 import { routeFor } from "./route.js";
+import { mentorPairs } from "./mentor.js";
+import { skillCards } from "./skills.js";
 
 let current = null;
 
@@ -40,9 +42,20 @@ export function match({ tasks, skills = [], scenario, mode = "market", assumptio
 }
 
 // The missing skills for one role, in order, each with a real course. skills = the person's skill ids.
-// Without courses.csv it says so instead of guessing courses.
-export function buildRoute({ jobId, skills = [] } = {}) {
-  return routeFor(snapshot(), { jobId, skills });
+// Without courses.csv it says so instead of guessing courses. With a scenario, steps get robust / bet / trap labels.
+export function buildRoute({ jobId, skills = [], scenario = null } = {}) {
+  return routeFor(snapshot(), { jobId, skills, scenario });
+}
+
+// The Forecast page's skill weather cards with robust / bet / trap labels, for every year.
+export function skillWeather(tasks, scenario, assumptions = {}) {
+  return skillCards(snapshot(), cleanTasks(tasks), scenario, assumptions);
+}
+
+// Possible junior–senior pairs with the sample people, from skills only. userId keeps a sample person
+// from being paired with themselves. Returns every year, like match.
+export function mentor({ tasks = [], skills = [], scenario, userId = null } = {}) {
+  return mentorPairs(snapshot(), { tasks: cleanTasks(tasks), skills, scenario, userId });
 }
 
 // Everything the About page and the receipts need.
@@ -63,6 +76,22 @@ export function getSources() {
     missing_files: snap.missing,
     warnings: snap.warnings,
   };
+}
+
+// Every task in our data, so a person can add one to their week. They can only pick from this list:
+// the app never makes up a task. no_data = no published time, so AI-could-do dates can't be given for it.
+export function getTasks() {
+  const snap = snapshot();
+  return [...snap.tasks.values()]
+    .map((t) => ({
+      task_id: t.task_id,
+      name: t.task_description,
+      job_id: t.job,
+      job_name: snap.roles.get(t.job)?.role_name ?? null,
+      no_data: (t.minutes_low ?? t.minutes_median) === null || (t.minutes_high ?? t.minutes_median) === null,
+      source: t.source,
+    }))
+    .sort((a, b) => (a.job_name ?? "").localeCompare(b.job_name ?? "") || a.name.localeCompare(b.name));
 }
 
 // The sample people. Name and age are for display only.

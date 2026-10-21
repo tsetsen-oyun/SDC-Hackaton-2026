@@ -44,6 +44,14 @@ app.get(
   })
 );
 
+app.get(
+  "/api/tasks",
+  needs("getTasks"),
+  wrap(async (req, res) => {
+    res.json(await engine.getTasks());
+  })
+);
+
 app.post(
   "/api/forecast",
   needs("forecast"),
@@ -91,6 +99,19 @@ app.post(
       return bad(res, "Need jobId, skills[], scenario");
 
     res.json(await engine.buildRoute({ jobId, skills, scenario }));
+  })
+);
+
+app.post(
+  "/api/mentor",
+  needs("mentor"),
+  wrap(async (req, res) => {
+    const { tasks, skills, scenario, userId } = req.body;
+
+    if (!validTasks(tasks) || !Array.isArray(skills) || !SCENARIOS.includes(scenario))
+      return bad(res, "Need tasks[], skills[], scenario, userId");
+
+    res.json(await engine.mentor({ tasks, skills, scenario, userId }));
   })
 );
 

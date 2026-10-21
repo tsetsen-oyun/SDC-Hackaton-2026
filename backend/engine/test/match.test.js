@@ -60,14 +60,43 @@ test("marketPlanet without SDG data: same ranking, with a note", () => {
   assert.match(planet.note, /No SDG links/);
 });
 
-test("marketPlanet with SDG links can change the order", () => {
-  const sdgLinks = [
-    { item_type: "role", item_id: "JOB_ANL", sdg_target: "8.5", sign: "+", one_line_reason: "test", source: "test_onet" },
-    { item_type: "role", item_id: "JOB_AUD", sdg_target: "12.2", sign: "-", one_line_reason: "test", source: "test_onet" },
-  ];
-  const r = matchScenario({ ...old, sdgLinks }, { tasks: siti, scenario: "moderate", mode: "marketPlanet" });
+// SDG test data: a role link, and a Malaysia status where the given goals are off track.
+const sdgLink = (item_id, sdg_target, sign) => ({ item_type: "role", item_id, sdg_target, sign, one_line_reason: "test", source: "test_onet" });
+const malaysia = (...offTrack) => ({
+  malaysiaSdg: offTrack.map((g) => ({ sdg_goal: g, off_track: true, source: "test_sdsn" })),
+  offTrackGoals: new Set(offTrack),
+});
+const planetRun = (extra) => matchScenario({ ...old, ...extra }, { tasks: siti, scenario: "moderate", mode: "marketPlanet" });
+
+test("marketPlanet: goals Malaysia is off track on count double, and can change the order", () => {
+  const sdgLinks = [sdgLink("JOB_ANL", "8.5", "+"), sdgLink("JOB_AUD", "12.2", "-")];
+  const r = planetRun({ sdgLinks, ...malaysia("8", "12") });
   assert.equal(r.by_year[2031].roles[0].role_id, "JOB_ANL"); // 35 + 10 = 45 beats 50 - 10 = 40
   assert.equal(role(r, 2031, "JOB_ANL").parts.sdg, 10);
+  assert.equal(role(r, 2031, "JOB_ANL").sdg[0].malaysia_off_track, true);
+  assert.ok(role(r, 2031, "JOB_ANL").sources.includes("test_sdsn"));
+});
+
+test("marketPlanet: a goal Malaysia is on track with counts 5, so close roles keep their order", () => {
+  const sdgLinks = [sdgLink("JOB_ANL", "8.5", "+"), sdgLink("JOB_AUD", "12.2", "-")];
+  const r = planetRun({ sdgLinks, ...malaysia("4") });
+  assert.equal(r.by_year[2031].roles[0].role_id, "JOB_AUD"); // 50 - 5 = 45 beats 35 + 5 = 40
+  assert.equal(role(r, 2031, "JOB_ANL").parts.sdg, 5);
+  assert.ok(!role(r, 2031, "JOB_ANL").sources.includes("test_sdsn"));
+});
+
+test("marketPlanet: several targets of one goal count once, and the total is capped", () => {
+  const sdgLinks = [sdgLink("JOB_ANL", "8.2", "+"), sdgLink("JOB_ANL", "8.5", "+"),
+    sdgLink("JOB_AUD", "4.4", "+"), sdgLink("JOB_AUD", "8.5", "+"), sdgLink("JOB_AUD", "13.1", "+")];
+  const r = planetRun({ sdgLinks, ...malaysia("4", "8", "13") });
+  assert.equal(role(r, 2031, "JOB_ANL").parts.sdg, 10); // goal 8 once, not twice
+  assert.equal(role(r, 2031, "JOB_AUD").parts.sdg, 15); // 10 + 10 + 10, capped at 15
+});
+
+test("marketPlanet without Malaysia status: every goal counts the same, with a note", () => {
+  const r = planetRun({ sdgLinks: [sdgLink("JOB_ANL", "8.5", "+")] });
+  assert.equal(role(r, 2031, "JOB_ANL").parts.sdg, 5);
+  assert.match(r.note, /No Malaysia SDG status/);
 });
 
 test("every role card carries sources and is an estimate", () => {
@@ -138,4 +167,21 @@ test("what's left only names a target role, never another person's current job",
   const roles = new Map(now.roles);
   roles.set("JOB_AP", { ...roles.get("JOB_AP"), kind: "target" });
   assert.ok(named({ ...now, roles }).includes("JOB_AP"));
+});
+
+test("a task added from another job doesn't hide that job: own job = where most hours are", () => {
+  const withAudit = [...siti, { task_id: "TASK_6", hours: 1 }]; // TASK_6 belongs to JOB_AUD
+  const r = matchScenario(old, { tasks: withAudit, scenario: "moderate" });
+  assert.ok(role(r, 2031, "JOB_AUD"));
+  assert.ok(!role(r, 2031, "JOB_AP")); // still her own job
+});
+
+test("an added task with no skill links of its own doesn't bring its whole job's skill list", () => {
+  // TASK_8 (analyst job) has its own link, S_MODEL. Without it, it would get the job's list (fallback).
+  const linked = matchScenario(old, { tasks: [...siti, { task_id: "TASK_8", hours: 1 }], scenario: "moderate" });
+  assert.ok(linked.person_skill_ids.includes("S_MODEL"));
+  const unlinked = { ...old, ownLinkTaskIds: new Set([...old.ownLinkTaskIds].filter((id) => id !== "TASK_8")),
+    taskSkills: new Map(old.taskSkills).set("TASK_8", old.roles.get("JOB_ANL").skill_ids) };
+  const r = matchScenario(unlinked, { tasks: [...siti, { task_id: "TASK_8", hours: 1 }], scenario: "moderate" });
+  assert.ok(!r.person_skill_ids.includes("S_MODEL") && !r.person_skill_ids.includes("S_PRES"));
 });
