@@ -62,8 +62,9 @@ export function getProfiles() {
 }
 
 function profileForPage(snap, p) {
-  // Their own skills plus the skills of the tasks they do, so the Map and Route pages can send them.
-  const skillIds = [...new Set([...p.skill_ids, ...p.tasks.flatMap((t) => snap.taskSkills.get(t.task_id) ?? [])])];
+  // Only the skills they list themselves. The skills of their tasks are added by the engine from the tasks
+  // the page sends, so editing the week (removing or adding a task) changes the skills too.
+  const skillIds = p.skill_ids;
   return {
     id: p.user_id,
     name: p.display_name,
@@ -198,9 +199,9 @@ export function match({ tasks, skills = [], scenario, mode = "market" }) {
   return { scenario, mode, snapshot: market.snapshot_date, source: receipt(snap, [], true), by_year, skill_links: market.skill_links };
 }
 
-export function buildRoute({ jobId, skills = [], scenario }) {
+export function buildRoute({ jobId, skills = [], tasks = [], scenario }) {
   const snap = engine.snapshot();
-  const r = engine.buildRoute({ jobId, skills, scenario });
+  const r = engine.buildRoute({ jobId, skills, tasks: worked(tasks), scenario });
   const sdg = sdgPills(snap.sdgLinks.filter((l) => l.item_type === "role" && l.item_id === jobId)
     .map((l) => withOffTrack(snap, l)));
   if (r.status !== "ready") {

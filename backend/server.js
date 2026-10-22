@@ -93,12 +93,12 @@ app.post(
   "/api/route",
   needs("buildRoute"),
   wrap(async (req, res) => {
-    const { jobId, skills, scenario } = req.body;
+    const { jobId, skills, tasks = [], scenario } = req.body;
 
-    if (!jobId || !Array.isArray(skills) || !SCENARIOS.includes(scenario))
-      return bad(res, "Need jobId, skills[], scenario");
+    if (!jobId || !Array.isArray(skills) || !Array.isArray(tasks) || !SCENARIOS.includes(scenario))
+      return bad(res, "Need jobId, skills[], scenario (tasks[] optional)");
 
-    res.json(await engine.buildRoute({ jobId, skills, scenario }));
+    res.json(await engine.buildRoute({ jobId, skills, tasks, scenario }));
   })
 );
 

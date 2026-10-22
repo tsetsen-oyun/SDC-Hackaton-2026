@@ -1,23 +1,25 @@
 // The learning route to one target role: the skills the person is missing, in a sensible order,
 // each with a real course from courses.csv. Courses are never made up: a skill with no course says so.
 import { splitSourceIds } from "./load.js";
-import { groupsOf, skillCredit } from "./match.js";
+import { groupsOf, skillCredit, taskSkillsFor } from "./match.js";
 import { skillTimeline, skillLabel } from "./skills.js";
 import { forecastScenario } from "./forecast.js";
 
 // Part-time study pace used to turn hours into weeks. Our assumption, shown in the receipt.
 export const HOURS_PER_WEEK = 3.5;
 
-// skills = the skill ids the person already has (from their tasks or their own list).
+// skills = the skill ids the person lists themselves; tasks = their week. The skills of their tasks are added
+// here, so a task removed on the You page also stops counting on the Route page.
 // With a scenario, steps are ordered by how long the skill stays human, and get robust / bet / trap labels.
-export function routeFor(snap, { jobId, skills = [], scenario = null }) {
+export function routeFor(snap, { jobId, skills = [], tasks = [], scenario = null }) {
   const role = snap.roles.get(jobId);
   if (!role) throw new Error(`Unknown role "${jobId}"`);
   if (!snap.courses.length) {
     return { status: "not_ready", role_id: jobId, message: "No course list (courses.csv) in this snapshot" };
   }
 
-  const have = new Set(skills.filter((s) => snap.skills.has(s)));
+  const skillsOf = taskSkillsFor(snap, tasks);
+  const have = new Set([...skills, ...tasks.flatMap((t) => skillsOf(t.task_id))].filter((s) => snap.skills.has(s)));
   const haveGroups = groupsOf(snap, have);
   const missing = role.skill_ids.filter((s) => !have.has(s));
   // Skills close to one the person has come first: they build on what they know, so they're quicker wins.
