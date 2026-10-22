@@ -41,10 +41,11 @@ export function match({ tasks, skills = [], scenario, mode = "market", assumptio
   return matchScenario(snapshot(), { tasks: cleanTasks(tasks), skills, scenario, mode }, assumptions);
 }
 
-// The missing skills for one role, in order, each with a real course. skills = the person's skill ids.
-// Without courses.csv it says so instead of guessing courses. With a scenario, steps get robust / bet / trap labels.
-export function buildRoute({ jobId, skills = [], scenario = null } = {}) {
-  return routeFor(snapshot(), { jobId, skills, scenario });
+// The missing skills for one role, in order, each with a real course. skills = the person's own skill ids,
+// tasks = their week (its skills are added). Without courses.csv it says so instead of guessing courses.
+// With a scenario, steps get robust / bet / trap labels.
+export function buildRoute({ jobId, skills = [], tasks = [], scenario = null } = {}) {
+  return routeFor(snapshot(), { jobId, skills, tasks: cleanTasks(tasks), scenario });
 }
 
 // The Forecast page's skill weather cards with robust / bet / trap labels, for every year.
