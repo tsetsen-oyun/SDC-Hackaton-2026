@@ -13,7 +13,7 @@ h2 { letter-spacing: -0.01em; }
 /* receipts (the i popover) */
 .receipt { position: relative; display: inline-block; margin-left: 6px; }
 .receipt-btn { width: 20px; height: 20px; padding: 0; border-radius: 50%; border: 1.5px solid var(--ink-soft); background: none; color: var(--ink-soft); font: inherit; font-size: 11px; font-weight: 700; cursor: pointer; }
-.receipt-pop { position: absolute; z-index: 10; top: 28px; left: -8px; width: 240px; padding: 14px 16px; background: var(--dark); color: #fff; border: 1px solid var(--dark-2); border-radius: 14px; display: grid; gap: 6px; font-size: 13px; font-weight: 400; text-align: left; }
+.receipt-pop { position: absolute; z-index: 10; top: 28px; left: -8px; width: 260px; padding: 14px 16px; background: var(--dark); color: #fff; border: 1px solid var(--dark-2); border-radius: 14px; display: grid; gap: 6px; font-size: 13px; font-weight: 400; text-align: left; }
 .receipt-pop a { color: var(--orange); }
 .receipt-pop .badge-est { justify-self: start; }
 

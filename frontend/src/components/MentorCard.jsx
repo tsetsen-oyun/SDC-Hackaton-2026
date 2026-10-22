@@ -63,7 +63,7 @@ export default function MentorCard({ person, scenario, year, dataVersion }) {
           </div>
           {y.senior_next_job && (
             <div className="m-next">
-              <span className="m-label">Their next job could be</span>
+              <span className="m-label">{p.you_are === "senior" ? "Your next job could be" : "Their next job could be"}</span>
               <b>{y.senior_next_job}</b>
             </div>
           )}

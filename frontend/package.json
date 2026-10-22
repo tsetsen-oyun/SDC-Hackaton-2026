@@ -20,5 +20,7 @@
     "@vitejs/plugin-react": "^6.1.2",
     "oxlint": "^1.88.0",
     "vite": "^8.3.4"
-  }
+  },
+  "dev": "concurrently -n api,web -c yellow,cyan \"npm run dev --prefix backend\" \"npm run dev --prefix frontend\"",
+  "install:all": "npm i && npm i --prefix backend && npm i --prefix frontend"
 }

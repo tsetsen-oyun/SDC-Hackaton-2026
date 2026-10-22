@@ -5,11 +5,13 @@ import { personTasks } from "../utils.js";
 import WeekSplit from "../components/WeekSplit.jsx";
 import Receipt from "../components/Receipt.jsx";
 import { api } from "../api.js";
+import ProfileBuilder, { loadCustom } from "../components/ProfileBuilder.jsx";
 
 const STAT_SOURCE = { label: "ISIS Malaysia & World Bank", date: "2025", isEstimate: false };
 
 export default function You() {
   const { profiles, person, setPerson, setChosenJob } = useApp();
+  const [custom, setCustom] = useState(() => loadCustom());
   const [adding, setAdding] = useState("");
   const [catalogue, setCatalogue] = useState([]); // every task we know, for "add a task"
   useEffect(() => {
@@ -50,13 +52,19 @@ export default function You() {
 
       <h2>Choose a sample person</h2>
       <div className="people">
-        {profiles.map((p) => (
+        {[...profiles, ...(custom ? [custom] : [])].map((p) => (
           <button key={p.id ?? p.name} className={"person" + (p.id === person.id ? " on" : "")} onClick={() => pick(p)}>
             <b>{p.name}</b>
             <span>{p.title}</span>
           </button>
         ))}
       </div>
+
+      <ProfileBuilder
+        catalogue={catalogue}
+        current={custom}
+        onUse={(p) => { setCustom(p); pick(p); }}
+      />
 
       <section className="card week">
         {hasHours ? (

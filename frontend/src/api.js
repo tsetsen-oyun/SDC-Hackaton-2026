@@ -19,6 +19,7 @@ export const api = {
   route: (p) => request("/api/route", p),
   mentor: (p) => request("/api/mentor", p),
   tasks: () => request("/api/tasks"),
+  skills: () => request("/api/skills"),
   refresh: () => request("/api/refresh", {}),
   async sources() {
     const res = await request("/api/sources");
