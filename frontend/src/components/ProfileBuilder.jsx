@@ -1,23 +1,23 @@
 import { useEffect, useMemo, useState } from "react";
 import { api } from "../api.js";
 
-const KEY = "custom-profile";
+const KEY = "custom-profiles";
 const asList = (r) => (Array.isArray(r) ? r : r?.skills ?? Object.values(r ?? {}));
 
-export function loadCustom() {
-  try { return JSON.parse(localStorage.getItem(KEY)) ?? null; } catch { return null; }
+export function loadCustoms() {
+  try { const v = JSON.parse(localStorage.getItem(KEY)); return Array.isArray(v) ? v : []; } catch { return []; }
 }
-function saveCustom(p) {
-  try { localStorage.setItem(KEY, JSON.stringify(p)); } catch { /* storage blocked: it just won't be remembered */ }
+export function saveCustoms(list) {
+  try { localStorage.setItem(KEY, JSON.stringify(list)); } catch { /* storage blocked: it just won't be remembered */ }
 }
 
 // A short form: who you are, what you do in a week, what you can do. Makes a new person for the whole app.
-export default function ProfileBuilder({ catalogue, onUse, current }) {
+export default function ProfileBuilder({ catalogue, onUse }) {
   const [open, setOpen] = useState(false);
-  const [name, setName] = useState(current?.name ?? "");
-  const [title, setTitle] = useState(current?.title ?? "");
-  const [tasks, setTasks] = useState(current?.tasks ?? []);
-  const [skills, setSkills] = useState(current?.skills ?? []); // [{skill_id, name}]
+  const [name, setName] = useState("");
+  const [title, setTitle] = useState("");
+  const [tasks, setTasks] = useState([]);
+  const [skills, setSkills] = useState([]); // [{skill_id, name}]
   const [allSkills, setAllSkills] = useState(null); // null = loading, [] = not available
   const [q, setQ] = useState("");
   const [adding, setAdding] = useState("");
@@ -54,7 +54,7 @@ export default function ProfileBuilder({ catalogue, onUse, current }) {
 
   function submit() {
     const person = {
-      id: "custom",
+      id: "custom-" + Date.now(),
       name: name.trim(),
       title: title.trim() || "Your profile",
       target_job: null,
@@ -62,8 +62,8 @@ export default function ProfileBuilder({ catalogue, onUse, current }) {
       skill_ids: skills.map((s) => s.skill_id),
       skills,
     };
-    saveCustom(person);
     onUse(person);
+    setName(""); setTitle(""); setTasks([]); setSkills([]); setQ("");
     setOpen(false);
   }
 

@@ -5,13 +5,17 @@ import { personTasks } from "../utils.js";
 import WeekSplit from "../components/WeekSplit.jsx";
 import Receipt from "../components/Receipt.jsx";
 import { api } from "../api.js";
-import ProfileBuilder, { loadCustom } from "../components/ProfileBuilder.jsx";
+import ProfileBuilder, { loadCustoms, saveCustoms } from "../components/ProfileBuilder.jsx";
 
 const STAT_SOURCE = { label: "ISIS Malaysia & World Bank", date: "2025", isEstimate: false };
 
 export default function You() {
   const { profiles, person, setPerson, setChosenJob } = useApp();
-  const [custom, setCustom] = useState(() => loadCustom());
+  const [customs, setCustoms] = useState(() => loadCustoms());
+  const [hidden, setHidden] = useState(() => {
+    try { return JSON.parse(localStorage.getItem("hidden-people")) ?? []; } catch { return []; }
+  });
+  const [confirmId, setConfirmId] = useState(null);
   const [adding, setAdding] = useState("");
   const [catalogue, setCatalogue] = useState([]); // every task we know, for "add a task"
   useEffect(() => {
@@ -38,6 +42,29 @@ export default function You() {
     setAdding("");
   }
 
+  const isCustom = (p) => String(p.id).startsWith("custom-");
+  const people = [...profiles.filter((p) => !hidden.includes(p.id)), ...customs];
+
+  function removePerson(p) {
+    const left = people.filter((x) => x.id !== p.id);
+    if (left.length === 0) return; // never leave the app with nobody to show
+    if (isCustom(p)) {
+      const next = customs.filter((c) => c.id !== p.id);
+      setCustoms(next); saveCustoms(next);
+    } else {
+      const next = [...hidden, p.id];
+      setHidden(next);
+      try { localStorage.setItem("hidden-people", JSON.stringify(next)); } catch { /* ignore */ }
+    }
+    setConfirmId(null);
+    if (p.id === person.id) pick(left[0]); // the person on screen was deleted: switch to the next one
+  }
+
+  function restoreSamples() {
+    setHidden([]);
+    try { localStorage.removeItem("hidden-people"); } catch { /* ignore */ }
+  }
+
   function pick(p) {
     setPerson(p);
     setChosenJob(null);
@@ -52,18 +79,39 @@ export default function You() {
 
       <h2>Choose a sample person</h2>
       <div className="people">
-        {[...profiles, ...(custom ? [custom] : [])].map((p) => (
-          <button key={p.id ?? p.name} className={"person" + (p.id === person.id ? " on" : "")} onClick={() => pick(p)}>
-            <b>{p.name}</b>
-            <span>{p.title}</span>
-          </button>
+        {people.map((p) => (
+          <div key={p.id ?? p.name} className="person-wrap">
+            <button className={"person" + (p.id === person.id ? " on" : "")} onClick={() => pick(p)}>
+              <b>{p.name}</b>
+              <span>{p.title}</span>
+            </button>
+            {confirmId === p.id ? (
+              <div className="person-confirm" role="alert">
+                <span>Delete {p.name}?</span>
+                <button className="danger" onClick={() => removePerson(p)}>Delete</button>
+                <button onClick={() => setConfirmId(null)}>Cancel</button>
+              </div>
+            ) : (
+              <button
+                className="person-x"
+                aria-label={`Delete ${p.name}`}
+                title={people.length <= 1 ? "Keep at least one person" : `Delete ${p.name}`}
+                disabled={people.length <= 1}
+                onClick={() => setConfirmId(p.id)}
+              >
+                ×
+              </button>
+            )}
+          </div>
         ))}
       </div>
+      {hidden.length > 0 && (
+        <button className="link-btn restore" onClick={restoreSamples}>Restore sample people</button>
+      )}
 
       <ProfileBuilder
         catalogue={catalogue}
-        current={custom}
-        onUse={(p) => { setCustom(p); pick(p); }}
+        onUse={(p) => { const next = [...customs, p]; setCustoms(next); saveCustoms(next); pick(p); }}
       />
 
       <section className="card week">

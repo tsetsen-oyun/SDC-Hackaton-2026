@@ -44,7 +44,7 @@ export default function Sidebar({ collapsed, onToggle }) {
       const r = await api.refresh();
       const date = r.snapshotDate ?? r.snapshot_date;
       setSnapshot(date);
-      bumpData(); // tells every page "reload your data"
+      if (r.changed) bumpData(); // only reload the pages when there really is new data
       if (r.fallback) {
         setNotice({ ok: false, text: `Couldn't get new data, so we're still using the saved copy from ${formatDate(date)}.` });
       } else if (r.changed) {
