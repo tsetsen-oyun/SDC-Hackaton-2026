@@ -36,9 +36,10 @@ export function forecast(tasks, scenario, assumptions = {}) {
 }
 
 // skills = extra skill ids the person says they have (can be empty). mode = "market" | "marketPlanet".
-// Returns the ranked roles for every year.
-export function match({ tasks, skills = [], scenario, mode = "market", assumptions = {} }) {
-  return matchScenario(snapshot(), { tasks: cleanTasks(tasks), skills, scenario, mode }, assumptions);
+// Returns the ranked roles for every year. targetJob (optional) = the job a person with no work week aims for;
+// it is shown on the Map even if roles.csv marks it as a current job.
+export function match({ tasks, skills = [], scenario, mode = "market", targetJob = null, assumptions = {} }) {
+  return matchScenario(snapshot(), { tasks: cleanTasks(tasks), skills, scenario, mode, targetJob }, assumptions);
 }
 
 // The missing skills for one role, in order, each with a real course. skills = the person's own skill ids,
@@ -93,6 +94,14 @@ export function getTasks() {
       source: t.source,
     }))
     .sort((a, b) => (a.job_name ?? "").localeCompare(b.job_name ?? "") || a.name.localeCompare(b.name));
+}
+
+// Every skill we know, so a person can pick theirs on "Build your own profile". Same rule as tasks:
+// they can only pick from this list, the app never makes up a skill.
+export function getSkills() {
+  return [...snapshot().skills.values()]
+    .map((s) => ({ skill_id: s.skill_id, name: s.skill_name }))
+    .sort((a, b) => a.name.localeCompare(b.name));
 }
 
 // The sample people. Name and age are for display only.

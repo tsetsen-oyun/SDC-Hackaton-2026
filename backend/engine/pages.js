@@ -70,6 +70,8 @@ function profileForPage(snap, p) {
     name: p.display_name,
     title: p.current_job_name ?? (p.target_job_name ? `No current job · aiming for ${p.target_job_name}` : "No current job"),
     target_job: p.target_job_name,
+    // The id, to send to /api/match as targetJob.
+    target_job_id: p.target_job,
     tasks: p.tasks.map(({ task_id, name, hours }) => ({ task_id, name, hours })),
     skill_ids: skillIds,
     // The same skills with names, for showing them on the page.
@@ -155,9 +157,9 @@ export function forecast(tasks, scenario) {
   };
 }
 
-export function match({ tasks, skills = [], scenario, mode = "market" }) {
+export function match({ tasks, skills = [], scenario, mode = "market", targetJob = null }) {
   const snap = engine.snapshot();
-  const args = { tasks: worked(tasks), skills, scenario };
+  const args = { tasks: worked(tasks), skills, scenario, targetJob };
   const market = engine.match({ ...args, mode: "market" });
   const planet = engine.match({ ...args, mode: "marketPlanet" });
   const shown = mode === "marketPlanet" ? planet : market;
@@ -176,6 +178,7 @@ export function match({ tasks, skills = [], scenario, mode = "market" }) {
       jobs: shown.by_year[y].roles.map((r) => ({
         job_id: r.role_id,
         title: r.name,
+        is_target: r.is_target,
         // The jobs are real occupations; the score on them is our estimate (see the receipt).
         is_estimate: Boolean(snap.roles.get(r.role_id)?.is_estimate),
         outlook_trend: later[r.role_id] !== null && later[r.role_id] < r.parts.outlook ? "declining" : "steady",

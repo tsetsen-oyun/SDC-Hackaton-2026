@@ -17,6 +17,20 @@ test("her own job is never suggested", () => {
   assert.deepEqual(r.by_year[2026].roles.map((x) => x.role_id).sort(), ["JOB_ANL", "JOB_AUD"]);
 });
 
+test("a person with no work week sees the job they aim for, even if roles.csv marks it as current", () => {
+  const ids = (r) => r.by_year[2026].roles.map((x) => x.role_id).sort();
+  const grad = { tasks: [], skills: ["S_COMM"], scenario: "moderate" };
+  assert.deepEqual(ids(matchScenario(old, grad)), ["JOB_ANL", "JOB_AUD"]);
+  const withTarget = matchScenario(old, { ...grad, targetJob: "JOB_AP" });
+  assert.deepEqual(ids(withTarget), ["JOB_ANL", "JOB_AP", "JOB_AUD"]);
+  assert.deepEqual(withTarget.by_year[2026].roles.filter((r) => r.is_target).map((r) => r.role_id), ["JOB_AP"]);
+});
+
+test("a person with a work week never gets their own job back through targetJob", () => {
+  const r = matchScenario(old, { tasks: siti, scenario: "moderate", targetJob: "JOB_AP" });
+  assert.deepEqual(r.by_year[2026].roles.map((x) => x.role_id).sort(), ["JOB_ANL", "JOB_AUD"]);
+});
+
 test("skills gap: have, need and missing", () => {
   const aud = role(matchScenario(old, { tasks: siti, scenario: "moderate" }), 2026, "JOB_AUD");
   assert.equal(aud.have, 2);
