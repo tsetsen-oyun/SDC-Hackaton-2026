@@ -14,7 +14,7 @@ export const SDG_POINTS = { goal: 5, off_track_goal: 10, cap: 15 };
 // Also our weighting. ESCO job skill lists are very specific, so exact matches alone are almost always 0.
 export const RELATED_CREDIT = 0.5;
 
-export function matchScenario(snap, { tasks: personTasks, skills: extraSkills = [], scenario, mode = "market" }, assumptions = {}) {
+export function matchScenario(snap, { tasks: personTasks, skills: extraSkills = [], scenario, mode = "market", targetJob = null }, assumptions = {}) {
   const forecast = forecastScenario(snap, personTasks, scenario, assumptions);
   const ctx = buildContext(snap, assumptions);
   const scenarioRow = snap.scenarios.get(scenario);
@@ -27,7 +27,10 @@ export function matchScenario(snap, { tasks: personTasks, skills: extraSkills = 
   const personGroups = groupsOf(snap, personSkills);
 
   // Roles to move to: not the person's own job, and not a row marked as a "current" job.
-  const candidates = [...snap.roles.values()].filter((r) => !ownJobs.has(r.role_id) && r.kind !== "current");
+  // One exception: a person with no work week (a graduate) who named a target job sees that job, even if it
+  // is marked "current" in roles.csv, because it is the job they chose to aim for.
+  const isTarget = (r) => r.role_id === targetJob && !ownJobs.size;
+  const candidates = [...snap.roles.values()].filter((r) => !ownJobs.has(r.role_id) && (r.kind !== "current" || isTarget(r)));
   // Each role's own tasks, dated once per scenario, for its outlook.
   const roleTaskResults = new Map(candidates.map((r) => [r.role_id, roleTasks(snap, r).map((t) => forecastTask(t, scenarioRow, ctx))]));
 
@@ -69,6 +72,8 @@ export function matchScenario(snap, { tasks: personTasks, skills: extraSkills = 
         name: role.role_name,
         closest_real_occupation: role.closest_real_occupation ?? null,
         codes: { onet: role.onet_code ?? null, esco: role.esco_uri ?? null, isco: role.isco_code ?? null },
+        // true for the job the person named as their target, so the page can mark it.
+        is_target: isTarget(role),
         score: Math.round(weightedScore(parts) + sdgPoints),
         parts: toPoints(parts, sdgPoints),
         // false when the person has none of the role's skills, not even a related one.

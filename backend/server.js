@@ -72,7 +72,7 @@ app.post(
   "/api/match",
   needs("match"),
   wrap(async (req, res) => {
-    const { tasks, skills, scenario, mode } = req.body;
+    const { tasks, skills, scenario, mode, targetJob } = req.body;
 
     if (
       !validTasks(tasks) ||
@@ -85,7 +85,7 @@ app.post(
         "Need tasks[], skills[], scenario, mode: market | marketPlanet"
       );
 
-    res.json(await engine.match({ tasks, skills, scenario, mode }));
+    res.json(await engine.match({ tasks, skills, scenario, mode, targetJob }));
   })
 );
 
