@@ -1,0 +1,201 @@
+task_id,job,task_description,minutes_median,minutes_low,minutes_high,minutes_source,minutes_is_estimate,automate_or_augment,aei_usage_share,source,date
+TASK_5434,JOB_MARKETING_SPECIALIST,"Prepare reports of findings, illustrating data graphically and translating complex findings into written text.",150.0,136.5,202.6,aei_2026_03,true,automate,0.04,onet;aei_2026_03;aei_2026_06,2026-10-20
+TASK_5437,JOB_MARKETING_SPECIALIST,Seek and provide information to help companies determine their position in the marketplace.,75.0,68.0,90.1,aei_2026_03,true,,,onet;aei_2026_03,2026-10-20
+TASK_5439,JOB_MARKETING_SPECIALIST,"Conduct research on consumer opinions and marketing strategies, collaborating with marketing professionals, statisticians, pollsters, and other professionals.",180.0,130.2,212.2,aei_2026_03,true,,,onet;aei_2026_03,2026-10-20
+TASK_5433,JOB_MARKETING_SPECIALIST,"Collect and analyze data on customer demographics, preferences, needs, and buying habits to identify potential markets and factors affecting product demand.",240.0,223.3,270.0,aei_2026_03,true,augment,0.02,onet;aei_2026_03;aei_2026_06,2026-10-20
+TASK_5443,JOB_MARKETING_SPECIALIST,"Devise and evaluate methods and procedures for collecting data, such as surveys, opinion polls, or questionnaires, or arrange to obtain existing data.",150.0,102.3,261.3,aei_2026_03,true,,,onet;aei_2026_03,2026-10-20
+TASK_5441,JOB_MARKETING_SPECIALIST,"Gather data on competitors and analyze their prices, sales, and method of marketing and distribution.",180.0,154.6,190.7,aei_2026_03,true,augment,0.08,onet;aei_2026_03;aei_2026_06,2026-10-20
+TASK_5435,JOB_MARKETING_SPECIALIST,Measure and assess customer and employee satisfaction.,,,,,,,,onet,2026-10-20
+TASK_5442,JOB_MARKETING_SPECIALIST,Monitor industry statistics and follow trends in trade literature.,150.0,95.2,239.5,aei_2026_03,true,,,onet;aei_2026_03,2026-10-20
+TASK_5445,JOB_MARKETING_SPECIALIST,Direct trained survey interviewers.,,,,,,,,onet,2026-10-20
+TASK_5438,JOB_MARKETING_SPECIALIST,"Measure the effectiveness of marketing, advertising, and communications programs and strategies.",150.0,142.5,178.4,aei_2026_03,true,,,onet;aei_2026_03,2026-10-20
+TASK_5436,JOB_MARKETING_SPECIALIST,"Forecast and track marketing and sales trends, analyzing collected data.",120.0,107.2,158.8,aei_2026_03,true,augment,0.02,onet;aei_2026_03;aei_2026_06,2026-10-20
+TASK_15981,JOB_SUSTAINABILITY_SPECIALIST,"Develop sustainability project goals, objectives, initiatives, or strategies in collaboration with other sustainability professionals.",30.0,47.0,375.2,aei_2026_03,true,,,onet;aei_2026_03,2026-10-20
+TASK_15980,JOB_SUSTAINABILITY_SPECIALIST,"Monitor or track sustainability indicators, such as energy usage, natural resource usage, waste generation, and recycling.",82.5,32.5,186.7,aei_2026_03,true,,,onet;aei_2026_03,2026-10-20
+TASK_15979,JOB_SUSTAINABILITY_SPECIALIST,"Assess or propose sustainability initiatives, considering factors such as cost effectiveness, technical feasibility, and acceptance.",52.5,13.8,243.7,aei_2026_03,true,automate,0.0,onet;aei_2026_03;aei_2026_06,2026-10-20
+TASK_15973,JOB_SUSTAINABILITY_SPECIALIST,Provide technical or administrative support for sustainability programs or issues.,150.0,96.3,225.6,aei_2026_03,true,augment,0.0,onet;aei_2026_03;aei_2026_06,2026-10-20
+TASK_15968,JOB_SUSTAINABILITY_SPECIALIST,Review and revise sustainability proposals or policies.,,,,,,,,onet,2026-10-20
+TASK_15976,JOB_SUSTAINABILITY_SPECIALIST,Develop reports or presentations to communicate the effectiveness of sustainability initiatives.,,,,,,,,onet,2026-10-20
+TASK_15975,JOB_SUSTAINABILITY_SPECIALIST,Create or maintain plans or other documents related to sustainability projects.,270.0,199.4,386.6,aei_2026_03,true,,,onet;aei_2026_03,2026-10-20
+TASK_15978,JOB_SUSTAINABILITY_SPECIALIST,Collect information about waste stream management or green building practices to inform decision makers.,,,,,,,,onet,2026-10-20
+TASK_15969,JOB_SUSTAINABILITY_SPECIALIST,"Research or review regulatory, technical, or market issues related to sustainability.",,,,,,,,onet,2026-10-20
+TASK_15970,JOB_SUSTAINABILITY_SPECIALIST,"Identify or investigate violations of natural resources, waste management, recycling, or other environmental policies.",,,,,,,,onet,2026-10-20
+TASK_15971,JOB_SUSTAINABILITY_SPECIALIST,Identify or create new sustainability indicators.,,,,,,,,onet,2026-10-20
+TASK_15977,JOB_SUSTAINABILITY_SPECIALIST,"Create marketing or outreach media, such as brochures or Web sites, to communicate sustainability issues, procedures, or objectives.",90.0,65.2,151.5,aei_2026_03,true,augment,0.01,onet;aei_2026_03;aei_2026_06,2026-10-20
+TASK_15974,JOB_SUSTAINABILITY_SPECIALIST,Identify or procure needed resources to implement sustainability programs or projects.,,,,,,,,onet,2026-10-20
+TASK_15972,JOB_SUSTAINABILITY_SPECIALIST,"Write grant applications, rebate applications, or project proposals to secure funding for sustainability projects.",,,,,,,,onet,2026-10-20
+TASK_16053,JOB_FRAUD_EXAMINER,Document all investigative activities.,18.0,11.9,30.0,aei_2026_03,true,,,onet;aei_2026_03,2026-10-20
+TASK_16054,JOB_FRAUD_EXAMINER,"Create and maintain logs, records, or databases of information about fraudulent activity.",,,,,,,,onet,2026-10-20
+TASK_16046,JOB_FRAUD_EXAMINER,Prepare written reports of investigation findings.,150.0,107.5,214.6,aei_2026_03,true,augment,0.01,onet;aei_2026_03;aei_2026_06,2026-10-20
+TASK_16049,JOB_FRAUD_EXAMINER,Interview witnesses or suspects and take statements.,,,,,,,,onet,2026-10-20
+TASK_16051,JOB_FRAUD_EXAMINER,Gather financial documents related to investigations.,120.0,86.8,229.6,aei_2026_03,true,automate,0.0,onet;aei_2026_03;aei_2026_06,2026-10-20
+TASK_16057,JOB_FRAUD_EXAMINER,"Analyze financial data to detect irregularities in areas such as billing trends, financial relationships, and regulatory compliance procedures.",420.0,279.1,549.4,aei_2026_03,true,,,onet;aei_2026_03,2026-10-20
+TASK_16045,JOB_FRAUD_EXAMINER,Review reports of suspected fraud to determine need for further investigation.,30.0,21.3,57.0,aei_2026_03,true,,,onet;aei_2026_03,2026-10-20
+TASK_16047,JOB_FRAUD_EXAMINER,Recommend actions in fraud cases.,,,,,,automate,0.01,onet;aei_2026_06,2026-10-20
+TASK_16048,JOB_FRAUD_EXAMINER,"Lead, or participate in, fraud investigation teams.",,,,,,,,onet,2026-10-20
+TASK_16055,JOB_FRAUD_EXAMINER,Coordinate investigative efforts with law enforcement officers and attorneys.,,,,,,,,onet,2026-10-20
+TASK_16038,JOB_FRAUD_EXAMINER,Prepare evidence for presentation in court.,270.0,154.4,394.0,aei_2026_03,true,,,onet;aei_2026_03,2026-10-20
+TASK_16050,JOB_FRAUD_EXAMINER,"Design, implement, or maintain fraud detection tools or procedures.",15.0,8.5,18.9,aei_2026_03,true,,,onet;aei_2026_03,2026-10-20
+TASK_16043,JOB_FRAUD_EXAMINER,Testify in court regarding investigation findings.,,,,,,,,onet,2026-10-20
+TASK_16056,JOB_FRAUD_EXAMINER,"Conduct in-depth investigations of suspicious financial activity, such as suspected money-laundering efforts.",225.0,106.8,380.3,aei_2026_03,true,,,onet;aei_2026_03,2026-10-20
+TASK_16036,JOB_FRAUD_EXAMINER,Train others in fraud detection and prevention techniques.,27.0,21.0,54.5,aei_2026_03,true,,,onet;aei_2026_03,2026-10-20
+TASK_16035,JOB_FRAUD_EXAMINER,Maintain knowledge of current events and trends in such areas as money laundering and criminal tools and techniques.,150.0,101.3,182.0,aei_2026_03,true,,,onet;aei_2026_03,2026-10-20
+TASK_16052,JOB_FRAUD_EXAMINER,Evaluate business operations to identify risk areas for fraud.,,,,,,augment,0.0,onet;aei_2026_06,2026-10-20
+TASK_16044,JOB_FRAUD_EXAMINER,Advise businesses or agencies on ways to improve fraud detection.,,,,,,augment,0.0,onet;aei_2026_06,2026-10-20
+TASK_16037,JOB_FRAUD_EXAMINER,Research or evaluate new technologies for use in fraud detection systems.,,,,,,,,onet,2026-10-20
+TASK_16041,JOB_FRAUD_EXAMINER,Conduct field surveillance to gather case-related information.,,,,,,,,onet,2026-10-20
+TASK_16039,JOB_FRAUD_EXAMINER,Obtain and serve subpoenas.,,,,,,,,onet,2026-10-20
+TASK_16042,JOB_FRAUD_EXAMINER,Arrest individuals to be charged with fraud.,,,,,,,,onet,2026-10-20
+TASK_16040,JOB_FRAUD_EXAMINER,Negotiate with responsible parties to arrange for recovery of losses due to fraud.,,,,,,,,onet,2026-10-20
+TASK_16150,JOB_BI_ANALYST,"Generate standard or custom reports summarizing business, financial, or economic data for review by executives, managers, clients, and other stakeholders.",150.0,144.1,182.9,aei_2026_03,true,automate,0.18,onet;aei_2026_03;aei_2026_06,2026-10-20
+TASK_16139,JOB_BI_ANALYST,"Maintain or update business intelligence tools, databases, dashboards, systems, or methods.",21.0,20.6,56.2,aei_2026_03,true,automate,0.15,onet;aei_2026_03;aei_2026_06,2026-10-20
+TASK_16140,JOB_BI_ANALYST,Manage timely flow of business intelligence information to users.,90.0,45.1,170.5,aei_2026_03,true,,,onet;aei_2026_03,2026-10-20
+TASK_16134,JOB_BI_ANALYST,"Provide technical support for existing reports, dashboards, or other tools.",60.0,49.5,95.0,aei_2026_03,true,automate,0.06,onet;aei_2026_03;aei_2026_06,2026-10-20
+TASK_16141,JOB_BI_ANALYST,Identify and analyze industry or geographic trends with business strategy implications.,240.0,201.1,300.9,aei_2026_03,true,augment,0.01,onet;aei_2026_03;aei_2026_06,2026-10-20
+TASK_16142,JOB_BI_ANALYST,"Document specifications for business intelligence or information technology reports, dashboards, or other outputs.",,,,,,,,onet,2026-10-20
+TASK_16144,JOB_BI_ANALYST,"Create business intelligence tools or systems, including design of related databases, spreadsheets, or outputs.",180.0,158.9,203.5,aei_2026_03,true,automate,0.02,onet;aei_2026_03;aei_2026_06,2026-10-20
+TASK_16146,JOB_BI_ANALYST,"Collect business intelligence data from available industry reports, public information, field reports, or purchased sources.",150.0,120.1,149.2,aei_2026_03,true,automate,0.02,onet;aei_2026_03;aei_2026_06,2026-10-20
+TASK_16143,JOB_BI_ANALYST,"Disseminate information regarding tools, reports, or metadata enhancements.",9.0,7.7,10.8,aei_2026_03,true,,,onet;aei_2026_03,2026-10-20
+TASK_16145,JOB_BI_ANALYST,Conduct or coordinate tests to ensure that intelligence is consistent with defined needs.,,,,,,,,onet,2026-10-20
+TASK_16149,JOB_BI_ANALYST,Synthesize current business intelligence or trend data to support recommendations for action.,240.0,209.6,298.2,aei_2026_03,true,augment,0.06,onet;aei_2026_03;aei_2026_06,2026-10-20
+TASK_16148,JOB_BI_ANALYST,"Analyze competitive market strategies through analysis of related product, market, or share trends.",210.0,197.1,283.3,aei_2026_03,true,augment,0.02,onet;aei_2026_03;aei_2026_06,2026-10-20
+TASK_16136,JOB_BI_ANALYST,"Identify or monitor current and potential customers, using business intelligence tools.",15.0,9.1,22.6,aei_2026_03,true,automate,0.01,onet;aei_2026_03;aei_2026_06,2026-10-20
+TASK_16138,JOB_BI_ANALYST,"Communicate with customers, competitors, suppliers, professional organizations, or others to stay abreast of industry or business trends.",45.0,38.4,95.3,aei_2026_03,true,,,onet;aei_2026_03,2026-10-20
+TASK_16135,JOB_BI_ANALYST,"Maintain library of model documents, templates, or other reusable knowledge assets.",105.0,80.6,180.1,aei_2026_03,true,augment,0.0,onet;aei_2026_03;aei_2026_06,2026-10-20
+TASK_16137,JOB_BI_ANALYST,Create or review technical design documentation to ensure the accurate development of reporting solutions.,,,,,,automate,0.01,onet;aei_2026_06,2026-10-20
+TASK_16147,JOB_BI_ANALYST,Analyze technology trends to identify markets for future product development or to improve sales of existing products.,300.0,252.3,427.3,aei_2026_03,true,,,onet;aei_2026_03,2026-10-20
+TASK_15210,JOB_ENVIRONMENTAL_ENGINEER,"Design, or supervise the design of, systems, processes, or equipment for control, management, or remediation of water, air, or soil quality.",,,,,,,,onet,2026-10-20
+TASK_1377,JOB_ENVIRONMENTAL_ENGINEER,"Assess the existing or potential environmental impact of land use projects on air, water, or land.",,,,,,,,onet,2026-10-20
+TASK_20195,JOB_ENVIRONMENTAL_ENGINEER,"Collaborate with environmental scientists, planners, hazardous waste technicians, engineers, experts in law or business, or other specialists to address environmental problems.",,,,,,,,onet,2026-10-20
+TASK_1374,JOB_ENVIRONMENTAL_ENGINEER,Advise corporations or government agencies of procedures to follow in cleaning up contaminated sites to protect people and the environment.,,,,,,,,onet,2026-10-20
+TASK_1373,JOB_ENVIRONMENTAL_ENGINEER,Develop proposed project objectives and targets and report to management on progress in attaining them.,,,,,,augment,0.0,onet;aei_2026_06,2026-10-20
+TASK_1370,JOB_ENVIRONMENTAL_ENGINEER,Monitor progress of environmental improvement programs.,,,,,,,,onet,2026-10-20
+TASK_1366,JOB_ENVIRONMENTAL_ENGINEER,"Prepare, review, or update environmental investigation or recommendation reports.",,,,,,augment,0.0,onet;aei_2026_06,2026-10-20
+TASK_20197,JOB_ENVIRONMENTAL_ENGINEER,"Prepare, maintain, or revise quality assurance documentation or procedures.",180.0,99.1,422.8,aei_2026_03,true,augment,0.02,onet;aei_2026_03;aei_2026_06,2026-10-20
+TASK_1379,JOB_ENVIRONMENTAL_ENGINEER,"Develop site-specific health and safety protocols, such as spill contingency plans or methods for loading or transporting waste.",,,,,,,,onet,2026-10-20
+TASK_1369,JOB_ENVIRONMENTAL_ENGINEER,"Provide technical support for environmental remediation or litigation projects, including remediation system design or determination of regulatory applicability.",,,,,,,,onet,2026-10-20
+TASK_19625,JOB_ENVIRONMENTAL_ENGINEER,Prepare or present public briefings on the status of environmental engineering projects.,,,,,,,,onet,2026-10-20
+TASK_1378,JOB_ENVIRONMENTAL_ENGINEER,"Assist in budget implementation, forecasts, or administration.",,,,,,,,onet,2026-10-20
+TASK_1380,JOB_ENVIRONMENTAL_ENGINEER,"Coordinate or manage environmental protection programs or projects, assigning or evaluating work.",,,,,,,,onet,2026-10-20
+TASK_1375,JOB_ENVIRONMENTAL_ENGINEER,Advise industries or government agencies about environmental policies and standards.,,,,,,augment,0.0,onet;aei_2026_06,2026-10-20
+TASK_1368,JOB_ENVIRONMENTAL_ENGINEER,"Obtain, update, or maintain plans, permits, or standard operating procedures.",,,,,,,,onet,2026-10-20
+TASK_19624,JOB_ENVIRONMENTAL_ENGINEER,Direct installation or operation of environmental monitoring devices or supervise related data collection programs.,,,,,,,,onet,2026-10-20
+TASK_1371,JOB_ENVIRONMENTAL_ENGINEER,Inspect industrial or municipal facilities or programs to evaluate operational effectiveness or ensure compliance with environmental regulations.,,,,,,,,onet,2026-10-20
+TASK_1389,JOB_ENVIRONMENTAL_ENGINEER,Request bids from suppliers or consultants.,,,,,,,,onet,2026-10-20
+TASK_1376,JOB_ENVIRONMENTAL_ENGINEER,Inform company employees or other interested parties of environmental issues.,60.0,28.6,84.1,aei_2026_03,true,augment,0.0,onet;aei_2026_03;aei_2026_06,2026-10-20
+TASK_1381,JOB_ENVIRONMENTAL_ENGINEER,"Serve as liaison with federal, state, or local agencies or officials on issues pertaining to solid or hazardous waste program requirements.",,,,,,,,onet,2026-10-20
+TASK_1372,JOB_ENVIRONMENTAL_ENGINEER,"Provide administrative support for projects by collecting data, providing project documentation, training staff, or performing other general administrative duties.",150.0,119.6,193.9,aei_2026_03,true,,,onet;aei_2026_03,2026-10-20
+TASK_1390,JOB_ENVIRONMENTAL_ENGINEER,"Provide environmental engineering assistance in network analysis, regulatory analysis, or planning or reviewing database development.",,,,,,,,onet,2026-10-20
+TASK_1385,JOB_ENVIRONMENTAL_ENGINEER,Develop or present environmental compliance training or orientation sessions.,,,,,,,,onet,2026-10-20
+TASK_20196,JOB_ENVIRONMENTAL_ENGINEER,"Provide assistance with planning, quality assurance, safety inspection protocols, or sampling as part of a team conducting multimedia inspections at complex facilities.",,,,,,,,onet,2026-10-20
+TASK_1387,JOB_ENVIRONMENTAL_ENGINEER,"Develop, implement, or manage plans or programs related to conservation or management of natural resources.",225.0,121.3,401.8,aei_2026_01,true,,,onet;aei_2026_01,2026-10-20
+TASK_1383,JOB_ENVIRONMENTAL_ENGINEER,Prepare hazardous waste manifests or land disposal restriction notifications.,,,,,,,,onet,2026-10-20
+TASK_23987,JOB_ENVIRONMENTAL_ENGINEER,Attend professional conferences to share information.,,,,,,,,onet,2026-10-20
+TASK_19626,JOB_ENVIRONMENTAL_ENGINEER,Write reports or articles for Web sites or newsletters related to environmental engineering issues.,75.0,41.9,168.6,aei_2026_01,true,,,onet;aei_2026_01,2026-10-20
+TASK_1388,JOB_ENVIRONMENTAL_ENGINEER,"Assess, sort, characterize, or pack known or unknown materials.",,,,,,,,onet,2026-10-20
+TASK_17027,JOB_TUTOR,"Provide feedback to students, using positive reinforcement techniques to encourage, motivate, or build confidence in students.",90.0,60.5,139.0,aei_2026_03,true,augment,0.03,onet;aei_2026_03;aei_2026_06,2026-10-20
+TASK_17026,JOB_TUTOR,"Review class material with students by discussing text, working solutions to problems, or reviewing worksheets or other assignments.",75.0,78.4,83.0,aei_2026_03,true,augment,0.01,onet;aei_2026_03;aei_2026_06,2026-10-20
+TASK_17034,JOB_TUTOR,Assess students' progress throughout tutoring sessions.,75.0,31.4,103.9,aei_2026_01,true,augment,0.03,onet;aei_2026_01;aei_2026_06,2026-10-20
+TASK_17036,JOB_TUTOR,"Teach students study skills, note-taking skills, and test-taking strategies.",105.0,81.1,132.2,aei_2026_03,true,augment,0.01,onet;aei_2026_03;aei_2026_06,2026-10-20
+TASK_17037,JOB_TUTOR,"Provide private instruction to individual or small groups of students to improve academic performance, improve occupational skills, or prepare for academic or occupational tests.",60.0,60.7,67.4,aei_2026_03,true,augment,0.16,onet;aei_2026_03;aei_2026_06,2026-10-20
+TASK_17023,JOB_TUTOR,Participate in training and development sessions to improve tutoring practices or learn new tutoring techniques.,,,,,,,,onet,2026-10-20
+TASK_17033,JOB_TUTOR,"Collaborate with students, parents, teachers, school administrators, or counselors to determine student needs, develop tutoring plans, or assess student progress.",105.0,69.5,208.1,aei_2026_03,true,,0.0,onet;aei_2026_03;aei_2026_06,2026-10-20
+TASK_17025,JOB_TUTOR,"Monitor student performance or assist students in academic environments, such as classrooms, laboratories, or computing centers.",12.0,7.1,13.7,aei_2026_03,true,,,onet;aei_2026_03,2026-10-20
+TASK_17020,JOB_TUTOR,Schedule tutoring appointments with students or their parents.,,,,,,,,onet,2026-10-20
+TASK_17024,JOB_TUTOR,Organize tutoring environment to promote productivity and learning.,,,,,,automate,0.0,onet;aei_2026_06,2026-10-20
+TASK_17032,JOB_TUTOR,"Communicate students' progress to students, parents, or teachers in written progress reports, in person, by phone, or by email.",30.0,29.3,47.0,aei_2026_03,true,,,onet;aei_2026_03,2026-10-20
+TASK_17029,JOB_TUTOR,"Maintain records of students' assessment results, progress, feedback, or school performance, ensuring confidentiality of all records.",75.0,56.9,152.4,aei_2026_03,true,,,onet;aei_2026_03,2026-10-20
+TASK_17030,JOB_TUTOR,"Identify, develop, or implement intervention strategies, tutoring plans, or individualized education plans (IEPs) for students.",,,,,,,,onet,2026-10-20
+TASK_17022,JOB_TUTOR,"Prepare and facilitate tutoring workshops, collaborative projects, or academic support sessions for small groups of students.",195.0,154.8,289.2,aei_2026_03,true,,,onet;aei_2026_03,2026-10-20
+TASK_17028,JOB_TUTOR,Prepare lesson plans or learning modules for tutoring sessions according to students' needs and goals.,,,,,,automate,0.0,onet;aei_2026_06,2026-10-20
+TASK_17031,JOB_TUTOR,"Develop teaching or training materials, such as handouts, study materials, or quizzes.",210.0,208.5,229.6,aei_2026_03,true,automate,0.86,onet;aei_2026_03;aei_2026_06,2026-10-20
+TASK_307,JOB_GRAPHIC_DESIGNER,Key information into computer equipment to create layouts for client or supervisor.,,,,,,,,onet,2026-10-20
+TASK_304,JOB_GRAPHIC_DESIGNER,"Review final layouts and suggest improvements, as needed.",75.0,46.1,100.5,aei_2026_03,true,augment,0.0,onet;aei_2026_03;aei_2026_06,2026-10-20
+TASK_300,JOB_GRAPHIC_DESIGNER,"Determine size and arrangement of illustrative material and copy, and select style and size of type.",150.0,138.0,218.6,aei_2026_03,true,automate,0.01,onet;aei_2026_03;aei_2026_06,2026-10-20
+TASK_306,JOB_GRAPHIC_DESIGNER,"Develop graphics and layouts for product illustrations, company logos, and Web sites.",150.0,125.9,213.5,aei_2026_03,true,augment,0.0,onet;aei_2026_03;aei_2026_06,2026-10-20
+TASK_299,JOB_GRAPHIC_DESIGNER,"Create designs, concepts, and sample layouts, based on knowledge of layout principles and esthetic design concepts.",270.0,214.3,349.7,aei_2026_03,true,automate,0.03,onet;aei_2026_03;aei_2026_06,2026-10-20
+TASK_301,JOB_GRAPHIC_DESIGNER,Use computer software to generate new images.,90.0,95.8,114.0,aei_2026_03,true,automate,0.01,onet;aei_2026_03;aei_2026_06,2026-10-20
+TASK_23970,JOB_GRAPHIC_DESIGNER,Prepare digital files for printing.,,,,,,,,onet,2026-10-20
+TASK_305,JOB_GRAPHIC_DESIGNER,Confer with clients to discuss and determine layout design.,120.0,74.4,226.3,aei_2026_03,true,augment,0.0,onet;aei_2026_03;aei_2026_06,2026-10-20
+TASK_23971,JOB_GRAPHIC_DESIGNER,Research the target audience of projects.,,,,,,automate,0.01,onet;aei_2026_06,2026-10-20
+TASK_303,JOB_GRAPHIC_DESIGNER,"Draw and print charts, graphs, illustrations, and other artwork, using computer.",,,,,,automate,0.0,onet;aei_2026_06,2026-10-20
+TASK_302,JOB_GRAPHIC_DESIGNER,"Mark up, paste, and assemble final layouts to prepare layouts for printer.",,,,,,,,onet,2026-10-20
+TASK_309,JOB_GRAPHIC_DESIGNER,"Study illustrations and photographs to plan presentation of materials, products, or services.",45.0,26.2,96.1,aei_2026_03,true,automate,0.0,onet;aei_2026_03;aei_2026_06,2026-10-20
+TASK_15228,JOB_GRAPHIC_DESIGNER,"Maintain archive of images, photos, or previous work products.",,,,,,automate,0.0,onet;aei_2026_06,2026-10-20
+TASK_310,JOB_GRAPHIC_DESIGNER,Prepare notes and instructions for workers who assemble and prepare final layouts for printing.,195.0,159.4,330.8,aei_2026_03,true,,,onet;aei_2026_03,2026-10-20
+TASK_308,JOB_GRAPHIC_DESIGNER,"Prepare illustrations or rough sketches of material, discussing them with clients or supervisors and making necessary changes.",,,,,,,,onet,2026-10-20
+TASK_15229,JOB_GRAPHIC_DESIGNER,Research new software or design concepts.,97.5,73.0,221.2,aei_2026_03,true,augment,0.03,onet;aei_2026_03;aei_2026_06,2026-10-20
+TASK_313,JOB_GRAPHIC_DESIGNER,"Produce still and animated graphics for on-air and taped portions of television news broadcasts, using electronic video equipment.",,,,,,,,onet,2026-10-20
+TASK_22894,JOB_HEALTH_INFORMATION_TECH,"Assign the patient to diagnosis-related groups (DRGs), using appropriate computer software.",,,,,,,,onet,2026-10-20
+TASK_22895,JOB_HEALTH_INFORMATION_TECH,"Compile medical care and census data for statistical reports on diseases treated, surgery performed, or use of hospital beds.",,,,,,,,onet,2026-10-20
+TASK_22896,JOB_HEALTH_INFORMATION_TECH,"Design databases to support healthcare applications, ensuring security, performance and reliability.",,,,,,automate,0.0,onet;aei_2026_06,2026-10-20
+TASK_22897,JOB_HEALTH_INFORMATION_TECH,Develop in-service educational materials.,,,,,,,,onet,2026-10-20
+TASK_22898,JOB_HEALTH_INFORMATION_TECH,Evaluate and recommend upgrades or improvements to existing computerized healthcare systems.,,,,,,,,onet,2026-10-20
+TASK_22899,JOB_HEALTH_INFORMATION_TECH,"Facilitate and promote activities, such as lunches, seminars, or tours, to foster healthcare information privacy or security awareness within the organization.",,,,,,,,onet,2026-10-20
+TASK_22900,JOB_HEALTH_INFORMATION_TECH,"Identify, compile, abstract, and code patient data, using standard classification systems.",82.5,51.9,113.0,aei_2026_03,true,,,onet;aei_2026_03,2026-10-20
+TASK_22901,JOB_HEALTH_INFORMATION_TECH,"Manage the department or supervise clerical workers, directing or controlling activities of personnel in the medical records department.",,,,,,,,onet,2026-10-20
+TASK_22902,JOB_HEALTH_INFORMATION_TECH,Monitor changes in legislation and accreditation standards that affect information security or privacy in the computerized healthcare system.,,,,,,,,onet,2026-10-20
+TASK_22903,JOB_HEALTH_INFORMATION_TECH,"Plan, develop, maintain, or operate a variety of health record indexes or storage and retrieval systems to collect, classify, store, or analyze information.",285.0,186.8,421.0,aei_2026_03,true,,,onet;aei_2026_03,2026-10-20
+TASK_22904,JOB_HEALTH_INFORMATION_TECH,"Prepare statistical reports, narrative reports, or graphic presentations of information, such as tumor registry data for use by hospital staff, researchers, or other users.",225.0,135.7,363.1,aei_2026_03,true,,,onet;aei_2026_03,2026-10-20
+TASK_22905,JOB_HEALTH_INFORMATION_TECH,Protect the security of medical records to ensure that confidentiality is maintained.,,,,,,,,onet,2026-10-20
+TASK_22906,JOB_HEALTH_INFORMATION_TECH,"Resolve or clarify codes or diagnoses with conflicting, missing, or unclear information by consulting with doctors or others or by participating in the coding team's regular meetings.",,,,,,,,onet,2026-10-20
+TASK_22907,JOB_HEALTH_INFORMATION_TECH,"Retrieve patient medical records for physicians, technicians, or other medical personnel.",16.5,14.1,37.5,aei_2026_03,true,,,onet;aei_2026_03,2026-10-20
+TASK_22908,JOB_HEALTH_INFORMATION_TECH,Train medical records staff.,150.0,78.5,186.2,aei_2026_01,true,,,onet;aei_2026_01,2026-10-20
+TASK_22909,JOB_HEALTH_INFORMATION_TECH,"Write or maintain archived procedures, procedural codes, or queries for applications.",,,,,,automate,0.0,onet;aei_2026_06,2026-10-20
+TASK_2487,JOB_BOOKKEEPING_CLERK,"Operate computers programmed with accounting software to record, store, and analyze information.",150.0,108.1,189.5,aei_2026_03,true,,,onet;aei_2026_03,2026-10-20
+TASK_2486,JOB_BOOKKEEPING_CLERK,"Check figures, postings, and documents for correct entry, mathematical accuracy, and proper codes.",,,,,,automate,0.01,onet;aei_2026_06,2026-10-20
+TASK_2488,JOB_BOOKKEEPING_CLERK,"Comply with federal, state, and company policies, procedures, and regulations.",,,,,,,,onet,2026-10-20
+TASK_2495,JOB_BOOKKEEPING_CLERK,"Operate 10-key calculators, typewriters, and copy machines to perform calculations and produce documents.",,,,,,,,onet,2026-10-20
+TASK_2500,JOB_BOOKKEEPING_CLERK,"Receive, record, and bank cash, checks, and vouchers.",,,,,,,,onet,2026-10-20
+TASK_2493,JOB_BOOKKEEPING_CLERK,Code documents according to company procedures.,,,,,,automate,0.0,onet;aei_2026_06,2026-10-20
+TASK_2497,JOB_BOOKKEEPING_CLERK,"Perform financial calculations, such as amounts due, interest charges, balances, discounts, equity, and principal.",18.0,19.2,26.3,aei_2026_03,true,augment,0.26,onet;aei_2026_03;aei_2026_06,2026-10-20
+TASK_2496,JOB_BOOKKEEPING_CLERK,Reconcile or note and report discrepancies found in records.,,,,,,,,onet,2026-10-20
+TASK_2498,JOB_BOOKKEEPING_CLERK,"Perform general office duties, such as filing, answering telephones, and handling routine correspondence.",30.0,16.8,67.1,aei_2026_03,true,,,onet;aei_2026_03,2026-10-20
+TASK_2494,JOB_BOOKKEEPING_CLERK,Access computerized financial information to answer general questions as well as those related to specific accounts.,9.0,6.3,15.1,aei_2026_03,true,automate,0.0,onet;aei_2026_03;aei_2026_06,2026-10-20
+TASK_2490,JOB_BOOKKEEPING_CLERK,"Classify, record, and summarize numerical and financial data to compile and keep financial records, using journals and ledgers or computers.",150.0,124.9,154.7,aei_2026_03,true,automate,0.01,onet;aei_2026_03;aei_2026_06,2026-10-20
+TASK_2489,JOB_BOOKKEEPING_CLERK,"Debit, credit, and total accounts on computer spreadsheets and databases, using specialized accounting software.",120.0,47.4,160.9,aei_2026_03,true,automate,0.01,onet;aei_2026_03;aei_2026_06,2026-10-20
+TASK_2509,JOB_BOOKKEEPING_CLERK,"Match order forms with invoices, and record the necessary information.",,,,,,automate,0.0,onet;aei_2026_06,2026-10-20
+TASK_18565,JOB_CUSTOMER_SERVICE_REP,"Confer with customers by telephone or in person to provide information about products or services, take or enter orders, cancel accounts, or obtain details of complaints.",24.0,25.6,37.5,aei_2026_03,true,augment,0.06,onet;aei_2026_03;aei_2026_06,2026-10-20
+TASK_2578,JOB_CUSTOMER_SERVICE_REP,"Keep records of customer interactions or transactions, recording details of inquiries, complaints, or comments, as well as actions taken.",45.0,44.1,63.0,aei_2026_03,true,,,onet;aei_2026_03,2026-10-20
+TASK_2580,JOB_CUSTOMER_SERVICE_REP,Check to ensure that appropriate changes were made to resolve customers' problems.,,,,,,,,onet,2026-10-20
+TASK_2581,JOB_CUSTOMER_SERVICE_REP,Contact customers to respond to inquiries or to notify them of claim investigation results or any planned adjustments.,33.0,25.0,80.6,aei_2026_03,true,automate,0.01,onet;aei_2026_03;aei_2026_06,2026-10-20
+TASK_2583,JOB_CUSTOMER_SERVICE_REP,"Determine charges for services requested, collect deposits or payments, or arrange for billing.",,,,,,,,onet,2026-10-20
+TASK_2584,JOB_CUSTOMER_SERVICE_REP,"Complete contract forms, prepare change of address records, or issue service discontinuance orders, using computers.",6.0,3.7,9.6,aei_2026_03,true,,,onet;aei_2026_03,2026-10-20
+TASK_2582,JOB_CUSTOMER_SERVICE_REP,Refer unresolved customer grievances to designated departments for further investigation.,9.0,8.7,12.1,aei_2026_03,true,,,onet;aei_2026_03,2026-10-20
+TASK_777,JOB_MEDICAL_SECRETARY,Answer telephones and direct calls to appropriate staff.,7.2,6.2,10.0,aei_2026_03,true,,,onet;aei_2026_03,2026-10-20
+TASK_775,JOB_MEDICAL_SECRETARY,"Schedule and confirm patient diagnostic appointments, surgeries, or medical consultations.",15.0,7.4,17.0,aei_2026_03,true,,,onet;aei_2026_03,2026-10-20
+TASK_788,JOB_MEDICAL_SECRETARY,Complete insurance or other claim forms.,30.0,20.7,81.0,aei_2026_03,true,,,onet;aei_2026_03,2026-10-20
+TASK_779,JOB_MEDICAL_SECRETARY,"Greet visitors, ascertain purpose of visit, and direct them to appropriate staff.",,,,,,,,onet,2026-10-20
+TASK_783,JOB_MEDICAL_SECRETARY,"Transmit correspondence or medical records by mail, e-mail, or fax.",,,,,,automate,0.0,onet;aei_2026_06,2026-10-20
+TASK_781,JOB_MEDICAL_SECRETARY,"Maintain medical records, technical library, or correspondence files.",,,,,,automate,0.0,onet;aei_2026_06,2026-10-20
+TASK_778,JOB_MEDICAL_SECRETARY,"Receive and route messages or documents, such as laboratory results, to appropriate staff.",,,,,,,,onet,2026-10-20
+TASK_780,JOB_MEDICAL_SECRETARY,"Interview patients to complete documents, case histories, or forms, such as intake or insurance forms.",,,,,,,,onet,2026-10-20
+TASK_782,JOB_MEDICAL_SECRETARY,"Operate office equipment, such as voice mail messaging systems, and use word processing, spreadsheet, or other software applications to prepare reports, invoices, financial statements, letters, case histories, or medical records.",90.0,60.0,151.0,aei_2026_03,true,,,onet;aei_2026_03,2026-10-20
+TASK_787,JOB_MEDICAL_SECRETARY,"Perform bookkeeping duties, such as credits or collections, preparing and sending financial statements or bills, and keeping financial records.",30.0,23.9,60.6,aei_2026_03,true,,,onet;aei_2026_03,2026-10-20
+TASK_784,JOB_MEDICAL_SECRETARY,"Perform various clerical or administrative functions, such as ordering and maintaining an inventory of supplies.",,,,,,,,onet,2026-10-20
+TASK_17742,JOB_SOLAR_PV_INSTALLER,"Install photovoltaic (PV) systems in accordance with codes and standards, using drawings, schematics, and instructions.",,,,,,,,onet,2026-10-20
+TASK_17746,JOB_SOLAR_PV_INSTALLER,"Check electrical installation for proper wiring, polarity, grounding, or integrity of terminations.",60.0,49.9,116.2,aei_2026_03,true,,,onet;aei_2026_03,2026-10-20
+TASK_17753,JOB_SOLAR_PV_INSTALLER,"Identify electrical, environmental, and safety hazards associated with photovoltaic (PV) installations.",,,,,,,,onet,2026-10-20
+TASK_17754,JOB_SOLAR_PV_INSTALLER,"Identify installation locations with proper orientation, area, solar access, or structural integrity for photovoltaic (PV) arrays.",165.0,128.9,294.0,aei_2026_03,true,,,onet;aei_2026_03,2026-10-20
+TASK_17740,JOB_SOLAR_PV_INSTALLER,"Assemble solar modules, panels, or support structures, as specified.",,,,,,,,onet,2026-10-20
+TASK_17745,JOB_SOLAR_PV_INSTALLER,"Apply weather sealing to array, building, or support mechanisms.",,,,,,,,onet,2026-10-20
+TASK_17756,JOB_SOLAR_PV_INSTALLER,"Install module array interconnect wiring, implementing measures to disable arrays during installation.",,,,,,,,onet,2026-10-20
+TASK_17757,JOB_SOLAR_PV_INSTALLER,Install required labels on solar system components and hardware.,,,,,,,,onet,2026-10-20
+TASK_17750,JOB_SOLAR_PV_INSTALLER,"Diagram layouts and locations for photovoltaic (PV) arrays and equipment, including existing building or site features.",,,,,,,,onet,2026-10-20
+TASK_17765,JOB_SOLAR_PV_INSTALLER,"Determine materials, equipment, and installation sequences necessary to maximize installation efficiency.",,,,,,,,onet,2026-10-20
+TASK_17761,JOB_SOLAR_PV_INSTALLER,"Test operating voltages to ensure operation within acceptable limits for power conditioning equipment, such as inverters and controllers.",,,,,,,,onet,2026-10-20
+TASK_17747,JOB_SOLAR_PV_INSTALLER,"Determine appropriate sizes, ratings, and locations for all system overcurrent devices, disconnect devices, grounding equipment, and surge suppression equipment.",150.0,80.7,247.4,aei_2026_03,true,,,onet;aei_2026_03,2026-10-20
+TASK_17744,JOB_SOLAR_PV_INSTALLER,Activate photovoltaic (PV) systems to verify system functionality and conformity to performance expectations.,,,,,,,,onet,2026-10-20
+TASK_17752,JOB_SOLAR_PV_INSTALLER,Identify and resolve any deficiencies in photovoltaic (PV) system installation or materials.,,,,,,,,onet,2026-10-20
+TASK_17762,JOB_SOLAR_PV_INSTALLER,Visually inspect and test photovoltaic (PV) modules or systems.,,,,,,,,onet,2026-10-20
+TASK_17751,JOB_SOLAR_PV_INSTALLER,Examine designs to determine current requirements for all parts of the photovoltaic (PV) system electrical circuit.,,,,,,,,onet,2026-10-20
+TASK_17764,JOB_SOLAR_PV_INSTALLER,"Demonstrate system functionality and performance, including start-up, shut-down, normal operation, and emergency or bypass operations.",,,,,,,,onet,2026-10-20
+TASK_17755,JOB_SOLAR_PV_INSTALLER,"Identify methods for laying out, orienting, and mounting modules or arrays to ensure efficient installation, electrical configuration, or system maintenance.",,,,,,,,onet,2026-10-20
+TASK_17758,JOB_SOLAR_PV_INSTALLER,Measure and analyze system performance and operating parameters to assess operating condition of systems or equipment.,90.0,65.0,99.8,aei_2026_03,true,,,onet;aei_2026_03,2026-10-20
+TASK_17759,JOB_SOLAR_PV_INSTALLER,"Program, adjust, or configure inverters and controls for desired set points and operating modes.",,,,,,,,onet,2026-10-20
+TASK_17748,JOB_SOLAR_PV_INSTALLER,Determine connection interfaces for additional subpanels or for connecting photovoltaic (PV) systems with utility services or other power generation sources.,45.0,24.0,89.6,aei_2026_03,true,,,onet;aei_2026_03,2026-10-20
+TASK_17749,JOB_SOLAR_PV_INSTALLER,"Determine photovoltaic (PV) system designs or configurations based on factors such as customer needs, expectations, and site conditions.",,,,,,,,onet,2026-10-20
+TASK_17760,JOB_SOLAR_PV_INSTALLER,"Select mechanical designs, installation equipment, or installation plans that conform to environmental, architectural, structural, site, and code requirements.",,,,,,,,onet,2026-10-20
+TASK_17743,JOB_SOLAR_PV_INSTALLER,"Perform routine photovoltaic (PV) system maintenance on modules, arrays, batteries, power conditioning equipment, safety systems, structural systems, weather sealing, or balance of systems equipment.",,,,,,,,onet,2026-10-20
+TASK_17763,JOB_SOLAR_PV_INSTALLER,"Compile or maintain records of system operation, performance, and maintenance.",18.0,19.2,28.6,aei_2026_03,true,automate,0.01,onet;aei_2026_03;aei_2026_06,2026-10-20
+TASK_17741,JOB_SOLAR_PV_INSTALLER,"Install active solar systems, including solar collectors, concentrators, pumps, or fans.",,,,,,,,onet,2026-10-20
