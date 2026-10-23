@@ -10,7 +10,8 @@ const SCENARIOS = [
 export default function ScenarioDock() {
   const { scenario, setScenario } = useApp();
   return (
-    <nav className="dock" aria-label="Scenario">
+    <nav className="dock" aria-label="Scenario: how fast AI improves. It changes the Forecast, Map and Route pages.">
+      <span className="dock-label">How fast does AI improve?</span>
       {SCENARIOS.map((s) => {
         const on = scenario === s.id;
         return (

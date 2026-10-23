@@ -259,7 +259,7 @@ button { font-family: inherit; }
 .pie { width: 100%; max-width: 340px; justify-self: center; overflow: visible; filter: drop-shadow(0 10px 24px rgba(40, 60, 140, 0.12)); }
 .pie path { transition: d 0.15s; cursor: default; }
 .pie-label { font: 600 11px "DM Mono", monospace; fill: #2d3139; pointer-events: none; }
-@media (max-width: 900px) { .split-grid { grid-template-columns: 1fr; } }
+@media (max-width: 900px) { .split-grid { grid-template-columns: minmax(0, 1fr); gap: 24px; } }
 
 /* ---------- data-shape update: tags, mentor, editing ---------- */
 .sdg-tag { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 999px; border: 1px dashed #b4b8c2; color: #6f7480; margin-left: 4px; }
@@ -400,3 +400,138 @@ button { font-family: inherit; }
   backdrop-filter: blur(14px) saturate(1.4);
   -webkit-backdrop-filter: blur(14px) saturate(1.4);
 }
+
+/* =====================================================================
+   HCI pass: contrast, not-colour-alone, status, orientation, disclosure,
+   undo/validation, touch targets, small screens
+   ===================================================================== */
+
+/* ---------- 1. contrast and legibility ---------- */
+:root {
+  --coral-ink: #c23a2f;                 /* 5.4:1 on white (was 4.4:1) */
+  --ink-muted: #4f5666;                 /* 7:1 on white, used for small grey text */
+  --glass-white: linear-gradient(150deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.78));
+}
+.nav-item.on { color: #c9372c; }
+.nav-item.on svg { color: #d9453a; }
+.stat-hero .w.muted { color: #47506a; }
+.stat-sub { color: #3f4860; }
+.tname, .trow.header, .trow.header .hours, .trow.header .range-head, .range-head, .range-label, .table-foot { color: var(--ink-muted); }
+.trow.human .tname, .trow.human .range-label { color: var(--ink); }
+.trow .pill-muted { color: var(--ink-muted); border-color: #8d94a3; }
+.sdg-tag { color: var(--ink-muted); border-color: #8d94a3; }
+.sdg-tag.off { color: var(--coral-ink); }
+.trow.header, .trow.header .hours, .trow.header .range-head { font-size: 13px; }
+/* nothing smaller than 12px */
+.year-labels, .tag, .badge-est, .m-badge, .target-tag, .moved, .sdg-tag, .profile-data .mono, .pie-label, .m-role, .consent { font-size: 12px; }
+.profile-top small, .notice { font-size: 12px; color: #dfe2e8; }
+.sidebar .notice { color: #ffd9d4; }
+.card-dark :focus-visible, .profile-card :focus-visible, .receipt-pop :focus-visible { outline-color: #fff; }
+.dock { background: rgba(255, 255, 255, 0.62); }
+.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+/* people who ask their system for more contrast or less transparency get solid surfaces */
+@media (prefers-contrast: more), (prefers-reduced-transparency: reduce) {
+  .card, .glass-widget, .card.about-card, .person, .builder-open { background: #fff; backdrop-filter: none; -webkit-backdrop-filter: none; border-color: #7d869a; }
+  .panel { background: rgba(255, 255, 255, 0.95); backdrop-filter: none; -webkit-backdrop-filter: none; }
+  .dock { background: #fff; }
+  .g-bg { display: none; }
+}
+
+/* ---------- 2. not colour alone: numbered dots and slices ---------- */
+.dot { display: inline-grid; place-items: center; width: 24px; height: 24px; font: 600 12px "DM Mono", monospace; font-style: normal; }
+.pie-idx { font-weight: 700; }
+.tname-text { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-width: 0; }
+
+/* ---------- 3. system status ---------- */
+.spinner { display: inline-block; width: 14px; height: 14px; margin-right: 8px; vertical-align: -2px; border: 2px solid rgba(255, 255, 255, 0.35); border-top-color: #fff; border-radius: 50%; animation: spin 0.8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.skel { display: grid; gap: 18px; padding: 8px 0; }
+.skel-card { display: grid; gap: 16px; padding: 28px; border-radius: 28px; background: rgba(255, 255, 255, 0.55); border: 1px solid rgba(255, 255, 255, 0.8); }
+.skel-line { height: 16px; border-radius: 8px; background: linear-gradient(90deg, rgba(120, 140, 200, 0.14) 25%, rgba(120, 140, 200, 0.28) 50%, rgba(120, 140, 200, 0.14) 75%); background-size: 200% 100%; animation: shimmer 1.4s ease-in-out infinite; }
+.skel-title { width: 46%; height: 40px; border-radius: 12px; }
+@keyframes shimmer { from { background-position: 200% 0; } to { background-position: -200% 0; } }
+@media (prefers-reduced-motion: reduce) { .skel-line, .spinner { animation: none; } }
+
+/* ---------- 4. orientation ---------- */
+.dock-label { position: absolute; top: -30px; left: 50%; transform: translateX(-50%); white-space: nowrap; padding: 4px 12px; border-radius: 999px; font-size: 12px; font-weight: 600; color: #2b3350; background: rgba(255, 255, 255, 0.78); border: 1px solid rgba(255, 255, 255, 0.9); box-shadow: 0 4px 12px rgba(40, 52, 100, 0.12); }
+.page-ctx { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; margin: 0 0 18px; }
+.ctx-chip { padding: 5px 12px; border-radius: 999px; font-size: 13px; font-weight: 600; color: #2b3350; background: rgba(255, 255, 255, 0.7); border: 1px solid rgba(255, 255, 255, 0.9); }
+.ctx-chip.step { color: var(--blue); background: rgba(47, 69, 212, 0.1); border-color: transparent; }
+.est-note { font-size: 13px; color: var(--ink-muted); }
+.next-row { margin: 28px 0 0; display: flex; gap: 16px; align-items: center; }
+
+/* ---------- 5. progressive disclosure ---------- */
+.insight { margin: 0 0 8px; font-size: 21px; line-height: 1.3; font-weight: 500; letter-spacing: -0.3px; }
+.insight b { color: var(--blue); font-weight: 800; }
+.week-note p { margin: 0 0 6px; }
+.week-note p:last-child { margin: 0; }
+.show-more { margin-top: 10px; padding: 8px 0; font: inherit; font-weight: 600; background: none; border: 0; cursor: pointer; }
+
+/* ---------- 6. undo and validation ---------- */
+.undo-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 0 0 12px; padding: 10px 14px; border-radius: 14px; background: #1f2a5c; color: #fff; font-size: 14px; }
+.undo-bar .link-btn { color: #ffd2cc; font-weight: 700; background: none; border: 0; cursor: pointer; font: inherit; text-decoration: underline; padding: 6px 4px; }
+.warn { margin: 0 0 12px; padding: 10px 14px; border-radius: 14px; background: #fff1cf; border: 1px solid #f0c767; color: #5a3d00; font-size: 14px; line-height: 1.45; }
+.edit-hours input[aria-invalid="true"] { border-color: var(--coral-ink); }
+.split-grid.no-pie { grid-template-columns: minmax(0, 1fr); }
+
+/* ---------- 7. touch targets (44px is the usual minimum) ---------- */
+.receipt-btn { position: relative; }
+.receipt-btn::after { content: ""; position: absolute; inset: -13px; } /* bigger tap area, same small icon */
+.x-btn { min-width: 36px; min-height: 36px; }
+.link-btn { min-height: 32px; }
+.btn-blue, .refresh, .segmented button { min-height: 44px; }
+@media (pointer: coarse) {
+  .x-btn, .person-x { min-width: 44px; min-height: 44px; }
+  .person-x { width: 44px; height: 44px; top: 4px; right: 4px; }
+  .edit-hours input { min-height: 44px; width: 64px; font-size: 16px; }
+  .add-row select, .map-controls select, .builder input[type="text"], .skill-search { min-height: 44px; font-size: 16px; }
+  .link-btn, .person-confirm button, .m-chip.pick { min-height: 44px; }
+  .nav-item, .dock-tile, .side-toggle { min-height: 44px; }
+}
+
+/* ---------- small screens: nav moves to a bottom bar, profile + Refresh to the top ---------- */
+@media (max-width: 900px) {
+  .shell, .shell.wide { padding: 10px; }
+  /* a blurred panel would trap the fixed bottom bar inside itself, so the phone layout uses a plain tint instead */
+  .panel { overflow: visible; backdrop-filter: none; -webkit-backdrop-filter: none; background: rgba(255, 255, 255, 0.5); }
+  .content { flex: none; overflow: visible; padding: 16px 14px 210px; } /* the panel grows with the page instead of collapsing */
+  .sidebar, .sidebar.collapsed { display: contents; }
+  .sidebar .side-head, .side-spacer { display: none; }
+  .side-nav { position: fixed; left: 10px; right: 10px; bottom: 10px; z-index: 30; flex-direction: row; justify-content: space-around; gap: 2px; padding: 6px; border-radius: 26px;
+    background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(22px) saturate(1.6); -webkit-backdrop-filter: blur(22px) saturate(1.6);
+    border: 1px solid rgba(255, 255, 255, 0.85); box-shadow: 0 10px 30px rgba(40, 52, 100, 0.22); }
+  .nav-item, .sidebar.collapsed .nav-item { flex: 1; flex-direction: column; justify-content: center; gap: 2px; min-height: 52px; padding: 6px 2px; border-radius: 18px; font-size: 12px; }
+  .nav-item.on { padding: 5px 1px; }
+  .sidebar .label, .sidebar.collapsed .label { display: block; }
+  .sidebar .profile-top .label, .sidebar.collapsed .profile-top .label { display: grid; }
+  .sidebar .profile-card, .sidebar.collapsed .profile-card { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 12px; margin: 12px 12px 0; padding: 10px 14px;
+    background: linear-gradient(160deg, rgba(45, 49, 57, 0.92), rgba(59, 64, 74, 0.86)); box-shadow: 0 8px 22px rgba(30, 36, 60, 0.25); }
+  .profile-top { min-width: 0; }
+  .profile-data { margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; }
+  .profile-data .mono { margin: 0; }
+  .refresh { width: auto; padding: 8px 16px; }
+  .sidebar .notice { flex-basis: 100%; margin: 0; }
+  .dock { bottom: 84px; padding: 6px; gap: 6px; }
+  .dock-tile svg { display: none; }
+  .dock-tile, .dock-tile.on { width: 100px; min-height: 44px; padding: 10px 6px; }
+  .dock-label { top: -28px; }
+  .hero { font-size: 36px; letter-spacing: -1.2px; }
+  .hero-row { gap: 16px; }
+  .week { padding: 18px 16px; margin: 18px 0; }
+  .big-num { font-size: 40px; }
+  .legend { gap: 24px; }
+}
+
+.split-name { min-width: 0; flex: 1 1 auto; }
+.split-list .simple-row { gap: 12px; }
+.edit-hours { flex: none; }
+
+@media (max-width: 700px) {
+  /* the week bar is an overview on a phone: hours only (names are in the list below) */
+  .block { padding: 10px 6px; min-height: 84px; align-items: center; text-align: center; }
+  .block-name { display: none; }
+  .block small { font-size: 12px; white-space: nowrap; }
+  .block.hatched small { padding: 2px 4px; }
+  .trow.header { display: none; }
+}
+.pie-label.pie-idx { font-size: 18px; font-weight: 700; }

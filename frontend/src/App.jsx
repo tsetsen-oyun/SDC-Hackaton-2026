@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import Sidebar from "./components/Sidebar.jsx";
 import GradientBackground from "./components/GradientBackground.jsx";
 import ScenarioDock from "./components/ScenarioDock.jsx";
@@ -13,6 +13,7 @@ const KEY = "sidebar-collapsed";
 
 export default function App() {
   // remember the choice, but never crash if the browser blocks storage
+  const { pathname } = useLocation();
   const [collapsed, setCollapsed] = useState(() => {
     try { return localStorage.getItem(KEY) === "1"; } catch { return false; }
   });
@@ -41,7 +42,8 @@ export default function App() {
           </main>
         </div>
       </div>
-      <ScenarioDock />
+      {/* the scenario only changes Forecast, Map and Route, so the You page doesn't show it */}
+      {pathname !== "/" && <ScenarioDock />}
     </div>
   );
 }

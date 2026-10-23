@@ -5,6 +5,8 @@ import { api } from "../api.js";
 import { personTasks, toPayload, rangeLabel, SCENARIO_LABEL } from "../utils.js";
 import WeekBar from "../components/WeekBar.jsx";
 import Receipt from "../components/Receipt.jsx";
+import Skeleton from "../components/Skeleton.jsx";
+import PageContext from "../components/PageContext.jsx";
 
 const FIRST = 2026, LAST = 2035;
 const YEARS = Array.from({ length: LAST - FIRST + 1 }, (_, i) => FIRST + i);
@@ -21,7 +23,9 @@ function TaskRow({ t, year, done, showHours }) {
     <div className={"trow " + (done ? "done" : "human")}>
       <div className="tname">
         <span className={"check " + (done ? "hatched" : "human")} />
-        {t.name}
+        {/* the status is in words too, so it never depends on colour or pattern alone */}
+        <span className="sr-only">{done ? "AI could do this by the chosen year: " : "Still human in the chosen year: "}</span>
+        <span className="tname-text" title={t.name}>{t.name}</span>
       </div>
       <div className="hours">{showHours ? t.hours : "–"}</div>
       <div className="range">
@@ -53,6 +57,7 @@ export default function Forecast() {
   const { person, scenario, year, setYear, dataVersion } = useApp();
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
+  const [allSkills, setAllSkills] = useState(false);
 
   useEffect(() => {
     if (!person) return;
@@ -65,7 +70,7 @@ export default function Forecast() {
   }, [person, scenario, dataVersion]);
 
   if (error) return <p>Couldn't load the forecast: {error}</p>;
-  if (!person || !data) return <p>Loading…</p>;
+  if (!person || !data) return <Skeleton rows={7} label="Loading the forecast" />;
 
   const yearData = data.by_year[year];
   if (!yearData) return <p>No forecast for {year}.</p>;
@@ -76,9 +81,12 @@ export default function Forecast() {
   const byId = Object.fromEntries(data.tasks.map((t) => [t.task_id, t]));
   const role = yearData.emerging_role;
   const skills = yearData.skills ?? []; // the cards change with the slider year
+  const SKILLS_SHOWN = 3;
+  const skillsShown = allSkills ? skills : skills.slice(0, SKILLS_SHOWN);
 
   return (
     <>
+      <PageContext step={2} />
       <div className="hero-row">
         <div>
           <p className="eyebrow">
@@ -127,12 +135,16 @@ export default function Forecast() {
                 {yearData.no_data_hours > 0 && <small className="nd">incl. {yearData.no_data_hours} h with no AI date</small>}
               </div>
             </div>
-            <p className="week-note">
-              By {year}, AI could do about <b>{Math.round(yearData.share_ai * 100)}% of {person.name}'s weekly hours</b>{" "}
-              under the {SCENARIO_LABEL[scenario]} scenario. <b>Estimate.</b>
-              {yearData.no_data_hours > 0 &&
-                ` ${yearData.no_data_hours} h have no AI date, so we count them as still human.`}
-            </p>
+            <div className="week-note">
+              <p className="insight">
+                By {year}, AI could do <b>{yearData.ai_hours} of {totalHours} hours</b> of {person.name}'s week.
+              </p>
+              <p>
+                That's about {Math.round(yearData.share_ai * 100)}% under the {SCENARIO_LABEL[scenario]} scenario. <b>Estimate.</b>
+                {yearData.no_data_hours > 0 &&
+                  ` ${yearData.no_data_hours} h have no AI date, so we count them as still human.`}
+              </p>
+            </div>
           </div>
           <WeekBar tasks={data.tasks} doneIds={doneIds} />
         </section>
@@ -219,7 +231,7 @@ export default function Forecast() {
                   ? `Skills in ${person.target_job ?? "the target job"}`
                   : `${person.name}'s skills`}
               </h2>
-              {skills.map((s) => (
+              {skillsShown.map((s) => (
                 <div key={s.id} className={"skill " + (s.label ?? "")}>
                   <span className="skill-bar" />
                   <div className="skill-main">
@@ -229,9 +241,18 @@ export default function Forecast() {
                   <span className="tag">{s.label ?? "no data"}</span>
                 </div>
               ))}
+              {skills.length > SKILLS_SHOWN && (
+                <button className="link-btn show-more" aria-expanded={allSkills} onClick={() => setAllSkills(!allSkills)}>
+                  {allSkills ? "Show fewer skills" : `Show all ${skills.length} skills`}
+                </button>
+              )}
             </section>
           )}
         </div>
+      </div>
+
+      <div className="next-row">
+        <Link to="/map" className="btn-blue">Find jobs that fit what's left →</Link>
       </div>
     </>
   );

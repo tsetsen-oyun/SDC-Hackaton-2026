@@ -4,6 +4,8 @@ import { useApp } from "../context/AppContext.jsx";
 import { api } from "../api.js";
 import Receipt from "../components/Receipt.jsx";
 import SdgTags from "../components/SdgTags.jsx";
+import Skeleton from "../components/Skeleton.jsx";
+import PageContext from "../components/PageContext.jsx";
 import { personTasks, toPayload } from "../utils.js";
 
 const HRD = { yes: "Yes", no: "No", check: "Check with provider", true: "Yes", false: "No" };
@@ -39,7 +41,7 @@ export default function RoutePage() {
       </div>
     );
   if (error) return <p>Couldn't load the route: {error}</p>;
-  if (!person || !data) return <p>Loading…</p>;
+  if (!person || !data) return <Skeleton rows={5} label="Building your route" />;
 
   const steps = data.steps ?? [];
   const stops = data.stop_investing_by_year?.[year] ?? [];
@@ -49,6 +51,7 @@ export default function RoutePage() {
 
   return (
     <>
+      <PageContext step={4} />
       <p className="eyebrow">{person.name}'s route to</p>
       <h1 className="hero">{data.title ?? chosenJob.title}</h1>
       {data.total_weeks != null && (
@@ -129,6 +132,10 @@ export default function RoutePage() {
           Trade-off: {tradeoffs.map((s) => `${s.target} ${s.label}`).join(", ")}
         </p>
       )}
+
+      <div className="next-row">
+        <Link to="/map" className="link-btn">← Back to the matching jobs</Link>
+      </div>
     </>
   );
 }

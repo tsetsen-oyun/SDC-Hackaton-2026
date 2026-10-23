@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useApp } from "../context/AppContext.jsx";
 import { personTasks } from "../utils.js";
 import WeekSplit from "../components/WeekSplit.jsx";
 import Receipt from "../components/Receipt.jsx";
 import { api } from "../api.js";
+import Skeleton from "../components/Skeleton.jsx";
 import ProfileBuilder, { loadCustoms, saveCustoms } from "../components/ProfileBuilder.jsx";
 
 const STAT_SOURCE = { label: "ISIS Malaysia & World Bank", date: "2025", isEstimate: false };
@@ -67,18 +68,37 @@ export default function You() {
   const [confirmId, setConfirmId] = useState(null);
   const [adding, setAdding] = useState("");
   const [catalogue, setCatalogue] = useState([]); // every task we know, for "add a task"
+  const [undo, setUndo] = useState(null); // the task that was just removed, so it can be put back
+  const undoTimer = useRef(null);
+  useEffect(() => { setUndo(null); }, [person?.id]); // a different person: forget the undo
+  useEffect(() => () => clearTimeout(undoTimer.current), []);
   useEffect(() => {
     api.tasks().then((r) => setCatalogue(Array.isArray(r) ? r : r.tasks ?? [])).catch(() => setCatalogue([]));
   }, []);
-  if (!person) return <p>Loading…</p>;
+  if (!person) return <Skeleton rows={5} label="Loading people" />;
 
   const tasks = personTasks(person);
-  const hasHours = tasks.some((t) => t.hours > 0);
+  const total = tasks.reduce((sum, t) => sum + (Number(t.hours) || 0), 0);
 
   // editing = making a new copy of the person with different tasks; the forecast etc. re-run by themselves
   const setTasks = (next) => setPerson({ ...person, tasks: next });
   const setHours = (id, h) => setTasks(tasks.map((t) => (t.task_id === id ? { ...t, hours: h } : t)));
-  const remove = (id) => setTasks(tasks.filter((t) => t.task_id !== id));
+  function remove(id) {
+    const index = tasks.findIndex((t) => t.task_id === id);
+    if (index < 0) return;
+    setUndo({ task: tasks[index], index });
+    setTasks(tasks.filter((t) => t.task_id !== id));
+    clearTimeout(undoTimer.current);
+    undoTimer.current = setTimeout(() => setUndo(null), 10000); // the Undo button stays for 10 seconds
+  }
+  function undoRemove() {
+    if (!undo) return;
+    const next = [...tasks];
+    next.splice(Math.min(undo.index, next.length), 0, undo.task);
+    setTasks(next);
+    setUndo(null);
+    clearTimeout(undoTimer.current);
+  }
   const original = profiles.find((p) => p.id === person.id);
   const edited = original && JSON.stringify(original.tasks) !== JSON.stringify(person.tasks);
   const addable = catalogue.filter((c) => !tasks.some((t) => t.task_id === c.task_id));
@@ -92,6 +112,8 @@ export default function You() {
   }
 
   const isCustom = (p) => String(p.id).startsWith("custom-");
+  // a person with a real week stays in "week" view even if they remove everything (so they can add tasks back)
+  const hasHours = total > 0 || isCustom(person) || (original ? personTasks(original).some((t) => t.hours > 0) : false);
   const people = [...profiles.filter((p) => !hidden.includes(p.id)), ...customs];
 
   function removePerson(p) {
@@ -170,6 +192,17 @@ export default function You() {
             footer={
               <div className="edit-bar">
                 <p className="muted">You're in control: change hours, remove a task or add one. Everything else updates.</p>
+                {undo && (
+                  <div className="undo-bar" role="status">
+                    <span>Removed “{undo.task.name}”.</span>
+                    <button className="link-btn" onClick={undoRemove}>Undo</button>
+                  </div>
+                )}
+                {total > 60 && (
+                  <p className="warn" role="alert">
+                    That adds up to {total} hours a week. Is that right? A normal full-time week is about 40.
+                  </p>
+                )}
                 {Object.keys(byJob).length > 0 && (
                   <div className="add-row">
                     <select value={adding} onChange={(e) => setAdding(e.target.value)} aria-label="Add a task">

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useApp } from "../context/AppContext.jsx";
 import { api } from "../api.js";
+import Skeleton from "../components/Skeleton.jsx";
 
 export default function About() {
   const { dataVersion } = useApp();
@@ -12,7 +13,7 @@ export default function About() {
   }, [dataVersion]);
 
   if (error) return <p>Couldn't load the data info: {error}</p>;
-  if (!info) return <p>Loading…</p>;
+  if (!info) return <Skeleton rows={5} label="Loading the data info" />;
 
   return (
     <>

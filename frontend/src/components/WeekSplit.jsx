@@ -30,21 +30,24 @@ export default function WeekSplit({ person, onHours, onRemove, footer }) {
     color: COLORS[i % COLORS.length],
   }));
   const total = tasks.reduce((s, t) => s + t.hours, 0);
-  if (total === 0) return <section className="week-split"><h2>{person.name}'s week</h2>{footer}</section>;
-
   let angle = 0;
   const slices = tasks.map((t) => {
     const a0 = angle;
-    angle += (t.hours / total) * Math.PI * 2;
+    angle += total ? (t.hours / total) * Math.PI * 2 : 0;
     return { ...t, a0, a1: angle };
   });
 
   return (
     <section className="week-split">
       <h2>{person.name}'s week ({total} hours)</h2>
-      <div className="split-grid">
+      <div className={"split-grid" + (total === 0 ? " no-pie" : "")}>
         <div className="split-list">
-          {slices.map((s) => (
+          {total === 0 && (
+            <p className="warn" role="status">
+              {tasks.length === 0 ? "No tasks left." : "Every task is at 0 hours."} Add a task or some hours to see the week again.
+            </p>
+          )}
+          {slices.map((s, i) => (
             <div
               key={s.id}
               className={"simple-row" + (hover === s.id ? " on" : "")}
@@ -52,15 +55,15 @@ export default function WeekSplit({ person, onHours, onRemove, footer }) {
               onMouseLeave={() => setHover(null)}
             >
               <span className="split-name">
-                <i className="dot" style={{ "--c": s.color }} />
+                <i className="dot" style={{ "--c": s.color, color: DARK.has(s.color) ? "#fff" : "#1f2a5c" }} aria-hidden="true">{i + 1}</i>
                 {s.name}
               </span>
               {editable ? (
                 <span className="edit-hours">
                   <input
-                    type="number" min="0" max="80" step="1" value={s.hours}
+                    type="number" min="0" max="80" step="0.5" inputMode="decimal" value={s.hours}
                     aria-label={`Hours for ${s.name}`}
-                    onChange={(e) => onHours(s.id, Math.max(0, Number(e.target.value) || 0))}
+                    onChange={(e) => onHours(s.id, Math.min(80, Math.max(0, Number(e.target.value) || 0)))}
                   />
                   h
                   <button className="x-btn" aria-label={`Remove ${s.name}`} onClick={() => onRemove(s.id)}>×</button>
@@ -73,7 +76,7 @@ export default function WeekSplit({ person, onHours, onRemove, footer }) {
           {footer}
         </div>
 
-        <div className="pie-glass">
+        {total > 0 && <div className="pie-glass">
           <svg className="pie" viewBox="0 0 220 220" role="img" aria-label={`${person.name}'s ${total} hours split by task`}>
             <defs>
               {slices.map((s, i) => (
@@ -92,6 +95,7 @@ export default function WeekSplit({ person, onHours, onRemove, footer }) {
             {slices.map((s, i) => {
               return (
                 <g key={s.id} onMouseEnter={() => setHover(s.id)} onMouseLeave={() => setHover(null)}>
+                  <title>{`${i + 1}. ${s.name}: ${s.hours} h`}</title>
                   <path
                     d={slicePath(110, 110, hover === s.id ? 106 : 102, s.a0, s.a1)}
                     fill={`url(#ws-g-${i})`}
@@ -106,17 +110,20 @@ export default function WeekSplit({ person, onHours, onRemove, footer }) {
             <circle cx="110" cy="110" r="102" fill="url(#ws-shine)" pointerEvents="none" />
             <circle cx="110" cy="110" r="102" fill="none" stroke="#fff" strokeOpacity="0.6" strokeWidth="2" pointerEvents="none" />
             {/* labels go last so the shine never fades them */}
-            {slices.map((s) => {
-              if (s.a1 - s.a0 <= 0.45) return null;
-              const [lx, ly] = point(110, 110, 68, (s.a0 + s.a1) / 2);
+            {/* just the number: it matches the number beside each task (hours are in the list) */}
+            {slices.map((s, i) => {
+              const size = s.a1 - s.a0;
+              if (size < 0.14) return null;
+              const [lx, ly] = point(110, 110, size > 0.5 ? 66 : 80, (s.a0 + s.a1) / 2);
               return (
-                <text key={s.id} x={lx} y={ly} textAnchor="middle" dominantBaseline="central" className="pie-label" style={{ fill: DARK.has(s.color) ? "#fff" : "#1f2a5c" }}>
-                  {s.hours} h
+                <text key={s.id} x={lx} y={ly} textAnchor="middle" dominantBaseline="central" className="pie-label pie-idx"
+                  style={{ fill: DARK.has(s.color) ? "#fff" : "#1f2a5c" }}>
+                  {i + 1}
                 </text>
               );
             })}
           </svg>
-        </div>
+        </div>}
       </div>
     </section>
   );

@@ -106,9 +106,10 @@ export default function Sidebar({ collapsed, onToggle }) {
           </span>
         </div>
         <div className="label profile-data">
-          <div className="mono">Data from {formatDate(snapshot)}</div>
-          <button className="refresh" onClick={handleRefresh} disabled={refreshing}>
-            {refreshing ? "Refreshing…" : "Refresh data"}
+          <div className="mono">Last updated {formatDate(snapshot)}</div>
+          <button className="refresh" onClick={handleRefresh} disabled={refreshing} aria-busy={refreshing}>
+            {refreshing && <span className="spinner" aria-hidden="true" />}
+            {refreshing ? "Checking for new data…" : "Refresh data"}
           </button>
           {notice && <p className={"notice" + (notice.ok ? " ok" : "")} role="status">{notice.text}</p>}
         </div>
