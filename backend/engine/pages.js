@@ -85,6 +85,11 @@ export function getTasks() {
   return engine.getTasks().map(({ task_id, name, job_id, job_name, no_data }) => ({ task_id, name, job_id, job_name, no_data }));
 }
 
+// Every skill we know, for "Build your own profile" and for finding skills in a pasted CV.
+export function getSkills() {
+  return engine.getSkills();
+}
+
 export function forecast(tasks, scenario) {
   const snap = engine.snapshot();
   const f = engine.forecast(tasks, scenario);

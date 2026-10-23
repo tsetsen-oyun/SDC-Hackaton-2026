@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { api } from "../api.js";
+import { findSkills } from "../cv.js";
+import { SAMPLE_CVS } from "../sampleCvs.js";
 
 const KEY = "custom-profiles";
 const asList = (r) => (Array.isArray(r) ? r : r?.skills ?? Object.values(r ?? {}));
@@ -21,6 +23,9 @@ export default function ProfileBuilder({ catalogue, onUse }) {
   const [allSkills, setAllSkills] = useState(null); // null = loading, [] = not available
   const [q, setQ] = useState("");
   const [adding, setAdding] = useState("");
+  const [cvText, setCvText] = useState("");
+  const [cvFound, setCvFound] = useState(null); // null = not run yet, else {added, maybe}
+  const [cvNote, setCvNote] = useState("");
 
   useEffect(() => {
     if (!open || allSkills) return;
@@ -52,6 +57,32 @@ export default function ProfileBuilder({ catalogue, onUse }) {
     setAdding("");
   }
 
+  // read a .txt file in this browser (it is never uploaded)
+  async function onFile(e) {
+    const file = e.target.files?.[0];
+    e.target.value = "";
+    if (!file) return;
+    setCvFound(null);
+    if (/\.(pdf|docx?|rtf|odt)$/i.test(file.name)) {
+      setCvNote("PDF and Word files aren't supported yet. Open it, copy the text and paste it into the box.");
+      return;
+    }
+    try {
+      setCvText((await file.text()).slice(0, 20000));
+      setCvNote(`Loaded ${file.name}.`);
+    } catch {
+      setCvNote("Couldn't read that file. Try pasting the text instead.");
+    }
+  }
+
+  function readCv() {
+    const { sure, maybe } = findSkills(cvText, allSkills);
+    const have = new Set(skills.map((s) => s.skill_id));
+    const added = sure.filter((s) => !have.has(s.skill_id));
+    setSkills([...skills, ...added]);
+    setCvFound({ total: sure.length, added: added.length, maybe: maybe.filter((m) => !have.has(m.skill_id)) });
+  }
+
   function submit() {
     const person = {
       id: "custom-" + Date.now(),
@@ -60,10 +91,10 @@ export default function ProfileBuilder({ catalogue, onUse }) {
       target_job: null,
       tasks: tasks.filter((t) => t.hours > 0),
       skill_ids: skills.map((s) => s.skill_id),
-      skills,
+      skills: skills.map(({ skill_id, name }) => ({ skill_id, name })),
     };
     onUse(person);
-    setName(""); setTitle(""); setTasks([]); setSkills([]); setQ("");
+    setName(""); setTitle(""); setTasks([]); setSkills([]); setQ(""); setCvText(""); setCvFound(null); setCvNote("");
     setOpen(false);
   }
 
@@ -116,9 +147,56 @@ export default function ProfileBuilder({ catalogue, onUse }) {
       {total > 0 && <p className="muted">{total} hours a week in total.</p>}
 
       <h3>2. What can you already do?</h3>
+
+      <div className="cv-box">
+        <label htmlFor="cv-text"><b>Have a CV?</b> Paste it here and we'll pick out the skills.</label>
+        <textarea
+          id="cv-text" rows={6} value={cvText} onChange={(e) => { setCvText(e.target.value); setCvFound(null); }}
+          placeholder="Paste the text of a made-up CV here, or try a sample below."
+        />
+        <div className="cv-actions">
+          <button className="btn-blue" disabled={cvText.trim().length < 20 || !allSkills?.length} onClick={readCv}>Find my skills</button>
+          <label className="link-btn cv-file">
+            Open a .txt file
+            <input type="file" accept=".txt,.md,text/plain" onChange={onFile} className="sr-only" />
+          </label>
+          <span className="muted">or try a sample:</span>
+          {SAMPLE_CVS.map((c) => (
+            <button key={c.id} className="m-chip pick" onClick={() => { setCvText(c.text); setCvFound(null); setCvNote(""); }}>{c.label}</button>
+          ))}
+        </div>
+        <p className="muted cv-privacy">Your CV is read in this browser only. It is not uploaded or saved. Please use a made-up CV, not a real one.</p>
+        {cvNote && <p className="muted" role="status">{cvNote}</p>}
+        {cvFound && (
+          <div role="status" className="cv-result">
+            {cvFound.total === 0 ? (
+              <p>We couldn't find any skills in that text. Try the search below, or paste more of the CV.</p>
+            ) : (
+              <p>
+                <b>Found {cvFound.total} skill{cvFound.total === 1 ? "" : "s"}.</b>{" "}
+                {cvFound.added > 0 ? `Added ${cvFound.added} to your list below.` : "They are already in your list."} Remove any that aren't right.
+              </p>
+            )}
+            {cvFound.maybe.length > 0 && (
+              <>
+                <span className="m-label">Maybe, tick the ones that fit:</span>
+                <div className="m-chips">
+                  {cvFound.maybe.map((m) => (
+                    <button
+                      key={m.skill_id} className="m-chip pick" title={`Found: ${m.why}`}
+                      onClick={() => { setSkills((cur) => [...cur, m]); setCvFound((f) => ({ ...f, maybe: f.maybe.filter((x) => x.skill_id !== m.skill_id) })); }}
+                    >+ {m.name}</button>
+                  ))}
+                </div>
+              </>
+            )}
+          </div>
+        )}
+      </div>
+
       <div className="m-chips">
         {skills.map((s) => (
-          <span key={s.skill_id} className="m-chip picked">
+          <span key={s.skill_id} className="m-chip picked" title={s.why ? `Found in your CV: ${s.why}` : undefined}>
             {s.name}
             <button className="x-btn" aria-label={`Remove ${s.name}`} onClick={() => setSkills(skills.filter((k) => k.skill_id !== s.skill_id))}>×</button>
           </span>

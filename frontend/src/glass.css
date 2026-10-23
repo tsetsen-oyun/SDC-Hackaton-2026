@@ -535,3 +535,29 @@ button { font-family: inherit; }
   .trow.header { display: none; }
 }
 .pie-label.pie-idx { font-size: 18px; font-weight: 700; }
+
+/* Route page: long SDG labels wrap instead of pushing the page wider than the screen */
+.steps { grid-template-columns: minmax(0, 1fr); }
+.steps > .step { min-width: 0; }
+.sdg-item { max-width: 100%; }
+.sdg-item .pill, .sdg-line .pill { white-space: normal; text-align: left; }
+.course { overflow-wrap: anywhere; }
+@media (max-width: 700px) {
+  .steps > .step { gap: 14px; padding: 20px 16px; }
+  .step-num { width: 38px; height: 38px; font-size: 17px; }
+  .step-head { flex-wrap: wrap; gap: 8px; }
+  .step-head h3 { font-size: 20px; }
+}
+
+/* ---------- CV: paste text, we pick out the skills ---------- */
+.cv-box { margin: 6px 0 16px; padding: 16px 18px; border-radius: 18px; background: rgba(47, 69, 212, 0.06); border: 1px dashed rgba(47, 69, 212, 0.35); }
+.cv-box > label { display: block; margin-bottom: 8px; font-size: 14px; }
+.cv-box textarea { width: 100%; font: inherit; font-size: 14px; line-height: 1.45; padding: 10px 12px; border-radius: 12px; border: 1px solid var(--line); background: #fff; color: var(--ink); resize: vertical; }
+.cv-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin-top: 10px; }
+.cv-actions .btn-blue:disabled { opacity: .45; cursor: default; }
+.cv-file { cursor: pointer; font-weight: 600; text-decoration: underline; }
+.cv-file:focus-within { outline: 3px solid var(--blue); outline-offset: 2px; border-radius: 4px; }
+.cv-privacy { margin: 10px 0 0; font-size: 12.5px; }
+.cv-result { margin-top: 10px; padding: 10px 14px; border-radius: 12px; background: #e4f6ec; border: 1px solid #b7e2c6; color: #1c4a31; font-size: 14px; line-height: 1.5; }
+.cv-result p { margin: 0 0 6px; }
+.cv-result .m-label { color: #1c4a31; }
