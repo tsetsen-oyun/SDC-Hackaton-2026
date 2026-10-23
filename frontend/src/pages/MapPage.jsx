@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useApp } from "../context/AppContext.jsx";
 import { api } from "../api.js";
@@ -26,7 +26,7 @@ function RankShift({ job }) {
   );
 }
 
-function JobCard({ job, rank, mode, onChoose }) {
+function JobCard({ job, rank, mode, onChoose, was }) {
   const [showAll, setShowAll] = useState(false);
   const total = job.skills_total || 1; // avoids dividing by zero
   const have = job.skills_have ?? 0;
@@ -42,6 +42,12 @@ function JobCard({ job, rank, mode, onChoose }) {
     <article className="card job">
       <div className="job-top">
         <h3>{rank}. {job.title}</h3>
+        {job.is_target && <span className="target-tag">Your target</span>}
+        {was != null && was !== rank && (
+          <span className={"moved " + (was > rank ? "up" : "down")} title="Compared with before the data refresh">
+            {was > rank ? "▲" : "▼"} was #{was}
+          </span>
+        )}
         {job.is_estimate && <span className="badge-est">Estimate</span>}
         {mode === "marketPlanet" && <RankShift job={job} />}
         <div className="job-score">
@@ -97,7 +103,9 @@ export default function MapPage() {
   const { person, scenario, year, setYear, setChosenJob, dataVersion } = useApp();
   const [mode, setMode] = useState("market"); // only this page needs it, so it stays local
   const [data, setData] = useState(null);
+  const [before, setBefore] = useState(null); // the ranking from just before the last data refresh
   const [error, setError] = useState(null);
+  const last = useRef({ key: null, version: null, data: null });
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -109,8 +117,18 @@ export default function MapPage() {
       skills: person.skill_ids ?? [],
       scenario,
       mode,
+      targetJob: person.target_job_id, // lets the Map show a person's own target job
     })
-      .then((d) => { if (!ignore) setData(d); })
+      .then((d) => {
+        if (ignore) return;
+        // same person, scenario and mode but newer data = a refresh happened: keep the old ranking to compare
+        const key = `${person.id ?? person.name}|${scenario}|${mode}`;
+        const l = last.current;
+        const refreshed = l.key === key && l.version !== dataVersion && l.data;
+        setBefore(refreshed ? l.data : key === l.key ? before : null);
+        last.current = { key, version: dataVersion, data: d };
+        setData(d);
+      })
       .catch((e) => { if (!ignore) setError(e.message); });
     return () => { ignore = true; };
   }, [person, scenario, mode, dataVersion]);
@@ -119,6 +137,11 @@ export default function MapPage() {
   if (!person || !data) return <p>Loading…</p>;
 
   const jobs = data.by_year[year]?.jobs ?? [];
+  // job_id -> rank before the refresh, for the year on screen
+  const oldRank = Object.fromEntries((before?.by_year?.[year]?.jobs ?? []).map((j, i) => [j.job_id, i + 1]));
+  const moves = jobs
+    .map((j, i) => ({ title: j.title, now: i + 1, was: oldRank[j.job_id] }))
+    .filter((m) => m.was != null && m.was !== m.now);
 
   function choose(job) {
     setChosenJob(job);
@@ -153,6 +176,19 @@ export default function MapPage() {
         These are suggestions to help you decide. You make the final call.
       </p>
 
+      {before && (
+        <div className="refresh-banner" role="status">
+          <b>Data refreshed.</b>{" "}
+          {moves.length === 0
+            ? "The ranking for this year didn't change."
+            : `${moves.length} job${moves.length > 1 ? "s" : ""} moved: ${moves
+                .slice(0, 3)
+                .map((m) => `${m.title} #${m.was} → #${m.now}`)
+                .join(", ")}${moves.length > 3 ? ` and ${moves.length - 3} more` : ""}.`}
+          <button className="link-btn" onClick={() => setBefore(null)}>Dismiss</button>
+        </div>
+      )}
+
       <MentorCard person={person} scenario={scenario} year={year} dataVersion={dataVersion} />
 
       <div className="jobs">
@@ -162,7 +198,7 @@ export default function MapPage() {
           return (
             <Fragment key={job.job_id}>
               {firstNoShare && <h2 className="group-title">No shared skills yet</h2>}
-              <JobCard job={job} rank={i + 1} mode={mode} onChoose={choose} />
+              <JobCard job={job} rank={i + 1} mode={mode} onChoose={choose} was={oldRank[job.job_id]} />
             </Fragment>
           );
         })}
