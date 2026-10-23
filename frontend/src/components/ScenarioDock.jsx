@@ -23,7 +23,6 @@ export default function ScenarioDock() {
             <svg width="64" height="36" viewBox="0 0 64 36" fill="none" strokeLinecap="round" aria-hidden="true"
               stroke={on ? "#2f45d4" : "#8d96ac"} strokeWidth={on ? 2.8 : 2.5}>
               <path d={s.path} />
-              {on && <circle cx="61" cy="6" r="3" fill="#ff6f61" stroke="#ff6f61" />}
             </svg>
             {s.label}
           </button>

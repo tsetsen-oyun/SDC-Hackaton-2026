@@ -1,4 +1,4 @@
-# [App name]
+# Unbundle
 
 > SDC Hackathon 2026 · Domain 1: Aiversecity, Future-Ready Workforce
 

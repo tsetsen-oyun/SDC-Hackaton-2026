@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Sidebar from "./components/Sidebar.jsx";
+import GradientBackground from "./components/GradientBackground.jsx";
 import ScenarioDock from "./components/ScenarioDock.jsx";
 import You from "./pages/You.jsx";
 import Forecast from "./pages/Forecast.jsx";
@@ -25,6 +26,7 @@ export default function App() {
 
   return (
     <div className="app-bg">
+      <GradientBackground />
       <div className={"shell" + (collapsed ? " wide" : "")}>
         <div className="panel">
           <Sidebar collapsed={collapsed} onToggle={toggle} />

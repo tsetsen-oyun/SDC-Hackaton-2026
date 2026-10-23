@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { personTasks } from "../utils.js";
 
-const CORAL = "#ff6f61";
-const RED = "#d93a2f";
-// most hours = darkest, fewest = lightest (opacity 0.22 to 1)
-const shade = (h, min, max) => (max === min ? 0.6 : 0.22 + ((h - min) / (max - min)) * 0.78);
+// shades of blue, dark to light, one per task (they repeat if there are more tasks than shades)
+const COLORS = ["#2f45d4", "#4663f0", "#5b8cff", "#6aa8ff", "#82bcff", "#9fd0ff", "#3d7bff", "#b9defc"];
+// white labels on the dark shades, dark labels on the light ones
+const DARK = new Set(["#2f45d4", "#4663f0", "#5b8cff", "#3d7bff"]);
 
 // angle (radians, 0 = 12 o'clock) -> point on the circle
 const point = (cx, cy, r, a) => [cx + r * Math.sin(a), cy - r * Math.cos(a)];
@@ -27,10 +27,8 @@ export default function WeekSplit({ person, onHours, onRemove, footer }) {
     id: t.task_id ?? t.id ?? i,
     name: t.name ?? t.task ?? "Task",
     hours: Number(t.hours) || 0,
+    color: COLORS[i % COLORS.length],
   }));
-  const hrs = tasks.map((t) => t.hours);
-  const min = Math.min(...hrs), max = Math.max(...hrs);
-  tasks.forEach((t) => { t.opacity = shade(t.hours, min, max); });
   const total = tasks.reduce((s, t) => s + t.hours, 0);
   if (total === 0) return <section className="week-split"><h2>{person.name}'s week</h2>{footer}</section>;
 
@@ -54,7 +52,7 @@ export default function WeekSplit({ person, onHours, onRemove, footer }) {
               onMouseLeave={() => setHover(null)}
             >
               <span className="split-name">
-                <i className="dot" style={{ background: CORAL, opacity: s.opacity }} />
+                <i className="dot" style={{ "--c": s.color }} />
                 {s.name}
               </span>
               {editable ? (
@@ -75,30 +73,50 @@ export default function WeekSplit({ person, onHours, onRemove, footer }) {
           {footer}
         </div>
 
-        <svg className="pie" viewBox="0 0 220 220" role="img" aria-label={`${person.name}'s ${total} hours split by task`}>
-          {slices.map((s) => {
-            const mid = (s.a0 + s.a1) / 2;
-            const [lx, ly] = point(110, 110, 68, mid);
-            const big = s.a1 - s.a0 > 0.45;
-            return (
-              <g key={s.id} onMouseEnter={() => setHover(s.id)} onMouseLeave={() => setHover(null)}>
-                <path
-                  d={slicePath(110, 110, hover === s.id ? 106 : 102, s.a0, s.a1)}
-                  fill={CORAL}
-                  fillOpacity={s.opacity}
-                  stroke={RED}
-                  strokeWidth="1"
-                  strokeLinejoin="round"
-                />
-                {big && (
-                  <text x={lx} y={ly} textAnchor="middle" dominantBaseline="central" className="pie-label">
-                    {s.hours} h
-                  </text>
-                )}
-              </g>
-            );
-          })}
-        </svg>
+        <div className="pie-glass">
+          <svg className="pie" viewBox="0 0 220 220" role="img" aria-label={`${person.name}'s ${total} hours split by task`}>
+            <defs>
+              {slices.map((s, i) => (
+                <linearGradient key={s.id} id={`ws-g-${i}`} x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stopColor={s.color} stopOpacity="0.95" />
+                  <stop offset="1" stopColor={s.color} stopOpacity="0.55" />
+                </linearGradient>
+              ))}
+              {/* soft white shine from the top left, like light on glass */}
+              <radialGradient id="ws-shine" cx="0.3" cy="0.2" r="0.85">
+                <stop offset="0" stopColor="#fff" stopOpacity="0.7" />
+                <stop offset="0.45" stopColor="#fff" stopOpacity="0.12" />
+                <stop offset="1" stopColor="#fff" stopOpacity="0" />
+              </radialGradient>
+            </defs>
+            {slices.map((s, i) => {
+              return (
+                <g key={s.id} onMouseEnter={() => setHover(s.id)} onMouseLeave={() => setHover(null)}>
+                  <path
+                    d={slicePath(110, 110, hover === s.id ? 106 : 102, s.a0, s.a1)}
+                    fill={`url(#ws-g-${i})`}
+                    stroke="#fff"
+                    strokeOpacity="0.85"
+                    strokeWidth="1.6"
+                    strokeLinejoin="round"
+                  />
+                </g>
+              );
+            })}
+            <circle cx="110" cy="110" r="102" fill="url(#ws-shine)" pointerEvents="none" />
+            <circle cx="110" cy="110" r="102" fill="none" stroke="#fff" strokeOpacity="0.6" strokeWidth="2" pointerEvents="none" />
+            {/* labels go last so the shine never fades them */}
+            {slices.map((s) => {
+              if (s.a1 - s.a0 <= 0.45) return null;
+              const [lx, ly] = point(110, 110, 68, (s.a0 + s.a1) / 2);
+              return (
+                <text key={s.id} x={lx} y={ly} textAnchor="middle" dominantBaseline="central" className="pie-label" style={{ fill: DARK.has(s.color) ? "#fff" : "#1f2a5c" }}>
+                  {s.hours} h
+                </text>
+              );
+            })}
+          </svg>
+        </div>
       </div>
     </section>
   );

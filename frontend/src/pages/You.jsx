@@ -9,6 +9,55 @@ import ProfileBuilder, { loadCustoms, saveCustoms } from "../components/ProfileB
 
 const STAT_SOURCE = { label: "ISIS Malaysia & World Bank", date: "2025", isEstimate: false };
 
+// words of the headline; `c` = a colour for the highlighted words, `count` = the number that counts up
+const HERO = [
+  { t: "Did", m: 1 }, { t: "you", m: 1 }, { t: "know?", m: 1 },
+  { t: "About" }, { t: "45%", count: 45, c: "#ff7a66" }, { t: "of" }, { t: "Malaysian" }, { t: "workers" },
+  { t: "have" }, { t: "at" }, { t: "least" }, { t: "40%" }, { t: "of" }, { t: "their" }, { t: "tasks" }, { t: "that" },
+  { t: "today's", c: "#ff8a6b" }, { t: "AI", c: "#fb7a62" }, { t: "could", c: "#f2644f" }, { t: "do.", c: "#e8453c" },
+];
+
+function useCountUp(to, delay = 450, ms = 1200) {
+  const still = typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+  const [n, setN] = useState(still ? to : 0);
+  useEffect(() => {
+    if (still) return;
+    let raf, start;
+    const id = setTimeout(() => {
+      const step = (now) => {
+        start ??= now;
+        const p = Math.min(1, (now - start) / ms);
+        setN(Math.round(to * (1 - Math.pow(1 - p, 3)))); // eases out
+        if (p < 1) raf = requestAnimationFrame(step);
+      };
+      raf = requestAnimationFrame(step);
+    }, delay);
+    return () => { clearTimeout(id); cancelAnimationFrame(raf); };
+  }, [to, delay, ms, still]);
+  return n;
+}
+
+function StatHero() {
+  const n = useCountUp(45);
+  return (
+    <header className="stat-hero">
+      <h1 aria-label="Did you know? About 45% of Malaysian workers have at least 40% of their tasks that today's AI could do.">
+        {HERO.map((w, i) => (
+          <span key={i}>
+            <span className={"w" + (w.m ? " muted" : "")} style={{ "--i": i, color: w.c }} aria-hidden="true">
+              {w.count ? `${n}%` : w.t}
+            </span>{" "}
+          </span>
+        ))}
+        <Receipt source={STAT_SOURCE} />
+      </h1>
+      <p className="stat-sub">
+        Let's make sure AI works <b>for you</b>, not instead of you.
+      </p>
+    </header>
+  );
+}
+
 export default function You() {
   const { profiles, person, setPerson, setChosenJob } = useApp();
   const [customs, setCustoms] = useState(() => loadCustoms());
@@ -72,10 +121,7 @@ export default function You() {
 
   return (
     <>
-      <div className="card stat">
-        About <b>45%</b> of Malaysian workers have at least 40% of their tasks that today's AI could do.
-        <Receipt source={STAT_SOURCE} />
-      </div>
+      <StatHero />
 
       <h2>Choose a sample person</h2>
       <div className="people">

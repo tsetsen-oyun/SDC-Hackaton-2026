@@ -76,7 +76,7 @@ export default function Sidebar({ collapsed, onToggle }) {
           </svg>
         </button>
         <div className="brand">
-          <span className="label">[App name]</span>
+          <span className="label">Unbundle</span>
         </div>
       </div>
 
