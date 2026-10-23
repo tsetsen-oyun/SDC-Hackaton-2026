@@ -42,11 +42,19 @@ export default function Sidebar({ collapsed, onToggle }) {
     setNotice(null);
     try {
       const r = await api.refresh();
-      setSnapshot(r.snapshotDate ?? r.snapshot_date);
-      bumpData(); // tells every page "reload your data"
+      const date = r.snapshotDate ?? r.snapshot_date;
+      setSnapshot(date);
+      if (r.changed) bumpData(); // only reload the pages when there really is new data
+      if (r.fallback) {
+        setNotice({ ok: false, text: `Couldn't get new data, so we're still using the saved copy from ${formatDate(date)}.` });
+      } else if (r.changed) {
+        setNotice({ ok: true, text: `New data loaded${r.previous ? ` (was ${formatDate(r.previous)})` : ""}. Pages updated.` });
+      } else {
+        setNotice({ ok: true, text: "Already up to date. No new data since the last refresh." });
+      }
     } catch (e) {
       console.error(e);
-      setNotice(`Couldn't load new data, so we're still using the saved copy from ${formatDate(snapshot)}.`);
+      setNotice({ ok: false, text: `Couldn't load new data, so we're still using the saved copy from ${formatDate(snapshot)}.` });
     } finally {
       setRefreshing(false);
     }
@@ -68,13 +76,6 @@ export default function Sidebar({ collapsed, onToggle }) {
           </svg>
         </button>
         <div className="brand">
-          <span className="brand-mark" aria-hidden="true">
-            <svg width="32" height="32" viewBox="0 0 34 34" fill="none" strokeWidth="2.2">
-              <ellipse cx="17" cy="17" rx="15" ry="11" stroke="#2f45d4" />
-              <ellipse cx="17" cy="17" rx="8.5" ry="6" stroke="#2f45d4" />
-              <ellipse cx="17" cy="17" rx="3" ry="2" fill="#ff6f61" stroke="#ff6f61" />
-            </svg>
-          </span>
           <span className="label">[App name]</span>
         </div>
       </div>
@@ -109,7 +110,7 @@ export default function Sidebar({ collapsed, onToggle }) {
           <button className="refresh" onClick={handleRefresh} disabled={refreshing}>
             {refreshing ? "Refreshing…" : "Refresh data"}
           </button>
-          {notice && <p className="notice" role="status">{notice}</p>}
+          {notice && <p className={"notice" + (notice.ok ? " ok" : "")} role="status">{notice.text}</p>}
         </div>
       </div>
     </aside>

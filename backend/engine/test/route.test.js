@@ -21,6 +21,15 @@ test("without courses.csv the route says it isn't ready, instead of guessing cou
   assert.equal(routeFor(old, { jobId: "JOB_AUD", skills: siti }).status, "not_ready");
 });
 
+test("the skills of the person's tasks count as skills they have, and stop counting when the task is removed", () => {
+  const snap = withCourses([course("C1", "S_AUDIT", 10), course("C2", "S_REPORT", 6), course("C3", "S_INVEST", 4)]);
+  const sitiWeek = old.users.get("siti").tasks;
+  const steps = (tasks) => routeFor(snap, { jobId: "JOB_AUD", skills: [], tasks }).steps.map((s) => s.skill_id).sort();
+  // TASK_4 is the only one of her tasks that uses S_INVEST.
+  assert.deepEqual(steps(sitiWeek), ["S_AUDIT", "S_REPORT"]);
+  assert.deepEqual(steps(sitiWeek.filter((t) => t.task_id !== "TASK_4")), ["S_AUDIT", "S_INVEST", "S_REPORT"]);
+});
+
 test("one step per missing skill, each with its real course", () => {
   const r = routeFor(withCourses([course("C1", "S_AUDIT", 10), course("C2", "S_REPORT", 6)]), { jobId: "JOB_AUD", skills: siti });
   assert.deepEqual(r.steps.map((s) => [s.order, s.skill_id, s.course.course_id]), [[1, "S_AUDIT", "C1"], [2, "S_REPORT", "C2"]]);

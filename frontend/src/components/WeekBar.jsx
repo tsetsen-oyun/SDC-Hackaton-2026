@@ -1,5 +1,3 @@
-// The week as one bar: each task is a block as wide as its hours.
-// Hatched blue = AI could do it by the chosen year, dark = still human.
 export default function WeekBar({ tasks, doneIds = new Set() }) {
   const shown = tasks.filter((t) => t.hours > 0);
   return (
@@ -21,3 +19,4 @@ export default function WeekBar({ tasks, doneIds = new Set() }) {
     </div>
   );
 }
+ 

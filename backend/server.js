@@ -72,7 +72,7 @@ app.post(
   "/api/match",
   needs("match"),
   wrap(async (req, res) => {
-    const { tasks, skills, scenario, mode } = req.body;
+    const { tasks, skills, scenario, mode, targetJob } = req.body;
 
     if (
       !validTasks(tasks) ||
@@ -85,7 +85,7 @@ app.post(
         "Need tasks[], skills[], scenario, mode: market | marketPlanet"
       );
 
-    res.json(await engine.match({ tasks, skills, scenario, mode }));
+    res.json(await engine.match({ tasks, skills, scenario, mode, targetJob }));
   })
 );
 
@@ -93,12 +93,12 @@ app.post(
   "/api/route",
   needs("buildRoute"),
   wrap(async (req, res) => {
-    const { jobId, skills, scenario } = req.body;
+    const { jobId, skills, tasks = [], scenario } = req.body;
 
-    if (!jobId || !Array.isArray(skills) || !SCENARIOS.includes(scenario))
-      return bad(res, "Need jobId, skills[], scenario");
+    if (!jobId || !Array.isArray(skills) || !Array.isArray(tasks) || !SCENARIOS.includes(scenario))
+      return bad(res, "Need jobId, skills[], scenario (tasks[] optional)");
 
-    res.json(await engine.buildRoute({ jobId, skills, scenario }));
+    res.json(await engine.buildRoute({ jobId, skills, tasks, scenario }));
   })
 );
 

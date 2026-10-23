@@ -11,8 +11,8 @@ const YEARS = Array.from({ length: LAST - FIRST + 1 }, (_, i) => FIRST + i);
 const pos = (y) => Math.min(100, Math.max(0, ((y - FIRST) / (LAST - FIRST)) * 100));
 
 const KIND = { does: ["AI does it", "pill-solid"], helps: ["AI helps", "pill-outline"] };
-// the engine sent no "mode" for this task, so we say so instead of leaving the cell empty
-const NO_KIND = ["Not specified", "pill-muted"];
+// kind is null when the Anthropic Economic Index has no usage data for the task
+const NO_KIND = ["No usage data", "pill-muted"];
 
 function TaskRow({ t, year, done, showHours }) {
   const kind = KIND[t.kind] ?? NO_KIND;
@@ -155,9 +155,18 @@ export default function Forecast() {
             <span>Task</span>
             <span className="hours">Hours</span>
             <div className="range-head">
-              <span>{FIRST}</span>
-              <b style={{ left: pos(year) + "%" }}>{year}</b>
-              <span>{LAST}+</span>
+              {/* hide an end label when the chosen year is close to it, so they never overlap */}
+              <span style={{ visibility: pos(year) < 16 ? "hidden" : "visible" }}>{FIRST}</span>
+              <b
+                style={{
+                  left: pos(year) + "%",
+                  // near the ends, line the bold year up with the edge instead of centring it
+                  transform: pos(year) < 8 ? "none" : pos(year) > 92 ? "translateX(-100%)" : "translateX(-50%)",
+                }}
+              >
+                {year === LAST ? `${year}+` : year}
+              </b>
+              <span style={{ visibility: pos(year) > 84 ? "hidden" : "visible" }}>{LAST}+</span>
             </div>
             <span>Type</span>
           </div>

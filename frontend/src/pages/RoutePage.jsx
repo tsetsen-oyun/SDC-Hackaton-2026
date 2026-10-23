@@ -4,6 +4,7 @@ import { useApp } from "../context/AppContext.jsx";
 import { api } from "../api.js";
 import Receipt from "../components/Receipt.jsx";
 import SdgTags from "../components/SdgTags.jsx";
+import { personTasks, toPayload } from "../utils.js";
 
 const HRD = { yes: "Yes", no: "No", check: "Check with provider", true: "Yes", false: "No" };
 
@@ -19,7 +20,12 @@ export default function RoutePage() {
     if (!person || !chosenJob) return;
     let ignore = false;
     setError(null);
-    api.route({ jobId: chosenJob.job_id, skills: person.skill_ids ?? [], scenario })
+    api.route({
+      jobId: chosenJob.job_id,
+      skills: person.skill_ids ?? [],
+      tasks: toPayload(personTasks(person)), // so editing the week changes the route too
+      scenario,
+    })
       .then((d) => { if (!ignore) setData(d); })
       .catch((e) => { if (!ignore) setError(e.message); });
     return () => { ignore = true; };
@@ -68,7 +74,10 @@ export default function RoutePage() {
                 {s.sdg?.length > 0 && (
                   <div className="sdg-line">
                     {s.sdg.slice(0, 3).map((g) => (
-                      <span key={g.target + g.label} className="pill pill-outline">{g.target} {g.label}</span>
+                      <span key={g.target + g.label} className="sdg-item">
+                        <span className="pill pill-outline">{g.target} {g.label}</span>
+                        <SdgTags s={g} />
+                      </span>
                     ))}
                   </div>
                 )}
@@ -109,7 +118,10 @@ export default function RoutePage() {
       <div className="sdg-line">
         <span className="muted">This path supports:</span>
         {supports.map((s) => (
-          <span key={s.target + s.label} className="pill pill-outline">{s.target} {s.label}</span>
+          <span key={s.target + s.label} className="sdg-item">
+            <span className="pill pill-outline">{s.target} {s.label}</span>
+            <SdgTags s={s} />
+          </span>
         ))}
       </div>
       {tradeoffs.length > 0 && (

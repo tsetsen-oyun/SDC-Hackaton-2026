@@ -5,14 +5,17 @@ import Receipt from "./Receipt.jsx";
 
 const nm = (x) => (typeof x === "string" ? x : x?.name ?? x?.skill_name ?? String(x));
 
-function Skills({ label, list = [] }) {
-  const shown = list.slice(0, 3).map(nm).join(", ");
+function Chips({ label, list = [] }) {
   const more = list.length - 3;
   return (
-    <p>
-      <span className="muted">{label}:</span> {shown || "–"}
-      {more > 0 && <span className="muted"> and {more} more</span>}
-    </p>
+    <div className="m-col">
+      <span className="m-label">{label}</span>
+      <div className="m-chips">
+        {list.slice(0, 3).map((x) => <span key={nm(x)} className="m-chip">{nm(x)}</span>)}
+        {list.length === 0 && <span className="muted">–</span>}
+        {more > 0 && <span className="m-chip more">+{more} more</span>}
+      </div>
+    </div>
   );
 }
 
@@ -42,17 +45,36 @@ export default function MentorCard({ person, scenario, year, dataVersion }) {
 
   return (
     <section className="card mentor">
-      <h2>People you could swap skills with</h2>
+      <div className="mentor-head">
+        <h2>People you could swap skills with</h2>
+        <span className="m-badge">Suggestion</span>
+      </div>
       {pairs.map(({ p, y }) => (
         <div key={p.with_name} className="mentor-pair">
-          <b>{p.with_name}</b> {p.you_are && <span className="muted">· you are the {p.you_are}</span>}
-          <Receipt source={p.source} />
-          <Skills label="You bring" list={y.you_bring} />
-          <Skills label="They bring" list={y.they_bring} />
-          {y.senior_next_job && <p className="muted">Their next job could be: {y.senior_next_job}</p>}
+          <div className="m-who">
+            <span className="m-avatar">{String(p.with_name).charAt(0)}</span>
+            <b>{p.with_name}</b>
+            {p.you_are && <span className="m-role">you are the {p.you_are}</span>}
+            <Receipt source={p.source} />
+          </div>
+          <div className="m-cols">
+            <Chips label="You bring" list={y.you_bring} />
+            <Chips label="They bring" list={y.they_bring} />
+          </div>
+          {y.senior_next_job && (
+            <div className="m-next">
+              <span className="m-label">{p.you_are === "senior" ? "Your next job could be" : "Their next job could be"}</span>
+              <b>{y.senior_next_job}</b>
+            </div>
+          )}
         </div>
       ))}
-      {consent && <p className="consent">{consent}</p>}
+      {consent && (
+        <p className="consent">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V6z" /><path d="M9 12l2 2 4-4" /></svg>
+          <span>{consent}</span>
+        </p>
+      )}
     </section>
   );
 }

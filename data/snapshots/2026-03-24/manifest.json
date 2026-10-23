@@ -25,7 +25,7 @@
     },
     {
       "id": "esco",
-      "name": "ESCO classification (skills, occupations) via ESCO API",
+      "name": "ESCO v1.0.9 (ESCO API default version): occupations, skills, job-skill links. Green labels and skill groups from ESCO v1.2.1 download",
       "url": "https://esco.ec.europa.eu/en/use-esco/use-esco-services-api",
       "date_taken": "2026-10-21",
       "licence": "CC BY 4.0 (European Commission)"
@@ -57,6 +57,13 @@
       "url": "https://unstats.un.org/sdgs/UNSDGAPIV5/v1/sdg/Target/List",
       "date_taken": "2026-10-21",
       "licence": "UN Statistics Division, free with citation"
+    },
+    {
+      "id": "team_reviewed",
+      "name": "SDG targets chosen by our team in the human review (replacing rejected AI links)",
+      "url": "data/docs/sdg-fix-picker.xlsx",
+      "date_taken": "2026-10-23",
+      "licence": "Team work (no AI)"
     },
     {
       "id": "team_hand_linked",

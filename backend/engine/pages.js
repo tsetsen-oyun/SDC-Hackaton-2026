@@ -62,13 +62,16 @@ export function getProfiles() {
 }
 
 function profileForPage(snap, p) {
-  // Their own skills plus the skills of the tasks they do, so the Map and Route pages can send them.
-  const skillIds = [...new Set([...p.skill_ids, ...p.tasks.flatMap((t) => snap.taskSkills.get(t.task_id) ?? [])])];
+  // Only the skills they list themselves. The skills of their tasks are added by the engine from the tasks
+  // the page sends, so editing the week (removing or adding a task) changes the skills too.
+  const skillIds = p.skill_ids;
   return {
     id: p.user_id,
     name: p.display_name,
     title: p.current_job_name ?? (p.target_job_name ? `No current job · aiming for ${p.target_job_name}` : "No current job"),
     target_job: p.target_job_name,
+    // The id, to send to /api/match as targetJob.
+    target_job_id: p.target_job,
     tasks: p.tasks.map(({ task_id, name, hours }) => ({ task_id, name, hours })),
     skill_ids: skillIds,
     // The same skills with names, for showing them on the page.
@@ -154,9 +157,9 @@ export function forecast(tasks, scenario) {
   };
 }
 
-export function match({ tasks, skills = [], scenario, mode = "market" }) {
+export function match({ tasks, skills = [], scenario, mode = "market", targetJob = null }) {
   const snap = engine.snapshot();
-  const args = { tasks: worked(tasks), skills, scenario };
+  const args = { tasks: worked(tasks), skills, scenario, targetJob };
   const market = engine.match({ ...args, mode: "market" });
   const planet = engine.match({ ...args, mode: "marketPlanet" });
   const shown = mode === "marketPlanet" ? planet : market;
@@ -175,6 +178,7 @@ export function match({ tasks, skills = [], scenario, mode = "market" }) {
       jobs: shown.by_year[y].roles.map((r) => ({
         job_id: r.role_id,
         title: r.name,
+        is_target: r.is_target,
         // The jobs are real occupations; the score on them is our estimate (see the receipt).
         is_estimate: Boolean(snap.roles.get(r.role_id)?.is_estimate),
         outlook_trend: later[r.role_id] !== null && later[r.role_id] < r.parts.outlook ? "declining" : "steady",
@@ -198,9 +202,9 @@ export function match({ tasks, skills = [], scenario, mode = "market" }) {
   return { scenario, mode, snapshot: market.snapshot_date, source: receipt(snap, [], true), by_year, skill_links: market.skill_links };
 }
 
-export function buildRoute({ jobId, skills = [], scenario }) {
+export function buildRoute({ jobId, skills = [], tasks = [], scenario }) {
   const snap = engine.snapshot();
-  const r = engine.buildRoute({ jobId, skills, scenario });
+  const r = engine.buildRoute({ jobId, skills, tasks: worked(tasks), scenario });
   const sdg = sdgPills(snap.sdgLinks.filter((l) => l.item_type === "role" && l.item_id === jobId)
     .map((l) => withOffTrack(snap, l)));
   if (r.status !== "ready") {

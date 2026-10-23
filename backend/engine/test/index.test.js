@@ -68,6 +68,14 @@ test("profiles: a person with no current job gets the target job's tasks, with n
   assert.deepEqual(engine.getProfiles().find((p) => p.user_id === "siti").target_job_tasks, []);
 });
 
+test("skills: every skill in the data as { skill_id, name }, sorted by name", () => {
+  engine.useSnapshot("2026-04-01");
+  const skills = engine.getSkills();
+  assert.ok(skills.length > 0);
+  assert.ok(skills.every((s) => s.skill_id && s.name && Object.keys(s).length === 2));
+  assert.deepEqual(skills.map((s) => s.name), skills.map((s) => s.name).sort((a, b) => a.localeCompare(b)));
+});
+
 test("tasks: every task in the data, with its job, and whether it has a published time", () => {
   engine.useSnapshot("2026-04-01");
   const tasks = engine.getTasks();

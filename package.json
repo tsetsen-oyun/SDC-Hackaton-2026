@@ -7,9 +7,11 @@
     "example": "examples"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "concurrently -n api,web -c yellow,cyan \"npm run dev --prefix backend\" \"npm run dev --prefix Frontend\"",
-    "install:all": "npm i && npm i --prefix backend && npm i --prefix Frontend"
+    "dev": "concurrently -n api,web -c yellow,cyan \"npm run dev --prefix backend\" \"npm run dev --prefix frontend\"",
+    "demo": "START_SNAPSHOT=2026-03-24 concurrently -n api,web -c yellow,cyan \"npm run dev --prefix backend\" \"npm run dev --prefix frontend\"",
+    "install:all": "npm i && npm i --prefix backend && npm i --prefix frontend",
+    "build": "npm run build --prefix frontend",
+    "test": "node --test backend/engine/test/*.test.js"
   },
   "repository": {
     "type": "git",
