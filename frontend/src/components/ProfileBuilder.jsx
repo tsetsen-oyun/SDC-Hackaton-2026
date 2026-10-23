@@ -101,8 +101,15 @@ export default function ProfileBuilder({ catalogue, onUse }) {
   if (!open)
     return (
       <button className="builder-open" onClick={() => setOpen(true)}>
-        <b>+ Build your own profile</b>
-        <span>Add your tasks and skills and see your own forecast</span>
+        <span className="bo-plus" aria-hidden="true">+</span>
+        <span className="bo-text">
+          <b>Build your own profile</b>
+          <span className="bo-sub">Add your tasks, paste a made-up CV and see your own forecast</span>
+          <span className="bo-steps" aria-hidden="true">
+            <i>1. Pick your tasks</i><i>2. Paste a CV</i><i>3. See your forecast</i>
+          </span>
+        </span>
+        <span className="bo-go">Start →</span>
       </button>
     );
 

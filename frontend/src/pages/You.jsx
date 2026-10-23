@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { createPortal } from "react-dom";
 import { useEffect, useRef, useState } from "react";
 import { useApp } from "../context/AppContext.jsx";
 import { personTasks } from "../utils.js";
@@ -6,6 +7,7 @@ import WeekSplit from "../components/WeekSplit.jsx";
 import Receipt from "../components/Receipt.jsx";
 import { api } from "../api.js";
 import Skeleton from "../components/Skeleton.jsx";
+import PeopleDock from "../components/PeopleDock.jsx";
 import ProfileBuilder, { loadCustoms, saveCustoms } from "../components/ProfileBuilder.jsx";
 
 const STAT_SOURCE = { label: "ISIS Malaysia & World Bank", date: "2025", isEstimate: false };
@@ -65,7 +67,6 @@ export default function You() {
   const [hidden, setHidden] = useState(() => {
     try { return JSON.parse(localStorage.getItem("hidden-people")) ?? []; } catch { return []; }
   });
-  const [confirmId, setConfirmId] = useState(null);
   const [adding, setAdding] = useState("");
   const [catalogue, setCatalogue] = useState([]); // every task we know, for "add a task"
   const [undo, setUndo] = useState(null); // the task that was just removed, so it can be put back
@@ -127,7 +128,6 @@ export default function You() {
       setHidden(next);
       try { localStorage.setItem("hidden-people", JSON.stringify(next)); } catch { /* ignore */ }
     }
-    setConfirmId(null);
     if (p.id === person.id) pick(left[0]); // the person on screen was deleted: switch to the next one
   }
 
@@ -144,38 +144,6 @@ export default function You() {
   return (
     <>
       <StatHero />
-
-      <h2>Choose a sample person</h2>
-      <div className="people">
-        {people.map((p) => (
-          <div key={p.id ?? p.name} className="person-wrap">
-            <button className={"person" + (p.id === person.id ? " on" : "")} onClick={() => pick(p)}>
-              <b>{p.name}</b>
-              <span>{p.title}</span>
-            </button>
-            {confirmId === p.id ? (
-              <div className="person-confirm" role="alert">
-                <span>Delete {p.name}?</span>
-                <button className="danger" onClick={() => removePerson(p)}>Delete</button>
-                <button onClick={() => setConfirmId(null)}>Cancel</button>
-              </div>
-            ) : (
-              <button
-                className="person-x"
-                aria-label={`Delete ${p.name}`}
-                title={people.length <= 1 ? "Keep at least one person" : `Delete ${p.name}`}
-                disabled={people.length <= 1}
-                onClick={() => setConfirmId(p.id)}
-              >
-                ×
-              </button>
-            )}
-          </div>
-        ))}
-      </div>
-      {hidden.length > 0 && (
-        <button className="link-btn restore" onClick={restoreSamples}>Restore sample people</button>
-      )}
 
       <ProfileBuilder
         catalogue={catalogue}
@@ -238,6 +206,19 @@ export default function You() {
       </section>
 
       <Link to="/forecast" className="btn-blue">See my forecast →</Link>
+
+      {/* fixed to the bottom of the screen; the app panel is blurred, so it is drawn outside it */}
+      {createPortal(
+        <PeopleDock
+          people={people}
+          activeId={person.id ?? person.name}
+          onPick={pick}
+          onDelete={removePerson}
+          hiddenCount={hidden.length}
+          onRestore={restoreSamples}
+        />,
+        document.body
+      )}
     </>
   );
 }
