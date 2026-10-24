@@ -1,0 +1,861 @@
+From 1882cc69d48f46ecc83512d643a94e44fb1b4209 Mon Sep 17 00:00:00 2001
+From: Almaz Tleubay <almaz.tleubay@icloud.com>
+Date: Sat, 24 Oct 2026 12:43:11 +0800
+Subject: [PATCH 1/2] Fetch METR AI-progress data live on Refresh
+
+Refresh now downloads METR's published time-horizon file, validates it,
+and writes a new dated snapshot (ai_progress.csv, scenarios.csv, manifest)
+when it differs from the newest saved one. On any failure it keeps using the
+saved snapshot and reports why.
+
+- backend/engine/ingest.js: fetch, parse, validate, write snapshot
+- backend/engine/index.js: refreshData() uses it; one refresh at a time
+- scripts: npm run ingest:check (read-only) and npm run ingest:now
+- UI: Refresh messages and About page show live fetch time
+- tests: 8 new (97 total), round-trip against the real 2026-10-23 data
+---
+ README.md                           |  26 ++-
+ backend/engine/index.js             |  61 ++++++-
+ backend/engine/ingest.js            | 266 ++++++++++++++++++++++++++++
+ backend/engine/pages.js             |   2 +
+ backend/engine/test/index.test.js   |   1 +
+ backend/engine/test/ingest.test.js  | 166 +++++++++++++++++
+ backend/package-lock.json           |  41 ++++-
+ backend/package.json                |   7 +-
+ backend/scripts/check-metr.mjs      |  20 +++
+ backend/scripts/ingest-now.mjs      |   9 +
+ frontend/src/components/Sidebar.jsx |  10 +-
+ frontend/src/pages/About.jsx        |   3 +
+ package.json                        |   6 +-
+ 13 files changed, 600 insertions(+), 18 deletions(-)
+ create mode 100644 backend/engine/ingest.js
+ create mode 100644 backend/engine/test/ingest.test.js
+ create mode 100644 backend/scripts/check-metr.mjs
+ create mode 100644 backend/scripts/ingest-now.mjs
+
+diff --git a/README.md b/README.md
+index 72ef8c7..1f3821e 100644
+--- a/README.md
++++ b/README.md
+@@ -40,7 +40,7 @@ About **45%** of Malaysian workers have at least 40% of their tasks that today's
+ 
+ Unbundle takes a person's real week of tasks and splits it into the parts AI could take over and the parts that stay human. It then maps the future jobs that fit what is left, and the courses that close the skill gap. The forecast covers 2026–2035 under three AI-adoption scenarios, and every number links to its source, its date and whether it is an estimate.
+ 
+-AI is used in two places, and both are disclosed. Task timing builds on published AI-capability research (METR) and exposure data (Anthropic Economic Index, O\*NET). A language model (Qwen3-32B-AWQ) drafted the job-to-SDG links once, offline; these are labelled "Estimate" until a person reviews them. The running app calls no AI API.
++AI is used in two places, and both are disclosed. Task timing builds on published AI-capability research (METR) and exposure data (Anthropic Economic Index, O\*NET). A language model (Qwen3-32B-AWQ) drafted the job-to-SDG links once, offline; these are labelled "Estimate" until a person reviews them. The running app calls no AI API. Its only outside call is the Refresh button fetching METR's published AI-progress data (see *Live Trend Data* below).
+ 
+ ### Key Features
+ 
+@@ -50,7 +50,7 @@ AI is used in two places, and both are disclosed. Task timing builds on publishe
+ - **Build your own profile** — Create a profile by picking tasks and skills, or paste a CV to find skills in it. The CV text is read in your browser and is never uploaded or stored.
+ - **Mentor matches** — Who could swap skills with you. Both people must consent, a person approves, and age is never used.
+ - **Receipts** — Tap (i) next to any number to see the source, the date and whether it is an estimate.
+-- **Refresh data** — Loads the newest dated data snapshot, and tells you plainly if the new data could not be loaded.
++- **Refresh data** — Fetches METR's latest AI-progress data live, rebuilds the forecast if it changed, and tells you plainly if the fetch failed and the saved copy is used instead.
+ 
+ ### Tech Stack
+ 
+@@ -115,7 +115,7 @@ Offline, one-off:  public sources ──► cleaned CSVs ──► Qwen3-32B (Ru
+ | `GET /api/tasks` | Every task we know, for "add a task" |
+ | `GET /api/skills` | Every skill we know, for the profile builder and CV finder |
+ | `GET /api/sources` | Where every number comes from |
+-| `POST /api/refresh` | Reload the newest data snapshot |
++| `POST /api/refresh` | Fetch METR's latest AI-progress data live, build a new dated snapshot if it changed, and load it (falls back to the saved snapshot if the fetch fails) |
+ 
+ ---
+ 
+@@ -190,7 +190,7 @@ This runs the 89 engine tests (`node --test backend/engine/test/*.test.js`).
+ | What | Source |
+ | --- | --- |
+ | Worker exposure to AI | ISIS Malaysia & World Bank, *Novel AI Technologies and the Future of Work in Malaysia*, policy brief, July 2025 |
+-| AI task timing | METR time-horizon research (shortened for office work; see the About page for the exact assumptions); Whitfill, Snodin and Becker (2025), arXiv:2511.19492; Anthropic Economic Index (2026) |
++| AI task timing | METR time-horizon data, fetched live on Refresh (shortened for office work; see the About page for the exact assumptions); Whitfill, Snodin and Becker (2025), arXiv:2511.19492; Anthropic Economic Index (2026) |
+ | Jobs and tasks | O\*NET 31.0, US BLS, DOSM |
+ | Skills | ESCO |
+ | Courses | Coursera and Microsoft Learn catalogues |
+@@ -199,6 +199,24 @@ This runs the 89 engine tests (`node --test backend/engine/test/*.test.js`).
+ 
+ Only sample and synthetic people are used. No real CVs or personal data are in the repository.
+ 
++## Live Trend Data
++
++The AI-trend signal layer is **fetched live**, not typed in. When you press **Refresh data**:
++
++1. The server downloads METR's published time-horizon file ([`benchmark_results_1_1.yaml`](https://metr.org/assets/benchmark_results_1_1.yaml)), with an 8-second timeout.
++2. `backend/engine/ingest.js` parses it and **checks it** (enough models, sane dates and units, plausible doubling times). A file that fails the checks is never used.
++3. If it differs from the newest saved snapshot, a new dated folder is written to `data/snapshots/` with METR's numbers (`ai_progress.csv`, `scenarios.csv`). Every other file is copied from the previous snapshot. METR's raw file is saved next to it as evidence, and `manifest.json` records `fetched_live` and the fetch time.
++4. The engine loads the new snapshot, so the forecast, the match and the route all change.
++
++**If the fetch or the checks fail**, Refresh says why and keeps using the newest saved snapshot. This is our plan for the biggest risk: METR changing its file format or being unreachable.
++
++```bash
++npm run ingest:check   # downloads METR's real file and prints what we would use; writes nothing
++npm run ingest:now     # same as the Refresh button, from the terminal
++```
++
++Not live yet: the Anthropic Economic Index task times, ESCO, O\*NET, SDSN and the course list are saved snapshots with their dates on the About page.
++
+ ## Principles We Kept To
+ 
+ - **Every number has a receipt.** Tap the (i) to see the source, the date and whether it is an estimate.
+diff --git a/backend/engine/index.js b/backend/engine/index.js
+index 2b1f55d..3907e88 100644
+--- a/backend/engine/index.js
++++ b/backend/engine/index.js
+@@ -7,6 +7,7 @@ import { matchScenario, roleTasks } from "./match.js";
+ import { routeFor } from "./route.js";
+ import { mentorPairs } from "./mentor.js";
+ import { skillCards } from "./skills.js";
++import { METR_URL, fetchText, parseMetr, validateMetr, sameTrend, describeChange, writeLiveSnapshot } from "./ingest.js";
+ 
+ let current = null;
+ 
+@@ -66,6 +67,8 @@ export function getSources() {
+   return {
+     snapshot_date: snap.date,
+     llm_model_used: snap.manifest.llm_model_used ?? null,
++    fetched_live: snap.manifest.fetched_live ?? false,
++    fetched_at: snap.manifest.fetched_at ?? null,
+     sources: [...snap.sources.values()],
+     scenarios: [...snap.scenarios.values()].map((s) => ({
+       id: s.scenario_id,
+@@ -130,26 +133,68 @@ function targetJobTasks(snap, user) {
+   return roleTasks(snap, role).map((t) => ({ task_id: t.task_id, hours: 0, name: t.task_description }));
+ }
+ 
+-// Switch to the newest snapshot. If that fails, keep the current one and say so,
+-// so the app never ends up with no data on stage.
+-// It's async so a live data fetch can be added later without changing the server.
+-export async function refreshData() {
+-  const previous = current?.date ?? null;
++// Refresh = "go and check for new data".
++//  1. Fetch METR's published time-horizon file and check it (ingest.js).
++//  2. If it differs from the newest saved snapshot, write a new dated snapshot from it and load it.
++//  3. If the fetch or the checks fail, say so and carry on with the newest saved snapshot, so the app
++//     never ends up with no data on stage. (Set LIVE_REFRESH=0 to skip step 1, e.g. in tests.)
++// Only one Refresh runs at a time; a second click gets the same answer instead of a second download.
++let inFlight = null;
++export function refreshData(options = {}) {
++  if (!inFlight) inFlight = doRefresh(options).finally(() => { inFlight = null; });
++  return inFlight;
++}
++
++async function doRefresh({ fetcher = fetchText, now = () => new Date() } = {}) {
++  const previousSnap = current;
++  const previous = previousSnap?.date ?? null;
++  const checkedAt = now().toISOString();
+   try {
+     const dates = listSnapshots();
+     if (!dates.length) throw new Error(`No snapshot folders in ${snapshotsDir()}`);
+     const newest = dates[dates.length - 1];
+-    if (newest !== previous) current = loadSnapshot(newest);
++
++    // Step 1 and 2: live data
++    const live = { attempted: process.env.LIVE_REFRESH !== "0", ok: false, new_data: false, error: null, trend: null };
++    if (live.attempted) {
++      try {
++        const rawText = await fetcher(METR_URL);
++        const metr = validateMetr(parseMetr(rawText), now());
++        const newestSnap = loadSnapshot(newest);
++        live.ok = true;
++        if (!sameTrend(metr, newestSnap)) {
++          live.trend = describeChange(metr, newestSnap);
++          const written = writeLiveSnapshot({
++            metr, rawText, baseDate: newest, dir: snapshotsDir(), today: checkedAt.slice(0, 10), fetchedAt: checkedAt,
++          });
++          current = loadSnapshot(written.date, written.dir);
++          live.new_data = true;
++        }
++      } catch (err) {
++        live.error = err.message;
++      }
++    }
++
++    // Step 3: nothing new live (or live failed): move forward to the newest saved snapshot, never backward.
++    if (!live.new_data && (!current || newest > current.date)) current = loadSnapshot(newest);
++
+     return {
+       snapshot_date: current.date,
+       previous,
+-      changed: current.date !== previous,
++      changed: current !== previousSnap,
+       fallback: false,
++      live: live.ok,
++      live_attempted: live.attempted,
++      live_error: live.error,
++      checked_at: checkedAt,
++      source_url: METR_URL,
++      fetched_at: current.manifest.fetched_at ?? null,
++      trend: live.trend,
+       missing_files: current.missing,
+       warnings: current.warnings,
+     };
+   } catch (err) {
+-    return { snapshot_date: previous, previous, changed: false, fallback: true, error: err.message };
++    return { snapshot_date: previous, previous, changed: false, fallback: true, error: err.message, checked_at: checkedAt };
+   }
+ }
+ 
+diff --git a/backend/engine/ingest.js b/backend/engine/ingest.js
+new file mode 100644
+index 0000000..6235b0f
+--- /dev/null
++++ b/backend/engine/ingest.js
+@@ -0,0 +1,266 @@
++// Live trend data: fetch METR's published time-horizon file, check it, and turn it into a dated snapshot.
++//
++// What this file does NOT do: any forecasting. It only replaces two files of a snapshot
++// (ai_progress.csv and scenarios.csv) with numbers METR published, and copies everything else
++// from the newest saved snapshot. The engine then reads the new snapshot like any other.
++//
++// METR's file layout (documented in github.com/METR/eval-analysis-public, generate_benchmark_results.py):
++//   results:
++//     <model>:
++//       release_date: YYYY-MM-DD
++//       metrics:
++//         p50_horizon_length: { estimate, ci_low, ci_high }   # minutes
++//         p80_horizon_length: { estimate, ci_low, ci_high }   # minutes
++//   doubling_time_in_days:
++//     all_time (or all_time_stitched): { point_estimate, ci_low, ci_high }
++//     from_2023_on:                    { point_estimate, ci_low, ci_high }
++//
++// If METR changes this layout, validation fails, nothing is written, and Refresh falls back
++// to the saved snapshots. That is the plan for our biggest risk: an upstream format change.
++import fs from "node:fs";
++import os from "node:os";
++import path from "node:path";
++import { load as loadYaml } from "js-yaml";
++import { parse } from "csv-parse/sync";
++
++export const METR_URL = "https://metr.org/assets/benchmark_results_1_1.yaml";
++export const METR_SOURCE_ID = "metr_th_1_1";
++const MAX_BYTES = 5_000_000;
++const MIN_MODELS = 15;
++
++// ---------- fetching ----------
++
++export async function fetchText(url = METR_URL, { timeoutMs = 8000 } = {}) {
++  const controller = new AbortController();
++  const timer = setTimeout(() => controller.abort(), timeoutMs);
++  try {
++    const res = await fetch(url, {
++      signal: controller.signal,
++      headers: { "user-agent": "unbundle-hackathon/1.0 (student research prototype)" },
++    });
++    if (!res.ok) throw new Error(`HTTP ${res.status} from ${url}`);
++    const text = await res.text();
++    if (text.length > MAX_BYTES) throw new Error(`Response from ${url} is unexpectedly large`);
++    return text;
++  } catch (err) {
++    if (err.name === "AbortError") throw new Error(`Timed out after ${timeoutMs / 1000}s fetching ${url}`);
++    // Node's own message is just "fetch failed"; the real reason is in err.cause.
++    if (err.message === "fetch failed") throw new Error(`Could not reach ${new URL(url).host}${err.cause?.code ? ` (${err.cause.code})` : ""}`);
++    throw err;
++  } finally {
++    clearTimeout(timer);
++  }
++}
++
++// ---------- parsing and checking ----------
++
++const round2 = (n) => Math.round(n * 100) / 100;
++const num = (v) => (typeof v === "number" && Number.isFinite(v) ? v : null);
++
++// YAML turns an unquoted 2025-11-19 into a Date, so accept both a Date and a string.
++function isoDate(v) {
++  if (v instanceof Date && !Number.isNaN(v.getTime())) return v.toISOString().slice(0, 10);
++  if (typeof v === "string" && /^\d{4}-\d{2}-\d{2}$/.test(v.trim())) return v.trim();
++  return null;
++}
++
++function trendStats(raw) {
++  const point = num(raw?.point_estimate);
++  if (point === null) return null;
++  return { point, low: num(raw.ci_low), high: num(raw.ci_high) };
++}
++
++// Text in, plain object out. Throws a readable error when the file is not what we expect.
++export function parseMetr(text) {
++  let doc;
++  try {
++    doc = loadYaml(text);
++  } catch (err) {
++    throw new Error(`METR file is not valid YAML: ${err.message}`);
++  }
++  if (!doc || typeof doc !== "object" || !doc.results || typeof doc.results !== "object") {
++    throw new Error("METR file has no `results` section (has the format changed?)");
++  }
++
++  const models = [];
++  let skipped = 0;
++  for (const [model, row] of Object.entries(doc.results)) {
++    const p50 = num(row?.metrics?.p50_horizon_length?.estimate);
++    const p80 = num(row?.metrics?.p80_horizon_length?.estimate);
++    const date = isoDate(row?.release_date);
++    if (p50 === null || p80 === null || !date) {
++      skipped++;
++      continue;
++    }
++    models.push({ model, release_date: date, horizon_50pct_min: round2(p50), horizon_80pct_min: round2(p80) });
++  }
++  models.sort((a, b) => a.release_date.localeCompare(b.release_date) || a.model.localeCompare(b.model));
++
++  const dt = doc.doubling_time_in_days ?? {};
++  return {
++    benchmark_name: typeof doc.benchmark_name === "string" ? doc.benchmark_name : null,
++    models,
++    skipped,
++    doubling: {
++      all_time: trendStats(dt.all_time ?? dt.all_time_stitched),
++      from_2023_on: trendStats(dt.from_2023_on),
++    },
++  };
++}
++
++// Refuse anything that looks wrong, so a bad download can never reach the forecast.
++export function validateMetr(metr, now = new Date()) {
++  const problems = [];
++  if (metr.models.length < MIN_MODELS) problems.push(`only ${metr.models.length} usable models (need at least ${MIN_MODELS})`);
++
++  const latestOk = new Date(now.getTime() + 2 * 86400000).toISOString().slice(0, 10);
++  let swapped = 0;
++  for (const m of metr.models) {
++    if (!(m.horizon_50pct_min > 0 && m.horizon_80pct_min > 0)) problems.push(`${m.model}: horizon is not positive`);
++    if (m.horizon_50pct_min > 1e7 || m.horizon_80pct_min > 1e7) problems.push(`${m.model}: horizon is implausibly large (wrong unit?)`);
++    if (m.release_date < "2018-01-01" || m.release_date > latestOk) problems.push(`${m.model}: release date ${m.release_date} is out of range`);
++    // The 80% horizon is never longer than the 50% one. Many violations would mean the fields got swapped.
++    if (m.horizon_80pct_min > m.horizon_50pct_min * 1.001) swapped++;
++  }
++  if (metr.models.length && swapped / metr.models.length > 0.2) problems.push("50% and 80% horizons look swapped");
++
++  for (const [name, d] of Object.entries(metr.doubling)) {
++    if (!d) problems.push(`doubling time "${name}" is missing`);
++    else if (!(d.point >= 30 && d.point <= 1500)) problems.push(`doubling time "${name}" = ${d.point} days is implausible`);
++  }
++  if (problems.length) throw new Error(`METR data failed checks: ${problems.slice(0, 5).join("; ")}`);
++  return metr;
++}
++
++// The model that sets the starting point of the forecast (same rule as forecast.js).
++export function frontierOf(rows) {
++  const measured = rows.filter((r) => typeof r.horizon_80pct_min === "number");
++  if (!measured.length) return null;
++  const best = measured.reduce((a, r) => (r.horizon_80pct_min > a.horizon_80pct_min ? r : a));
++  return { model: best.model, release_date: best.release_date, horizon_80pct_min: best.horizon_80pct_min };
++}
++
++// Is METR's file the same as what a loaded snapshot already holds?
++export function sameTrend(metr, snap) {
++  const key = (r) => `${r.model}|${r.release_date}|${round2(r.horizon_50pct_min ?? -1)}|${round2(r.horizon_80pct_min ?? -1)}`;
++  const a = metr.models.map(key).sort().join("\n");
++  const b = snap.aiProgress.map(key).sort().join("\n");
++  if (a !== b) return false;
++  const close = (x, y) => x !== null && y !== null && Math.abs(x - y) < 0.0015;
++  return (
++    close(metr.doubling.all_time.point, snap.scenarios.get("moderate")?.doubling_days ?? null) &&
++    close(metr.doubling.from_2023_on.point, snap.scenarios.get("fast")?.doubling_days ?? null)
++  );
++}
++
++// What changed, in a few numbers the Refresh message can show.
++export function describeChange(metr, snap) {
++  const known = new Set(snap.aiProgress.map((r) => r.model));
++  return {
++    new_models: metr.models.filter((m) => !known.has(m.model)).map((m) => m.model),
++    frontier_before: frontierOf(snap.aiProgress),
++    frontier_after: frontierOf(metr.models),
++    moderate_doubling_days: { before: snap.scenarios.get("moderate")?.doubling_days ?? null, after: metr.doubling.all_time.point },
++    fast_doubling_days: { before: snap.scenarios.get("fast")?.doubling_days ?? null, after: metr.doubling.from_2023_on.point },
++  };
++}
++
++// ---------- writing a snapshot ----------
++
++function csvCell(v) {
++  const s = v === null || v === undefined ? "" : String(v);
++  return /[",\n\r]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
++}
++const toCsv = (header, rows) => [header.join(","), ...rows.map((r) => header.map((h) => csvCell(r[h])).join(","))].join("\n") + "\n";
++
++const AI_PROGRESS_HEADER = ["model", "release_date", "horizon_50pct_min", "horizon_80pct_min", "source", "date"];
++
++function updateManifest(manifest, { today, fetchedAt, baseDate }) {
++  const entry = {
++    id: METR_SOURCE_ID,
++    name: "METR Time Horizon 1.1, fetched live from metr.org (benchmark_results_1_1.yaml)",
++    url: METR_URL,
++    date_taken: today,
++    licence: "No licence stated - published numbers cited only",
++    fetched_live: true,
++    fetched_at: fetchedAt,
++  };
++  let sources = manifest.sources ?? [];
++  if (Array.isArray(sources)) {
++    const i = sources.findIndex((s) => s.id === METR_SOURCE_ID);
++    sources = i >= 0 ? sources.map((s, j) => (j === i ? { ...s, ...entry } : s)) : [...sources, entry];
++  } else {
++    const { id, ...rest } = entry;
++    sources = { ...sources, [id]: { ...(sources[id] ?? {}), ...rest } };
++  }
++  return {
++    ...manifest,
++    snapshot_date: today,
++    sources,
++    fetched_live: true,
++    fetched_at: fetchedAt,
++    derived_from: baseDate,
++    note: `Trend data (ai_progress.csv, scenarios.csv) fetched live from METR on ${fetchedAt}. Every other file is copied from snapshot ${baseDate}.`,
++  };
++}
++
++// Creates data/snapshots/<today>/ from the newest saved snapshot plus METR's numbers.
++// Returns { date, dir }. If the data folder can't be written (some hosts are read-only),
++// it writes to the system temp folder instead, so Refresh still works for this run.
++export function writeLiveSnapshot({ metr, rawText, baseDate, dir, today, fetchedAt }) {
++  try {
++    return { date: writeInto(dir), dir };
++  } catch (err) {
++    if (!["EACCES", "EROFS", "EPERM", "ENOSPC"].includes(err.code)) throw err;
++    const tmp = path.join(os.tmpdir(), "unbundle-snapshots");
++    fs.mkdirSync(tmp, { recursive: true });
++    fs.cpSync(path.join(dir, baseDate), path.join(tmp, baseDate), { recursive: true });
++    return { date: writeInto(tmp), dir: tmp };
++  }
++
++  function writeInto(root) {
++    const base = path.join(root, baseDate);
++    const target = path.join(root, today);
++    // Never overwrite a snapshot a person made by hand, even if it has today's date.
++    if (fs.existsSync(target)) {
++      const old = JSON.parse(fs.readFileSync(path.join(target, "manifest.json"), "utf8"));
++      if (!old.fetched_live) throw new Error(`Snapshot ${today} already exists and was not made by a live fetch, so it was not overwritten`);
++    }
++    if (baseDate !== today) {
++      fs.rmSync(target, { recursive: true, force: true });
++      fs.cpSync(base, target, { recursive: true });
++    }
++
++    // ai_progress.csv
++    fs.writeFileSync(
++      path.join(target, "ai_progress.csv"),
++      toCsv(AI_PROGRESS_HEADER, metr.models.map((m) => ({ ...m, source: METR_SOURCE_ID, date: today })))
++    );
++
++    // scenarios.csv: only the two steady-pace rows change; the slowdown row stays as it was.
++    const scenarioFile = path.join(target, "scenarios.csv");
++    const rows = parse(fs.readFileSync(scenarioFile, "utf8"), { columns: true, skip_empty_lines: true, trim: true, bom: true });
++    const header = Object.keys(rows[0] ?? {});
++    const byId = new Map(rows.map((r) => [r.scenario_id, r]));
++    if (!byId.has("moderate") || !byId.has("fast")) throw new Error("scenarios.csv has no moderate/fast rows to update");
++    const { all_time: all, from_2023_on: recent } = metr.doubling;
++    byId.get("moderate").doubling_days = all.point;
++    byId.get("moderate").assumption_note = `METR all-time doubling time (live fetch ${fetchedAt.slice(0, 10)})`;
++    const ci = recent.low !== null && recent.high !== null ? `; 95% CI ${recent.low}-${recent.high} days` : "";
++    byId.get("fast").doubling_days = recent.point;
++    byId.get("fast").assumption_note = `METR doubling time from 2023 on${ci} (live fetch ${fetchedAt.slice(0, 10)})`;
++    fs.writeFileSync(scenarioFile, toCsv(header, rows));
++
++    // params.json: the forecast counts years from reference_date
++    const paramsFile = path.join(target, "params.json");
++    const params = JSON.parse(fs.readFileSync(paramsFile, "utf8"));
++    fs.writeFileSync(paramsFile, JSON.stringify({ ...params, reference_date: today }, null, 2) + "\n");
++
++    // manifest.json, plus METR's raw file kept next to the snapshot as evidence
++    const manifestFile = path.join(target, "manifest.json");
++    const manifest = JSON.parse(fs.readFileSync(manifestFile, "utf8"));
++    fs.writeFileSync(manifestFile, JSON.stringify(updateManifest(manifest, { today, fetchedAt, baseDate }), null, 2) + "\n");
++    fs.writeFileSync(path.join(target, "metr_benchmark_results_1_1.yaml"), rawText);
++    return today;
++  }
++}
+diff --git a/backend/engine/pages.js b/backend/engine/pages.js
+index 4218581..9b194b0 100644
+--- a/backend/engine/pages.js
++++ b/backend/engine/pages.js
+@@ -298,6 +298,8 @@ export function getSources() {
+   return {
+     snapshotDate: s.snapshot_date,
+     snapshot_date: s.snapshot_date,
++    fetchedLive: s.fetched_live,
++    fetchedAt: s.fetched_at,
+     model: s.llm_model_used,
+     sources: s.sources.map((x) => ({ label: x.name, url: x.url ?? null, date: x.date_taken ?? null, licence: x.licence ?? null })),
+     // Plain-language list of every assumption behind the numbers, for the About page.
+diff --git a/backend/engine/test/index.test.js b/backend/engine/test/index.test.js
+index 18b572d..0b0bc86 100644
+--- a/backend/engine/test/index.test.js
++++ b/backend/engine/test/index.test.js
+@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url";
+ 
+ const DIR = fileURLToPath(new URL("./fixtures/snapshots/", import.meta.url));
+ process.env.SNAPSHOTS_DIR = DIR;
++process.env.LIVE_REFRESH = "0"; // these tests are about snapshots on disk; live fetching is tested in ingest.test.js
+ const engine = await import("../index.js");
+ 
+ const sitiWeek = () => engine.getProfiles().find((p) => p.user_id === "siti").tasks;
+diff --git a/backend/engine/test/ingest.test.js b/backend/engine/test/ingest.test.js
+new file mode 100644
+index 0000000..bbe632a
+--- /dev/null
++++ b/backend/engine/test/ingest.test.js
+@@ -0,0 +1,166 @@
++// Tests for live trend ingest (engine/ingest.js + Refresh in engine/index.js).
++// Nothing here touches the internet: the "METR file" is built in the test, in METR's documented layout,
++// from our own real 2026-10-23 snapshot. So a round trip must reproduce the numbers we already have.
++import { test } from "node:test";
++import assert from "node:assert/strict";
++import fs from "node:fs";
++import os from "node:os";
++import path from "node:path";
++import { fileURLToPath } from "node:url";
++import { parse } from "csv-parse/sync";
++
++const REAL = fileURLToPath(new URL("../../../data/snapshots/", import.meta.url));
++const TMP = fs.mkdtempSync(path.join(os.tmpdir(), "unbundle-ingest-"));
++for (const d of ["2026-03-24", "2026-10-23"]) fs.cpSync(path.join(REAL, d), path.join(TMP, d), { recursive: true });
++process.env.SNAPSHOTS_DIR = TMP;
++
++const engine = await import("../index.js");
++const ingest = await import("../ingest.js");
++
++const csv = (file) => parse(fs.readFileSync(file, "utf8"), { columns: true, skip_empty_lines: true, trim: true });
++const realRows = csv(path.join(REAL, "2026-10-23", "ai_progress.csv"));
++const realScen = Object.fromEntries(csv(path.join(REAL, "2026-10-23", "scenarios.csv")).map((r) => [r.scenario_id, r]));
++
++// Builds a file in METR's layout. Dates are left unquoted on purpose, like METR's file, so the parser must cope.
++function metrYaml(rows, { all = Number(realScen.moderate.doubling_days), recent = Number(realScen.fast.doubling_days), key = "all_time" } = {}) {
++  const lines = ["benchmark_name: METR-Horizon-v1.1", "results:"];
++  for (const r of rows) {
++    lines.push(
++      `  ${r.model}:`,
++      "    metrics:",
++      "      p50_horizon_length:",
++      `        estimate: ${r.horizon_50pct_min}`,
++      "      p80_horizon_length:",
++      `        estimate: ${r.horizon_80pct_min}`,
++      `    release_date: ${r.release_date}`
++    );
++  }
++  lines.push(
++    "doubling_time_in_days:",
++    `  ${key}:`, `    point_estimate: ${all}`,
++    "  from_2023_on:", `    point_estimate: ${recent}`, "    ci_low: 104.4", "    ci_high: 158.0"
++  );
++  return lines.join("\n") + "\n";
++}
++const asRows = (rows) => rows.map((r) => ({ ...r, horizon_50pct_min: Number(r.horizon_50pct_min), horizon_80pct_min: Number(r.horizon_80pct_min) }));
++const NOW = () => new Date("2026-10-24T05:00:00Z");
++const week = () => engine.getProfiles().find((p) => p.user_id === "aisyah").tasks.map(({ task_id, hours }) => ({ task_id, hours }));
++
++test("parse: reads METR's documented layout, including unquoted dates and the stitched doubling key", () => {
++  const m = ingest.parseMetr(metrYaml(realRows, { key: "all_time_stitched" }));
++  assert.equal(m.models.length, realRows.length);
++  assert.equal(m.models[0].release_date, "2019-02-14");
++  assert.equal(m.doubling.all_time.point, 187.778);
++  assert.equal(m.doubling.from_2023_on.high, 158);
++  assert.doesNotThrow(() => ingest.validateMetr(m, NOW()));
++});
++
++test("validate: a changed or broken file is refused", () => {
++  const tooFew = ingest.parseMetr(metrYaml(realRows.slice(0, 5)));
++  assert.throws(() => ingest.validateMetr(tooFew, NOW()), /only 5 usable models/);
++
++  const swapped = ingest.parseMetr(metrYaml(realRows.map((r) => ({ ...r, horizon_50pct_min: r.horizon_80pct_min, horizon_80pct_min: r.horizon_50pct_min }))));
++  assert.throws(() => ingest.validateMetr(swapped, NOW()), /swapped/);
++
++  const silly = ingest.parseMetr(metrYaml(realRows, { all: 5 }));
++  assert.throws(() => ingest.validateMetr(silly, NOW()), /implausible/);
++
++  assert.throws(() => ingest.parseMetr("hello: world\n"), /no `results` section/);
++  assert.throws(() => ingest.parseMetr("results: [unclosed"), /not valid YAML/);
++});
++
++test("round trip: our own data written in METR's layout is recognised as 'nothing new'", () => {
++  const metr = ingest.parseMetr(metrYaml(realRows));
++  engine.useSnapshot("2026-10-23");
++  assert.equal(ingest.sameTrend(metr, engine.snapshot()), true);
++});
++
++test("Refresh with nothing new: live check ok, same snapshot, nothing written", async () => {
++  engine.useSnapshot("2026-10-23");
++  const r = await engine.refreshData({ fetcher: async () => metrYaml(realRows), now: NOW });
++  assert.deepEqual([r.live, r.changed, r.fallback, r.snapshot_date, r.live_error], [true, false, false, "2026-10-23", null]);
++  assert.equal(r.trend, null);
++  assert.equal(fs.existsSync(path.join(TMP, "2026-10-24")), false);
++});
++
++test("Refresh with new METR data: a new dated snapshot is built, loaded, and the forecast moves", async () => {
++  engine.useSnapshot("2026-10-23");
++  const before = engine.forecast(week(), "moderate");
++  const baseWarnings = [...engine.snapshot().warnings];
++  const bigger = [
++    ...asRows(realRows),
++    { model: "future_model_x", release_date: "2026-10-20", horizon_50pct_min: 3000, horizon_80pct_min: 900 },
++  ];
++  const r = await engine.refreshData({ fetcher: async () => metrYaml(bigger, { all: 170 }), now: NOW });
++
++  assert.deepEqual([r.live, r.changed, r.snapshot_date, r.previous], [true, true, "2026-10-24", "2026-10-23"]);
++  assert.deepEqual(r.trend.new_models, ["future_model_x"]);
++  assert.equal(r.trend.frontier_after.model, "future_model_x");
++  assert.equal(r.trend.moderate_doubling_days.after, 170);
++  assert.equal(r.fetched_at, "2026-10-24T05:00:00.000Z");
++
++  // the new snapshot is a normal one: loads clean, keeps every other file, records where it came from
++  const folder = path.join(TMP, "2026-10-24");
++  const manifest = JSON.parse(fs.readFileSync(path.join(folder, "manifest.json"), "utf8"));
++  assert.equal(manifest.fetched_live, true);
++  assert.equal(manifest.derived_from, "2026-10-23");
++  assert.equal(manifest.sources.find((s) => s.id === "metr_th_1_1").date_taken, "2026-10-24");
++  assert.ok(fs.existsSync(path.join(folder, "metr_benchmark_results_1_1.yaml")));
++  assert.equal(fs.readFileSync(path.join(folder, "courses.csv"), "utf8"), fs.readFileSync(path.join(TMP, "2026-10-23", "courses.csv"), "utf8"));
++  assert.deepEqual(engine.snapshot().warnings, baseWarnings);
++  assert.equal(engine.getSources().fetched_live, true);
++
++  // a stronger frontier model means AI reaches every task sooner
++  const after = engine.forecast(week(), "moderate");
++  const dated = after.tasks.filter((t) => t.status === "dated");
++  assert.ok(dated.length > 0);
++  for (const t of dated) {
++    const old = before.tasks.find((b) => b.task_id === t.task_id);
++    assert.ok(t.mid < old.mid, `${t.task_id} should be earlier: ${t.mid} vs ${old.mid}`);
++  }
++
++  // asking again with the same data is "nothing new"
++  const again = await engine.refreshData({ fetcher: async () => metrYaml(bigger, { all: 170 }), now: NOW });
++  assert.deepEqual([again.live, again.changed, again.snapshot_date], [true, false, "2026-10-24"]);
++});
++
++test("Refresh when METR is unreachable or sends rubbish: says so and keeps working", async () => {
++  engine.useSnapshot("2026-03-24");
++  const down = await engine.refreshData({ fetcher: async () => { throw new Error("Timed out after 8s"); }, now: NOW });
++  assert.equal(down.live, false);
++  assert.match(down.live_error, /Timed out/);
++  assert.equal(down.fallback, false);
++  // old behaviour is kept: it still moves forward to the newest saved snapshot
++  assert.equal(down.snapshot_date, "2026-10-24");
++
++  engine.useSnapshot("2026-03-24");
++  const junk = await engine.refreshData({ fetcher: async () => "<html>Service unavailable</html>", now: NOW });
++  assert.equal(junk.live, false);
++  assert.match(junk.live_error, /no `results` section|not valid YAML/);
++  assert.equal(junk.fallback, false);
++});
++
++test("Refresh never overwrites a hand-made snapshot that has today's date", async () => {
++  // pretend the 2026-10-24 snapshot was made by hand, not by a live fetch
++  const manifestFile = path.join(TMP, "2026-10-24", "manifest.json");
++  const manifest = JSON.parse(fs.readFileSync(manifestFile, "utf8"));
++  fs.writeFileSync(manifestFile, JSON.stringify({ ...manifest, fetched_live: false }));
++  const before = fs.readFileSync(path.join(TMP, "2026-10-24", "ai_progress.csv"), "utf8");
++
++  engine.useSnapshot("2026-10-24");
++  const bigger = [...asRows(realRows), { model: "m2", release_date: "2026-10-21", horizon_50pct_min: 5000, horizon_80pct_min: 1200 }];
++  const r = await engine.refreshData({ fetcher: async () => metrYaml(bigger), now: NOW });
++  assert.equal(r.live, true);
++  assert.match(r.live_error, /not made by a live fetch/);
++  assert.equal(r.changed, false);
++  assert.equal(fs.readFileSync(path.join(TMP, "2026-10-24", "ai_progress.csv"), "utf8"), before);
++});
++
++test("two clicks at once share one download", async () => {
++  engine.useSnapshot("2026-10-23");
++  let calls = 0;
++  const fetcher = async () => { calls++; await new Promise((res) => setTimeout(res, 30)); return metrYaml(realRows); };
++  const [a, b] = await Promise.all([engine.refreshData({ fetcher, now: NOW }), engine.refreshData({ fetcher, now: NOW })]);
++  assert.equal(calls, 1);
++  assert.deepEqual(a, b);
++});
+diff --git a/backend/package-lock.json b/backend/package-lock.json
+index cc41aa1..48c91cb 100644
+--- a/backend/package-lock.json
++++ b/backend/package-lock.json
+@@ -11,7 +11,8 @@
+       "dependencies": {
+         "csv-parse": "^7.0.3",
+         "dotenv": "^18.0.8",
+-        "express": "^5.3.0"
++        "express": "^5.3.0",
++        "js-yaml": "^5.5.0"
+       }
+     },
+     "node_modules/accepts": {
+@@ -27,6 +28,22 @@
+         "node": ">= 0.6"
+       }
+     },
++    "node_modules/argparse": {
++      "version": "3.0.3",
++      "resolved": "https://registry.npmjs.org/argparse/-/argparse-3.0.3.tgz",
++      "integrity": "sha512-Sn98ftV3KfsO8xfLPHG6oT8y+b0yvbrLgZjgPDXsharNY15tTAjqIsIju4S32nl6/iEUNNE4v+yL2Zhm8ooP3w==",
++      "funding": [
++        {
++          "type": "github",
++          "url": "https://github.com/sponsors/puzrin"
++        },
++        {
++          "type": "github",
++          "url": "https://github.com/sponsors/nodeca"
++        }
++      ],
++      "license": "PSF-2.0"
++    },
+     "node_modules/body-parser": {
+       "version": "2.3.0",
+       "resolved": "https://registry.npmjs.org/body-parser/-/body-parser-2.3.0.tgz",
+@@ -475,6 +492,28 @@
+       "integrity": "sha512-hvpoI6korhJMnej285dSg6nu1+e6uxs7zG3BYAm5byqDsgJNWwxzM6z6iZiAgQR4TJ30JmBTOwqZUw3WlyH3AQ==",
+       "license": "MIT"
+     },
++    "node_modules/js-yaml": {
++      "version": "5.5.0",
++      "resolved": "https://registry.npmjs.org/js-yaml/-/js-yaml-5.5.0.tgz",
++      "integrity": "sha512-paNr4LFIFPjeeSmwNYdrb8FafLLG/Cr2Af3GjbsHJ5CxIjH4r0c2emlmRdAtpPAieP1gRVzk6buBbVP5gBMGAg==",
++      "funding": [
++        {
++          "type": "github",
++          "url": "https://github.com/sponsors/puzrin"
++        },
++        {
++          "type": "github",
++          "url": "https://github.com/sponsors/nodeca"
++        }
++      ],
++      "license": "MIT",
++      "dependencies": {
++        "argparse": "^3.0.3"
++      },
++      "bin": {
++        "js-yaml": "bin/js-yaml.mjs"
++      }
++    },
+     "node_modules/math-intrinsics": {
+       "version": "1.1.0",
+       "resolved": "https://registry.npmjs.org/math-intrinsics/-/math-intrinsics-1.1.0.tgz",
+diff --git a/backend/package.json b/backend/package.json
+index 18616b5..2868c05 100644
+--- a/backend/package.json
++++ b/backend/package.json
+@@ -6,7 +6,9 @@
+   "scripts": {
+     "test": "echo \"Error: no test specified\" && exit 1",
+     "start": "node server.js",
+-    "dev": "node --watch server.js"
++    "dev": "node --watch server.js",
++    "ingest:check": "node scripts/check-metr.mjs",
++    "ingest:now": "node scripts/ingest-now.mjs"
+   },
+   "keywords": [],
+   "author": "",
+@@ -15,6 +17,7 @@
+   "dependencies": {
+     "csv-parse": "^7.0.3",
+     "dotenv": "^18.0.8",
+-    "express": "^5.3.0"
++    "express": "^5.3.0",
++    "js-yaml": "^5.5.0"
+   }
+ }
+diff --git a/backend/scripts/check-metr.mjs b/backend/scripts/check-metr.mjs
+new file mode 100644
+index 0000000..88204d1
+--- /dev/null
++++ b/backend/scripts/check-metr.mjs
+@@ -0,0 +1,20 @@
++// Safe check, writes nothing: downloads METR's real file and prints what we would use.
++//   npm run ingest:check            (from the repo root)
++import { fetchText, parseMetr, validateMetr, frontierOf, METR_URL } from "../engine/ingest.js";
++
++console.log(`Fetching ${METR_URL} ...`);
++let text;
++try {
++  text = await fetchText();
++} catch (err) {
++  console.error(`\nFAILED: ${err.message}\nCheck your internet connection (or whether this machine blocks metr.org).`);
++  process.exit(1);
++}
++const metr = parseMetr(text);
++console.log(`Downloaded ${(text.length / 1024).toFixed(0)} KB. Usable models: ${metr.models.length} (skipped ${metr.skipped} incomplete)`);
++console.log("Doubling time, all-time:", metr.doubling.all_time);
++console.log("Doubling time, from 2023:", metr.doubling.from_2023_on);
++console.log("Frontier (sets the forecast's starting point):", frontierOf(metr.models));
++console.log("Newest 5 models:", metr.models.slice(-5).map((m) => `${m.model} (${m.release_date}, 80%: ${m.horizon_80pct_min} min)`));
++validateMetr(metr);
++console.log("\nAll checks passed. Refresh would accept this file.");
+diff --git a/backend/scripts/ingest-now.mjs b/backend/scripts/ingest-now.mjs
+new file mode 100644
+index 0000000..e9aaf8f
+--- /dev/null
++++ b/backend/scripts/ingest-now.mjs
+@@ -0,0 +1,9 @@
++// Runs the same thing as the Refresh button, from the terminal, and saves the new snapshot into data/snapshots/.
++// Run it once on your laptop, then commit the new folder: it is your proof that the data really came from METR.
++//   npm run ingest:now              (from the repo root)
++import "dotenv/config";
++const engine = await import("../engine/index.js");
++engine.snapshot(); // load the starting snapshot
++const r = await engine.refreshData();
++console.log(JSON.stringify({ ...r, warnings: r.warnings?.length ?? 0 }, null, 2));
++if (!r.live) process.exitCode = 1;
+diff --git a/frontend/src/components/Sidebar.jsx b/frontend/src/components/Sidebar.jsx
+index fe8a3c1..f32b6e2 100644
+--- a/frontend/src/components/Sidebar.jsx
++++ b/frontend/src/components/Sidebar.jsx
+@@ -45,10 +45,18 @@ export default function Sidebar({ collapsed, onToggle }) {
+       const date = r.snapshotDate ?? r.snapshot_date;
+       setSnapshot(date);
+       if (r.changed) bumpData(); // only reload the pages when there really is new data
++      const checked = r.checked_at ? new Date(r.checked_at).toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" }) : null;
++      const newModels = r.trend?.new_models?.length ?? 0;
+       if (r.fallback) {
+         setNotice({ ok: false, text: `Couldn't get new data, so we're still using the saved copy from ${formatDate(date)}.` });
++      } else if (r.changed && r.live) {
++        setNotice({ ok: true, text: `Fetched live from metr.org${checked ? ` at ${checked}` : ""}${newModels ? `: ${newModels} new model${newModels > 1 ? "s" : ""}` : ""}. Forecast updated.` });
+       } else if (r.changed) {
+-        setNotice({ ok: true, text: `New data loaded${r.previous ? ` (was ${formatDate(r.previous)})` : ""}. Pages updated.` });
++        setNotice({ ok: true, text: `New data loaded${r.previous ? ` (was ${formatDate(r.previous)})` : ""}. Pages updated.${r.live_error ? " metr.org couldn't be reached, so this is the saved copy." : ""}` });
++      } else if (r.live) {
++        setNotice({ ok: true, text: `Checked metr.org live${checked ? ` at ${checked}` : ""}. Nothing new since ${formatDate(date)}.` });
++      } else if (r.live_error) {
++        setNotice({ ok: false, text: `Couldn't reach metr.org (${r.live_error}), so we're still using the saved copy from ${formatDate(date)}.` });
+       } else {
+         setNotice({ ok: true, text: "Already up to date. No new data since the last refresh." });
+       }
+diff --git a/frontend/src/pages/About.jsx b/frontend/src/pages/About.jsx
+index 70c2e32..8c9db9e 100644
+--- a/frontend/src/pages/About.jsx
++++ b/frontend/src/pages/About.jsx
+@@ -24,6 +24,9 @@ export default function About() {
+         <section className="card about-card">
+           <h2>Snapshot and model</h2>
+           <p>Data snapshot: <b>{info.snapshotDate ?? info.snapshot_date}</b></p>
++          {info.fetchedLive && info.fetchedAt && (
++            <p>AI-progress data fetched live from metr.org on <b>{new Date(info.fetchedAt).toUTCString()}</b></p>
++          )}
+           <p>AI model used: <b>{info.model ?? "None"}</b></p>
+         </section>
+ 
+diff --git a/package.json b/package.json
+index 7d23959..5efa7ec 100644
+--- a/package.json
++++ b/package.json
+@@ -11,7 +11,9 @@
+     "demo": "START_SNAPSHOT=2026-03-24 concurrently -n api,web -c yellow,cyan \"npm run dev --prefix backend\" \"npm run dev --prefix frontend\"",
+     "install:all": "npm i && npm i --prefix backend && npm i --prefix frontend",
+     "build": "npm run build --prefix frontend",
+-    "test": "node --test backend/engine/test/*.test.js"
++    "test": "node --test backend/engine/test/*.test.js",
++    "ingest:check": "npm run ingest:check --prefix backend",
++    "ingest:now": "npm run ingest:now --prefix backend"
+   },
+   "repository": {
+     "type": "git",
+@@ -28,4 +30,4 @@
+   "devDependencies": {
+     "concurrently": "^10.0.6"
+   }
+-}
+\ No newline at end of file
++}
+-- 
+2.43.0
+
