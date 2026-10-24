@@ -15,13 +15,14 @@ const KIND = { does: ["AI does it", "pill-solid"], helps: ["AI helps", "pill-out
 // kind is null when the Anthropic Economic Index has no usage data for the task
 const NO_KIND = ["No usage data", "pill-muted"];
 
-function TaskRow({ t, year, done, showHours }) {
+function TaskRow({ t, n, year, done, showHours }) {
   const kind = KIND[t.kind] ?? NO_KIND;
   const end = t.to ?? LAST;
   return (
     <div className={"trow " + (done ? "done" : "human")}>
       <div className="tname">
         <span className={"check " + (done ? "hatched" : "human")} />
+        <span className="tnum" aria-hidden="true">{n}</span>
         {/* the status is in words too, so it never depends on colour or pattern alone */}
         <span className="sr-only">{done ? "AI could do this by the chosen year: " : "Still human in the chosen year: "}</span>
         <span className="tname-text" title={t.name}>{t.name}</span>
@@ -177,8 +178,8 @@ export default function Forecast() {
             </div>
             <span>Type</span>
           </div>
-          {data.tasks.map((t) => (
-            <TaskRow key={t.task_id} t={t} year={year} done={doneIds.has(t.task_id)} showHours={hasHours} />
+          {data.tasks.map((t, i) => (
+            <TaskRow key={t.task_id} n={i + 1} t={t} year={year} done={doneIds.has(t.task_id)} showHours={hasHours} />
           ))}
           <p className="table-foot">
             All dates are estimates. Each range shows how unsure we are under the chosen scenario.
@@ -244,10 +245,6 @@ export default function Forecast() {
             </section>
           )}
         </div>
-      </div>
-
-      <div className="next-row">
-        <Link to="/map" className="btn-blue">Find jobs that fit what's left →</Link>
       </div>
     </>
   );

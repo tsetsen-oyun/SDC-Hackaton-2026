@@ -207,7 +207,7 @@ export default function You() {
         )}
       </section>
 
-      <Link to="/forecast" className="btn-blue">See my forecast →</Link>
+      <Link to="/forecast" className="btn-orange">See my forecast →</Link>
 
     </>
   );

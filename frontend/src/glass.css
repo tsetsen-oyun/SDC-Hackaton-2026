@@ -722,3 +722,49 @@ select, .add-row select, .map-controls select {
 .dock-create span { font-size: 22px; font-weight: 300; line-height: 1; }
 .dock-create:hover { background: linear-gradient(110deg, #fff, #f1f9f1 55%, #f0f4fb); }
 .dock-wrap.inline .dock-head { align-items: center; }
+
+/* (i) popup: drawn on the page itself so it is never hidden behind another card */
+.receipt-fixed { position: fixed; z-index: 1000; display: grid; gap: 6px; color: #fff; font-family: "Bricolage Grotesque", system-ui, sans-serif; font-size: 14px; font-weight: 500; line-height: 1.4; letter-spacing: 0; text-align: left; text-wrap: wrap; -webkit-text-fill-color: #fff; background: rgba(45, 49, 57, 0.98); }
+.receipt-fixed b { font-weight: 700; }
+.receipt-fixed a { color: #ff9d93; -webkit-text-fill-color: #ff9d93; }
+.receipt-fixed .badge-est { justify-self: start; color: #ff9d93; border-color: rgba(255, 157, 147, 0.8); -webkit-text-fill-color: #ff9d93; }
+
+/* Forecast: even more room around the year slider */
+.year-slider { margin: 52px 0 64px; padding: 8px 0; }
+.year-slider input[type="range"] { margin: 16px 0; }
+
+/* Forecast: full task names (no cut-off), numbered to match the blocks in the week bar */
+.tname-text { display: block; -webkit-line-clamp: unset; overflow: visible; font-size: 14px; line-height: 1.4; }
+.tname { align-items: flex-start; }
+.tname .check { margin-top: 5px; }
+.tnum { flex: none; min-width: 22px; margin-top: 0; font: 600 12px "DM Mono", monospace; color: var(--ink-muted); line-height: 1.7; }
+.block-num { display: inline-block; width: auto; max-width: none; min-width: 26px; text-align: center; font-family: "DM Mono", monospace; font-weight: 600; }
+.block.human .block-num { background: rgba(255, 255, 255, 0.18); color: #fff; padding: 2px 8px; border-radius: 8px; }
+@media (max-width: 700px) { .block-name.block-num { display: inline-block; } }
+
+/* Forecast table: give the task names the most room */
+.trow { grid-template-columns: minmax(0, 3.2fr) 44px minmax(150px, 1.5fr) 100px; gap: 14px; padding-left: 24px; padding-right: 24px; }
+.tname-text { flex: 1 1 auto; min-width: 0; }
+@media (max-width: 900px) { .trow { grid-template-columns: 1fr 44px; } }
+
+/* Forecast: a wider task table, and room for the year axis */
+.grid-2 > .card { flex: 2.4 1 620px; }
+.grid-2 > .stack { flex: 1 1 300px; }
+.trow { grid-template-columns: minmax(0, 2.6fr) 40px minmax(190px, 1.5fr) 96px; }
+.trow.header .range-head { font-size: 12px; }
+
+/* Forecast task names: smaller text so rows stay compact (still the full name) */
+.tname-text { font-size: 13px; line-height: 1.35; }
+.tnum { font-size: 11px; line-height: 1.9; min-width: 18px; }
+.tname { gap: 10px; }
+.trow { padding-top: 12px; padding-bottom: 12px; }
+
+/* week bar numbers: the same small badge on every block */
+.block .block-num, .block.hatched .block-num, .block.human .block-num { align-self: flex-start; display: grid; place-items: center; width: 28px; min-width: 0; max-width: none; height: 28px; padding: 0; border-radius: 9px; line-height: 1; }
+.block.hatched .block-num { background: rgba(255, 255, 255, 0.92); color: var(--ink); }
+.block.human .block-num { background: rgba(255, 255, 255, 0.18); color: #fff; }
+
+/* Forecast: all the type tags are one width */
+.trow { grid-template-columns: minmax(0, 2.6fr) 40px minmax(170px, 1.5fr) 124px; }
+.trow .pill { display: block; width: 124px; box-sizing: border-box; padding-left: 8px; padding-right: 8px; text-align: center; white-space: nowrap; }
+@media (max-width: 900px) { .trow { grid-template-columns: 1fr 44px; } .trow .pill { width: auto; } }
