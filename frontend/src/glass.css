@@ -1081,3 +1081,14 @@ h1.hero { margin-top: 8px; }
 h1.hero, .hero-row .hero { text-align: center; }
 .hero-row { justify-content: center; text-align: center; }
 .lead, .note { text-align: center; margin-left: auto; margin-right: auto; justify-content: center; }
+
+/* Logo: the mark (a bundle that has come apart) and the name */
+.logo { display: inline-flex; align-items: center; gap: 10px; }
+.logo svg { flex: none; display: block; }
+
+/* Logo: the favicon image, round, next to the name */
+.logo img { flex: none; display: block; width: 34px; height: 34px; border-radius: 50%; }
+
+/* Sidebar: the selected page's text and icon are light blue */
+.nav-item.on { color: #5b8cff; }
+.nav-item.on svg { color: #5b8cff; }
