@@ -84,13 +84,18 @@ export default function Forecast() {
   const SKILLS_SHOWN = 3;
   const skillsShown = allSkills ? skills : skills.slice(0, SKILLS_SHOWN);
 
+  const titleWords = (hasHours ? `${person.name}'s week in` : `${person.target_job ?? "This job"} in`).split(" ");
+
   return (
     <>
       <div className="hero-row">
         <div>
-          <h1 className="hero">
-            {hasHours ? `${person.name}'s week in ` : `${person.target_job ?? "This job"} in `}
-            <span className="accent">{year}</span>
+          <h1 className="hero hero-words" aria-label={`${hasHours ? `${person.name}'s week in` : `${person.target_job ?? "This job"} in`} ${year}`}>
+            {/* each word fades in one after the other, like the headline on the You page */}
+            {titleWords.map((w, i) => (
+              <span key={w + i}><span className="w-word" style={{ "--i": i }} aria-hidden="true">{w}</span>{" "}</span>
+            ))}
+            <span className="w-word accent" style={{ "--i": titleWords.length }} aria-hidden="true">{year}</span>
           </h1>
         </div>
       </div>
@@ -234,7 +239,7 @@ export default function Forecast() {
                     <div className="skill-name">{s.name}</div>
                     <div className="skill-trend">{s.trend ?? "no data"}</div>
                   </div>
-                  <span className="tag">{s.label ?? "no data"}</span>
+                  <span className={"tag " + (s.label ?? "nodata")}>{s.label ?? "no data"}</span>
                 </div>
               ))}
               {skills.length > SKILLS_SHOWN && (

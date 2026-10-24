@@ -768,3 +768,51 @@ select, .add-row select, .map-controls select {
 .trow { grid-template-columns: minmax(0, 2.6fr) 40px minmax(170px, 1.5fr) 124px; }
 .trow .pill { display: block; width: 124px; box-sizing: border-box; padding-left: 8px; padding-right: 8px; text-align: center; white-space: nowrap; }
 @media (max-width: 900px) { .trow { grid-template-columns: 1fr 44px; } .trow .pill { width: auto; } }
+
+/* skill tags (robust / bet / trap / no data): smaller text, all the same size */
+.skill .tag, .tag { font-size: 11px; letter-spacing: 0.6px; }
+.skill .tag { flex: none; box-sizing: border-box; width: 76px; padding: 5px 0; text-align: center; white-space: nowrap; }
+
+/* skill tags: four clearly different colours */
+.tag.robust, .skill.robust .tag { background: #dfe5ff; color: #2433a8; }
+.tag.bet, .skill.bet .tag { background: #ffeab3; color: #6b4700; }
+.tag.trap, .skill.trap .tag { background: #ffd9d3; color: #a82f24; }
+.tag.nodata, .skill .tag.nodata { background: #dfe2e9; color: #3f4756; }
+.skill.bet .skill-bar { background: #e0a21a; }
+
+/* Forecast summary sentence: aligned to the right edge */
+.week-note, .week-note p, .week-note .insight { text-align: right; }
+.week-head .week-note { margin-left: auto; }
+
+/* the small sentence under the headline uses the same mono font as "incl. 11 h with no AI date" */
+.week-note p:not(.insight) { font-family: "DM Mono", ui-monospace, monospace; font-size: 13px; line-height: 1.6; color: var(--ink-muted); }
+
+/* year slider: room at the left and right sides */
+.year-slider { padding: 8px 40px; box-sizing: border-box; }
+
+/* CV box: the file link, "or try a sample:" and the sample chips share one font and size, on one line */
+.cv-actions .cv-file, .cv-actions > .muted, .cv-actions .m-chip { font-family: inherit; font-size: 13px; font-weight: 500; line-height: 1.2; white-space: nowrap; }
+.cv-actions .cv-file { font-weight: 600; }
+@media (min-width: 701px) { .cv-actions { flex-wrap: nowrap; } }
+@media (min-width: 701px) { .cv-actions { flex-wrap: wrap; } }
+@media (min-width: 1200px) { .cv-actions { flex-wrap: nowrap; } }
+.cv-actions .btn-blue { flex: none; white-space: nowrap; }
+
+/* Build page: the numbered headings match the Name / Job title labels */
+.builder h3 { font-family: inherit; font-size: 12px; font-weight: 400; color: var(--ink-soft); margin: 22px 0 8px; }
+
+/* CV box: centre "Open a .txt file" on the same line as the chips (it had a tall min-height that pushed the text up) */
+.cv-actions { align-items: center; }
+.cv-actions .cv-file { display: inline-flex; align-items: center; min-height: 0; padding: 0; line-height: 1.2; }
+.cv-actions .m-chip.pick, .cv-actions > .muted { display: inline-flex; align-items: center; min-height: 0; }
+
+/* Forecast: the "Aisyah's week in 2031" title is centred */
+.hero-row:not(:has(.map-controls)) { justify-content: center; text-align: center; }
+.hero-row:not(:has(.map-controls)) .hero { text-align: center; }
+
+/* Forecast title: more space above it */
+.hero-row:not(:has(.map-controls)) { padding-top: 32px; }
+
+/* Forecast title: the words appear one by one (same effect as the You headline) */
+.hero-words .w-word { display: inline-block; animation: w-in 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both; animation-delay: calc(var(--i) * 70ms + 80ms); }
+@media (prefers-reduced-motion: reduce) { .hero-words .w-word { animation: none; } }
