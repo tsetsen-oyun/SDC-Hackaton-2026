@@ -852,3 +852,30 @@ select, .add-row select, .map-controls select {
 .sdg-list .sdg-text { display: block; }
 .sdg-list .sdg-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
 .sdg-list .sdg-tags:empty { display: none; }
+
+/* SDG links, one line: + / − , "SDG 8. Name", (i), then the tags, all on the same axis */
+.sdg-list { display: grid; gap: 10px; }
+.sdg-list li { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; }
+.sdg-list .sdg-sign { flex: none; width: 16px; text-align: center; }
+.sdg-list .debit .sdg-sign { color: var(--coral-ink); }
+.sdg-list .sdg-name { font-size: 15px; line-height: 1.3; color: var(--ink); }
+.sdg-list .sdg-name b { color: var(--ink); font-weight: 800; }
+.sdg-list .debit .sdg-name b { color: var(--coral-ink); }
+.sdg-list .receipt { margin-left: -4px; }
+.sdg-list .sdg-tag, .sdg-list .badge-est { white-space: nowrap; }
+
+/* SDG line: sign, name, (i) and tags all use the Estimate tag's type (DM Mono, 11px) */
+.sdg-list .sdg-sign,
+.sdg-list .sdg-name,
+.sdg-list .sdg-name b,
+.sdg-list .receipt-btn,
+.sdg-list .sdg-tag,
+.sdg-list .badge-est { font-family: "DM Mono", ui-monospace, monospace; font-size: 11px; font-weight: 400; line-height: 1.3; }
+
+/* Route: the SDG pill and its tags share the Estimate tag's type, with one equal gap between them */
+.sdg-line { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.sdg-line .sdg-item { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.sdg-line .pill,
+.sdg-line .sdg-tag,
+.sdg-line .badge-est { margin: 0; font-family: "DM Mono", ui-monospace, monospace; font-size: 11px; font-weight: 400; line-height: 1.3; padding: 3px 10px; white-space: nowrap; }
+.sdg-line .pill { white-space: normal; }

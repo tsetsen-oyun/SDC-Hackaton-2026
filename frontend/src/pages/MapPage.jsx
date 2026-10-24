@@ -90,7 +90,7 @@ function JobCard({ job, rank, mode, onChoose, was }) {
         {(job.sdg ?? []).map((s) => (
           <li key={s.target + s.label} className={s.effect < 0 ? "debit" : "credit"}>
             <b className="sdg-sign" aria-hidden="true">{s.effect < 0 ? "−" : "+"}</b>
-            <SdgBadge target={s.target} label={s.label} reason={s.reason} effect={s.effect}>
+            <SdgBadge target={s.target} label={s.label} reason={s.reason}>
               <SdgTags s={s} />
             </SdgBadge>
           </li>
