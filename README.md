@@ -12,7 +12,7 @@
 | ---------------------- | --------------------------------------------------------- |
 | **Team Name**          | Really cool team name                                      |
 | **Team Domain**        | Domain 1: Aiversecity, Future-Ready Workforce             |
-| **SDG Track (1–17)**   | SDG 8 — Decent Work and Economic Growth (with SDG 4 — Quality Education as a second goal)         |
+| **SDG Track (1–17)**   | SDG 4 — Quality Education (with SDG 8 — Decent Work and Economic Growth as a second goal)         |
 | **Team Leader**        | Amina Zaatir                                              |
 | **University**         | Xiamen University Malaysia                                |
 | **Number of Members**  | 4                                                         |
@@ -21,10 +21,10 @@
 
 | Resource          | Link                                                                 |
 | ----------------- | -------------------------------------------------------------------- |
-| GitHub Repository | https://github.com/tsetsen-oyun/SDG-Hackaton-2026                    |
+| GitHub Repository | https://github.com/tsetsen-oyun/SDC-Hackaton-2026                    |
 | Replit Project    | [CONFIRM: Replit link, or remove if not used]                        |
 | Live Demo         | [CONFIRM: live URL, once deployed]                                   |
-| RunPod Endpoint   | Not applicable: Runpod was used offline only (see "How We Use RunPod") |
+| RunPod Endpoint   | Runpod public endpoint, Qwen3-32B-AWQ (offline SDG drafting + optional free-text intake)) |
 | Slide Deck        | [CONFIRM: slide deck link]                                           |
 | Demo Video        | [CONFIRM: demo video link]                                           |
 
@@ -40,7 +40,7 @@ About **45%** of Malaysian workers have at least 40% of their tasks that today's
 
 Unbundle takes a person's real week of tasks and splits it into the parts AI could take over and the parts that stay human. It then maps the future jobs that fit what is left, and the courses that close the skill gap. The forecast covers 2026–2035 under three AI-adoption scenarios, and every number links to its source, its date and whether it is an estimate.
 
-AI is used in two places, and both are disclosed. Task timing builds on published AI-capability research (METR) and exposure data (Anthropic Economic Index, O\*NET). A language model (Qwen3-32B-AWQ) drafted the job-to-SDG links once, offline; these are labelled "Estimate" until a person reviews them. The running app has one optional AI feature: free-text intake on the Build page, which uses a hosted model (Groq, or Qwen3-32B on our RunPod endpoint) to suggest tasks and skills from a person's own words (see *AI-Assisted Free-Text Intake* below). It never writes forecasts, scores, jobs or courses. The app's only other outside call is the Refresh button fetching METR's published AI-progress data (see *Live Trend Data* below).
+AI is used in two places, and both are disclosed. Task timing builds on published AI-capability research (METR) and exposure data (Anthropic Economic Index, O\*NET). A language model (Qwen3-32B-AWQ) drafted the job-to-SDG links once, offline; these are labelled "Estimate" until a person reviews them. The running app has one optional AI feature: free-text intake on the Build page, which uses a hosted model (Qwen3-32B on our RunPod endpoint) to suggest tasks and skills from a person's own words (see *AI-Assisted Free-Text Intake* below). It never writes forecasts, scores, jobs or courses. The app's only other outside call is the Refresh button fetching METR's published AI-progress data (see *Live Trend Data* below).
 
 ### Key Features
 
@@ -59,7 +59,7 @@ AI is used in two places, and both are disclosed. Task timing builds on publishe
 | Frontend      | React 19, Vite, React Router                                      |
 | Backend       | Node.js 22, Express 5                                             |
 | Database      | None. Versioned CSV data snapshots kept in Git (`data/snapshots/`) |
-| AI / Compute  | Qwen3-32B-AWQ on Runpod (offline, one-off drafting of SDG links); Groq or RunPod-hosted model for optional free-text intake (checked, with keyword fallback) |
+| AI / Compute  | Qwen3-32B-AWQ on Runpod (offline, one-off drafting of SDG links); RunPod-hosted model for optional free-text intake (checked, with keyword fallback) |
 | Hosting / Dev | [CONFIRM: Replit or other host]                                   |
 
 ---
@@ -83,10 +83,10 @@ AI is used in two places, and both are disclosed. Task timing builds on publishe
 │       ├── api.js           # The only place that talks to the server
 │       └── cv.js            # Finds skills in pasted CV text (runs in the browser)
 ├── submission/              # Required submission documents
-│   ├── SDC2026_TeamName_Preliminary.pdf      # Preliminary submission
-│   ├── SDC2026_TeamName_TechDeclaration.pdf  # Technology declaration
-│   ├── SDC2026_TeamName_Replit_POU.pdf       # Replit proof of use
-│   └── SDC2026_TeamName_Runpod_POU.pdf       # RunPod proof of use
+│   ├── SDC2026_Really cool team name_Preliminary.pdf      # Preliminary submission
+│   ├── SDC2026_Really cool team name_TechDeclaration.pdf  # Technology declaration
+│   ├── SDC2026_Really cool team name_Replit_POU.pdf       # Replit proof of use
+│   └── SDC2026_Really cool team name_Runpod_POU.pdf       # RunPod proof of use
 ├── package.json
 └── README.md
 ```
@@ -95,9 +95,15 @@ AI is used in two places, and both are disclosed. Task timing builds on publishe
 
 ```
 User ──► React web app (Vite) ──► Express API ──► Engine ──► CSV data snapshots
-                                                     │
-                                                     └──► Forecast / Map / Route responses
-                                                          (every number carries its source)
+                                     │              │
+                                     │              └──► Forecast / Map / Route responses
+                                     │                   (every number carries its source)
+                                     │
+                                     ├──► Runpod endpoint (Qwen3-32B)   optional free-text intake;
+                                     │                                  picks checked by code, keyword fallback
+                                     │
+                                     └──► METR public data file         Refresh button; validated, saved as a
+                                                                        new dated snapshot or ignored if it fails
 
 Offline, one-off:  public sources ──► cleaned CSVs ──► Qwen3-32B (Runpod) drafts SDG links
                                                        (stored as "Estimate")
@@ -122,7 +128,8 @@ Offline, one-off:  public sources ──► cleaned CSVs ──► Qwen3-32B (Ru
 
 ## How to Run
 
-You need **Node.js 22** (18.11 or newer also works). There is no `requirements.txt` because the project has no Python dependencies; Node installs everything from `package.json`.
+You need **Node.js 22**.
+There is no `requirements.txt` because the project has no Python dependencies; Node installs everything from `package.json`.
 
 ### Option 1 — Run on Replit
 
@@ -130,14 +137,14 @@ You need **Node.js 22** (18.11 or newer also works). There is no `requirements.t
 
 1. Import this repository via **Create Repl → Import from GitHub**.
 2. Run `npm run install:all`, then `npm run dev`.
-3. No secrets are needed: the running app calls no external API.
+3. Optional: add RUNPOD_API_KEY (and INTAKE_PROVIDER=runpod) in Secrets to turn on AI intake. Without it, the app uses keyword matching.
 
 ### Option 2 — Run Locally
 
 ```bash
 # 1. Clone the repository
 git clone https://github.com/tsetsen-oyun/SDG-Hackaton-2026.git
-cd SDG-Hackaton-2026
+cd SDC-Hackaton-2026
 
 # 2. Install everything (root, backend and frontend)
 npm run install:all
@@ -163,7 +170,7 @@ Backend settings, if you need any, go in `backend/.env` (never committed).
 npm test
 ```
 
-This runs the 89 engine tests (`node --test backend/engine/test/*.test.js`).
+This runs the 111 engine tests (`node --test backend/engine/test/*.test.js`).
 
 ---
 
@@ -172,14 +179,14 @@ This runs the 89 engine tests (`node --test backend/engine/test/*.test.js`).
 [CONFIRM: describe how the team used Replit. Delete anything that is not true.]
 
 - **Hosting:** [e.g. deployed with Replit Deployments at the Live Demo link above]
-- **Secrets:** The app needs no API keys. Nothing secret is committed to the repository.
-
+- **Secrets:** RUNPOD_API_KEY is stored in Replit Secrets (optional feature). Nothing secret is committed.
+  
 📄 Proof of use: [`submission/SDC2026_TeamName_Replit_POU.pdf`](submission/SDC2026_TeamName_Replit_POU.pdf)
 
 ## How We Use RunPod *(Required)*
 
 - **Workload:** Qwen3-32B-AWQ ran on a Runpod public endpoint to draft job-to-SDG links (516 of the 549 links in our data). This was done once, offline, on 2026-10-21.
-- **Why offline:** the links are stored in `data/snapshots/*/sdg_links.csv` and labelled "Estimate" until a person reviews them. The running app makes no Runpod or other AI API calls, so it works even if Runpod is down.
+- **Why offline:** the links are stored in `data/snapshots/*/sdg_links.csv` and labelled "Estimate" until a person reviews them. At runtime Runpod is used only for the optional free-text intake. If Runpod is down, the app falls back to keyword matching and still works.
 - **Integration:** [CONFIRM: describe the script or notebook used to call the endpoint, and whether it is in the repository]
 
 📄 Proof of use: [`submission/SDC2026_TeamName_Runpod_POU.pdf`](submission/SDC2026_TeamName_Runpod_POU.pdf)
@@ -226,16 +233,14 @@ On the Build page a person can describe their week in their own words ("I record
 2. **The model must quote the person.** For every pick it returns the words from the text that justify it.
 3. **We check every pick.** Anything not on the shortlist, duplicated, or whose quote has nothing to do with the text is thrown away. Names, jobs and hours shown on screen come from our data files, and hours the person did not state are marked "(guess)".
 4. **The person decides.** Suggestions are chips; nothing joins the profile until they click it.
-5. **It fails safe.** If there is no key, Groq is slow, rate-limited or returns rubbish, the app falls back to keyword matching and says so. Limits: 8 requests a minute per visitor, a daily cap (`INTAKE_DAILY_CAP`), 3,000 characters, and repeated texts are answered from memory.
+5. **It fails safe.** If there is no key, the app falls back to keyword matching and says so. Limits: 8 requests a minute per visitor, a daily cap (`INTAKE_DAILY_CAP`), 3,000 characters, and repeated texts are answered from memory.
 
-The text is not saved or logged. It is sent to the model only when a key is set (`GROQ_API_KEY` or `RUNPOD_API_KEY`). Please use made-up descriptions, not real personal details.
+The text is not saved or logged. It is sent to the model only when a key is set (`RUNPOD_API_KEY`). Please use made-up descriptions, not real personal details.
 
 ```bash
 # backend/.env  (never committed; on Replit use Secrets)
-GROQ_API_KEY=...                      # Groq, or:
 RUNPOD_API_KEY=...                    # our RunPod endpoint (Qwen/Qwen3-32B-AWQ, OpenAI-compatible)
 INTAKE_PROVIDER=runpod                # optional: force one when both keys are set
-GROQ_MODEL=llama-3.3-70b-versatile    # check console.groq.com/docs/models for current names
 npm run eval:intake                   # keyword matching vs the AI helper on 8 made-up cases
 ```
 
@@ -271,10 +276,10 @@ npm run eval:intake                   # keyword matching vs the AI helper on 8 m
 
 | Name | Role | GitHub |
 | ---- | ---- | ------ |
-| Amina Zaatir | Backend | [@username](https://github.com/username) |
-| Tsetsen-Oyun Zolbayar| Frontend | [CONFIRM] |
+| Amina Zaatir | Backend | https://github.com/AminaZa |
+| Tsetsen-Oyun Zolbayar| Frontend | https://github.com/tsetsen-oyun |
 | Seidir Dariga | Data cleaning and snapshots | [CONFIRM] |
-| Tleubay Almaz | Coordinator, documentation | [CONFIRM] |
+| Tleubay Almaz | Coordinator, documentation | https://github.com/almvvz |
 
 ---
 
