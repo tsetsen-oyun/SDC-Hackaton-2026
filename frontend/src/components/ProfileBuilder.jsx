@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { api } from "../api.js";
 import { findSkills } from "../cv.js";
-import { SAMPLE_CVS } from "../sampleCvs.js";
+import { SAMPLE_CVS, SAMPLE_WEEKS } from "../sampleCvs.js";
 
 const KEY = "custom-profiles";
 const asList = (r) => (Array.isArray(r) ? r : r?.skills ?? Object.values(r ?? {}));
@@ -25,6 +25,10 @@ export default function ProfileBuilder({ catalogue, onUse }) {
   const [cvText, setCvText] = useState("");
   const [cvFound, setCvFound] = useState(null); // null = not run yet, else {added, maybe}
   const [cvNote, setCvNote] = useState("");
+  const [aiText, setAiText] = useState("");
+  const [ai, setAi] = useState(null); // the server's suggestions: { source, model, notice, tasks, skills }
+  const [aiBusy, setAiBusy] = useState(false);
+  const [aiError, setAiError] = useState("");
 
   useEffect(() => {
     if (allSkills) return;
@@ -74,6 +78,33 @@ export default function ProfileBuilder({ catalogue, onUse }) {
     }
   }
 
+  // Free-text intake: the server suggests tasks and skills from OUR lists. Nothing joins the profile until the person adds it.
+  async function askAi() {
+    setAiBusy(true); setAiError(""); setAi(null);
+    try {
+      const r = await api.intake(aiText);
+      // Without the AI helper the server only matches tasks; skills come from the same in-browser matcher the CV box uses.
+      if (r.source === "keywords" && allSkills?.length) {
+        const have = new Set(skills.map((s) => s.skill_id));
+        r.skills = findSkills(aiText, allSkills).sure.filter((s) => !have.has(s.skill_id)).slice(0, 8);
+      }
+      setAi(r);
+    } catch (e) { setAiError(e.message); } finally { setAiBusy(false); }
+  }
+  function addAiTask(t) {
+    setTasks((cur) => (cur.some((x) => x.task_id === t.task_id) ? cur : [...cur, { task_id: t.task_id, name: t.name, hours: t.hours }]));
+    setAi((a) => ({ ...a, tasks: a.tasks.filter((x) => x.task_id !== t.task_id) }));
+  }
+  function addAiSkill(s) {
+    setSkills((cur) => (cur.some((x) => x.skill_id === s.skill_id) ? cur : [...cur, { skill_id: s.skill_id, name: s.name, why: s.why }]));
+    setAi((a) => ({ ...a, skills: a.skills.filter((x) => x.skill_id !== s.skill_id) }));
+  }
+  function addAllAi() {
+    ai.tasks.forEach(addAiTask);
+    ai.skills.forEach(addAiSkill);
+  }
+  const short = (s, n = 70) => (s.length > n ? s.slice(0, n - 1) + "…" : s);
+
   function readCv() {
     const { sure, maybe } = findSkills(cvText, allSkills);
     const have = new Set(skills.map((s) => s.skill_id));
@@ -93,7 +124,7 @@ export default function ProfileBuilder({ catalogue, onUse }) {
       skills: skills.map(({ skill_id, name }) => ({ skill_id, name })),
     };
     onUse(person);
-    setName(""); setTitle(""); setTasks([]); setSkills([]); setQ(""); setCvText(""); setCvFound(null); setCvNote("");
+    setName(""); setTitle(""); setTasks([]); setSkills([]); setQ(""); setCvText(""); setCvFound(null); setCvNote(""); setAiText(""); setAi(null); setAiError("");
   }
 
   return (
@@ -101,6 +132,58 @@ export default function ProfileBuilder({ catalogue, onUse }) {
       <div className="b-row">
         <label>Name<input value={name} onChange={(e) => setName(e.target.value)} placeholder="e.g. Mei" /></label>
         <label>Job title<input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="e.g. Admin executive" /></label>
+      </div>
+
+      <div className="cv-box">
+        <label htmlFor="ai-text"><b>Describe your week in your own words.</b> We'll suggest tasks and skills from our list. You choose which ones to add.</label>
+        <textarea
+          id="ai-text" rows={4} maxLength={3000} value={aiText}
+          onChange={(e) => { setAiText(e.target.value); setAi(null); setAiError(""); }}
+          placeholder="e.g. I record invoices in accounting software, reconcile accounts at month end and answer supplier calls. About 10 hours a week on calls."
+        />
+        <div className="cv-actions">
+          <button className="btn-blue" disabled={aiBusy || aiText.trim().length < 15} onClick={askAi}>{aiBusy ? "Finding…" : "Find my tasks"}</button>
+          <span className="muted">or try a sample:</span>
+          {SAMPLE_WEEKS.map((w) => (
+            <button key={w.id} className="m-chip pick" onClick={() => { setAiText(w.text); setAi(null); setAiError(""); }}>{w.label}</button>
+          ))}
+        </div>
+        <p className="muted cv-privacy">If the AI helper is on, this text is sent to an AI service (named on the About page) to match your words to our task list. It is not saved. Please write a made-up week, not real personal details.</p>
+        {aiError && <p className="warn" role="alert">{aiError}</p>}
+        {ai && (
+          <div role="status" className="cv-result">
+            <p>
+              <b>{ai.source === "llm" ? `Suggested by AI (${ai.provider}, ${ai.model})` : "Suggested by keyword matching"}</b>
+              {ai.cached ? " (saved answer)" : ""}. These are suggestions, so add only the ones that fit.
+            </p>
+            {ai.notice && <p className="muted">{ai.notice}</p>}
+            {ai.tasks.length === 0 && ai.skills.length === 0 && <p>Nothing left to add from this text.</p>}
+            {ai.tasks.length > 0 && (
+              <>
+                <span className="m-label">Tasks:</span>
+                <div className="m-chips">
+                  {ai.tasks.map((t) => (
+                    <button key={t.task_id} className="m-chip pick" onClick={() => addAiTask(t)}
+                      title={`${t.name}\nFrom your words: “${t.why}”${t.hours_assumed ? "\nHours are our guess, change them below." : ""}`}>
+                      + {short(t.name)} · {t.hours} h{t.hours_assumed ? " (guess)" : ""}
+                    </button>
+                  ))}
+                </div>
+              </>
+            )}
+            {ai.skills.length > 0 && (
+              <>
+                <span className="m-label">Skills:</span>
+                <div className="m-chips">
+                  {ai.skills.map((s) => (
+                    <button key={s.skill_id} className="m-chip pick" onClick={() => addAiSkill(s)} title={`From your words: “${s.why}”`}>+ {s.name}</button>
+                  ))}
+                </div>
+              </>
+            )}
+            {(ai.tasks.length > 0 || ai.skills.length > 0) && <button className="link-btn" onClick={addAllAi}>Add all</button>}
+          </div>
+        )}
       </div>
 
       <h3>1. What fills your week?</h3>

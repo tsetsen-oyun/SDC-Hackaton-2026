@@ -25,7 +25,7 @@ export default function Build() {
   return (
     <>
       <WordTitle text="Build your own profile" />
-      <p className="lead muted">Use made-up details, not real personal data. Nothing leaves this demo.</p>
+      <p className="lead muted">Use made-up details, not real personal data. Nothing is saved. If the AI helper is on, the text in the "describe your week" box is sent to the AI service named on the About page to match it to our task list.</p>
       <ProfileBuilder catalogue={catalogue} onUse={use} />
     </>
   );

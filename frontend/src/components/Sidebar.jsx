@@ -48,10 +48,20 @@ export default function Sidebar({ collapsed, onToggle }) {
       const date = r.snapshotDate ?? r.snapshot_date;
       setSnapshot(date);
       if (r.changed) bumpData(); // only reload the pages when there really is new data
+      const checked = r.checked_at ? new Date(r.checked_at).toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" }) : null;
+      const newModels = r.trend?.new_models?.length ?? 0;
       if (r.fallback) {
         setNotice({ ok: false, text: `Couldn't get new data, so we're still using the saved copy from ${formatDate(date)}.` });
+      } else if (r.changed && r.live && r.trend) {
+        setNotice({ ok: true, text: `Fetched live from metr.org${checked ? ` at ${checked}` : ""}${newModels ? `: ${newModels} new model${newModels > 1 ? "s" : ""}` : ""}. Forecast updated.` });
+      } else if (r.changed && r.live) {
+        setNotice({ ok: true, text: `Checked metr.org live${checked ? ` at ${checked}` : ""}: METR's current data matches our newest saved copy. Moved from the older copy (${formatDate(r.previous)}) to ${formatDate(date)}. Forecast updated.` });
       } else if (r.changed) {
-        setNotice({ ok: true, text: `New data loaded${r.previous ? ` (was ${formatDate(r.previous)})` : ""}. Pages updated.` });
+        setNotice({ ok: true, text: `New data loaded${r.previous ? ` (was ${formatDate(r.previous)})` : ""}. Pages updated.${r.live_error ? " metr.org couldn't be reached, so this is the saved copy." : ""}` });
+      } else if (r.live) {
+        setNotice({ ok: true, text: `Checked metr.org live${checked ? ` at ${checked}` : ""}. Nothing new since ${formatDate(date)}.` });
+      } else if (r.live_error) {
+        setNotice({ ok: false, text: `Couldn't reach metr.org (${r.live_error}), so we're still using the saved copy from ${formatDate(date)}.` });
       } else {
         setNotice({ ok: true, text: "Already up to date. No new data since the last refresh." });
       }
