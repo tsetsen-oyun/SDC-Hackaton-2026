@@ -69,6 +69,7 @@ export function getSources() {
     llm_model_used: snap.manifest.llm_model_used ?? null,
     fetched_live: snap.manifest.fetched_live ?? false,
     fetched_at: snap.manifest.fetched_at ?? null,
+    live_check: lastLiveCheck,
     sources: [...snap.sources.values()],
     scenarios: [...snap.scenarios.values()].map((s) => ({
       id: s.scenario_id,
@@ -140,6 +141,8 @@ function targetJobTasks(snap, user) {
 //     never ends up with no data on stage. (Set LIVE_REFRESH=0 to skip step 1, e.g. in tests.)
 // Only one Refresh runs at a time; a second click gets the same answer instead of a second download.
 let inFlight = null;
+// The last time METR's file was checked live, and what we found. About shows it, so a judge can see the check happened.
+let lastLiveCheck = null;
 export function refreshData(options = {}) {
   if (!inFlight) inFlight = doRefresh(options).finally(() => { inFlight = null; });
   return inFlight;
@@ -162,6 +165,7 @@ async function doRefresh({ fetcher = fetchText, now = () => new Date() } = {}) {
         const metr = validateMetr(parseMetr(rawText), now());
         const newestSnap = loadSnapshot(newest);
         live.ok = true;
+        lastLiveCheck = { checked_at: checkedAt, url: METR_URL, result: "matches_saved" };
         if (!sameTrend(metr, newestSnap)) {
           live.trend = describeChange(metr, newestSnap);
           const written = writeLiveSnapshot({
@@ -169,6 +173,7 @@ async function doRefresh({ fetcher = fetchText, now = () => new Date() } = {}) {
           });
           current = loadSnapshot(written.date, written.dir);
           live.new_data = true;
+          lastLiveCheck = { ...lastLiveCheck, result: "new_data" };
         }
       } catch (err) {
         live.error = err.message;

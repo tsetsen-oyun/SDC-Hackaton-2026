@@ -80,6 +80,10 @@ test("Refresh with nothing new: live check ok, same snapshot, nothing written", 
   const r = await engine.refreshData({ fetcher: async () => metrYaml(realRows), now: NOW });
   assert.deepEqual([r.live, r.changed, r.fallback, r.snapshot_date, r.live_error], [true, false, false, "2026-10-23", null]);
   assert.equal(r.trend, null);
+  assert.deepEqual(
+    [engine.getSources().live_check.result, engine.getSources().live_check.checked_at],
+    ["matches_saved", "2026-10-24T05:00:00.000Z"]
+  );
   assert.equal(fs.existsSync(path.join(TMP, "2026-10-24")), false);
 });
 
