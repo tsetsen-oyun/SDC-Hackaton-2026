@@ -289,6 +289,11 @@ export function mentor({ tasks = [], skills = [], scenario, userId = null }) {
   };
 }
 
+// Free-text intake. Names and jobs in the answer come from our data files, never from the model.
+export async function intake(args) {
+  return engine.intake(args);
+}
+
 export function getSources() {
   const s = engine.getSources();
   const snap = engine.snapshot();
@@ -301,6 +306,7 @@ export function getSources() {
     fetchedLive: s.fetched_live,
     fetchedAt: s.fetched_at,
     liveCheck: s.live_check,
+    intake: s.intake,
     model: s.llm_model_used,
     sources: s.sources.map((x) => ({ label: x.name, url: x.url ?? null, date: x.date_taken ?? null, licence: x.licence ?? null })),
     // Plain-language list of every assumption behind the numbers, for the About page.

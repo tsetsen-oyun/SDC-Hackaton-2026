@@ -29,6 +29,8 @@ const wrap = (fn) => (req, res, next) =>
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+// One proxy (Replit, Render...) sits in front of us, so req.ip is the visitor, not the proxy. Used to rate-limit /api/intake.
+app.set("trust proxy", 1);
 
 app.use(express.json());
 
@@ -115,6 +117,16 @@ app.post(
   })
 );
 
+app.post(
+  "/api/intake",
+  needs("intake"),
+  wrap(async (req, res) => {
+    const { text } = req.body ?? {};
+    if (typeof text !== "string") return bad(res, "Need text: a string describing your work");
+    res.json(await engine.intake({ text, visitor: req.ip }));
+  })
+);
+
 app.get(
   "/api/sources",
   needs("getSources"),
@@ -133,7 +145,7 @@ app.post(
 
 app.use((err, req, res, next) => {
   console.error(err);
-  res.status(500).json({ error: err.message });
+  res.status(err.status ?? 500).json({ error: err.message });
 });
 
 // backend/server.js — add next to the other routes (uses engine.getSkills if the teammate adds it)

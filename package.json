@@ -13,7 +13,8 @@
     "build": "npm run build --prefix frontend",
     "test": "node --test backend/engine/test/*.test.js",
     "ingest:check": "npm run ingest:check --prefix backend",
-    "ingest:now": "npm run ingest:now --prefix backend"
+    "ingest:now": "npm run ingest:now --prefix backend",
+    "eval:intake": "npm run eval:intake --prefix backend"
   },
   "repository": {
     "type": "git",

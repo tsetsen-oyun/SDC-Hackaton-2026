@@ -7,6 +7,7 @@ import { matchScenario, roleTasks } from "./match.js";
 import { routeFor } from "./route.js";
 import { mentorPairs } from "./mentor.js";
 import { skillCards } from "./skills.js";
+import { runIntake, intakeInfo } from "./intake.js";
 import { METR_URL, fetchText, parseMetr, validateMetr, sameTrend, describeChange, writeLiveSnapshot } from "./ingest.js";
 
 let current = null;
@@ -61,6 +62,12 @@ export function mentor({ tasks = [], skills = [], scenario, userId = null } = {}
   return mentorPairs(snapshot(), { tasks: cleanTasks(tasks), skills, scenario, userId });
 }
 
+// Free-text intake: "I do invoices and answer calls" -> tasks and skills from our own lists, for the person to confirm.
+// The model (if switched on) may only pick from a shortlist we make; see intake.js. Works without a key too.
+export function intake({ text, visitor, ...options } = {}) {
+  return runIntake(snapshot(), { text, visitor, ...options });
+}
+
 // Everything the About page and the receipts need.
 export function getSources() {
   const snap = snapshot();
@@ -70,6 +77,7 @@ export function getSources() {
     fetched_live: snap.manifest.fetched_live ?? false,
     fetched_at: snap.manifest.fetched_at ?? null,
     live_check: lastLiveCheck,
+    intake: intakeInfo(),
     sources: [...snap.sources.values()],
     scenarios: [...snap.scenarios.values()].map((s) => ({
       id: s.scenario_id,

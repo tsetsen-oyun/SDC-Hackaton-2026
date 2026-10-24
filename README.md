@@ -40,14 +40,14 @@ About **45%** of Malaysian workers have at least 40% of their tasks that today's
 
 Unbundle takes a person's real week of tasks and splits it into the parts AI could take over and the parts that stay human. It then maps the future jobs that fit what is left, and the courses that close the skill gap. The forecast covers 2026–2035 under three AI-adoption scenarios, and every number links to its source, its date and whether it is an estimate.
 
-AI is used in two places, and both are disclosed. Task timing builds on published AI-capability research (METR) and exposure data (Anthropic Economic Index, O\*NET). A language model (Qwen3-32B-AWQ) drafted the job-to-SDG links once, offline; these are labelled "Estimate" until a person reviews them. The running app calls no AI API. Its only outside call is the Refresh button fetching METR's published AI-progress data (see *Live Trend Data* below).
+AI is used in two places, and both are disclosed. Task timing builds on published AI-capability research (METR) and exposure data (Anthropic Economic Index, O\*NET). A language model (Qwen3-32B-AWQ) drafted the job-to-SDG links once, offline; these are labelled "Estimate" until a person reviews them. The running app has one optional AI feature: free-text intake on the Build page, which uses a Groq-hosted model to suggest tasks and skills from a person's own words (see *AI-Assisted Free-Text Intake* below). It never writes forecasts, scores, jobs or courses. The app's only other outside call is the Refresh button fetching METR's published AI-progress data (see *Live Trend Data* below).
 
 ### Key Features
 
 - **Forecast** — Which tasks AI could do, year by year (2026–2035), under three scenarios (slowdown, normal pace, fast pace).
 - **Map** — Future jobs that fit what is left of your week and the skills you already have, ranked by market fit, or by market fit plus the SDGs ("Market + planet").
 - **Route** — The courses that close the skill gap, with HRD Corp claimability, the skills not worth investing in, and the SDG links of each step.
-- **Build your own profile** — Create a profile by picking tasks and skills, or paste a CV to find skills in it. The CV text is read in your browser and is never uploaded or stored.
+- **Build your own profile** — Describe your week in your own words (AI-assisted, optional), pick tasks and skills, or paste a CV to find skills in it. The CV text is read in your browser and is never uploaded or stored.
 - **Mentor matches** — Who could swap skills with you. Both people must consent, a person approves, and age is never used.
 - **Receipts** — Tap (i) next to any number to see the source, the date and whether it is an estimate.
 - **Refresh data** — Fetches METR's latest AI-progress data live, rebuilds the forecast if it changed, and tells you plainly if the fetch failed and the saved copy is used instead.
@@ -59,7 +59,7 @@ AI is used in two places, and both are disclosed. Task timing builds on publishe
 | Frontend      | React 19, Vite, React Router                                      |
 | Backend       | Node.js 22, Express 5                                             |
 | Database      | None. Versioned CSV data snapshots kept in Git (`data/snapshots/`) |
-| AI / Compute  | Qwen3-32B-AWQ on Runpod (offline, one-off drafting of SDG links)  |
+| AI / Compute  | Qwen3-32B-AWQ on Runpod (offline, one-off drafting of SDG links); Groq-hosted model for optional free-text intake (checked, with keyword fallback) |
 | Hosting / Dev | [CONFIRM: Replit or other host]                                   |
 
 ---
@@ -112,6 +112,7 @@ Offline, one-off:  public sources ──► cleaned CSVs ──► Qwen3-32B (Ru
 | `POST /api/match` | Tasks + skills → ranked jobs (market and planet ranks) |
 | `POST /api/route` | Job + skills → courses, labels by year, SDG links |
 | `POST /api/mentor` | Who could swap skills with you |
+| `POST /api/intake` | Free text about your week → suggested tasks and skills from our own lists (Groq if a key is set, keyword matching otherwise) |
 | `GET /api/tasks` | Every task we know, for "add a task" |
 | `GET /api/skills` | Every skill we know, for the profile builder and CV finder |
 | `GET /api/sources` | Where every number comes from |
@@ -217,6 +218,25 @@ npm run ingest:now     # same as the Refresh button, from the terminal
 
 Not live yet: the Anthropic Economic Index task times, ESCO, O\*NET, SDSN and the course list are saved snapshots with their dates on the About page.
 
+## AI-Assisted Free-Text Intake
+
+On the Build page a person can describe their week in their own words ("I record invoices in accounting software and answer supplier calls"). The language model never writes anything the person sees. It only **picks from lists we already have**:
+
+1. **We shortlist first, without AI.** Word overlap finds up to 60 candidate tasks and 90 skills from our own data. Only that shortlist is sent to the model, together with the person's text.
+2. **The model must quote the person.** For every pick it returns the words from the text that justify it.
+3. **We check every pick.** Anything not on the shortlist, duplicated, or whose quote has nothing to do with the text is thrown away. Names, jobs and hours shown on screen come from our data files, and hours the person did not state are marked "(guess)".
+4. **The person decides.** Suggestions are chips; nothing joins the profile until they click it.
+5. **It fails safe.** If there is no key, Groq is slow, rate-limited or returns rubbish, the app falls back to keyword matching and says so. Limits: 8 requests a minute per visitor, a daily cap (`INTAKE_DAILY_CAP`), 3,000 characters, and repeated texts are answered from memory.
+
+The text is not saved or logged. It is sent to Groq only when `GROQ_API_KEY` is set. Please use made-up descriptions, not real personal details.
+
+```bash
+# backend/.env  (never committed; on Replit use Secrets)
+GROQ_API_KEY=...
+GROQ_MODEL=llama-3.3-70b-versatile   # check console.groq.com/docs/models for current names
+npm run eval:intake                   # keyword matching vs the AI helper on 8 made-up cases
+```
+
 ## Principles We Kept To
 
 - **Every number has a receipt.** Tap the (i) to see the source, the date and whether it is an estimate.
@@ -224,6 +244,7 @@ Not live yet: the Anthropic Economic Index task times, ESCO, O\*NET, SDSN and th
 - **No data is not "safe".** Tasks with no published AI date count as human work, and we say so.
 - **People stay in control.** You can change hours, remove tasks or add tasks, and every page updates. Suggestions are suggestions.
 - **Your CV stays on your device.** It is read in the browser and never uploaded or stored.
+- **The AI never writes what you see.** In free-text intake it can only pick from our own lists, every pick is checked, and you confirm each one.
 - **If new data fails to load, we say so** and keep using the saved copy.
 
 ---

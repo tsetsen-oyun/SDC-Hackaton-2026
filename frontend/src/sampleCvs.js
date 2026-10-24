@@ -38,3 +38,21 @@ SKILLS
 Canva, Adobe Photoshop, Power BI dashboards, statistics, teamwork, English, Tamil and Bahasa Malaysia.`,
   },
 ];
+// Made-up descriptions of a working week, to try the "describe your week" box. Nobody real is described here.
+export const SAMPLE_WEEKS = [
+  {
+    id: "clerk",
+    label: "Accounts clerk",
+    text: "I record supplier invoices in our accounting software and reconcile the accounts at month end. I also answer phones, file documents and check figures for errors. About 12 hours a week goes on the invoices.",
+  },
+  {
+    id: "tutor",
+    label: "Private tutor",
+    text: "I give private tutoring to secondary school students, review class material with them, give feedback on their homework and assess their progress. I also schedule sessions with their parents.",
+  },
+  {
+    id: "clinic",
+    label: "Clinic admin",
+    text: "At a clinic I answer telephones, schedule patient appointments, complete insurance claim forms and keep medical records in order. I greet visitors and direct them to the right staff.",
+  },
+];

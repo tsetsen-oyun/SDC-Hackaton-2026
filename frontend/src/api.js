@@ -21,6 +21,7 @@ export const api = {
   tasks: () => request("/api/tasks"),
   skills: () => request("/api/skills"),
   refresh: () => request("/api/refresh", {}),
+  intake: (text) => request("/api/intake", { text }),
   async sources() {
     const res = await request("/api/sources");
     return normalizeSources(res, res.params);
