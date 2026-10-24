@@ -5,6 +5,7 @@ import { api } from "../api.js";
 import { personTasks, toPayload, SCENARIO_LABEL, skillName } from "../utils.js";
 import Receipt from "../components/Receipt.jsx";
 import SdgTags from "../components/SdgTags.jsx";
+import SdgBadge from "../components/SdgBadge.jsx";
 import MentorCard from "../components/MentorCard.jsx";
 import Skeleton from "../components/Skeleton.jsx";
 
@@ -88,9 +89,10 @@ function JobCard({ job, rank, mode, onChoose, was }) {
       <ul className="sdg-list">
         {(job.sdg ?? []).map((s) => (
           <li key={s.target + s.label} className={s.effect < 0 ? "debit" : "credit"}>
-            <b>{s.effect < 0 ? "−" : "+"} {s.target}</b> {s.label}
-            {s.reason && <span className="clamp"> · {s.reason}</span>}{" "}
-            <SdgTags s={s} />
+            <b className="sdg-sign" aria-hidden="true">{s.effect < 0 ? "−" : "+"}</b>
+            <SdgBadge target={s.target} label={s.label} reason={s.reason} effect={s.effect}>
+              <SdgTags s={s} />
+            </SdgBadge>
           </li>
         ))}
       </ul>
