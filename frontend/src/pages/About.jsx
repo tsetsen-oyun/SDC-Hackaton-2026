@@ -25,7 +25,23 @@ export default function About() {
         <section className="card about-card">
           <h2>Snapshot and model</h2>
           <p>Data snapshot: <b>{info.snapshotDate ?? info.snapshot_date}</b></p>
+          {info.liveCheck && (
+            <p>
+              Last checked live against metr.org: <b>{new Date(info.liveCheck.checked_at).toUTCString()}</b>
+              {info.liveCheck.result === "matches_saved" ? " (METR's current file matches our saved data)" : " (new data found and loaded)"}
+            </p>
+          )}
+          {info.fetchedLive && info.fetchedAt && (
+            <p>AI-progress data fetched live from metr.org on <b>{new Date(info.fetchedAt).toUTCString()}</b></p>
+          )}
           <p>AI model used: <b>{info.model ?? "None"}</b></p>
+          <p>
+            Free-text intake (Build page):{" "}
+            {info.intake?.enabled
+              ? <b>{info.intake.provider}, {info.intake.model}</b>
+              : <b>AI helper off (keyword matching only)</b>}
+            . The model only picks from a shortlist of our own tasks and skills, and every pick is checked before you see it.
+          </p>
         </section>
 
         <section className="card about-card">
