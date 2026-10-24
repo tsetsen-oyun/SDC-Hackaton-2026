@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 
 // The "who are we looking at" picker: same floating glass dock as the scenario tiles, shown on the You page.
 // "No current job · aiming for X" reads better as "Aiming for X" on a small tile
@@ -15,14 +16,20 @@ export default function PeopleDock({ people, activeId, onPick, onDelete, hiddenC
   }, [activeId, people.length]);
 
   return (
-    <div className="dock-wrap">
-      <div className="dock-labels">
-        <span className="dock-label">Choose a sample person</span>
-        {hiddenCount > 0 && (
-          <button className="dock-label dock-restore" onClick={onRestore}>Restore sample people</button>
-        )}
-      </div>
+    <div className="dock-wrap inline">
       <nav className="dock people-dock" aria-label="Choose a sample person" ref={dockRef}>
+        <div className="dock-head">
+          <h2 className="dock-title">Choose a sample person</h2>
+          <div className="dock-head-actions">
+            {hiddenCount > 0 && (
+              <button className="dock-restore" onClick={onRestore}>Restore sample people</button>
+            )}
+            <Link to="/build" className="dock-create">
+              <span aria-hidden="true">+</span> Build your own profile
+            </Link>
+          </div>
+        </div>
+        <div className="dock-tiles">
         {people.map((p) => {
           const id = idOf(p);
           const on = id === activeId;
@@ -61,6 +68,7 @@ export default function PeopleDock({ people, activeId, onPick, onDelete, hiddenC
             </div>
           );
         })}
+        </div>
       </nav>
     </div>
   );

@@ -15,7 +15,6 @@ export function saveCustoms(list) {
 
 // A short form: who you are, what you do in a week, what you can do. Makes a new person for the whole app.
 export default function ProfileBuilder({ catalogue, onUse }) {
-  const [open, setOpen] = useState(false);
   const [name, setName] = useState("");
   const [title, setTitle] = useState("");
   const [tasks, setTasks] = useState([]);
@@ -28,11 +27,11 @@ export default function ProfileBuilder({ catalogue, onUse }) {
   const [cvNote, setCvNote] = useState("");
 
   useEffect(() => {
-    if (!open || allSkills) return;
+    if (allSkills) return;
     api.skills()
       .then((r) => setAllSkills(asList(r).map((s) => ({ skill_id: s.skill_id ?? s.id, name: s.name ?? s.skill_name }))))
       .catch(() => setAllSkills([]));
-  }, [open, allSkills]);
+  }, [allSkills]);
 
   const byJob = useMemo(() => {
     const free = catalogue.filter((c) => !tasks.some((t) => t.task_id === c.task_id));
@@ -95,32 +94,10 @@ export default function ProfileBuilder({ catalogue, onUse }) {
     };
     onUse(person);
     setName(""); setTitle(""); setTasks([]); setSkills([]); setQ(""); setCvText(""); setCvFound(null); setCvNote("");
-    setOpen(false);
   }
-
-  if (!open)
-    return (
-      <button className="builder-open" onClick={() => setOpen(true)}>
-        <span className="bo-plus" aria-hidden="true">+</span>
-        <span className="bo-text">
-          <b>Build your own profile</b>
-          <span className="bo-sub">Add your tasks, paste a made-up CV and see your own forecast</span>
-          <span className="bo-steps" aria-hidden="true">
-            <i>1. Pick your tasks</i><i>2. Paste a CV</i><i>3. See your forecast</i>
-          </span>
-        </span>
-        <span className="bo-go">Start →</span>
-      </button>
-    );
 
   return (
     <section className="card builder">
-      <div className="builder-head">
-        <h2>Build your own profile</h2>
-        <button className="link-btn" onClick={() => setOpen(false)}>Close</button>
-      </div>
-      <p className="muted">Use made-up details, not real personal data. Nothing leaves this demo.</p>
-
       <div className="b-row">
         <label>Name<input value={name} onChange={(e) => setName(e.target.value)} placeholder="e.g. Mei" /></label>
         <label>Job title<input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="e.g. Admin executive" /></label>
@@ -223,7 +200,7 @@ export default function ProfileBuilder({ catalogue, onUse }) {
         </>
       )}
 
-      <button className="btn-blue use-btn" disabled={!ready} onClick={submit}>Use this profile →</button>
+      <button className="btn-blue use-btn" disabled={!ready} onClick={submit}>See my profile →</button>
       {!ready && <p className="muted">Add a name and at least one task with hours.</p>}
     </section>
   );

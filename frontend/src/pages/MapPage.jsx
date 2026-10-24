@@ -7,7 +7,6 @@ import Receipt from "../components/Receipt.jsx";
 import SdgTags from "../components/SdgTags.jsx";
 import MentorCard from "../components/MentorCard.jsx";
 import Skeleton from "../components/Skeleton.jsx";
-import PageContext from "../components/PageContext.jsx";
 
 const YEARS = Array.from({ length: 10 }, (_, i) => 2026 + i);
 const WEATHER = { rising: "☀️ Rising", steady: "⛅ Steady", declining: "🌧️ Declining" };
@@ -152,10 +151,8 @@ export default function MapPage() {
 
   return (
     <>
-      <PageContext step={3} />
       <div className="hero-row">
         <div>
-          <p className="eyebrow">{person.name} · {SCENARIO_LABEL[scenario]} scenario</p>
           <h1 className="hero">Future jobs that fit {person.name}</h1>
         </div>
         <div className="map-controls">

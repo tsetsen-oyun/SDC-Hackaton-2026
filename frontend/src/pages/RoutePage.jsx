@@ -5,7 +5,6 @@ import { api } from "../api.js";
 import Receipt from "../components/Receipt.jsx";
 import SdgTags from "../components/SdgTags.jsx";
 import Skeleton from "../components/Skeleton.jsx";
-import PageContext from "../components/PageContext.jsx";
 import { personTasks, toPayload } from "../utils.js";
 
 const HRD = { yes: "Yes", no: "No", check: "Check with provider", true: "Yes", false: "No" };
@@ -51,8 +50,6 @@ export default function RoutePage() {
 
   return (
     <>
-      <PageContext step={4} />
-      <p className="eyebrow">{person.name}'s route to</p>
       <h1 className="hero">{data.title ?? chosenJob.title}</h1>
       {data.total_weeks != null && (
         <p className="lead muted">

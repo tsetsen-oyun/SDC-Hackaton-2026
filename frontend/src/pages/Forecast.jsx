@@ -2,11 +2,10 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useApp } from "../context/AppContext.jsx";
 import { api } from "../api.js";
-import { personTasks, toPayload, rangeLabel, SCENARIO_LABEL } from "../utils.js";
+import { personTasks, toPayload, rangeLabel } from "../utils.js";
 import WeekBar from "../components/WeekBar.jsx";
 import Receipt from "../components/Receipt.jsx";
 import Skeleton from "../components/Skeleton.jsx";
-import PageContext from "../components/PageContext.jsx";
 
 const FIRST = 2026, LAST = 2035;
 const YEARS = Array.from({ length: LAST - FIRST + 1 }, (_, i) => FIRST + i);
@@ -86,38 +85,34 @@ export default function Forecast() {
 
   return (
     <>
-      <PageContext step={2} />
       <div className="hero-row">
         <div>
-          <p className="eyebrow">
-            {person.name} · {person.title}
-            {hasHours && ` · ${totalHours} hours a week`}
-          </p>
           <h1 className="hero">
             {hasHours ? `${person.name}'s week in ` : `${person.target_job ?? "This job"} in `}
             <span className="accent">{year}</span>
           </h1>
         </div>
-        <div
-          className="year-slider glass-widget"
-          style={{ "--fill": ((year - FIRST) / (LAST - FIRST)) * 100 + "%" }}
-        >
-          <div className="year-head">
-            <span className="mono">Year</span>
-            <b>{year}</b>
-          </div>
-          <input
-            type="range" min={FIRST} max={LAST} step="1" value={year}
-            aria-label="Year"
-            onChange={(e) => setYear(Number(e.target.value))}
-          />
-          <div className="year-labels">
-            {YEARS.map((y) => (
-              <span key={y} className={y === year ? "on" : ""}>
-                {y === FIRST || y === LAST ? y : String(y).slice(2)}
-              </span>
-            ))}
-          </div>
+      </div>
+
+      <div
+        className="year-slider"
+        style={{ "--fill": ((year - FIRST) / (LAST - FIRST)) * 100 + "%" }}
+      >
+        <div className="year-head">
+          <span className="mono">Year</span>
+          <b>{year}</b>
+        </div>
+        <input
+          type="range" min={FIRST} max={LAST} step="1" value={year}
+          aria-label="Year"
+          onChange={(e) => setYear(Number(e.target.value))}
+        />
+        <div className="year-labels">
+          {YEARS.map((y) => (
+            <span key={y} className={y === year ? "on" : ""}>
+              {y === FIRST || y === LAST ? y : String(y).slice(2)}
+            </span>
+          ))}
         </div>
       </div>
 
@@ -140,7 +135,7 @@ export default function Forecast() {
                 By {year}, AI could do <b>{yearData.ai_hours} of {totalHours} hours</b> of {person.name}'s week.
               </p>
               <p>
-                That's about {Math.round(yearData.share_ai * 100)}% under the {SCENARIO_LABEL[scenario]} scenario. <b>Estimate.</b>
+                That's about {Math.round(yearData.share_ai * 100)}%.
                 {yearData.no_data_hours > 0 &&
                   ` ${yearData.no_data_hours} h have no AI date, so we count them as still human.`}
               </p>

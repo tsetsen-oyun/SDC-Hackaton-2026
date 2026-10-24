@@ -632,3 +632,93 @@ button { font-family: inherit; }
 
 /* Build your own profile: light blue border, more see-through */
 .builder-open { opacity: 0.65; border: 1px solid #b9d4ff; }
+
+/* people picker sits in the page, right under the headline */
+.dock-wrap.inline { position: static; transform: none; max-width: 100%; margin: 0 auto 28px; }
+.dock-wrap.inline .dock { max-width: 100%; }
+@media (max-width: 900px) { .dock-wrap.inline { bottom: auto; } }
+
+/* people picker: same width as the cards around it */
+.dock-wrap.inline { width: 100%; align-items: stretch; margin: 0 0 28px; }
+.dock-wrap.inline .dock-labels { justify-content: center; }
+.dock-wrap.inline .dock { width: 100%; box-sizing: border-box; }
+.dock-wrap.inline .tile-wrap { flex: 1 1 0; min-width: 0; }
+.dock-wrap.inline .people-dock .dock-tile, .dock-wrap.inline .people-dock .dock-tile.on { width: 100%; }
+
+/* people picker: the title sits inside the grey box, in the same type as "Build your own profile" */
+.dock-wrap.inline .people-dock { flex-direction: column; align-items: stretch; gap: 14px; padding: 18px 20px 20px; overflow: visible; }
+.dock-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.dock-title { margin: 0; font-family: "Bricolage Grotesque", system-ui, sans-serif; font-size: 22px; font-weight: 700; letter-spacing: -0.4px; color: var(--ink); }
+.dock-restore { padding: 4px 12px; border-radius: 999px; border: 0; background: rgba(255, 255, 255, 0.8); }
+.dock-tiles { display: flex; gap: 10px; overflow-x: auto; scrollbar-width: none; }
+.dock-tiles::-webkit-scrollbar { display: none; }
+.dock-wrap.inline .dock-tiles .tile-wrap { flex: 1 1 0; min-width: 190px; }
+
+/* people picker: white box; tiles get a soft outline so they still read against it */
+.dock-wrap.inline .dock, .dock-wrap.inline .people-dock { background: #fff; }
+.dock-wrap.inline .people-dock .dock-tile { background: #fff; border: 1px solid rgba(60, 80, 140, 0.18); }
+.dock-wrap.inline .people-dock .dock-tile:hover { background: #f4f6fb; }
+.dock-wrap.inline .people-dock .dock-tile.on { border-color: var(--blue); box-shadow: 0 6px 16px rgba(47, 69, 212, 0.18); }
+.dock-wrap.inline .dock-restore { background: #eef1f8; }
+
+/* people picker: no shadow on the selected tile (the scroll area was clipping it into a hard-edged box) */
+.dock-wrap.inline .people-dock .dock-tile, .dock-wrap.inline .people-dock .dock-tile.on { box-shadow: none; }
+
+/* dropdowns: room on the right for the arrow */
+select { -webkit-appearance: none; appearance: none; padding-right: 40px !important;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9' fill='none' stroke='%232d3139' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M1.5 1.5l5.5 5.5 5.5-5.5'/></svg>");
+  background-repeat: no-repeat; background-position: right 16px center; background-size: 14px 9px; }
+
+/* the arrow was being wiped by the background shorthand on specific selects, so force it */
+select, .add-row select, .map-controls select {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9' fill='none' stroke='%232d3139' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M1.5 1.5l5.5 5.5 5.5-5.5'/></svg>") !important;
+  background-repeat: no-repeat !important; background-position: right 16px center !important; background-size: 14px 9px !important; }
+
+/* people picker: selected = soft tint + a check mark (no loud border); same size as the others */
+.dock-wrap.inline .people-dock .dock-tile.on { background: #eaeffd; border-color: rgba(60, 80, 140, 0.18); padding: 12px 14px 11px; position: relative; }
+.dock-wrap.inline .people-dock .dock-tile.on::after { content: "✓"; position: absolute; top: 12px; right: 14px; display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: #2f45d4; color: #fff; font-size: 14px; font-weight: 700; line-height: 1; }
+.dock-wrap.inline .people-dock .tile-x { right: 44px; }
+
+/* people picker: no check mark, the tint alone marks the selected person */
+.dock-wrap.inline .people-dock .dock-tile.on::after { content: none; }
+.dock-wrap.inline .people-dock .tile-x { right: 6px; }
+
+/* You page: task names in the week list are a bit smaller */
+.split-list .simple-row { font-size: 15px; }
+.split-list .simple-row .split-name { font-size: 15px; }
+
+/* ---------- Manual page ---------- */
+.manual { gap: 22px; }
+.manual h2 { margin: 0 0 10px; font-size: 22px; letter-spacing: -0.4px; font-weight: 700; }
+.manual p { margin: 0 0 10px; line-height: 1.55; }
+.manual-steps { margin: 12px 0 0; padding: 0; list-style: none; counter-reset: m; display: grid; gap: 14px; }
+.manual-steps li { counter-increment: m; position: relative; display: grid; gap: 2px; padding-left: 44px; line-height: 1.5; }
+.manual-steps li::before { content: counter(m); position: absolute; left: 0; top: 0; display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--dark); color: #fff; font-weight: 700; font-size: 14px; }
+.manual-steps li b { font-size: 16px; }
+.manual-terms { margin: 14px 0 0; display: grid; gap: 14px; }
+.manual-terms > div { display: grid; grid-template-columns: 130px minmax(0, 1fr); gap: 4px 16px; align-items: baseline; }
+.manual-terms dt { font-weight: 700; }
+.manual-terms dd { margin: 0; line-height: 1.5; }
+.manual-note { font-size: 14px; margin-top: 14px !important; }
+@media (max-width: 700px) { .manual-terms > div { grid-template-columns: 1fr; } }
+
+/* ---------- one look for every page title and the line under it ---------- */
+.hero { font-size: 44px; line-height: 1.08; letter-spacing: -1.4px; margin: 0; }
+.hero-row { align-items: flex-start; gap: 24px 28px; }   /* title sits at the top, level with the slider (no gap above it) */
+.lead, .note { font-size: 18px; line-height: 1.5; color: var(--ink-soft); margin: 12px 0 28px; max-width: 720px; }
+.lead { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
+@media (max-width: 900px) { .hero { font-size: 34px; letter-spacing: -1px; } .lead, .note { font-size: 16px; } }
+
+/* Forecast: the year slider sits under the title, full width, no white card */
+.year-slider { flex: none; width: 100%; min-width: 0; margin: 4px 0 22px; padding: 0; background: none; border: 0; box-shadow: none; backdrop-filter: none; -webkit-backdrop-filter: none; }
+
+/* Forecast: more room above and below the year slider */
+.year-slider { margin: 28px 0 36px; }
+
+/* "Build your own profile" is a button at the top right of the people picker */
+.dock-head-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.dock-create { display: inline-flex; align-items: center; gap: 10px; padding: 11px 22px; border-radius: 999px; font-size: 15px; font-weight: 600; color: var(--ink); text-decoration: none;
+  background: linear-gradient(110deg, #f6f3f6, #eef6ee 55%, #ecf0f8); border: 1px solid rgba(60, 80, 140, 0.16); }
+.dock-create span { font-size: 22px; font-weight: 300; line-height: 1; }
+.dock-create:hover { background: linear-gradient(110deg, #fff, #f1f9f1 55%, #f0f4fb); }
+.dock-wrap.inline .dock-head { align-items: center; }

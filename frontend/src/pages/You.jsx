@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { createPortal } from "react-dom";
 import { useEffect, useRef, useState } from "react";
 import { useApp } from "../context/AppContext.jsx";
 import { personTasks } from "../utils.js";
@@ -8,7 +7,7 @@ import Receipt from "../components/Receipt.jsx";
 import { api } from "../api.js";
 import Skeleton from "../components/Skeleton.jsx";
 import PeopleDock from "../components/PeopleDock.jsx";
-import ProfileBuilder, { loadCustoms, saveCustoms } from "../components/ProfileBuilder.jsx";
+import { loadCustoms, saveCustoms } from "../components/ProfileBuilder.jsx";
 
 const STAT_SOURCE = { label: "ISIS Malaysia & World Bank", date: "2025", isEstimate: false };
 
@@ -145,9 +144,13 @@ export default function You() {
     <>
       <StatHero />
 
-      <ProfileBuilder
-        catalogue={catalogue}
-        onUse={(p) => { const next = [...customs, p]; setCustoms(next); saveCustoms(next); pick(p); }}
+      <PeopleDock
+        people={people}
+        activeId={person.id ?? person.name}
+        onPick={pick}
+        onDelete={removePerson}
+        hiddenCount={hidden.length}
+        onRestore={restoreSamples}
       />
 
       <section className="card week">
@@ -159,7 +162,6 @@ export default function You() {
             onRemove={remove}
             footer={
               <div className="edit-bar">
-                <p className="muted">You're in control: change hours, remove a task or add one. Everything else updates.</p>
                 {undo && (
                   <div className="undo-bar" role="status">
                     <span>Removed “{undo.task.name}”.</span>
@@ -207,18 +209,6 @@ export default function You() {
 
       <Link to="/forecast" className="btn-blue">See my forecast →</Link>
 
-      {/* fixed to the bottom of the screen; the app panel is blurred, so it is drawn outside it */}
-      {createPortal(
-        <PeopleDock
-          people={people}
-          activeId={person.id ?? person.name}
-          onPick={pick}
-          onDelete={removePerson}
-          hiddenCount={hidden.length}
-          onRestore={restoreSamples}
-        />,
-        document.body
-      )}
     </>
   );
 }
