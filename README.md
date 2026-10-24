@@ -252,4 +252,4 @@ Only sample and synthetic people are used. No real CVs or personal data are in t
 
 ## License
 
-[CONFIRM: licence] The template names the [Apache License 2.0](LICENSE), but `package.json` currently says ISC and the repository has no `LICENSE` file. Pick one, add the file, and make both match.
+Licensed under the Apache License 2.0. See (LICENSE)
