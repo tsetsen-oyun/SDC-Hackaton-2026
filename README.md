@@ -14,7 +14,7 @@
 | **Team Domain**        | Domain 1: Aiversecity, Future-Ready Workforce             |
 | **SDG Track (1–17)**   | SDG 8 — Decent Work and Economic Growth (with SDG 4 — Quality Education as a second goal)         |
 | **Team Leader**        | Amina Zaatir                                              |
-| **University**         | Xiamen University                                         |
+| **University**         | Xiamen University Malaysia                                |
 | **Number of Members**  | 4                                                         |
 
 ## Links
