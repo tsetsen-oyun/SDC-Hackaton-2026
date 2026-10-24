@@ -143,7 +143,7 @@ There is no `requirements.txt` because the project has no Python dependencies; N
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/tsetsen-oyun/SDG-Hackaton-2026.git
+git clone https://github.com/tsetsen-oyun/SDC-Hackaton-2026.git
 cd SDC-Hackaton-2026
 
 # 2. Install everything (root, backend and frontend)
