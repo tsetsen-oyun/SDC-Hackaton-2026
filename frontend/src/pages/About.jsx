@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useApp } from "../context/AppContext.jsx";
 import { api } from "../api.js";
 import Skeleton from "../components/Skeleton.jsx";
+import WordTitle from "../components/WordTitle.jsx";
 
 export default function About() {
   const { dataVersion } = useApp();
@@ -17,7 +18,7 @@ export default function About() {
 
   return (
     <>
-      <h1 className="hero">About the data</h1>
+      <WordTitle text="About the data" />
       <p className="lead muted">Where every number comes from, and what it can't tell you.</p>
 
       <div className="stack">

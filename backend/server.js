@@ -1,6 +1,9 @@
 
 import "dotenv/config";
 import express from "express";
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 
 const engine = await import(
   process.env.USE_MOCK ? "./mock/engine.js" : "./engine/pages.js"
@@ -33,10 +36,6 @@ const PORT = process.env.PORT || 3000;
 app.set("trust proxy", 1);
 
 app.use(express.json());
-
-app.get("/", (req, res) =>
-  res.json({ message: "Backend is working!" })
-);
 
 app.get(
   "/api/profiles",
@@ -150,6 +149,19 @@ app.use((err, req, res, next) => {
 
 // backend/server.js — add next to the other routes (uses engine.getSkills if the teammate adds it)
 app.get("/api/skills", needs("getSkills"), wrap(async (_req, res) => res.json(await engine.getSkills())));
+
+// One-server mode: if the frontend has been built (npm run build), serve it from here.
+// Same origin as /api, so no CORS. Without a build (npm run dev), Vite serves the pages instead.
+const dist = path.join(path.dirname(fileURLToPath(import.meta.url)), "../frontend/dist");
+if (fs.existsSync(path.join(dist, "index.html"))) {
+  app.use(express.static(dist));
+  // BrowserRouter paths like /forecast must open the app, not "Cannot GET". Unknown /api paths stay 404.
+  app.use((req, res, next) =>
+    req.method === "GET" && !req.path.startsWith("/api")
+      ? res.sendFile(path.join(dist, "index.html"))
+      : next()
+  );
+}
 
 app.listen(PORT, () =>
   console.log(`Server running on http://localhost:${PORT}`)

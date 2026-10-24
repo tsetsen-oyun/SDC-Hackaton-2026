@@ -879,3 +879,216 @@ select, .add-row select, .map-controls select {
 .sdg-line .sdg-tag,
 .sdg-line .badge-est { margin: 0; font-family: "DM Mono", ui-monospace, monospace; font-size: 11px; font-weight: 400; line-height: 1.3; padding: 3px 10px; white-space: nowrap; }
 .sdg-line .pill { white-space: normal; }
+
+/* Route steps: the skill name and its tag sit level with the number circle; the SDG line gets space above it */
+.step-num { flex: none; width: 48px; height: 48px; }
+.step .step-head { min-height: 48px; align-items: center; }
+.step .step-head h3 { margin: 0; }
+.step .step-body > .sdg-line { margin-top: 14px; }
+
+/* Route: the course box uses smaller type */
+.course { font-size: 13px; line-height: 1.4; }
+.course b { font-size: 14px; }
+.course a { font-size: 13px; }
+.course .receipt-btn { width: 16px; height: 16px; font-size: 10px; }
+
+/* Route: a course as a card: picture placeholder on the left, provider, title and details on the right */
+.step .course { display: flex; gap: 16px; align-items: stretch; padding: 12px; background: #fff; border: 1px solid rgba(60, 80, 140, 0.14); border-radius: 18px; font-size: 13px; }
+.course-img { flex: none; display: grid; place-items: center; width: 96px; min-height: 96px; border-radius: 12px; color: rgba(255, 255, 255, 0.9); background: linear-gradient(145deg, #9db0cf 0%, #6f86b3 100%); }
+.course-main { min-width: 0; display: flex; flex-direction: column; gap: 6px; justify-content: center; }
+.course-provider { display: flex; align-items: center; gap: 8px; color: var(--ink-soft); font-size: 14px; }
+.course-logo { display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 6px; border: 1px solid rgba(60, 80, 140, 0.25); font-size: 12px; font-weight: 700; color: var(--ink-soft); }
+.step .course .course-title { font-size: 16px; font-weight: 700; line-height: 1.3; color: var(--ink); text-decoration: none; }
+.step .course a.course-title:hover { text-decoration: underline; }
+.course-meta { font-size: 13px; color: var(--ink-soft); line-height: 1.4; }
+@media (max-width: 520px) { .course-img { width: 64px; min-height: 64px; } }
+
+/* Map: every line in a job card starts where the outlook tag's emoji starts (the tag's 14px side padding) */
+.job > .meter, .job > .missing, .job > .sdg-list { margin-left: 14px; margin-right: 14px; }
+.job > .btn-blue { margin-left: 14px; }
+
+/* Map: the "Missing" skills text is justified */
+.job > .missing { text-align: justify; text-justify: inter-word; hyphens: auto; }
+.job > .missing .link-btn { vertical-align: baseline; line-height: inherit; }
+
+/* Map: Related and Missing are two lines with a little space between them */
+.job > .missing + .missing { margin-top: -6px; }
+
+/* Map: the related skills are green */
+.job > .missing.related .skill-names { color: #1e7b45; font-weight: 600; }
+
+/* Map: the outlook / skills line uses the same font family as the SDG line (DM Mono) */
+.job-meta, .job-meta .outlook, .job-meta b { font-family: "DM Mono", ui-monospace, monospace; }
+
+/* Map SDG line: the "+ SDG 8. Name" text uses the same font family as the outlook / skills line (tags stay as they are) */
+.sdg-list .sdg-sign,
+.sdg-list .sdg-name,
+.sdg-list .sdg-name b { font-family: inherit; }
+
+/* Map job card: everything uses the same font as the Missing skills line */
+.job .job-meta, .job .job-meta .outlook, .job .job-meta b,
+.job .missing, .job .missing .link-btn,
+.job .sdg-list .sdg-sign, .job .sdg-list .sdg-name, .job .sdg-list .sdg-name b,
+.job .sdg-list .receipt-btn, .job .sdg-list .sdg-tag, .job .sdg-list .badge-est,
+.job .receipt-btn { font-family: "Bricolage Grotesque", system-ui, sans-serif; }
+
+/* Route: the SDG pill and tags use the same font as the Missing skills line on Map */
+.sdg-line .pill, .sdg-line .sdg-tag, .sdg-line .badge-est { font-family: "Bricolage Grotesque", system-ui, sans-serif; }
+
+/* Map SDG line: the name is an outlined pill (like the Route one); hover shows the reason */
+.sdg-list .sdg-pill { font-family: "Bricolage Grotesque", system-ui, sans-serif; font-size: 15px; font-weight: 600; line-height: 1.3; padding: 6px 18px; border-width: 2px; white-space: normal; text-align: left; cursor: help; }
+.sdg-list .sdg-pill:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+.sdg-list .debit .sdg-pill { border-color: var(--coral-ink); color: var(--coral-ink); }
+
+/* Map SDG line: the +/− sits inside the pill, and the pill and both tags share one size */
+.sdg-list li { grid-template-columns: none; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; }
+.sdg-list .sdg-pill .sdg-sign { width: auto; margin-right: 2px; font-size: inherit; font-weight: 700; font-family: inherit; }
+.sdg-list .debit .sdg-pill .sdg-sign { color: inherit; }
+.sdg-list .sdg-pill, .sdg-list .sdg-tag, .sdg-list .badge-est { font-size: 14px; line-height: 1.3; box-sizing: border-box; }
+.sdg-list .sdg-tag, .sdg-list .badge-est { padding: 7px 14px; margin: 0; font-weight: 400; }
+.sdg-list .sdg-pill { padding: 6px 16px; }
+
+/* Route: the "No course in our list yet for" box is justified */
+.no-course { text-align: justify; text-justify: inter-word; hyphens: auto; }
+
+/* Map job card: smaller type throughout */
+.job .job-top h3 { font-size: 24px; }
+.job .job-score { font-size: 14px; }
+.job .job-score b { font-size: 26px; }
+.job .job-meta, .job .job-meta .outlook, .job .job-meta b { font-size: 14px; }
+.job .missing, .job .missing .link-btn { font-size: 14px; line-height: 1.6; }
+.job .sdg-list .sdg-pill, .job .sdg-list .sdg-tag, .job .sdg-list .badge-est { font-size: 12.5px; }
+.job .sdg-list .sdg-tag, .job .sdg-list .badge-est { padding: 6px 12px; }
+.job .sdg-list .sdg-pill { padding: 5px 14px; }
+.job .btn-blue { font-size: 15px; padding: 12px 22px; }
+
+/* Map: the job title matches the "People you could swap skills with" title, with a line under it */
+.job .job-top h3 { font-size: 20px; font-weight: 700; letter-spacing: -0.3px; }
+.job .job-top { padding-bottom: 16px; margin-bottom: 18px; border-bottom: 1px solid rgba(60, 80, 140, 0.16); }
+
+/* Map: less space under the line below the job title (the card's 16px row gap already gives some) */
+.job .job-top { margin-bottom: -6px; }
+
+/* Map SDG pill: green theme, thin border */
+.job .sdg-list .sdg-pill { border-width: 1px; border-color: #1e7b45; background: #e4f4e9; color: #1e7b45; }
+.job .sdg-list .debit .sdg-pill { border-color: var(--coral-ink); background: #fdeae6; color: var(--coral-ink); }
+
+/* Swap card: each column starts with that person's own profile */
+.m-col .m-who { margin-bottom: 12px; }
+.m-avatar.me { background: var(--blue); }
+
+/* Swap card: the white background is 60% opaque (text and chips stay solid) */
+.card.mentor { background: rgba(255, 255, 255, 0.6); }
+
+/* Map job cards: the white background is 60% opaque (text stays solid) */
+.card.job { background: rgba(255, 255, 255, 0.6); }
+
+/* Swap card: back to a fully opaque white background */
+.card.mentor { background: #fff; }
+
+/* Map: one side space (28px) for everything: the title, the note, the controls and all the text inside the cards */
+.hero-row:has(.map-controls), .hero-row:has(.map-controls) + .note { padding-left: 28px; padding-right: 28px; }
+.card.job, .card.mentor { padding-left: 28px; padding-right: 28px; }
+.job > .meter, .job > .missing, .job > .sdg-list { margin-left: 0; margin-right: 0; }
+.job > .btn-blue { margin-left: 0; }
+.job .job-meta .outlook { padding-left: 0; background: transparent; }
+
+/* Map: the title, note and controls line up with the edges of the cards (no extra indent) */
+.hero-row:has(.map-controls), .hero-row:has(.map-controls) + .note { padding-left: 0; padding-right: 0; }
+
+/* Smaller corner radius on every white rounded box */
+.card, .card-dark, .glass-widget, .skel-card, .panel { border-radius: 16px; }
+.step .course, .no-course, .stop, .cv-box, .consent-box { border-radius: 12px; }
+@media (max-width: 900px) { .panel { border-radius: 16px; } }
+
+/* Choose a sample person: smaller corners on the white box, the person tiles and the Build button */
+.dock-wrap.inline, .dock-wrap.inline .dock, .people-dock { border-radius: 16px; }
+.people-dock .dock-tile, .people-dock .dock-tile.on, .dock-tile, .dock-tile.on { border-radius: 12px; }
+.dock-create { border-radius: 12px; }
+
+/* Map: "Malaysia off track" lives inside the hover box, under the reason */
+.receipt-pop .tip-tag { display: inline-block; align-self: flex-start; margin: 8px 0 0; }
+
+/* "Malaysia off track" inside the dark hover box: a coral outline that suits the dark background */
+.receipt-pop .tip-tag { width: fit-content; background: rgba(255, 111, 97, 0.18); border: 1px solid rgba(255, 157, 147, 0.7); color: #ffb3a9; font-size: 12px; padding: 3px 10px; font-weight: 600; }
+
+/* Route: the skill name in each step uses the same title style as the Map job cards (20px, bold) */
+.step .step-head h3 { font-size: 20px; font-weight: 700; letter-spacing: -0.3px; }
+
+/* Route: the number circle is centred vertically in its step card */
+.steps > .step { align-items: center; }
+.step .step-head { min-height: 0; }
+
+/* Page descriptions under the titles (Build, Map, Route, ...): smaller */
+.lead, .note { font-size: 15px; line-height: 1.5; }
+@media (max-width: 900px) { .lead, .note { font-size: 14px; } }
+
+/* Map: the related skills are back to the normal text colour */
+.job > .missing.related .skill-names { color: inherit; font-weight: inherit; }
+
+/* Route header: the Estimate tag matches the one on the Map cards (regular font, 14px) */
+.lead .badge-est { font-family: "Bricolage Grotesque", system-ui, sans-serif; font-size: 14px; font-weight: 400; line-height: 1.3; padding: 7px 14px; margin: 0; }
+
+/* Route header Estimate: a bit smaller */
+.lead .badge-est { font-size: 12px; padding: 4px 11px; }
+
+/* Route: "This path supports" and the SDG pills stay on one line (scrolls sideways if the screen is too narrow) */
+.sdg-line { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: thin; padding-bottom: 2px; }
+.sdg-line > * { flex: none; }
+.sdg-line .sdg-item { flex-wrap: nowrap; }
+.sdg-line .pill { white-space: nowrap; }
+
+/* Scenario dock: "How fast does AI improve?" only shows while a scenario is hovered (or focused) */
+nav.dock .dock-label { opacity: 0; pointer-events: none; transition: opacity 0.15s ease; }
+nav.dock:has(.dock-tile:hover) .dock-label,
+nav.dock:has(.dock-tile:focus-visible) .dock-label { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { nav.dock .dock-label { transition: none; } }
+
+/* Map: the Year drop-down is fully rounded */
+.map-controls select { border-radius: 999px; padding-left: 20px; }
+
+/* Map: "Year" and the year drop-down use the same font as Market only / Market + planet */
+.map-controls label, .map-controls select { font: inherit; font-weight: 600; }
+
+/* Map: the Year drop-down and the Market only / Market + planet toggle are the same height */
+.map-controls select, .map-controls .segmented { height: 44px; box-sizing: border-box; }
+.map-controls .segmented button { min-height: 0; height: 100%; padding-top: 0; padding-bottom: 0; }
+.map-controls select { padding-top: 0; padding-bottom: 0; }
+
+/* Map: the year slider is under the description (same as Forecast); the segmented toggle keeps its own height */
+.map-controls .segmented { height: 44px; }
+
+/* Map: title and description are centred (the toggle sits centred under the title) */
+.hero-row:has(.map-controls) { flex-direction: column; align-items: center; text-align: center; gap: 16px; }
+.hero-row:has(.map-controls) .hero { text-align: center; }
+.hero-row:has(.map-controls) + .note { text-align: center; margin-left: auto; margin-right: auto; }
+
+/* Map: the toggle is smaller and sits in the top-right corner; the title stays centred */
+.hero-row:has(.map-controls) { position: relative; }
+.hero-row:has(.map-controls) .map-controls { position: absolute; top: 0; right: 0; }
+.map-controls .segmented { height: 34px; }
+.map-controls .segmented button { font-size: 13px; padding: 0 14px; }
+@media (max-width: 1100px) {
+  .hero-row:has(.map-controls) .map-controls { position: static; }
+}
+
+/* Every page title has the same space above it as the You headline (8px under the page padding) */
+h1.hero { margin-top: 8px; }
+.hero-row, .hero-row:not(:has(.map-controls)) { padding-top: 0; }
+.hero-row:has(.map-controls) .map-controls { top: 8px; }
+
+/* All page titles (and the description under them) are centred */
+h1.hero, .hero-row .hero { text-align: center; }
+.hero-row { justify-content: center; text-align: center; }
+.lead, .note { text-align: center; margin-left: auto; margin-right: auto; justify-content: center; }
+
+/* Logo: the mark (a bundle that has come apart) and the name */
+.logo { display: inline-flex; align-items: center; gap: 10px; }
+.logo svg { flex: none; display: block; }
+
+/* Logo: the favicon image, round, next to the name */
+.logo img { flex: none; display: block; width: 34px; height: 34px; border-radius: 50%; }
+
+/* Sidebar: the selected page's text and icon are light blue */
+.nav-item.on { color: #5b8cff; }
+.nav-item.on svg { color: #5b8cff; }

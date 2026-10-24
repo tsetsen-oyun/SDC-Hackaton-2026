@@ -22,10 +22,10 @@
 | Resource          | Link                                                                 |
 | ----------------- | -------------------------------------------------------------------- |
 | GitHub Repository | https://github.com/tsetsen-oyun/SDC-Hackaton-2026                    |
-| Replit Project    | [CONFIRM: Replit link, or remove if not used]                        |
-| Live Demo         | [CONFIRM: live URL, once deployed]                                   |
+| Replit Project    | https://unbundle.replit.app/                      |
+| Live Demo         | https://unbundle.replit.app/                                |
 | RunPod Endpoint   | Runpod public endpoint, Qwen3-32B-AWQ (offline SDG drafting + optional free-text intake)) |
-| Slide Deck        | [CONFIRM: slide deck link]                                           |
+| Slide Deck        | https://drive.google.com/drive/folders/1zW5P7GUSPqTIIrvDHGhwADO5T9NUOT9G?usp=sharing                                          |
 | Demo Video        | [CONFIRM: demo video link]                                           |
 
 ---
@@ -60,7 +60,7 @@ AI is used in two places, and both are disclosed. Task timing builds on publishe
 | Backend       | Node.js 22, Express 5                                             |
 | Database      | None. Versioned CSV data snapshots kept in Git (`data/snapshots/`) |
 | AI / Compute  | Qwen3-32B-AWQ on Runpod (offline, one-off drafting of SDG links); RunPod-hosted model for optional free-text intake (checked, with keyword fallback) |
-| Hosting / Dev | [CONFIRM: Replit or other host]                                   |
+| Hosting / Dev | https://unbundle.replit.app/                                  |
 
 ---
 
@@ -131,9 +131,9 @@ Offline, one-off:  public sources ──► cleaned CSVs ──► Qwen3-32B (Ru
 You need **Node.js 22**.
 There is no `requirements.txt` because the project has no Python dependencies; Node installs everything from `package.json`.
 
-### Option 1 — Run on Replit
+### Option 1 — Run on Replit (https://unbundle.replit.app/)
 
-[CONFIRM: only keep this if the team deploys on Replit]
+
 
 1. Import this repository via **Create Repl → Import from GitHub**.
 2. Run `npm run install:all`, then `npm run dev`.
@@ -143,7 +143,7 @@ There is no `requirements.txt` because the project has no Python dependencies; N
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/tsetsen-oyun/SDG-Hackaton-2026.git
+git clone https://github.com/tsetsen-oyun/SDC-Hackaton-2026.git
 cd SDC-Hackaton-2026
 
 # 2. Install everything (root, backend and frontend)
@@ -176,9 +176,9 @@ This runs the 111 engine tests (`node --test backend/engine/test/*.test.js`).
 
 ## How We Use Replit *(Required)*
 
-[CONFIRM: describe how the team used Replit. Delete anything that is not true.]
+Deployment of our project "Unbundle" is on Replit Autoscale: https://unbundle.replit.app/
 
-- **Hosting:** [e.g. deployed with Replit Deployments at the Live Demo link above]
+- **Hosting:** deployed with Replit Deployments at the Live Demo link above
 - **Secrets:** RUNPOD_API_KEY is stored in Replit Secrets (optional feature). Nothing secret is committed.
   
 📄 Proof of use: [`submission/SDC2026_TeamName_Replit_POU.pdf`](submission/SDC2026_TeamName_Replit_POU.pdf)
@@ -278,7 +278,7 @@ npm run eval:intake                   # keyword matching vs the AI helper on 8 m
 | ---- | ---- | ------ |
 | Amina Zaatir | Backend | https://github.com/AminaZa |
 | Tsetsen-Oyun Zolbayar| Frontend | https://github.com/tsetsen-oyun |
-| Seidir Dariga | Data cleaning and snapshots | [CONFIRM] |
+| Seidir Dariga | Data cleaning and snapshots | https://github.com/dariga12 |
 | Tleubay Almaz | Coordinator, documentation | https://github.com/almvvz |
 
 ---
@@ -288,7 +288,7 @@ npm run eval:intake                   # keyword matching vs the AI helper on 8 m
 - [ ] Team name, domain (Domain 1) and SDG track filled in
 - [ ] Slide deck link added
 - [ ] Demo video link added
-- [ ] Replit used, with proof of use in `submission/` [CONFIRM: is Replit required for our entry?]
+- [ ] Replit used, with proof of use in `submission/` 
 - [ ] RunPod used, with proof of use in `submission/`
 - [ ] Preliminary submission completed (`SDC2026_TeamName_Preliminary.pdf`)
 - [ ] Technology declaration completed (`SDC2026_TeamName_TechDeclaration.pdf`)

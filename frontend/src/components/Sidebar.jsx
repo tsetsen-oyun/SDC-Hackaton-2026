@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useApp } from "../context/AppContext.jsx";
 import { api } from "../api.js";
+import Logo from "./Logo.jsx";
 
 // small inline icons so we don't need an icon library
 const ICONS = {
@@ -88,7 +89,7 @@ export default function Sidebar({ collapsed, onToggle }) {
           </svg>
         </button>
         <div className="brand">
-          <span className="label">Unbundle</span>
+          <Logo />
         </div>
       </div>
 
