@@ -8,6 +8,7 @@ import SdgTags from "../components/SdgTags.jsx";
 import SdgBadge from "../components/SdgBadge.jsx";
 import MentorCard from "../components/MentorCard.jsx";
 import Skeleton from "../components/Skeleton.jsx";
+import WordTitle from "../components/WordTitle.jsx";
 
 const YEARS = Array.from({ length: 10 }, (_, i) => 2026 + i);
 const WEATHER = { rising: "☀️ Rising", steady: "⛅ Steady", declining: "🌧️ Declining" };
@@ -28,15 +29,31 @@ function RankShift({ job }) {
   );
 }
 
-function JobCard({ job, rank, mode, onChoose, was }) {
+// A line of skill names, five at first, with a "+N more" toggle.
+function SkillLine({ label, hint, list, tone }) {
   const [showAll, setShowAll] = useState(false);
+  if (list.length === 0) return null;
+  const shown = showAll ? list : list.slice(0, SHOW_MISSING);
+  return (
+    <p className={"missing" + (tone ? " " + tone : "")}>
+      <span className="muted">{label}</span> <span className="skill-names">{shown.map(skillName).join(", ")}</span>{" "}
+      {list.length > SHOW_MISSING && (
+        <button className="link-btn" onClick={() => setShowAll(!showAll)}>
+          {showAll ? "show less" : `+${list.length - SHOW_MISSING} more`}
+        </button>
+      )}
+      {hint && <Receipt>{hint}</Receipt>}
+    </p>
+  );
+}
+
+function JobCard({ job, rank, mode, onChoose, was }) {
   const total = job.skills_total || 1; // avoids dividing by zero
   const have = job.skills_have ?? 0;
   const related = job.skills_related ?? 0;
   const pctHave = Math.round((have / total) * 100);
   const pctRelated = Math.min(100 - pctHave, Math.round((related / total) * 100));
   const missing = job.missing ?? [];
-  const shown = showAll ? missing : missing.slice(0, SHOW_MISSING);
   const hint = OUTLOOK_HINT[job.outlook_trend];
   const b = job.breakdown ?? {};
 
@@ -75,23 +92,15 @@ function JobCard({ job, rank, mode, onChoose, was }) {
         <span className="related" style={{ width: pctRelated + "%" }} />
       </div>
 
-      {missing.length > 0 && (
-        <p className="missing">
-          <span className="muted">Missing:</span> {shown.map(skillName).join(", ")}{" "}
-          {missing.length > SHOW_MISSING && (
-            <button className="link-btn" onClick={() => setShowAll(!showAll)}>
-              {showAll ? "show less" : `+${missing.length - SHOW_MISSING} more`}
-            </button>
-          )}
-        </p>
-      )}
+      {/* the engine lists the related skills first, then the ones with nothing close */}
+      <SkillLine tone="related" label="Related:" hint="You have something close to each of these, so they're the quickest to learn." list={missing.slice(0, related)} />
+      <SkillLine label="Missing:" list={missing.slice(related)} />
 
       <ul className="sdg-list">
         {(job.sdg ?? []).map((s) => (
           <li key={s.target + s.label} className={s.effect < 0 ? "debit" : "credit"}>
-            <b className="sdg-sign" aria-hidden="true">{s.effect < 0 ? "−" : "+"}</b>
-            <SdgBadge target={s.target} label={s.label} reason={s.reason}>
-              <SdgTags s={s} />
+            <SdgBadge target={s.target} label={s.label} reason={s.reason} effect={s.effect} offTrack={s.malaysia_off_track}>
+              <SdgTags s={s} hideOffTrack />
             </SdgBadge>
           </li>
         ))}
@@ -155,15 +164,9 @@ export default function MapPage() {
     <>
       <div className="hero-row">
         <div>
-          <h1 className="hero">Future jobs that fit {person.name}</h1>
+          <WordTitle text={`Future jobs that fit ${person.name}`} />
         </div>
         <div className="map-controls">
-          <label className="muted">
-            Year
-            <select value={year} onChange={(e) => setYear(Number(e.target.value))}>
-              {YEARS.map((y) => <option key={y} value={y}>{y}</option>)}
-            </select>
-          </label>
           <div className="segmented">
             <button className={mode === "market" ? "on" : ""} onClick={() => setMode("market")}>Market only</button>
             <button className={mode === "marketPlanet" ? "on" : ""} onClick={() => setMode("marketPlanet")}>Market + planet</button>
@@ -177,6 +180,25 @@ export default function MapPage() {
           : "Ranked by how well each job fits your tasks, skills and outlook."}{" "}
         These are suggestions to help you decide. You make the final call.
       </p>
+
+      <div className="year-slider" style={{ "--fill": ((year - YEARS[0]) / (YEARS[YEARS.length - 1] - YEARS[0])) * 100 + "%" }}>
+        <div className="year-head">
+          <span className="mono">Year</span>
+          <b>{year}</b>
+        </div>
+        <input
+          type="range" min={YEARS[0]} max={YEARS[YEARS.length - 1]} step="1" value={year}
+          aria-label="Year"
+          onChange={(e) => setYear(Number(e.target.value))}
+        />
+        <div className="year-labels">
+          {YEARS.map((y) => (
+            <span key={y} className={y === year ? "on" : ""}>
+              {y === YEARS[0] || y === YEARS[YEARS.length - 1] ? y : String(y).slice(2)}
+            </span>
+          ))}
+        </div>
+      </div>
 
       {before && (
         <div className="refresh-banner" role="status">

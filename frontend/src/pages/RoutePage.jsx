@@ -6,6 +6,7 @@ import Receipt from "../components/Receipt.jsx";
 import SdgTags from "../components/SdgTags.jsx";
 import Skeleton from "../components/Skeleton.jsx";
 import { personTasks, toPayload } from "../utils.js";
+import WordTitle from "../components/WordTitle.jsx";
 
 const HRD = { yes: "Yes", no: "No", check: "Check with provider", true: "Yes", false: "No" };
 
@@ -45,12 +46,11 @@ export default function RoutePage() {
   const steps = data.steps ?? [];
   const stops = data.stop_investing_by_year?.[year] ?? [];
   const noHours = Array.isArray(data.courses_without_hours) ? data.courses_without_hours.length : data.courses_without_hours ?? 0;
-  const supports = (data.sdg ?? []).filter((s) => s.effect > 0);
   const tradeoffs = (data.sdg ?? []).filter((s) => s.effect < 0);
 
   return (
     <>
-      <h1 className="hero">{data.title ?? chosenJob.title}</h1>
+      <WordTitle text={data.title ?? chosenJob.title} />
       {data.total_weeks != null && (
         <p className="lead muted">
           Total: about {data.total_weeks} weeks, part-time
@@ -82,15 +82,29 @@ export default function RoutePage() {
                   </div>
                 )}
                 <div className="course">
-                  <b>{c.title}</b>
-                  <span>{[c.provider, duration(c), c.cost].filter(Boolean).join(" · ")}</span>
-                  <span>
-                    HRD Corp claimable: {HRD[c.hrd_claimable] ?? c.hrd_claimable ?? "Not stated"}
-                    <Receipt source={s.source}>
-                      {c.checked && <span>Date checked: {c.checked}</span>}
-                    </Receipt>
-                  </span>
-                  {c.url && <a href={c.url} target="_blank" rel="noreferrer">Open course</a>}
+                  <div className="course-img" aria-hidden="true">
+                    <svg viewBox="0 0 48 48" width="40" height="40" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M4 18 24 8l20 10-20 10L4 18Z" /><path d="M12 23v10c0 3 5.4 6 12 6s12-3 12-6V23" /><path d="M44 18v12" />
+                    </svg>
+                  </div>
+                  <div className="course-main">
+                    <div className="course-provider">
+                      <span className="course-logo" aria-hidden="true">{(c.provider ?? "?").trim().charAt(0).toUpperCase()}</span>
+                      <span>{c.provider}</span>
+                    </div>
+                    {c.url ? (
+                      <a className="course-title" href={c.url} target="_blank" rel="noreferrer">{c.title}</a>
+                    ) : (
+                      <b className="course-title">{c.title}</b>
+                    )}
+                    <span className="course-meta">{[duration(c), c.cost].filter(Boolean).join(" · ")}</span>
+                    <span className="course-meta">
+                      HRD Corp claimable: {HRD[c.hrd_claimable] ?? c.hrd_claimable ?? "Not stated"}
+                      <Receipt source={s.source}>
+                        {c.checked && <span>Date checked: {c.checked}</span>}
+                      </Receipt>
+                    </span>
+                  </div>
                 </div>
               </div>
             </li>
@@ -115,24 +129,11 @@ export default function RoutePage() {
         </div>
       )}
 
-      <div className="sdg-line">
-        <span className="muted">This path supports:</span>
-        {supports.map((s) => (
-          <span key={s.target + s.label} className="sdg-item">
-            <span className="pill pill-outline">{s.target} {s.label}</span>
-            <SdgTags s={s} />
-          </span>
-        ))}
-      </div>
       {tradeoffs.length > 0 && (
         <p className="muted">
           Trade-off: {tradeoffs.map((s) => `${s.target} ${s.label}`).join(", ")}
         </p>
       )}
-
-      <div className="next-row">
-        <Link to="/map" className="link-btn">← Back to the matching jobs</Link>
-      </div>
     </>
   );
 }

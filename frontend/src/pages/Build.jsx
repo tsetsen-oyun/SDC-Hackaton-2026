@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useApp } from "../context/AppContext.jsx";
 import { api } from "../api.js";
 import ProfileBuilder, { loadCustoms, saveCustoms } from "../components/ProfileBuilder.jsx";
+import WordTitle from "../components/WordTitle.jsx";
 
 // Build your own profile: tasks, skills (or a pasted CV), then on to the You page.
 export default function Build() {
@@ -23,8 +24,8 @@ export default function Build() {
 
   return (
     <>
-      <h1 className="hero">Build your own profile</h1>
-      <p className="lead muted">Use made-up details, not real personal data. Nothing is saved. If the AI helper is on, the text in the "describe your week" box is sent to the AI service named on the About page to match it to our task list.</p>
+      <WordTitle text="Build your own profile" />
+      <p className="lead muted">Use made-up details, not real personal data. Nothing leaves this demo.</p>
       <ProfileBuilder catalogue={catalogue} onUse={use} />
     </>
   );

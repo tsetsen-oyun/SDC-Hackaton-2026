@@ -5,12 +5,12 @@ import Receipt from "./Receipt.jsx";
 
 const nm = (x) => (typeof x === "string" ? x : x?.name ?? x?.skill_name ?? String(x));
 
-function Chips({ label, list = [] }) {
+function Chips({ label, list = [], who }) {
   const more = list.length - 3;
   return (
     <div className="m-col">
-      <span className="m-label">{label}</span>
-      <div className="m-chips">
+      {who}
+      <div className="m-chips" role="group" aria-label={label}>
         {list.slice(0, 3).map((x) => <span key={nm(x)} className="m-chip">{nm(x)}</span>)}
         {list.length === 0 && <span className="muted">–</span>}
         {more > 0 && <span className="m-chip more">+{more} more</span>}
@@ -51,22 +51,28 @@ export default function MentorCard({ person, scenario, year, dataVersion }) {
       </div>
       {pairs.map(({ p, y }) => (
         <div key={p.with_name} className="mentor-pair">
-          <div className="m-who">
-            <span className="m-avatar">{String(p.with_name).charAt(0)}</span>
-            <b>{p.with_name}</b>
-            {p.you_are && <span className="m-role">you are the {p.you_are}</span>}
-            <Receipt source={p.source} />
-          </div>
           <div className="m-cols">
-            <Chips label="You bring" list={y.you_bring} />
-            <Chips label="They bring" list={y.they_bring} />
+            <Chips
+              label="You bring" list={y.you_bring}
+              who={(
+                <div className="m-who">
+                  <span className="m-avatar me">{String(person?.name ?? "You").charAt(0)}</span>
+                  <b>{person?.name ?? "You"}</b>
+                  {p.you_are && <span className="m-role">you are the {p.you_are}</span>}
+                </div>
+              )}
+            />
+            <Chips
+              label="They bring" list={y.they_bring}
+              who={(
+                <div className="m-who">
+                  <span className="m-avatar">{String(p.with_name).charAt(0)}</span>
+                  <b>{p.with_name}</b>
+                  <Receipt source={p.source} />
+                </div>
+              )}
+            />
           </div>
-          {y.senior_next_job && (
-            <div className="m-next">
-              <span className="m-label">{p.you_are === "senior" ? "Your next job could be" : "Their next job could be"}</span>
-              <b>{y.senior_next_job}</b>
-            </div>
-          )}
         </div>
       ))}
       {consent && (
