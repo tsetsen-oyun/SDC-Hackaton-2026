@@ -40,7 +40,7 @@ About **45%** of Malaysian workers have at least 40% of their tasks that today's
 
 Unbundle takes a person's real week of tasks and splits it into the parts AI could take over and the parts that stay human. It then maps the future jobs that fit what is left, and the courses that close the skill gap. The forecast covers 2026–2035 under three AI-adoption scenarios, and every number links to its source, its date and whether it is an estimate.
 
-AI is used in two places, and both are disclosed. Task timing builds on published AI-capability research (METR) and exposure data (Anthropic Economic Index, O\*NET). A language model (Qwen3-32B-AWQ) drafted the job-to-SDG links once, offline; these are labelled "Estimate" until a person reviews them. The running app has one optional AI feature: free-text intake on the Build page, which uses a Groq-hosted model to suggest tasks and skills from a person's own words (see *AI-Assisted Free-Text Intake* below). It never writes forecasts, scores, jobs or courses. The app's only other outside call is the Refresh button fetching METR's published AI-progress data (see *Live Trend Data* below).
+AI is used in two places, and both are disclosed. Task timing builds on published AI-capability research (METR) and exposure data (Anthropic Economic Index, O\*NET). A language model (Qwen3-32B-AWQ) drafted the job-to-SDG links once, offline; these are labelled "Estimate" until a person reviews them. The running app has one optional AI feature: free-text intake on the Build page, which uses a hosted model (Groq, or Qwen3-32B on our RunPod endpoint) to suggest tasks and skills from a person's own words (see *AI-Assisted Free-Text Intake* below). It never writes forecasts, scores, jobs or courses. The app's only other outside call is the Refresh button fetching METR's published AI-progress data (see *Live Trend Data* below).
 
 ### Key Features
 
@@ -59,7 +59,7 @@ AI is used in two places, and both are disclosed. Task timing builds on publishe
 | Frontend      | React 19, Vite, React Router                                      |
 | Backend       | Node.js 22, Express 5                                             |
 | Database      | None. Versioned CSV data snapshots kept in Git (`data/snapshots/`) |
-| AI / Compute  | Qwen3-32B-AWQ on Runpod (offline, one-off drafting of SDG links); Groq-hosted model for optional free-text intake (checked, with keyword fallback) |
+| AI / Compute  | Qwen3-32B-AWQ on Runpod (offline, one-off drafting of SDG links); Groq or RunPod-hosted model for optional free-text intake (checked, with keyword fallback) |
 | Hosting / Dev | [CONFIRM: Replit or other host]                                   |
 
 ---
@@ -112,7 +112,7 @@ Offline, one-off:  public sources ──► cleaned CSVs ──► Qwen3-32B (Ru
 | `POST /api/match` | Tasks + skills → ranked jobs (market and planet ranks) |
 | `POST /api/route` | Job + skills → courses, labels by year, SDG links |
 | `POST /api/mentor` | Who could swap skills with you |
-| `POST /api/intake` | Free text about your week → suggested tasks and skills from our own lists (Groq if a key is set, keyword matching otherwise) |
+| `POST /api/intake` | Free text about your week → suggested tasks and skills from our own lists (a hosted model if a key is set, keyword matching otherwise) |
 | `GET /api/tasks` | Every task we know, for "add a task" |
 | `GET /api/skills` | Every skill we know, for the profile builder and CV finder |
 | `GET /api/sources` | Where every number comes from |
@@ -228,12 +228,14 @@ On the Build page a person can describe their week in their own words ("I record
 4. **The person decides.** Suggestions are chips; nothing joins the profile until they click it.
 5. **It fails safe.** If there is no key, Groq is slow, rate-limited or returns rubbish, the app falls back to keyword matching and says so. Limits: 8 requests a minute per visitor, a daily cap (`INTAKE_DAILY_CAP`), 3,000 characters, and repeated texts are answered from memory.
 
-The text is not saved or logged. It is sent to Groq only when `GROQ_API_KEY` is set. Please use made-up descriptions, not real personal details.
+The text is not saved or logged. It is sent to the model only when a key is set (`GROQ_API_KEY` or `RUNPOD_API_KEY`). Please use made-up descriptions, not real personal details.
 
 ```bash
 # backend/.env  (never committed; on Replit use Secrets)
-GROQ_API_KEY=...
-GROQ_MODEL=llama-3.3-70b-versatile   # check console.groq.com/docs/models for current names
+GROQ_API_KEY=...                      # Groq, or:
+RUNPOD_API_KEY=...                    # our RunPod endpoint (Qwen/Qwen3-32B-AWQ, OpenAI-compatible)
+INTAKE_PROVIDER=runpod                # optional: force one when both keys are set
+GROQ_MODEL=llama-3.3-70b-versatile    # check console.groq.com/docs/models for current names
 npm run eval:intake                   # keyword matching vs the AI helper on 8 made-up cases
 ```
 

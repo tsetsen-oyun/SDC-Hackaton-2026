@@ -148,7 +148,7 @@ export default function ProfileBuilder({ catalogue, onUse }) {
             <button key={w.id} className="m-chip pick" onClick={() => { setAiText(w.text); setAi(null); setAiError(""); }}>{w.label}</button>
           ))}
         </div>
-        <p className="muted cv-privacy">If the AI helper is on, this text is sent to Groq (an AI service) to match your words to our task list. It is not saved. Please write a made-up week, not real personal details.</p>
+        <p className="muted cv-privacy">If the AI helper is on, this text is sent to an AI service (named on the About page) to match your words to our task list. It is not saved. Please write a made-up week, not real personal details.</p>
         {aiError && <p className="warn" role="alert">{aiError}</p>}
         {ai && (
           <div role="status" className="cv-result">

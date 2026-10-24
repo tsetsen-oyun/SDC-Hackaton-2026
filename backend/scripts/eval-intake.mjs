@@ -1,11 +1,12 @@
 // How good is free-text intake? Compares plain keyword matching with the Groq helper on made-up descriptions
 // whose correct tasks we chose by hand from our own task list.
 //   npm run eval:intake                      keyword matching only (works offline)
-//   GROQ_API_KEY=... npm run eval:intake     keyword matching vs Groq (needs the key; uses 8 requests)
+//   GROQ_API_KEY=... npm run eval:intake     keyword matching vs the AI helper (needs a key; uses 8 requests)
+//   (RUNPOD_API_KEY works too)
 // Report the table in your pitch; it is the evidence that the AI helper adds something.
 import "dotenv/config";
 import { loadSnapshot, listSnapshots, snapshotsDir } from "../engine/load.js";
-import { runIntake, resetIntakeState } from "../engine/intake.js";
+import { runIntake, resetIntakeState, intakeInfo } from "../engine/intake.js";
 
 const snap = loadSnapshot(listSnapshots().at(-1));
 
@@ -45,10 +46,10 @@ async function score(label, env) {
   }
   const precision = tp / (tp + fp || 1), recall = tp / (tp + fn || 1);
   console.log(`\n${label}\n${rows.map((r) => "  " + r).join("\n")}`);
-  console.log(`  => precision ${(precision * 100).toFixed(0)}%, recall ${(recall * 100).toFixed(0)}%, wrong tasks on the out-of-scope case: ${strayOnOutOfScope}${label.includes("Groq") ? `, answered by AI in ${usedAi}/${CASES.length} cases` : ""}`);
+  console.log(`  => precision ${(precision * 100).toFixed(0)}%, recall ${(recall * 100).toFixed(0)}%, wrong tasks on the out-of-scope case: ${strayOnOutOfScope}${label !== "Keyword matching only" ? `, answered by AI in ${usedAi}/${CASES.length} cases` : ""}`);
 }
 
 console.log(`Snapshot ${snap.date} (${snapshotsDir()}), ${CASES.length} made-up cases`);
 await score("Keyword matching only", {});
-if (process.env.GROQ_API_KEY) await score(`Groq (${process.env.GROQ_MODEL || "default model"}), every pick checked against our lists`, process.env);
-else console.log("\n(Set GROQ_API_KEY to compare with the AI helper.)");
+if (intakeInfo(process.env).enabled) await score(`${intakeInfo(process.env).provider} (${intakeInfo(process.env).model}), every pick checked against our lists`, process.env);
+else console.log("\n(Set GROQ_API_KEY or RUNPOD_API_KEY to compare with the AI helper.)");

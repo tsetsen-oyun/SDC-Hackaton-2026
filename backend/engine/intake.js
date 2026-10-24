@@ -8,11 +8,38 @@
 //   4. The person confirms every suggestion before it joins their profile.
 // If the model is unavailable, slow, rate-limited or returns rubbish, we fall back to the plain word
 // matching from step 1 and say so. The text is never saved or logged.
+//
+// Two hosted models are supported, both through the same OpenAI-style chat API. Whichever key is set is used
+// (Groq first if both); INTAKE_PROVIDER=groq|runpod forces one.
 import crypto from "node:crypto";
 
-const GROQ_URL = "https://api.groq.com/openai/v1/chat/completions";
-// Check https://console.groq.com/docs/models for current names; set GROQ_MODEL in backend/.env to change it.
-export const DEFAULT_MODEL = "llama-3.3-70b-versatile";
+const PROVIDERS = {
+  groq: {
+    name: "Groq",
+    url: "https://api.groq.com/openai/v1/chat/completions",
+    keyEnv: "GROQ_API_KEY",
+    modelEnv: "GROQ_MODEL",
+    // Check https://console.groq.com/docs/models for current names.
+    defaultModel: "llama-3.3-70b-versatile",
+    jsonMode: true,
+    noThink: false,
+    timeoutMs: 8000,
+  },
+  runpod: {
+    name: "RunPod",
+    url: "https://api.runpod.ai/v2/qwen3-32b-awq/openai/v1/chat/completions",
+    keyEnv: "RUNPOD_API_KEY",
+    modelEnv: "RUNPOD_MODEL",
+    defaultModel: "Qwen/Qwen3-32B-AWQ",
+    // Qwen3 can "think" out loud first: ask it not to (/no_think) and cope if it does anyway (see parseJson).
+    // JSON mode is left off: the serverless worker may not support it, and every answer is checked anyway.
+    jsonMode: false,
+    noThink: true,
+    // A serverless GPU can need a while to wake up.
+    timeoutMs: 25000,
+  },
+};
+export const DEFAULT_MODEL = PROVIDERS.groq.defaultModel;
 
 export const LIMITS = { minChars: 15, maxChars: 3000, maxTasks: 12, maxSkills: 15, weekHours: 40 };
 
@@ -23,8 +50,15 @@ export class IntakeError extends Error {
   }
 }
 
+// Which hosted model will be used, if any. `id` picks the entry in PROVIDERS.
 export function intakeInfo(env = process.env) {
-  return { enabled: Boolean(env.GROQ_API_KEY), model: env.GROQ_MODEL || DEFAULT_MODEL, provider: "Groq" };
+  const forced = String(env.INTAKE_PROVIDER ?? "").toLowerCase();
+  const order = PROVIDERS[forced] ? [forced] : Object.keys(PROVIDERS);
+  for (const id of order) {
+    const p = PROVIDERS[id];
+    if (env[p.keyEnv]) return { enabled: true, id, provider: p.name, model: env[p.modelEnv] || p.defaultModel };
+  }
+  return { enabled: false, id: "groq", provider: PROVIDERS.groq.name, model: env.GROQ_MODEL || DEFAULT_MODEL };
 }
 
 // ---------- step 1: shortlist from our own data (no AI) ----------
@@ -121,17 +155,17 @@ const SYSTEM = [
   "Reply with JSON only: {\"tasks\":[{\"id\":\"TASK_1\",\"hours\":10,\"evidence\":\"...\"}],\"skills\":[{\"id\":\"SK_1\",\"evidence\":\"...\"}]}",
 ].join("\n");
 
-export function buildPrompt(snap, short, text) {
+export function buildPrompt(snap, short, text, { noThink = false } = {}) {
   const taskLines = short.tasks.map((t) => `${t.id} | ${snap.tasks.get(t.id).task_description.slice(0, 140)}`).join("\n");
   const skillLines = short.skills.map((s) => `${s.id} | ${snap.skills.get(s.id).skill_name}`).join("\n");
-  return `TASKS\n${taskLines}\n\nSKILLS\n${skillLines}\n\nPERSON'S TEXT (between the markers)\n<<<\n${text}\n>>>`;
+  return `TASKS\n${taskLines}\n\nSKILLS\n${skillLines}\n\nPERSON'S TEXT (between the markers)\n<<<\n${text}\n>>>${noThink ? "\n\n/no_think" : ""}`;
 }
 
-async function askGroq({ prompt, key, model, fetcher, timeoutMs }) {
+async function askModel({ prompt, key, model, provider, fetcher, timeoutMs }) {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), timeoutMs);
   try {
-    const res = await fetcher(GROQ_URL, {
+    const res = await fetcher(provider.url, {
       method: "POST",
       signal: controller.signal,
       headers: { "content-type": "application/json", authorization: `Bearer ${key}` },
@@ -139,32 +173,37 @@ async function askGroq({ prompt, key, model, fetcher, timeoutMs }) {
         model,
         temperature: 0,
         max_tokens: 900,
-        response_format: { type: "json_object" },
+        ...(provider.jsonMode ? { response_format: { type: "json_object" } } : {}),
         messages: [{ role: "system", content: SYSTEM }, { role: "user", content: prompt }],
       }),
     });
-    if (!res.ok) throw new Error(res.status === 429 ? "rate limited by Groq" : `Groq answered HTTP ${res.status}`);
+    if (!res.ok) throw new Error(res.status === 429 ? `rate limited by ${provider.name}` : `${provider.name} answered HTTP ${res.status}`);
     const data = await res.json();
     const content = data?.choices?.[0]?.message?.content;
-    if (typeof content !== "string") throw new Error("Groq sent no answer");
-    return parseJson(content);
+    if (typeof content !== "string") throw new Error(`${provider.name} sent no answer`);
+    return parseJson(content, provider.name);
   } catch (err) {
-    if (err.name === "AbortError") throw new Error(`Groq took longer than ${timeoutMs / 1000}s`);
+    if (err.name === "AbortError") throw new Error(`${provider.name} took longer than ${timeoutMs / 1000}s`);
     throw err;
   } finally {
     clearTimeout(timer);
   }
 }
 
-function parseJson(content) {
-  const trimmed = content.trim().replace(/^```(?:json)?\s*/i, "").replace(/\s*```$/, "");
-  try {
-    const value = JSON.parse(trimmed);
-    if (!value || typeof value !== "object") throw new Error();
-    return value;
-  } catch {
-    throw new Error("Groq's answer was not valid JSON");
+// Models sometimes add a <think> block, a code fence or a sentence around the JSON. Peel those off, then parse.
+export function parseJson(content, who = "The model") {
+  const cleaned = content.replace(/<think>[\s\S]*?<\/think>/gi, "").trim().replace(/^```(?:json)?\s*/i, "").replace(/\s*```$/, "");
+  const attempts = [cleaned];
+  const first = cleaned.indexOf("{");
+  const last = cleaned.lastIndexOf("}");
+  if (first > 0 || (last >= 0 && last < cleaned.length - 1)) attempts.push(cleaned.slice(first, last + 1));
+  for (const text of attempts) {
+    try {
+      const value = JSON.parse(text);
+      if (value && typeof value === "object" && !Array.isArray(value)) return value;
+    } catch { /* try the next form */ }
   }
+  throw new Error(`${who}'s answer was not valid JSON`);
 }
 
 // ---------- step 3: keep only what we can verify ----------
@@ -247,14 +286,15 @@ export function resetIntakeState() {
   day.count = 0;
 }
 
-export async function runIntake(snap, { text, visitor = "unknown", env = process.env, fetcher = fetch, now = Date.now(), timeoutMs = 8000 } = {}) {
+export async function runIntake(snap, { text, visitor = "unknown", env = process.env, fetcher = fetch, now = Date.now(), timeoutMs } = {}) {
   const clean = String(text ?? "").replace(/\s+/g, " ").trim();
   if (clean.length < LIMITS.minChars) throw new IntakeError(`Write a little more (at least ${LIMITS.minChars} characters) so we can find your tasks.`);
   if (clean.length > LIMITS.maxChars) throw new IntakeError(`That's too long. Keep it under ${LIMITS.maxChars} characters.`);
 
   const info = intakeInfo(env);
   const short = shortlist(snap, clean);
-  const cacheKey = crypto.createHash("sha1").update(`${snap.date}|${info.model}|${clean.toLowerCase()}`).digest("hex");
+  const provider = PROVIDERS[info.id];
+  const cacheKey = crypto.createHash("sha1").update(`${snap.date}|${info.id}|${info.model}|${clean.toLowerCase()}`).digest("hex");
 
   let picks = null;
   let source = "keywords";
@@ -271,7 +311,10 @@ export async function runIntake(snap, { text, visitor = "unknown", env = process
     notice = "The AI helper is busy right now, so these are plain keyword matches.";
   } else {
     try {
-      const parsed = await askGroq({ prompt: buildPrompt(snap, short, clean), key: env.GROQ_API_KEY, model: info.model, fetcher, timeoutMs });
+      const parsed = await askModel({
+        prompt: buildPrompt(snap, short, clean, { noThink: provider.noThink }),
+        key: env[provider.keyEnv], model: info.model, provider, fetcher, timeoutMs: timeoutMs ?? provider.timeoutMs,
+      });
       const checked = validate(parsed, snap, short);
       if (checked.tasks.length || checked.skills.length) {
         picks = checked;
@@ -281,6 +324,7 @@ export async function runIntake(snap, { text, visitor = "unknown", env = process
       }
     } catch (err) {
       notice = `The AI helper couldn't be reached (${err.message}), so these are plain keyword matches.`;
+      console.error(`[intake] ${info.provider} failed: ${err.message}`); // the person's text is never logged, only the reason
     }
   }
   if (!picks) picks = keywordPicks(short);

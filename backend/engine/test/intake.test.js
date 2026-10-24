@@ -4,7 +4,7 @@ import { test, beforeEach } from "node:test";
 import assert from "node:assert/strict";
 import { fileURLToPath } from "node:url";
 import { loadSnapshot } from "../load.js";
-import { runIntake, shortlist, validate, fillHours, resetIntakeState, intakeInfo, IntakeError, LIMITS } from "../intake.js";
+import { runIntake, shortlist, validate, fillHours, resetIntakeState, intakeInfo, parseJson, IntakeError, LIMITS } from "../intake.js";
 
 const REAL = fileURLToPath(new URL("../../../data/snapshots/", import.meta.url));
 const snap = loadSnapshot("2026-10-23", REAL);
@@ -175,6 +175,47 @@ test("validate keeps at most the limits and never trusts hours from the model", 
 });
 
 test("intakeInfo reports whether the AI helper is on, and which model, for the About page", () => {
-  assert.deepEqual(intakeInfo({}), { enabled: false, model: "llama-3.3-70b-versatile", provider: "Groq" });
-  assert.deepEqual(intakeInfo({ GROQ_API_KEY: "x", GROQ_MODEL: "m" }), { enabled: true, model: "m", provider: "Groq" });
+  assert.deepEqual(intakeInfo({}), { enabled: false, id: "groq", model: "llama-3.3-70b-versatile", provider: "Groq" });
+  assert.deepEqual(intakeInfo({ GROQ_API_KEY: "x", GROQ_MODEL: "m" }), { enabled: true, id: "groq", model: "m", provider: "Groq" });
+  assert.deepEqual(intakeInfo({ RUNPOD_API_KEY: "x" }), { enabled: true, id: "runpod", model: "Qwen/Qwen3-32B-AWQ", provider: "RunPod" });
+  // both keys: Groq first, unless forced
+  assert.equal(intakeInfo({ GROQ_API_KEY: "a", RUNPOD_API_KEY: "b" }).id, "groq");
+  assert.equal(intakeInfo({ GROQ_API_KEY: "a", RUNPOD_API_KEY: "b", INTAKE_PROVIDER: "RunPod" }).id, "runpod");
+  // forcing a provider that has no key means off, not a silent switch
+  assert.equal(intakeInfo({ GROQ_API_KEY: "a", INTAKE_PROVIDER: "runpod" }).enabled, false);
+});
+
+test("RunPod (Qwen3): right URL and model, no JSON mode, /no_think, and a <think> block does not break parsing", async () => {
+  const env = { RUNPOD_API_KEY: "rp-key" };
+  const answer = '<think>The person does bookkeeping...</think>\nHere you go:\n```json\n{"tasks":[{"id":"TASK_2487","hours":8,"evidence":"accounting software"}],"skills":[]}\n```';
+  const groq = fakeGroq(answer);
+  const r = await runIntake(snap, { text: TEXT, fetcher: groq, env, visitor: "rp" });
+  assert.equal(groq.calls[0].url, "https://api.runpod.ai/v2/qwen3-32b-awq/openai/v1/chat/completions");
+  assert.equal(groq.calls[0].init.headers.authorization, "Bearer rp-key");
+  assert.equal(groq.calls[0].body.model, "Qwen/Qwen3-32B-AWQ");
+  assert.equal(groq.calls[0].body.response_format, undefined);
+  assert.ok(groq.calls[0].body.messages[1].content.trimEnd().endsWith("/no_think"));
+  assert.deepEqual([r.source, r.provider, r.model], ["llm", "RunPod", "Qwen/Qwen3-32B-AWQ"]);
+  assert.deepEqual(r.tasks.map((t) => t.task_id), ["TASK_2487"]);
+});
+
+test("parseJson copes with fences, <think> blocks and chatter, and rejects non-JSON", () => {
+  assert.deepEqual(parseJson('{"a":1}'), { a: 1 });
+  assert.deepEqual(parseJson('<think>hm {not json}</think>{"a":2}'), { a: 2 });
+  assert.deepEqual(parseJson('Sure! {"a":3} Hope that helps.'), { a: 3 });
+  assert.throws(() => parseJson("no braces here"), /not valid JSON/);
+  assert.throws(() => parseJson("[1,2,3]"), /not valid JSON/);
+});
+
+test("a failing provider is named in the notice, and the person's text never reaches the log", async () => {
+  const logged = [];
+  const original = console.error;
+  console.error = (...a) => logged.push(a.join(" "));
+  try {
+    const r = await runIntake(snap, { text: TEXT, fetcher: fakeGroq({}, { ok: false, status: 503 }), env: { RUNPOD_API_KEY: "k" }, visitor: "log" });
+    assert.match(r.notice, /RunPod answered HTTP 503/);
+  } finally {
+    console.error = original;
+  }
+  assert.ok(logged.length === 1 && !logged[0].includes("invoices"));
 });
