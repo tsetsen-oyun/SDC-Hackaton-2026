@@ -1,0 +1,118 @@
+From 5a7840468688d83651601150ba4414886aeeb184 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Sat, 24 Oct 2026 12:50:03 +0800
+Subject: [PATCH] Show what the live METR check found
+
+When METR's file matches our saved data, say so (Refresh message and About page)
+instead of implying new data arrived. Records the last live check time.
+
+Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_0191cpD8b2mjH99bh1D6GrG7
+---
+ backend/engine/index.js             | 5 +++++
+ backend/engine/pages.js             | 1 +
+ backend/engine/test/ingest.test.js  | 4 ++++
+ frontend/src/components/Sidebar.jsx | 4 +++-
+ frontend/src/pages/About.jsx        | 6 ++++++
+ 5 files changed, 19 insertions(+), 1 deletion(-)
+
+diff --git a/backend/engine/index.js b/backend/engine/index.js
+index 3907e88..f37e982 100644
+--- a/backend/engine/index.js
++++ b/backend/engine/index.js
+@@ -69,6 +69,7 @@ export function getSources() {
+     llm_model_used: snap.manifest.llm_model_used ?? null,
+     fetched_live: snap.manifest.fetched_live ?? false,
+     fetched_at: snap.manifest.fetched_at ?? null,
++    live_check: lastLiveCheck,
+     sources: [...snap.sources.values()],
+     scenarios: [...snap.scenarios.values()].map((s) => ({
+       id: s.scenario_id,
+@@ -140,6 +141,8 @@ function targetJobTasks(snap, user) {
+ //     never ends up with no data on stage. (Set LIVE_REFRESH=0 to skip step 1, e.g. in tests.)
+ // Only one Refresh runs at a time; a second click gets the same answer instead of a second download.
+ let inFlight = null;
++// The last time METR's file was checked live, and what we found. About shows it, so a judge can see the check happened.
++let lastLiveCheck = null;
+ export function refreshData(options = {}) {
+   if (!inFlight) inFlight = doRefresh(options).finally(() => { inFlight = null; });
+   return inFlight;
+@@ -162,6 +165,7 @@ async function doRefresh({ fetcher = fetchText, now = () => new Date() } = {}) {
+         const metr = validateMetr(parseMetr(rawText), now());
+         const newestSnap = loadSnapshot(newest);
+         live.ok = true;
++        lastLiveCheck = { checked_at: checkedAt, url: METR_URL, result: "matches_saved" };
+         if (!sameTrend(metr, newestSnap)) {
+           live.trend = describeChange(metr, newestSnap);
+           const written = writeLiveSnapshot({
+@@ -169,6 +173,7 @@ async function doRefresh({ fetcher = fetchText, now = () => new Date() } = {}) {
+           });
+           current = loadSnapshot(written.date, written.dir);
+           live.new_data = true;
++          lastLiveCheck = { ...lastLiveCheck, result: "new_data" };
+         }
+       } catch (err) {
+         live.error = err.message;
+diff --git a/backend/engine/pages.js b/backend/engine/pages.js
+index 9b194b0..b7ced6f 100644
+--- a/backend/engine/pages.js
++++ b/backend/engine/pages.js
+@@ -300,6 +300,7 @@ export function getSources() {
+     snapshot_date: s.snapshot_date,
+     fetchedLive: s.fetched_live,
+     fetchedAt: s.fetched_at,
++    liveCheck: s.live_check,
+     model: s.llm_model_used,
+     sources: s.sources.map((x) => ({ label: x.name, url: x.url ?? null, date: x.date_taken ?? null, licence: x.licence ?? null })),
+     // Plain-language list of every assumption behind the numbers, for the About page.
+diff --git a/backend/engine/test/ingest.test.js b/backend/engine/test/ingest.test.js
+index bbe632a..360acde 100644
+--- a/backend/engine/test/ingest.test.js
++++ b/backend/engine/test/ingest.test.js
+@@ -80,6 +80,10 @@ test("Refresh with nothing new: live check ok, same snapshot, nothing written",
+   const r = await engine.refreshData({ fetcher: async () => metrYaml(realRows), now: NOW });
+   assert.deepEqual([r.live, r.changed, r.fallback, r.snapshot_date, r.live_error], [true, false, false, "2026-10-23", null]);
+   assert.equal(r.trend, null);
++  assert.deepEqual(
++    [engine.getSources().live_check.result, engine.getSources().live_check.checked_at],
++    ["matches_saved", "2026-10-24T05:00:00.000Z"]
++  );
+   assert.equal(fs.existsSync(path.join(TMP, "2026-10-24")), false);
+ });
+ 
+diff --git a/frontend/src/components/Sidebar.jsx b/frontend/src/components/Sidebar.jsx
+index f32b6e2..3fd3d81 100644
+--- a/frontend/src/components/Sidebar.jsx
++++ b/frontend/src/components/Sidebar.jsx
+@@ -49,8 +49,10 @@ export default function Sidebar({ collapsed, onToggle }) {
+       const newModels = r.trend?.new_models?.length ?? 0;
+       if (r.fallback) {
+         setNotice({ ok: false, text: `Couldn't get new data, so we're still using the saved copy from ${formatDate(date)}.` });
+-      } else if (r.changed && r.live) {
++      } else if (r.changed && r.live && r.trend) {
+         setNotice({ ok: true, text: `Fetched live from metr.org${checked ? ` at ${checked}` : ""}${newModels ? `: ${newModels} new model${newModels > 1 ? "s" : ""}` : ""}. Forecast updated.` });
++      } else if (r.changed && r.live) {
++        setNotice({ ok: true, text: `Checked metr.org live${checked ? ` at ${checked}` : ""}: METR's current data matches our newest saved copy. Moved from the older copy (${formatDate(r.previous)}) to ${formatDate(date)}. Forecast updated.` });
+       } else if (r.changed) {
+         setNotice({ ok: true, text: `New data loaded${r.previous ? ` (was ${formatDate(r.previous)})` : ""}. Pages updated.${r.live_error ? " metr.org couldn't be reached, so this is the saved copy." : ""}` });
+       } else if (r.live) {
+diff --git a/frontend/src/pages/About.jsx b/frontend/src/pages/About.jsx
+index 8c9db9e..97f4b0b 100644
+--- a/frontend/src/pages/About.jsx
++++ b/frontend/src/pages/About.jsx
+@@ -24,6 +24,12 @@ export default function About() {
+         <section className="card about-card">
+           <h2>Snapshot and model</h2>
+           <p>Data snapshot: <b>{info.snapshotDate ?? info.snapshot_date}</b></p>
++          {info.liveCheck && (
++            <p>
++              Last checked live against metr.org: <b>{new Date(info.liveCheck.checked_at).toUTCString()}</b>
++              {info.liveCheck.result === "matches_saved" ? " (METR's current file matches our saved data)" : " (new data found and loaded)"}
++            </p>
++          )}
+           {info.fetchedLive && info.fetchedAt && (
+             <p>AI-progress data fetched live from metr.org on <b>{new Date(info.fetchedAt).toUTCString()}</b></p>
+           )}
+-- 
+2.43.0
+
