@@ -40,7 +40,7 @@ About **45%** of Malaysian workers have at least 40% of their tasks that today's
 
 Unbundle takes a person's real week of tasks and splits it into the parts AI could take over and the parts that stay human. It then maps the future jobs that fit what is left, and the courses that close the skill gap. The forecast covers 2026–2035 under three AI-adoption scenarios, and every number links to its source, its date and whether it is an estimate.
 
-AI is used in two places, and both are disclosed. Task timing builds on published AI-capability research (METR) and exposure data (Anthropic Economic Index, O\*NET). A language model (Qwen3-32B-AWQ) drafted the job-to-SDG links once, offline; these are labelled "Estimate" until a person reviews them. The running app calls no AI API.
+AI is used in two places, and both are disclosed. Task timing builds on published AI-capability research (METR) and exposure data (Anthropic Economic Index, O\*NET). A language model (Qwen3-32B-AWQ) drafted the job-to-SDG links once, offline; these are labelled "Estimate" until a person reviews them. The running app calls no AI API. Its only outside call is the Refresh button fetching METR's published AI-progress data (see *Live Trend Data* below).
 
 ### Key Features
 
@@ -50,7 +50,7 @@ AI is used in two places, and both are disclosed. Task timing builds on publishe
 - **Build your own profile** — Create a profile by picking tasks and skills, or paste a CV to find skills in it. The CV text is read in your browser and is never uploaded or stored.
 - **Mentor matches** — Who could swap skills with you. Both people must consent, a person approves, and age is never used.
 - **Receipts** — Tap (i) next to any number to see the source, the date and whether it is an estimate.
-- **Refresh data** — Loads the newest dated data snapshot, and tells you plainly if the new data could not be loaded.
+- **Refresh data** — Fetches METR's latest AI-progress data live, rebuilds the forecast if it changed, and tells you plainly if the fetch failed and the saved copy is used instead.
 
 ### Tech Stack
 
@@ -115,7 +115,7 @@ Offline, one-off:  public sources ──► cleaned CSVs ──► Qwen3-32B (Ru
 | `GET /api/tasks` | Every task we know, for "add a task" |
 | `GET /api/skills` | Every skill we know, for the profile builder and CV finder |
 | `GET /api/sources` | Where every number comes from |
-| `POST /api/refresh` | Reload the newest data snapshot |
+| `POST /api/refresh` | Fetch METR's latest AI-progress data live, build a new dated snapshot if it changed, and load it (falls back to the saved snapshot if the fetch fails) |
 
 ---
 
@@ -190,7 +190,7 @@ This runs the 89 engine tests (`node --test backend/engine/test/*.test.js`).
 | What | Source |
 | --- | --- |
 | Worker exposure to AI | ISIS Malaysia & World Bank, *Novel AI Technologies and the Future of Work in Malaysia*, policy brief, July 2025 |
-| AI task timing | METR time-horizon research (shortened for office work; see the About page for the exact assumptions); Whitfill, Snodin and Becker (2025), arXiv:2511.19492; Anthropic Economic Index (2026) |
+| AI task timing | METR time-horizon data, fetched live on Refresh (shortened for office work; see the About page for the exact assumptions); Whitfill, Snodin and Becker (2025), arXiv:2511.19492; Anthropic Economic Index (2026) |
 | Jobs and tasks | O\*NET 31.0, US BLS, DOSM |
 | Skills | ESCO |
 | Courses | Coursera and Microsoft Learn catalogues |
@@ -198,6 +198,24 @@ This runs the 89 engine tests (`node --test backend/engine/test/*.test.js`).
 | SDG links | 516 drafted by Qwen3-32B (estimates), 22 from Aurora, 11 reviewed by the team |
 
 Only sample and synthetic people are used. No real CVs or personal data are in the repository.
+
+## Live Trend Data
+
+The AI-trend signal layer is **fetched live**, not typed in. When you press **Refresh data**:
+
+1. The server downloads METR's published time-horizon file ([`benchmark_results_1_1.yaml`](https://metr.org/assets/benchmark_results_1_1.yaml)), with an 8-second timeout.
+2. `backend/engine/ingest.js` parses it and **checks it** (enough models, sane dates and units, plausible doubling times). A file that fails the checks is never used.
+3. If it differs from the newest saved snapshot, a new dated folder is written to `data/snapshots/` with METR's numbers (`ai_progress.csv`, `scenarios.csv`). Every other file is copied from the previous snapshot. METR's raw file is saved next to it as evidence, and `manifest.json` records `fetched_live` and the fetch time.
+4. The engine loads the new snapshot, so the forecast, the match and the route all change.
+
+**If the fetch or the checks fail**, Refresh says why and keeps using the newest saved snapshot. This is our plan for the biggest risk: METR changing its file format or being unreachable.
+
+```bash
+npm run ingest:check   # downloads METR's real file and prints what we would use; writes nothing
+npm run ingest:now     # same as the Refresh button, from the terminal
+```
+
+Not live yet: the Anthropic Economic Index task times, ESCO, O\*NET, SDSN and the course list are saved snapshots with their dates on the About page.
 
 ## Principles We Kept To
 

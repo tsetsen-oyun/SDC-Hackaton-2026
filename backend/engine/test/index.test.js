@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url";
 
 const DIR = fileURLToPath(new URL("./fixtures/snapshots/", import.meta.url));
 process.env.SNAPSHOTS_DIR = DIR;
+process.env.LIVE_REFRESH = "0"; // these tests are about snapshots on disk; live fetching is tested in ingest.test.js
 const engine = await import("../index.js");
 
 const sitiWeek = () => engine.getProfiles().find((p) => p.user_id === "siti").tasks;

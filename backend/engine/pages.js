@@ -298,6 +298,8 @@ export function getSources() {
   return {
     snapshotDate: s.snapshot_date,
     snapshot_date: s.snapshot_date,
+    fetchedLive: s.fetched_live,
+    fetchedAt: s.fetched_at,
     model: s.llm_model_used,
     sources: s.sources.map((x) => ({ label: x.name, url: x.url ?? null, date: x.date_taken ?? null, licence: x.licence ?? null })),
     // Plain-language list of every assumption behind the numbers, for the About page.

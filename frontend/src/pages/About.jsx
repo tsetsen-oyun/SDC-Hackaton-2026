@@ -24,6 +24,9 @@ export default function About() {
         <section className="card about-card">
           <h2>Snapshot and model</h2>
           <p>Data snapshot: <b>{info.snapshotDate ?? info.snapshot_date}</b></p>
+          {info.fetchedLive && info.fetchedAt && (
+            <p>AI-progress data fetched live from metr.org on <b>{new Date(info.fetchedAt).toUTCString()}</b></p>
+          )}
           <p>AI model used: <b>{info.model ?? "None"}</b></p>
         </section>
 
