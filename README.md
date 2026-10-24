@@ -181,14 +181,14 @@ Deployment of our project "Unbundle" is on Replit Autoscale: https://unbundle.re
 - **Hosting:** deployed with Replit Deployments at the Live Demo link above
 - **Secrets:** RUNPOD_API_KEY is stored in Replit Secrets (optional feature). Nothing secret is committed.
   
-📄 Proof of use: [`submission/SDC2026_Really_cool_team_name_Runpod_POU.pdf`](submission/SDC2026_Really_cool_team_name_Replit_POU.pdf)
+📄 Proof of use: [`submission/SDC2026_Really cool team name_Replit_POU.pdf`](submission/SDC2026_Really%20cool%20team%20name_Replit_POU.pdf)
 
 ## How We Use RunPod *(Required)*
 
 - **Workload:** Qwen3-32B-AWQ ran on a Runpod public endpoint to draft job-to-SDG links (516 of the 549 links in our data). This was done once, offline, on 2026-10-21.
 - **Why offline:** the links are stored in `data/snapshots/*/sdg_links.csv` and labelled "Estimate" until a person reviews them. At runtime Runpod is used only for the optional free-text intake. If Runpod is down, the app falls back to keyword matching and still works.
 
-📄 📄 Proof of use: [`submission/SDC2026_Really_cool_team_name_Runpod_POU.pdf`](submission/SDC2026_Really_cool_team_name_Runpod_POU.pdf)
+📄 Proof of use: [`submission/SDC2026_Really cool team name_Runpod_POU.pdf`](submission/SDC2026_Really%20cool%20team%20name_Runpod_POU.pdf)
 
 ---
 
