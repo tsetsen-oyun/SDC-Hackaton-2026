@@ -24,9 +24,9 @@
 | GitHub Repository | https://github.com/tsetsen-oyun/SDC-Hackaton-2026                    |
 | Replit Project    | https://unbundle.replit.app/                      |
 | Live Demo         | https://unbundle.replit.app/                                |
-| RunPod Endpoint   | Runpod public endpoint, Qwen3-32B-AWQ (offline SDG drafting + optional free-text intake)) |
+| RunPod Endpoint   | Runpod public endpoint, Qwen3-32B-AWQ (offline SDG drafting + optional free-text intake |
 | Slide Deck        | https://drive.google.com/drive/folders/1zW5P7GUSPqTIIrvDHGhwADO5T9NUOT9G?usp=sharing                                          |
-| Demo Video        | [CONFIRM: demo video link]                                           |
+| Demo Video        | https://youtu.be/eod7YEGtNoE                                          |
 
 ---
 
@@ -181,7 +181,7 @@ Deployment of our project "Unbundle" is on Replit Autoscale: https://unbundle.re
 - **Hosting:** deployed with Replit Deployments at the Live Demo link above
 - **Secrets:** RUNPOD_API_KEY is stored in Replit Secrets (optional feature). Nothing secret is committed.
   
-📄 Proof of use: [`submission/SDC2026_TeamName_Replit_POU.pdf`](submission/SDC2026_TeamName_Replit_POU.pdf)
+📄 Proof of use: (submission/SDC2026_Really cool team name_Replit_POU.pdf)
 
 ## How We Use RunPod *(Required)*
 
@@ -189,7 +189,7 @@ Deployment of our project "Unbundle" is on Replit Autoscale: https://unbundle.re
 - **Why offline:** the links are stored in `data/snapshots/*/sdg_links.csv` and labelled "Estimate" until a person reviews them. At runtime Runpod is used only for the optional free-text intake. If Runpod is down, the app falls back to keyword matching and still works.
 - **Integration:** [CONFIRM: describe the script or notebook used to call the endpoint, and whether it is in the repository]
 
-📄 Proof of use: [`submission/SDC2026_TeamName_Runpod_POU.pdf`](submission/SDC2026_TeamName_Runpod_POU.pdf)
+📄 Proof of use: (submission/SDC2026_Really cool team name_Runpod_POU.pdf)
 
 ---
 
@@ -240,7 +240,7 @@ The text is not saved or logged. It is sent to the model only when a key is set 
 ```bash
 # backend/.env  (never committed; on Replit use Secrets)
 RUNPOD_API_KEY=...                    # our RunPod endpoint (Qwen/Qwen3-32B-AWQ, OpenAI-compatible)
-INTAKE_PROVIDER=runpod                # optional: force one when both keys are set
+INTAKE_PROVIDER=runpod               
 npm run eval:intake                   # keyword matching vs the AI helper on 8 made-up cases
 ```
 
@@ -248,7 +248,7 @@ npm run eval:intake                   # keyword matching vs the AI helper on 8 m
 
 - **Every number has a receipt.** Tap the (i) to see the source, the date and whether it is an estimate.
 - **Estimates are labelled.** Dates, scores and SDG links made by a model say "Estimate".
-- **No data is not "safe".** Tasks with no published AI date count as human work, and we say so.
+- **No data is not "safe".** No data is not evidence of safety. Tasks with no published AI timing are counted as human work for now, and we flag this as a limitation.
 - **People stay in control.** You can change hours, remove tasks or add tasks, and every page updates. Suggestions are suggestions.
 - **Your CV stays on your device.** It is read in the browser and never uploaded or stored.
 - **The AI never writes what you see.** In free-text intake it can only pick from our own lists, every pick is checked, and you confirm each one.
@@ -258,11 +258,11 @@ npm run eval:intake                   # keyword matching vs the AI helper on 8 m
 
 ## Challenges & Learnings
 
-- **Data we could not find.** Only 66% (102 of 154) of the skills missing for our 7 target jobs have any course in our catalogue, and none of the 96 courses has a checked HRD Corp claim status. We show this gap openly ("No course in our list yet") instead of filling it with guesses.
+- **Data we could not find.** Only 66% (102 of 154) of the skills missing for our 7 target jobs have any course in our catalogue, and none of the 96 courses has a checked HRD Corp claim status. We show this gap openly ("No course in our list yet") instead of filling it with guesses. Anthropic’s usage data covers only Claude conversations and is not specific to Malaysia.
 - **Estimates vs. facts.** Most SDG links are model estimates, so we label them and show "not yet checked" until a person reviews them.
 - **Making numbers trustworthy.** Putting a source, a date and an "Estimate" label behind every figure changed how we designed the engine and the interface.
 - **Accessibility.** We checked colour contrast, avoided relying on colour alone, and made the layout work on phones.
-- [CONFIRM: add one or two team-specific lessons]
+  
 
 ## Future Improvements
 
@@ -283,19 +283,6 @@ npm run eval:intake                   # keyword matching vs the AI helper on 8 m
 
 ---
 
-## Submission Checklist
-
-- [ ] Team name, domain (Domain 1) and SDG track filled in
-- [ ] Slide deck link added
-- [ ] Demo video link added
-- [ ] Replit used, with proof of use in `submission/` 
-- [ ] RunPod used, with proof of use in `submission/`
-- [ ] Preliminary submission completed (`SDC2026_TeamName_Preliminary.pdf`)
-- [ ] Technology declaration completed (`SDC2026_TeamName_TechDeclaration.pdf`)
-- [ ] Submission files renamed with your team name (replace `TeamName`)
-- [ ] "How to Run" steps verified
-- [ ] No API keys or secrets committed to the repository
-
 ## License
 
-Licensed under the Apache License 2.0. See (LICENSE)
+Licensed under the Apache License 2.0. See [LICENSE](LICENSE)
